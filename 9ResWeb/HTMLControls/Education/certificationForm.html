@@ -1,0 +1,92 @@
+
+<div style="float: left">
+    <div class="schoolHeader" style="height: 35px; width: 250px; vertical-align: middle">
+        <span style="color: #444444; font-size: 14; font-weight: bold; vertical-align: middle"> Enter Certification Details</span>
+    </div>
+
+
+    <table class="schoolForm" style="margin-top: 15px;">
+        <tr>
+            <td>
+                Certification Type
+            </td>
+            <td>
+                <input type="text" ng-model="certificate.type">
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Certification Provider
+            </td>
+            <td>
+                <input type="text" ng-model="certificate.Provider">
+            </td>
+        </tr>
+
+<!--
+        <tr>
+            <td>
+                Location
+            </td>
+            <td nowrap style="vertical-align: top">
+                <div style="display: inline-block">
+                    <input type="text" placeholder="City" ng-model="certificate.city" style="width: 14ch">
+                </div>
+                <div style="display: inline-block;vertical-align: top;">
+                    , <statedropdown passedmodel="certificate.state"></statedropdown>
+                </div>
+            </td>
+        </tr>
+-->
+
+        <tr>
+            <td>
+                Completed?
+            </td>
+            <td>
+                <input type="checkbox" ng-model="certificate.completed">
+            </td>
+        </tr>
+
+        <tr ng-show="certificate.completed">
+            <td>
+                Completion Date
+            </td>
+            <td>
+                <monthdropdown passedmodel="certificate.compMonth"></monthdropdown>
+                <yeardropdown passedmodel="certificate.compYear"></yeardropdown>
+            </td>
+        </tr>
+
+        <tr>
+
+            <td>
+                <a class="btn btn-primary" ng-disabled="!(certificate.type.length > 0)" ng-click="saveCertificate()"> Save </a>
+            </td>
+
+            <td>
+                <a class="btn btn-danger" ng-click="cancelCertificate()"> Cancel </a>
+            </td>
+
+
+        </tr>
+
+
+    </table>
+</div>
+
+<div style="float: left; margin-left: 190px;">
+
+    <div>
+        <img src="http://3.bp.blogspot.com/-PlmYp6Cf2tQ/T2CrKkyWdzI/AAAAAAAAAEE/e-IxlKGsLns/s320/mcts.gif"
+             height="90px">
+    </div>
+
+    <div>
+        <img src="http://i1.wp.com/unifiedtech.com/wp-content/uploads/ccie-rs.jpg?resize=150%2C150"
+             height="90px">
+    </div>
+
+
+</div>

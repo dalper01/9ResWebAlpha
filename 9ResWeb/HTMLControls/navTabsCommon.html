@@ -1,0 +1,7 @@
+<div style="margin-left: 15px; margin-top: 8px; margin-bottom: 1px;">
+    <ul class="nav nav-tabs">
+        <li ng-repeat="navTab in navTabs" class="{{navTab.tabClass}}" ng-click="updateFn()">
+            <a href="{{ navTab.tabLink }}"  ng-click="updateFn()"> {{ navTab.tabTitle }} </a>
+        </li>
+    </ul>
+</div>

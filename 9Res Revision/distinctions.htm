@@ -1,0 +1,433 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="9res-nie.css" />
+<!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="9res-ie.css" />
+<![endif]-->
+
+<title>9Res - Distinctions</title>
+<!DOCTYPE HTML>
+<link rel="stylesheet" type="text/css" href="9res.css" />
+
+ <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script type="text/javascript" src="animatedcollapse.js"></script>
+<script type="text/javascript">
+animatedcollapse.addDiv('hdr2', 'fade=0,speed=400,height=128px,hide=1');
+animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is expanded/contracted
+	//$: Access to jQuery
+	//divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
+	//state: "block" or "none", depending on state
+}
+function info_mouse_over(td_obj) {
+  if(td_obj.className == "hdr_info3") { td_obj.className = "hdr_info4";} else { td_obj.className = "hdr_info2";}
+}
+function info_mouse_out(td_obj) {
+   if(td_obj.className == "hdr_info4") { td_obj.className = "hdr_info3";} else { td_obj.className = "hdr_info1";}
+}
+function info_mouse_click(td_obj) {
+  if(td_obj.className == "hdr_info1") {n = "hdr_info3"; animatedcollapse.toggle('hdr2');}
+  if(td_obj.className == "hdr_info2") {n = "hdr_info4"; animatedcollapse.toggle('hdr2');}
+  if(td_obj.className == "hdr_info3") {n = "hdr_info1"; animatedcollapse.toggle('hdr2');}
+  if(td_obj.className == "hdr_info4") {n = "hdr_info2"; animatedcollapse.toggle('hdr2');}
+  td_obj.className = n;
+}
+animatedcollapse.init();
+
+  $(document).ready(function() {
+    $("input#txt_O_Industry1").autocomplete({source: ["brett","bob","balkan"]});
+  });
+  
+function getEl(htm_obj) {
+	var x = document.getElementById(htm_obj);
+	switch(x.type){
+		case "text": return x.value;
+		case "select-one": return x.options[x.selectedIndex].value;
+		default: return x.type + "??";
+	}
+}
+
+function getCode(htm_obj) {
+	var x = getEl(htm_obj);
+	switch(x){
+		case "": return "";
+		case "ft": return "full-time";
+		case "pt": return "part-time position";
+		case "con": return "a contract position";
+		default:  return  x + "?";
+	}
+}
+
+function initPage() {
+  updDistinction();
+}
+ 
+function isDist(ds_num) {
+	if(document.getElementById("txt_ds_exp" + ds_num +"_line1").value.length > 0) {return true;} else {return false;}
+}	
+
+function getDist(ds_num) {
+var dist;
+var selIdx;
+var astk;
+
+if(ds_num == 0) {
+    dist  = "<table cellspacing=0 cellpadding=0 width=100%><tr height=44><td class=\"ds_bkg_pie\">";
+	dist += "<table cellpadding=0 cellspacing=0 height=44 width=100% border=0 height=100%>";
+	dist += "<tr><td width=100% class='ds_line1'>First Place</td></tr>";
+	dist += "<tr><td width=100% class='ds_line2'>Pie Eating Contest</td></tr>";
+	dist += "</table></td></tr></table>";
+}
+else {
+	if(document.getElementById("chk_ds_exp" + ds_num + "_pend").checked == true) { astk = "*"} else {astk="";}
+	selIdx = document.getElementById("opt_ds_exp" + ds_num +"_type").selectedIndex
+    dist  = "<table cellpadding=0 cellspacing=0 width=100%><tr height=44><td class=\"ds_bkg_" + selIdx +"\">";
+	dist += "<table cellpadding=0 cellspacing=0 height=44 width=100% border=0 height=100%>";
+	dist += "<tr><td width=100% class='ds_line1'>" + document.getElementById("txt_ds_exp" + ds_num +"_line1").value + astk + "</td></tr>";
+	dist += "<tr><td width=100% class='ds_line2'>" + document.getElementById("txt_ds_exp" + ds_num +"_line2").value +"</td></tr>";
+	dist += "</table></td></tr></table>";
+}
+	return dist;
+}	
+	
+function updDistinction() {
+	var ds_htm;
+	var dists=new Array();
+	var i;
+	for(i=1; i <= 6; i++) {
+		if(isDist(i) == true) {dists.push(getDist(i));}
+	}
+	if(dists.length ==0) {dists.push(getDist(0));}
+	ds_htm  = "<table cellpadding=0 cellspacing=0 border=0 width=100% height=100%>";
+	switch(dists.length) {
+	case 1: 
+		ds_htm += "<tr height=100%><td class=\"ds_bkg_degree\">" + dists[0] + "</td></tr>";
+		break;
+	case 2: 
+		ds_htm += "<tr height=100%><td width=50%>" + dists[0] + "</td>";
+		ds_htm += "<td width=50%>" + dists[1] + "</td></tr>";
+		break;
+	case 3: 
+		ds_htm += "<tr height=100%><td width=33%>" + dists[0] + "</td>";
+		ds_htm += "<td width=34%>" + dists[1] + "</td>";
+		ds_htm += "<td width=33%>" + dists[2] + "</td></tr>";
+		break;
+	case 4: 
+		ds_htm += "<tr height=50%><td width=50%>" + dists[0] + "</td>";
+		ds_htm += "<td width=50%>" + dists[1] + "</td></tr>";
+		ds_htm += "<tr height=50%><td width=50%>" + dists[2] + "</td>";
+		ds_htm += "<td width=50%>" + dists[3] + "</td></tr>";
+		break;		
+	case 5: 
+		ds_htm += "<tr height=50%><td colspan=3 width=50%>" + dists[0] + "</td>";
+		ds_htm += "<td colspan=3 width=50%>" + dists[1] + "</td></tr>";
+		ds_htm += "<tr height=50%><td colspan=2 width=33%>" + dists[2] + "</td>";
+		ds_htm += "<td colspan=2 width=33%>" + dists[3] + "</td>";
+		ds_htm += "<td colspan=2 width=33%>" + dists[4] + "</td></tr>";		
+		break;		
+	case 6: 
+		ds_htm += "<tr height=50%><td width=33%>" + dists[0] + "</td>";
+		ds_htm += "<td width=34%>" + dists[1] + "</td>";
+		ds_htm += "<td width=33%>" + dists[2] + "</td></tr>";
+		ds_htm += "<tr height=50%><td width=33%>" + dists[3] + "</td>";
+		ds_htm += "<td width=34%>" + dists[4] + "</td>";
+		ds_htm += "<td width=33%>" + dists[5] + "</td></tr>";
+		break;
+    }
+	ds_htm += "</table>";
+	if (dists.length < 4) {document.getElementById("ppane_ds").style.height=44;} 
+	else {document.getElementById("ppane_ds").style.height=88;} 
+			
+
+			
+	document.getElementById("ppane_ds").innerHTML = ds_htm;
+	setSorts();
+}
+
+function sortDist(id_num, sort_dir) {
+	var target_row;
+	var source_row = id_num;
+	var tgt_chk_pend;
+	var tgt_chk_priv;
+	var tgt_type;
+	var tgt_line1;
+	var tgt_line2;
+	
+
+	// Note: we actually reverse the sort_dir parameter, because what appears to be going "down" on the html page is
+	// going "up" in our list -- meaning that #2 is below #1, and #3 is below #2.  Sorry, I know that's a bit confusing.
+	sort_dir = sort_dir * -1;
+	
+	// only sort sortable rows (if they attempt to sort a row with no values, we do nothing)
+	if(document.getElementById("sort_up" + id_num).className != "ds_sortup_null")
+	{ 
+	// determine our target row
+	target_row = source_row + sort_dir;
+	if(target_row == 0) { target_row=6;}
+	if(target_row == 7) { target_row=1;}
+
+	
+	// record the values from our target row
+	tgt_chk_pend = document.getElementById("chk_ds_exp" + target_row +"_pend").checked;
+	tgt_chk_priv = document.getElementById("chk_exp" + target_row +"_priv").checked;	
+	tgt_type = document.getElementById("opt_ds_exp" + target_row +"_type").value;
+	tgt_line1 = document.getElementById("txt_ds_exp" + target_row +"_line1").value;
+	tgt_line2 = document.getElementById("txt_ds_exp" + target_row +"_line2").value;
+	
+	// copy over our target
+	document.getElementById("chk_ds_exp" + target_row +"_pend").checked = document.getElementById("chk_ds_exp" + source_row +"_pend").checked;
+	document.getElementById("chk_exp" + target_row +"_priv").checked = document.getElementById("chk_exp" + source_row +"_priv").checked;
+	document.getElementById("opt_ds_exp" + target_row +"_type").value = document.getElementById("opt_ds_exp" + source_row +"_type").value;
+	document.getElementById("txt_ds_exp" + target_row +"_line1").value = document.getElementById("txt_ds_exp" + source_row +"_line1").value;
+	document.getElementById("txt_ds_exp" + target_row +"_line2").value = document.getElementById("txt_ds_exp" + source_row +"_line2").value
+
+	// copy over our source
+	document.getElementById("chk_ds_exp" + source_row +"_pend").checked = tgt_chk_pend;
+	document.getElementById("chk_exp" + source_row +"_priv").checked = tgt_chk_priv;
+	document.getElementById("opt_ds_exp" + source_row +"_type").value = tgt_type;
+	document.getElementById("txt_ds_exp" + source_row +"_line1").value = tgt_line1;
+	document.getElementById("txt_ds_exp" + source_row +"_line2").value = tgt_line2;
+	
+	updDistinction();
+	setSorts();
+	
+	//alert("sorting " + id_num + " in direction " + sort_dir);}
+	}
+}
+
+function sort_mouse_event(sort_row, sort_dir, sort_event) {
+	var newClass = "ds_sort";
+	var row_dist = isDist(sort_row);
+	
+	if(sort_event =="over") 
+		{if(row_dist == true) { newClass += sort_dir +"_on";} else { newClass += sort_dir +"_null";}}
+
+	if(sort_event =="out")
+		{if(row_dist == true) { newClass += sort_dir +"_off";} else { newClass += sort_dir +"_null";}}
+	
+	document.getElementById("sort_" + sort_dir +sort_row).className = newClass;
+	
+	//alert(newClass);
+	//alert(sort_id);
+	
+}
+	
+function setSorts() {
+	var i;
+	var sort_obj;
+	
+	for(i=1; i <= 6; i++) {
+		if(isDist(i) == true) {
+			sort_obj = document.getElementById("sort_up" +i);
+			sort_obj.className = "ds_sortup_off";
+//			sort_obj.onmouseover = "this.className='ds_sortup_on'";
+//			sort_obj.onmouseout = "this.className='ds_sortup_off'";
+			sort_obj = document.getElementById("sort_down" +i);
+			sort_obj.className = "ds_sortdown_off";
+//			sort_obj.onmouseover = "this.className='ds_sortdown_on'";
+//			sort_obj.onmouseout = "this.className='ds_sortdown_off'";
+
+			
+		}
+		else {
+ 			sort_obj = document.getElementById("sort_up" +i);
+			sort_obj.className = "ds_sortup_null";
+//			sort_obj.onmouseover = "";
+//			sort_obj.onmouseout = "";
+			sort_obj = document.getElementById("sort_down" +i);
+			sort_obj.className = "ds_sortdown_null";
+//			sort_obj.onmouseover = "";
+//			sort_obj.onmouseout = "";
+		}
+	}
+}	
+</script>
+
+</head>
+<body>
+
+
+<div id ="nav">
+	<table class="nav_tab" height=100% width=158>
+	<tr><td ><img src="./images/logo.bmp" width=157 height=113></td></tr>
+	<tr><td ><img src="./images/logo_footer.bmp" width=157 height=53></td></tr>
+	<tr><td class="nav_oth_off" onmouseover="this.className='nav_oth_on'" onmouseout="this.className='nav_oth_off'" onclick="document.location='welcome.htm'">Welcome!</td></tr>
+	<tr><td class="res_off" onmouseover="this.className='res_on'" onmouseout="this.className='res_off'" onclick="document.location='resume.htm'">Your Resume</td></tr>
+	<tr><td class="nav_off" onmouseover="this.className='nav_on'" onmouseout="this.className='nav_off'" onclick="document.location='contact_info.htm'">Contact Info</td></tr>
+	<tr><td class="nav_off" onmouseover="this.className='nav_on'" onmouseout="this.className='nav_off'" onclick="document.location='objective.htm'">Objective</td></tr>
+	<tr><td class="nav_off" onmouseover="this.className='nav_on'" onmouseout="this.className='nav_off'" onclick="document.location='expertise.htm'">Expertise</td></tr>
+	<tr><td class="nav_off" onmouseover="this.className='nav_on'" onmouseout="this.className='nav_off'" onclick="document.location='career.htm'">Career</td></tr>
+	<tr><td class="nav_sel">Distinctions</td></tr>
+	<tr><td class="nav_lof" onmouseover="this.className='nav_lon'" onmouseout="this.className='nav_lof'" onclick="document.location='keywords.htm'">Keywords</td></tr>
+	<tr height=100%><td>&nbsp;<br></td></tr>
+	<tr><td><img src="./images/nav_footer.bmp" width=157 height=11></td></tr>
+	<tr><td class="nav_oth_off" onmouseover="this.className='nav_oth_on'" onmouseout="this.className='nav_oth_off'" onclick="document.location='about.htm'">About the Site</td></tr>
+	</table>
+</div>
+<div id="main" align="left">
+  <div id ="hdr" align="left">
+	<table cellpadding=0 cellspacing=0 border=0 height=100% width=100%>
+	<tr height=42>
+	<td width=40 class="hdr_line"></td>
+	<td width=163 class="ds_title"></td>
+	<td width=584 class="hdr_line" align="right"></td>
+	<td width=96 class="hdr_info1" onclick="javascript:info_mouse_click(this)" onmouseover="javascript:info_mouse_over(this)" onmouseout="javascript:info_mouse_out(this)"></td>	
+	</tr>
+	<tr height=100%><td class="display" colspan=4 width=100%>
+	<table width=100%><tr><td class="hdr_txt">Everybody has some sort of distinctions:  these could be degrees, awards, academic accomplishments, or just lifetime events.   And everybody should have some goals, too:  What you hope to accomplish in the future?  Do you want to</td></tr>
+	</table>
+	</td></tr>
+	</table>
+  </div>
+  <div id="hdr2" align="left">	<table width=100%><tr><td class="hdr_txt">...In case you hadn't noticed, this site is cool as shit.</td></tr></table>
+  </div>
+  <div id ="ppane_ds" align="left">
+  </div>
+  <div id ="ppane_w" align="PREV">
+  	<table cellpadding=0 cellspacing=0 class="util" width=866>
+	<tr><td class="ppn_title" width=50%>PREVIEW PANE</td><td class="ppn_title" width=50%>PREVIEW PANE</td></tr>
+	</table>
+  </div>
+  <div id ="ds_input">
+  <table border=0 width="100%">
+<!--	<tr><td colspan=5 class="header12">Tell us about...</td></tr> -->
+
+	<tr><td colspan=5 class="header4">List a few of your distinctions</td></tr>
+	<tr><td colspan=2 class="ds_txt7">Move</td>
+		<td class="ds_txt3">Pending</td>
+		<td class="ds_txt4">Type</td>
+		<td class="ds_txt6">Distinction Line 1</td>
+		<td class="ds_txt6">Distinction Line 2</td>
+		<td class="ds_txt5">Private</td>
+	</tr>
+	<tr>
+	<td id="sort_up1"   class="ds_sortup_null" onmouseover='javascript:sort_mouse_event(1,"up","over")' onmouseout='sort_mouse_event(1,"up","out")' onclick="javascript:sortDist(1,1)"></td>
+	<td id="sort_down1" class="ds_sortdown_null" onmouseover='javascript:sort_mouse_event(1,"down","over")' onmouseout='sort_mouse_event(1,"down","out")' onclick="javascript:sortDist(1,-1)"></td>
+	<td class="ds_txt3"><input type="checkbox" id="chk_ds_exp1_pend" onclick="javascript:updDistinction();" type="text" /></td>
+	<td class="ds_txt4"><select id="opt_ds_exp1_type" type="text" onchange="javascript:updDistinction();">
+				<option value="1"></option>
+				<option value="2">Degree</option>
+            	<option value="3">Certification</option>
+            	<option value="4">Spoken Language(s)</option>
+            	<option value="5">Academic</option>				
+            	<option value="6">Personal</option>				
+            	<option value="7">Other</option>
+	   </select></td>
+	<td class="ds_txt6"><input type="text" name="q" id="txt_ds_exp1_line1" onkeyup="javascript:updDistinction();" /></td>
+	<td class="ds_txt6"><input type="text" name="q" id="txt_ds_exp1_line2" onkeyup="javascript:updDistinction();" /></td>
+	<td class="ds_txt5"><input type="checkbox" id="chk_exp1_priv" onclick="javascript:updDistinction();" type="text" /></td>
+	</tr>
+	<tr>
+	<td id="sort_up2"   class="ds_sortup_null" onmouseover='javascript:sort_mouse_event(2,"up","over")' onmouseout='sort_mouse_event(2,"up","out")' onclick="javascript:sortDist(2,1)"></td>
+	<td id="sort_down2" class="ds_sortdown_null" onmouseover='javascript:sort_mouse_event(2,"down","over")' onmouseout='sort_mouse_event(2,"down","out")' onclick="javascript:sortDist(2,-1)"></td>
+	<td class="ds_txt3"><input type="checkbox" id="chk_ds_exp2_pend" onclick="javascript:updDistinction();"/></td>
+	<td class="ds_txt4"><select id="opt_ds_exp2_type" type="text" onchange="javascript:updDistinction();">
+				<option value="1"></option>
+				<option value="2">Degree</option>
+            	<option value="3">Certification</option>
+            	<option value="4">Spoken Language(s)</option>
+            	<option value="5">Academic</option>				
+            	<option value="6">Personal</option>				
+            	<option value="7">Other</option>
+	   </select></td>
+	<td class="ds_txt6"><input type="text" name="q" id="txt_ds_exp2_line1" onkeyup="javascript:updDistinction();" /></td>
+	<td class="ds_txt6"><input type="text" name="q" id="txt_ds_exp2_line2" onkeyup="javascript:updDistinction();" /></td>
+	<td class="ds_txt5"><input type="checkbox" id="chk_exp2_priv" onclick="javascript:updDistinction();" type="text" /></td>
+	</tr>
+	<tr>
+	<td id="sort_up3"   class="ds_sortup_null" onmouseover='javascript:sort_mouse_event(3,"up","over")' onmouseout='sort_mouse_event(3,"up","out")' onclick="javascript:sortDist(3,1)"></td>
+	<td id="sort_down3" class="ds_sortdown_null" onmouseover='javascript:sort_mouse_event(3,"down","over")' onmouseout='sort_mouse_event(3,"down","out")' onclick="javascript:sortDist(3,-1)"></td>
+	<td class="ds_txt3"><input type="checkbox" id="chk_ds_exp3_pend" onclick="javascript:updDistinction();" type="text" /></td>
+	<td class="ds_txt4"><select id="opt_ds_exp3_type" type="text" onchange="javascript:updDistinction();">
+				<option value="1"></option>
+				<option value="2">Degree</option>
+            	<option value="3">Certification</option>
+            	<option value="4">Spoken Language(s)</option>
+            	<option value="5">Academic</option>				
+            	<option value="6">Personal</option>				
+            	<option value="7">Other</option>
+	   </select></td>
+	<td class="ds_txt6"><input type="text" name="q" id="txt_ds_exp3_line1" onkeyup="javascript:updDistinction();" /></td>
+	<td class="ds_txt6"><input type="text" name="q" id="txt_ds_exp3_line2" onkeyup="javascript:updDistinction();" /></td>
+	<td class="ds_txt5"><input type="checkbox" id="chk_exp3_priv" onclick="javascript:updDistinction();" type="text" /></td>
+	</tr>
+	<tr>
+	<td id="sort_up4"   class="ds_sortup_null" onmouseover='javascript:sort_mouse_event(4,"up","over")' onmouseout='sort_mouse_event(4,"up","out")' onclick="javascript:sortDist(4,1)"></td>
+	<td id="sort_down4" class="ds_sortdown_null" onmouseover='javascript:sort_mouse_event(4,"down","over")' onmouseout='sort_mouse_event(4,"down","out")' onclick="javascript:sortDist(4,-1)"></td>
+	<td class="ds_txt3"><input type="checkbox" id="chk_ds_exp4_pend" onclick="javascript:updDistinction();" type="text" /></td>
+	<td class="ds_txt4"><select id="opt_ds_exp4_type" type="text" onchange="javascript:updDistinction();">
+				<option value="1"></option>
+				<option value="2">Degree</option>
+            	<option value="3">Certification</option>
+            	<option value="4">Spoken Language(s)</option>
+            	<option value="5">Academic</option>				
+            	<option value="6">Personal</option>				
+            	<option value="7">Other</option>
+	   </select></td>
+	<td class="ds_txt6"><input type="text" name="q" id="txt_ds_exp4_line1" onkeyup="javascript:updDistinction();" /></td>
+	<td class="ds_txt6"><input type="text" name="q" id="txt_ds_exp4_line2" onkeyup="javascript:updDistinction();" /></td>
+	<td class="ds_txt5"><input type="checkbox" id="chk_exp4_priv" onclick="javascript:updDistinction();" type="text" /></td>
+	</tr>
+	<tr>
+	<td id="sort_up5"   class="ds_sortup_null" onmouseover='javascript:sort_mouse_event(5,"up","over")' onmouseout='sort_mouse_event(5,"up","out")' onclick="javascript:sortDist(5,1)"></td>
+	<td id="sort_down5" class="ds_sortdown_null" onmouseover='javascript:sort_mouse_event(5,"down","over")' onmouseout='sort_mouse_event(5,"down","out")' onclick="javascript:sortDist(5,-1)"></td>
+	<td class="ds_txt3"><input type="checkbox" id="chk_ds_exp5_pend" onclick="javascript:updDistinction();" type="text" /></td>
+	<td class="ds_txt4"><select id="opt_ds_exp5_type" type="text" onchange="javascript:updDistinction();">
+				<option value="1"></option>
+				<option value="2">Degree</option>
+            	<option value="3">Certification</option>
+            	<option value="4">Spoken Language(s)</option>
+            	<option value="5">Academic</option>				
+            	<option value="6">Personal</option>				
+            	<option value="7">Other</option>
+	   </select></td>
+	<td class="ds_txt6"><input type="text" name="q" id="txt_ds_exp5_line1"  onkeyup="javascript:updDistinction();"/></td>
+	<td class="ds_txt6"><input type="text" name="q" id="txt_ds_exp5_line2"  onkeyup="javascript:updDistinction();"/></td>
+	<td class="ds_txt5"><input type="checkbox" id="chk_exp5_priv" onclick="javascript:updDistinction();" type="text" /></td>
+	</tr>
+	<tr>
+	<td id="sort_up6"   class="ds_sortup_null" onmouseover='javascript:sort_mouse_event(6,"up","over")' onmouseout='sort_mouse_event(6,"up","out")' onclick="javascript:sortDist(6,1)"></td>
+	<td id="sort_down6" class="ds_sortdown_null" onmouseover='javascript:sort_mouse_event(6,"down","over")' onmouseout='sort_mouse_event(6,"down","out")' onclick="javascript:sortDist(6,-1)"></td>
+	<td class="ds_txt3"><input type="checkbox" id="chk_ds_exp6_pend" onkeyup="javascript:updDistinction();" onclick="" type="text" /></td>
+	<td class="ds_txt4"><select id="opt_ds_exp6_type" type="text" onchange="javascript:updDistinction();">
+				<option value="1"></option>
+				<option value="2">Degree</option>
+            	<option value="3">Certification</option>
+            	<option value="4">Spoken Language(s)</option>
+            	<option value="5">Academic</option>				
+            	<option value="6">Personal</option>				
+            	<option value="7">Other</option>
+	   </select></td>
+	<td class="ds_txt6"><input type="text" name="q" id="txt_ds_exp6_line1" onkeyup="javascript:updDistinction();" /></td>
+	<td class="ds_txt6"><input type="text" name="q" id="txt_ds_exp6_line2" onkeyup="javascript:updDistinction();" /></td>
+	<td class="ds_txt5"><input type="checkbox" id="chk_exp6_priv" onclick="javascript:updDistinction();" type="text" /></td>
+	</tr>
+	</table>
+
+	<br>
+
+  </div> 
+  <div id="peek_hdr">
+  <table width="100%"><tr>
+    <td class="hdr_peek0">Other people have said...</td>
+    <td class="hdr_peek1" onmouseover="this.className='hdr_peek2'" onmouseout="this.className='hdr_peek1'"></td></tr>
+   </tr>
+  </table>
+  </div>
+  <div id="ds_peek_dtl"><table height=100%><tr height=100%>
+	<td class="ds_txt">Ambitious, results-oriented software engineer seeks a full-time position at a socially-responsible biotech or technology firm, where I can leverage my web development and interpersonal skills.
+	</td></tr></table>
+</div>
+
+
+
+</div>
+</div>
+
+</body>
+<script type="text/javascript">
+initPage();
+</script>
+
+</html>

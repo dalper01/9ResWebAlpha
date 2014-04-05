@@ -1,0 +1,300 @@
+<div id="mypopup" class="modal-dialog modal-wide" style="width:800px">
+    <div class="pop_top" width="">
+        <a id="popupContactClose">close popup</a>
+        <table border="0" cellpadding="0" cellspacing="0" width="">
+            <tbody><tr><td colspan="8">
+                <table border="0" cellpadding="0" cellspacing="0" width="800px">
+                    <tbody>
+                    <tr>
+                        <td class="cr_hdr_title0">Job Editor</td>
+                        <td class="cr_hdr_title1">Hold the mouse over any object for details.
+                        </td>
+                        <td id="cr_del" onclick="removeJob()" class="cr_hdr_del_off" title="Delete this job, exit to the Career page." onmouseover="javascript:set_dtl_hdr(1);" onmouseout="javascript:set_dtl_hdr(0);">
+                        </td>
+                        <td id="cr_mid1" class="cr_hdr_mid_0"></td>
+
+                        <td id="cr_can" onclick="cancelJob()" class="cr_hdr_can_off" title="Don't save changes, exit to the Career page." onmouseover="javascript:set_dtl_hdr(2);" onmouseout="javascript:set_dtl_hdr(0);"></td>
+
+                        <td id="cr_mid2" class="cr_hdr_mid_0"></td>
+
+                        <td id="cr_sav" onclick="saveJob()" class="cr_hdr_sav_off" title="Save changes, exit to the Career page	." onmouseover="javascript:set_dtl_hdr(3);" onmouseout="javascript:set_dtl_hdr(0);"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+            </tr>
+            <tr>
+                <td class="util_txt2" width="10">&nbsp;</td>
+                <td colspan="3">
+                    <table width="200px">
+                        <tbody>
+                        <tr>
+                            <td class="cr_pop_txt7" fwidth="1000px">Position</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+
+                <td colspan="2">
+
+                <table fwidth="400px">
+                    <tbody>
+                    <tr>
+                        <td class="cr_pop_txt7">Dates</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </td>
+
+                <td colspan="2">
+
+                    <table fwidth="400px">
+                        <tbody>
+                        <tr>
+                            <td class="cr_pop_txt7">Timeline</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="util_txt2" width="10">&nbsp;</td>
+                <td class="cr_pop_txt5">Firm Name</td>
+                <td class="cr_pop_txt5">Job Title</td>
+                <td class="cr_pop_txt5">Location</td>
+                <td class="cr_pop_txt5">From</td>
+                <td class="cr_pop_txt5">To</td><td class="cr_pop_txt5">Firm</td>
+                <td class="cr_pop_txt5">Title</td>
+            </tr>
+
+            <tr>
+                <td class="util_txt2" width="10">&nbsp;</td>
+                <td>
+                    <input class="input_active_ob" id="txt_Firm_Long" title="What was the name of the place where you worked?&lt;br&gt;Ex: Acme Corporation" style="width: 150px" ng-model="job.firmLong">
+                </td>
+
+                <td>
+                    <input class="input_inactive_ob" name="txt_Title_Long" title="What was your official job title?  Ex: Senior Business Analyst"  style="width: 150px">
+                </td>
+
+                <td>
+                    <input class="input_inactive_ob" name="txt_Location" title="Where was your job located?  Ex: Boston, MA" style="width: 150px">
+                </td>
+
+                <td>
+                    <input class="input_inactive_ob" name="txt_Start" title="When did you start this job (month/date)?  Ex: 01/12" style="width: 50px">
+                </td>
+
+                <td>
+                    <input class="input_inactive_ob" name="txt_End" title="When did you leave this job? (Blank if you're still there!)" style="width: 50px">
+                </td>
+
+                <td>
+                    <input class="input_inactive_ob" name="txt_Firm" title="How should the company appear on the timeline (keep it short)?  Ex: ACME Corp" style="width: 100px">>
+                </td>
+
+                <td>
+                    <input class="input_inactive_ob" name="txt_Title" title="How should your job appear on the timeline (keep it short)?  Ex: Sr. Analyst" style="width: 100px">>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="8" class="cr_pop_txt5"><table border="0" width="400px">
+                    <tbody>
+                    <tr>
+                        <td width="40"></td>
+
+                        <td class="cr_pop_txt5">Details</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="8">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td id="sort_up1" title="Move this job detail up." class="cr_sortup_null" onmouseover='javascript:sort_mouse_event(1,"up","over")' onmouseout='sort_mouse_event(1,"up","out")' onclick="javascript:sortCr(1,1)">
+                            </td>
+
+                            <td id="sort_down1" title="Move this job detail down." class="cr_sortdown_null" onmouseover='javascript:sort_mouse_event(1,"down","over")' onmouseout='sort_mouse_event(1,"down","out")' onclick="javascript:sortCr(1,-1)">
+
+                            </td>
+
+                            <td class="pop_details">
+                                <textarea class="input_inactive_ob" id="cr_dtl1" title="Describe what you did at this job." onkeyup="setSorts();"></textarea>
+                            </td>
+
+                            <td class="cr_pop_chk" title="Hide this detail from your resume.  (Good when it's a work-in-progress.)">
+                                <input type="checkbox">H
+                            </td>
+
+                            <td class="cr_pop_chk" title="Private: Don't let others see this in their 'Other People Have Said' section.">
+                                <input type="checkbox">P
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="8">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td id="sort_up2" title="Move this job detail up." class="cr_sortup_null" onmouseover='javascript:sort_mouse_event(2,"up","over")' onmouseout='sort_mouse_event(2,"up","out")' onclick="javascript:sortCr(2,1)">
+
+                            </td>
+
+                            <td id="sort_down2" title="Move this job detail down." class="cr_sortdown_null" onmouseover='javascript:sort_mouse_event(2,"down","over")' onmouseout='sort_mouse_event(2,"down","out")' onclick="javascript:sortCr(2,-1)">
+
+                            </td>
+
+                            <td class="pop_details"><textarea class="input_inactive_ob" id="cr_dtl2" title="Describe what you did at this job." onkeyup="setSorts();">
+                                </textarea>
+                            </td>
+
+                            <td class="cr_pop_chk" title="Hide this detail from your resume.  (Good when it's a work-in-progress.)">
+                                <input type="checkbox">H
+                            </td>
+
+                            <td class="cr_pop_chk" title="Private: Don't let others see this in their 'Other People Have Said' section.">
+                                <input type="checkbox">P
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="8">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td id="sort_up3" title="Move this job detail up." class="cr_sortup_null" onmouseover='javascript:sort_mouse_event(3,"up","over")' onmouseout='sort_mouse_event(3,"up","out")' onclick="javascript:sortCr(3,1)">
+                            </td>
+
+                            <td id="sort_down3" title="Move this job detail down." class="cr_sortdown_null" onmouseover='javascript:sort_mouse_event(3,"down","over")' onmouseout='sort_mouse_event(3,"down","out")' onclick="javascript:sortCr(3,-1)">
+                            </td>
+
+                            <td class="pop_details">
+                                <textarea class="input_inactive_ob" id="cr_dtl3" title="Describe what you did at this job." onkeyup="setSorts();"></textarea>
+                            </td>
+
+                            <td class="cr_pop_chk" title="Hide this detail from your resume.  (Good when it's a work-in-progress.)">
+                                <input type="checkbox">H</td>
+                            <td class="cr_pop_chk" title="Private: Don't let others see this in their 'Other People Have Said' section.">
+                                <input type="checkbox">P
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="8">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td id="sort_up4" title="Move this job detail up." class="cr_sortup_null" onmouseover='javascript:sort_mouse_event(4,"up","over")' onmouseout='sort_mouse_event(4,"up","out")' onclick="javascript:sortCr(4,1)">
+
+                            </td>
+
+                            <td id="sort_down4" title="Move this job detail down." class="cr_sortdown_null" onmouseover='javascript:sort_mouse_event(4,"down","over")' onmouseout='sort_mouse_event(4,"down","out")' onclick="javascript:sortCr(4,-1)">
+
+                            </td>
+
+                            <td class="pop_details">
+                                <textarea class="input_inactive_ob" id="cr_dtl4" title="Describe what you did at this job." onkeyup="setSorts();">
+
+                                </textarea>
+                            </td>
+
+                            <td class="cr_pop_chk" title="Hide this detail from your resume.  (Good when it's a work-in-progress.)">
+                                <input type="checkbox">H
+                            </td>
+
+                            <td class="cr_pop_chk" title="Private: Don't let others see this in their 'Other People Have Said' section.">
+                                <input type="checkbox">P
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="8">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td id="sort_up5" title="Move this job detail up." class="cr_sortup_null" onmouseover='javascript:sort_mouse_event(5,"up","over")' onmouseout='sort_mouse_event(5,"up","out")' onclick="javascript:sortCr(5,1)">
+
+                            </td>
+
+                            <td id="sort_down5" title="Move this job detail down." class="cr_sortdown_null" onmouseover='javascript:sort_mouse_event(5,"down","over")' onmouseout='sort_mouse_event(5,"down","out")' onclick="javascript:sortCr(5,-1)">
+
+                            </td>
+
+                            <td class="pop_details">
+                                <textarea class="input_inactive_ob" id="cr_dtl5" title="Describe what you did at this job." onkeyup="setSorts();">
+
+                                </textarea>
+                            </td>
+
+                            <td class="cr_pop_chk" title="Hide this detail from your resume.  (Good when it's a work-in-progress.)"><input type="checkbox">H
+                            </td>
+
+                            <td class="cr_pop_chk" title="Private: Don't let others see this in their 'Other People Have Said' section."><input type="checkbox">P
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="pop_push">
+
+        </div>
+    </div>
+
+    <div class="pop_bottom">
+        <table cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td class="hdr_peek0">Other people have said...</td>
+                <td class="hdr_peek1" title="Show what other people said!" onmouseover="this.className='hdr_peek2'" onmouseout="this.className='hdr_peek1'">
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table cellpadding="0" cellspacing="0" width="400px">
+            <tbody>
+            <tr height="64">
+                <td class="cr_peek_spacer"> </td>
+
+                <td title="Reading other people's descriptions might help you describe your own." class="cr_txt_peek">Ambitious,
+                                results-oriented software engineer seeks a full-time position at a
+                                socially-responsible biotech or technology firm, where I can leverage my
+                                web development and interpersonal skills.
+
+                </td>
+
+                <td class="cr_peek_spacer"> </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

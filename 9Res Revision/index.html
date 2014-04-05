@@ -1,0 +1,175 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" id="ng-app" ng-app="indexModule">
+
+<head>
+
+    <title>9Res - Easy Fun Resume Builder </title>
+
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+    <!--Load Style Sheets-->
+    <link rel="icon" href="/images/9res.bmp"/>
+    <link rel="stylesheet" type="text/css" href="Styles/9res-nie.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.0.3/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.0.3/css/bootstrap-theme.css" />
+    <!--[if IE]>
+        <link rel="stylesheet" type="text/css" href="9res-ie.css" />
+    <![endif]-->
+
+
+
+    <!-- Load main JS Libs -->
+    <script type="text/javascript" src="JSLibs/jquery.js"></script>
+    <script type="text/javascript" src="JSLibs/angular.js"></script>
+
+    <!--<script type="text/javascript" src="JSLibs/jquery.maskedinput.js"></script>-->
+    <!--<script type="text/javascript" src="JSLibs/jquery.mask.js"></script>-->
+    <!--    <script type="text/javascript" src="JSLibs/ui-bootstrap-tpls-0.7.0.js"></script>-->
+        <!--<script type="text/javascript" src="JSLibs/ui-utils-master/modules/mask/mask.js"></script>-->
+    <!--<script type="text/javascript" src="JSLibs/mask.js"></script>-->
+
+
+    <!-- reference angular Controllers and Directives-->
+    <script type="text/javascript" src="NGControllers/indexController.js"></script>
+    <script type="application/javascript" src="NGDirectives/commonDirectives.js"></script>
+    <script type="application/javascript" src="NGDirectives/navBarApp.js"></script>
+
+
+    <!-- Load js tool libs -->
+
+    <script type="text/javascript" src="animatedcollapse.js"></script>
+
+<!--
+    <script type="text/javascript" src="http://api.qrtag.net/js"></script>
+    <script type="text/javascript" src="jquery.selectbox-0.5.js"></script>
+    <script type="text/javascript" src="jquery.fileinput.js"></script>
+-->
+
+
+
+
+    <!-- Inserting the Ajax code base here -->
+
+    <script language="javascript" type="text/javascript">
+
+
+        animatedcollapse.init();
+
+
+        animatedcollapse.addDiv('hdr2', 'fade=0,speed=400,height=128px,hide=1');
+        animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is expanded/contracted
+            //$: Access to jQuery
+            //divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
+            //state: "block" or "none", depending on state
+        }
+
+
+        function info_mouse_over(td_obj) {
+            if(td_obj.className == "hdr_info3") {
+                td_obj.className = "hdr_info4";
+            }
+            else {
+                td_obj.className = "hdr_info2";
+            }
+        }
+
+        function info_mouse_out(td_obj) {
+            if(td_obj.className == "hdr_info4") { td_obj.className = "hdr_info3";} else { td_obj.className = "hdr_info1";}
+        }
+
+        function info_mouse_click(td_obj) {
+            if(td_obj.className == "hdr_info1") {n = "hdr_info3"; animatedcollapse.toggle('hdr2');}
+            if(td_obj.className == "hdr_info2") {n = "hdr_info4"; animatedcollapse.toggle('hdr2');}
+            if(td_obj.className == "hdr_info3") {n = "hdr_info1"; animatedcollapse.toggle('hdr2');}
+            if(td_obj.className == "hdr_info4") {n = "hdr_info2"; animatedcollapse.toggle('hdr2');}
+            td_obj.className = n;
+        }
+
+
+
+    </script>
+
+</head>
+
+
+<body ng-controller="indexController">
+
+    <header9res></header9res>
+
+
+
+    <div class="main"  align="left">
+            <div class="container">
+                <div class="row">
+
+                    <div id ="hdr" align="left">
+                        <table border=0 cellpadding=0 cellspacing=0 height=100% width=100%>
+                            <tr height=42>
+                                <td width=40 class="hdr_line"></td>
+                                <td width=280 sclass="ci_title">
+                                    <span style="display: block; text-align: center; font-weight: bolder; color: #003399; font-size: 30px;">
+                                       The 9Res Advantages
+                                    </span>
+                                </td>
+                                <td width=450 class="hdr_line" align="right"></td>
+                                <td width=96 class="hdr_info1" onclick="javascript:info_mouse_click(this)" onmouseover="javascript:info_mouse_over(this)" onmouseout="javascript:info_mouse_out(this)"></td>
+                            </tr>
+                            <tr height=100%><td class="display" colspan=4 width=100%>
+                                <table width=100%>
+                                    <tr><td class="hdr_txt">This section is a breeze.  Just enter any information you'd like available on your resume (just leave out any details you don't want to show up).&nbsp;&nbsp;  You can even jump-start the process by importing your info from LinkedIn!</td></tr>
+                                </table>
+                            </td></tr>
+                        </table>
+                    </div>
+
+                    <div id= "hdr2" align="left">
+                        <table width=100%>
+                            <tr>
+                                <td class="hdr_txt">...In case you hadn't noticed, this site is cool as shit.</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div style="margin-top:20px;">
+                        <div style="float: left; margin-left: 20px;">
+
+                            <span style="display: block; text-align: center; font-weight: bolder; color: blue;">
+                                The 9Res Advantages
+                            </span>
+                            <img src="images/9resAdvantages.png" height="320px">
+
+                        </div>
+
+
+                        <div style="float: left; margin-left: 20px;">
+                            <span style="display: block; text-align: center; font-weight: bolder; color: blue;">
+                                The 9Res Format
+                            </span>
+
+                            <img src="images/9resViewFormat.png" height="320px">
+
+                        </div>
+
+
+                        <div style="float: left; margin-left: 20px;">
+                            <span style="display: block; text-align: center; font-weight: bolder; color: blue;">
+                                Let's Get Started!
+                            </span>
+
+                            <img ng-src="{{ getStartedSrc }}" height="320px" ng-mouseenter="changeStartImg('images/9resGetStarted_hover.png')"
+                                 ng-mouseleave="changeStartImg('images/9resGetStarted.png')" ng-click="startResume()">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+    </div>
+
+</body>
+
+</html>
+
+
