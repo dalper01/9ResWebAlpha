@@ -1,0 +1,75 @@
+
+    table.schoolForm td {
+
+        padding: 3px;
+        color: #444444;
+        border-spacing: 5px;
+        font-family: sans-serif;
+        font-size: 10pt;
+    }
+
+    tr.schoolHeader {
+
+        border-top-width: 1px;
+        border-top-color:  #888888;
+    }
+
+    .educationPresentation {
+
+        margin-left: 20px;
+        margin-top: 7px;
+        padding: 3px 0px 0px 3px ;
+        margin-bottom: 10px;
+        border-style: dotted;
+        border-width: 1 0 0 1 ;
+        border-color: #cccccc
+
+    }
+
+    #ppane_ds{
+        float:top;
+        margin:0px;
+        left:162px;
+        width:866px;
+        padding:0px;
+        background:white;
+        height:auto;
+        min-height:230px;
+        height:auto !important;        /* for IE as it does not support min-height */
+        /*height:30px;*/
+        background-image: url('../icons/DiplmaBG.bmp');
+
+        border: 1px dashed;
+        border-style: dashed;
+        border-color: black;
+        border-left-width: 0px;
+        text-align: justify;
+    }
+
+
+    .microIcons {
+
+        font-size: 9px;
+
+    }
+
+    /*btn-*/
+
+    .formNav {
+
+        height: 200px;
+        background-image:url('http://www.daymarksi.com/Portals/30865/images/Tech_certifcaitons_2a.jpg');
+        background-repeat:no-repeat;
+        background-attachment:fixed;
+        background-position: t;
+    }
+
+    .certifiersDiv{
+
+        height: 60px;
+        background-image:url('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQjlgOR3hc3XLhasrCSu5rqweJsr368Wlf-xV-3DlauhT-IdhwpCQ');');
+    background-repeat:repeat-x;;
+        background-attachment:fixed;
+        background-position: center center;
+
+    }

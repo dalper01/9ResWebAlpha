@@ -1,0 +1,457 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" id="ng-app" ng-app="ContactInfoModule">
+
+<head>
+
+<title>9Res - Contact Information</title>
+
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+
+    <!--Load Style Sheets-->
+    <link rel="icon" href="/images/9res.bmp"/>
+
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.0.3/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.0.3/css/bootstrap-theme.css" />
+
+    <link rel="stylesheet" type="text/css" href="Styles/9res-nie.css" />
+	<!--[if IE]>
+		<link rel="stylesheet" type="text/css" href="9res-ie.css" />
+	<![endif]-->
+
+
+
+
+    <script type="text/javascript" src="JSLibs/jquery.js"></script>
+    <script type="text/javascript" src="JSLibs/angular.js"></script>
+    <script type="text/javascript" src="JSLibs/jquery.maskedinput.js"></script>
+    <!--<script type="text/javascript" src="JSLibs/jquery.mask.js"></script>-->
+
+<!--    <script type="text/javascript" src="JSLibs/ui-bootstrap-tpls-0.7.0.js"></script>-->
+<!--
+    <script type="text/javascript" src="JSLibs/ui-utils-master/modules/mask/mask.js"></script>
+-->
+    <script type="text/javascript" src="JSLibs/mask.js"></script>
+
+    <script type="application/javascript" src="NGDirectives/commonDirectives.js"></script>
+    <!-- suspiscious dependandy ???!! -->
+    <script type="application/javascript" src="NGDirectives/navBarApp.js"></script>
+    <script src="NGServices/localStorageService.js"></script>
+
+    <script type="text/javascript" src="NGControllers/ContactInfoController.js"></script>
+
+	<script type="text/javascript" src="animatedcollapse.js"></script>
+
+    <script type="text/javascript" src="http://api.qrtag.net/js"></script>
+    <!--<script type="text/javascript" src="archive/OldFiles/jquery.selectbox-0.5.js"></script>
+    <script type="text/javascript" src="archive/OldFiles/jquery.fileinput.js"></script>-->
+
+
+
+    <!-- Inserting the Ajax code base here -->
+
+    <script language="javascript" type="text/javascript">
+
+
+    animatedcollapse.init();
+
+
+    animatedcollapse.addDiv('hdr2', 'fade=0,speed=400,height=128px,hide=1');
+    animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is expanded/contracted
+        //$: Access to jQuery
+        //divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
+        //state: "block" or "none", depending on state
+    }
+    function info_mouse_over(td_obj) {
+        if(td_obj.className == "hdr_info3") {
+         td_obj.className = "hdr_info4";
+        }
+        else {
+         td_obj.className = "hdr_info2";
+        }
+    }
+
+    function info_mouse_out(td_obj) {
+        if(td_obj.className == "hdr_info4") { td_obj.className = "hdr_info3";} else { td_obj.className = "hdr_info1";}
+    }
+
+    function info_mouse_click(td_obj) {
+        if(td_obj.className == "hdr_info1") {n = "hdr_info3"; animatedcollapse.toggle('hdr2');}
+        if(td_obj.className == "hdr_info2") {n = "hdr_info4"; animatedcollapse.toggle('hdr2');}
+        if(td_obj.className == "hdr_info3") {n = "hdr_info1"; animatedcollapse.toggle('hdr2');}
+        if(td_obj.className == "hdr_info4") {n = "hdr_info2"; animatedcollapse.toggle('hdr2');}
+        td_obj.className = n;
+    }
+
+
+
+    function checkPic() {
+
+        var chkPic = document.getElementById("chk_picture").checked;
+
+        if(chkPic==true) { document.getElementById("ci_hdr_pic").innerHTML = document.getElementById("ci_pic").innerHTML;
+     }
+
+        else {
+         document.getElementById("ci_hdr_pic").innerHTML = "";
+        }
+
+    }
+
+
+    function checkQR() {
+        var chkQR = document.getElementById("chk_qrcode").checked;
+        if(chkQR==true) {
+            var qrtag = new QRtag();
+            qrtag.link("http://www.9res.com/bmclaugh-res1");
+            qrtag.size(105);
+            qrtag.border(0);
+            qrtag.color("#95E2FF");
+            qrtag.bgcolor("#ffffff");
+            qrtag.target("ci_qrcode");
+            qrtag.image();
+        }
+        else { document.getElementById("ci_qrcode").innerHTML ="";}
+    }
+
+
+
+
+	</script>
+
+</head>
+
+
+<body ng-controller="ContactInfoController">
+
+
+    <header9res activetab="0" update-fn="saveLocalContact()" ></header9res>
+
+
+
+    <div id="m" class="main" align="left" >
+
+        <div class="container">
+
+            <div class="row">
+
+
+
+
+
+                <form name="ContactDetails" method="post" action="/YourGreatResume/ContactInfo.php" target="_self">
+                        <div id ="hdr" align="left">
+                            <table border=0 cellpadding=0 cellspacing=0 height=100% width=100%>
+                                <tr height=42>
+                                <td width=40 class="hdr_line"></td>
+                                <td width=280 class="ci_title"></td>
+                                <td width=450 class="hdr_line" align="right"></td>
+                                <td width=96 class="hdr_info1" onclick="javascript:info_mouse_click(this)" onmouseover="javascript:info_mouse_over(this)" onmouseout="javascript:info_mouse_out(this)"></td>
+                                </tr>
+                                <tr height=100%><td class="display" colspan=4 width=100%>
+                                <table width=100%>
+                                    <tr><td class="hdr_txt">This section is a breeze.  Just enter any information you'd like available on your resume (just leave out any details you don't want to show up).&nbsp;&nbsp;  You can even jump-start the process by importing your info from LinkedIn!</td></tr>
+                                </table>
+                                </td></tr>
+                            </table>
+                        </div>
+
+                        <div id= "hdr2" align="left">
+                            <table width=100%>
+                                <tr>
+                                    <td class="hdr_txt">...In case you hadn't noticed, this site is cool as shit.</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div id="ppane_ci" align="left">
+                            <table cellpadding=0 cellspacing=0 name="ci_hdr" height=100% width=100% border=0>
+                                <tr>
+                                    <td class="ci_pic" id="ci_hdr_pic"></td>
+                                    <td width=100%>
+
+                                        <table cellpadding=0 cellspacing=0 border=0 width=100%>
+                                            <tr>
+                                                <td width=20 rowspan=4>&nbsp;</td>
+                                                <td id="ci_name2" style="text-align: center">
+                                                    <span class="ci_name_def" ng-hide="showNameMessage()"> {{ noNameMessage }} </span>
+                                                    <span class="ci_name"> {{ resume.firstName }} {{ resume.middleName }} {{ resume.lastName }}  </span>
+                                                </td>
+                                                <td width=20 rowspan=4>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ci_hline" height=1></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ci_dtl1" id="ci_addr" height=1>
+                                                    <span class="ci_dtl1_def" ng-hide="showAddressMessage()"> {{ noAddressMessage }} </span>
+
+                                                    <span class="ci_dtl1">
+                                                        {{ resume.addrStreet }} {{ resume.addrTown }}
+                                                        <span  ng-show="showCommaCityState()">, </span>
+                                                        {{ resume.addrState }} {{ resume.addrZip }}
+                                                    </span>
+
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td name="ci_dtl2" id="ci_cont">
+                                                    <table width=100%>
+                                                        <tr>
+                                                            <td class="ci_dtl2"></td>
+                                                            <td class="ci_dtl2">
+                                                                <span class="ci_dtl1_def" ng-hide="showContactMessage()"> {{ noContactMessage }} </span>
+
+                                                                <span class="ci_dtl1">
+                <!--
+                                                                    <span ng-show="number1.length"> {{ phone1 }} {{ number1 | tel }} </span>
+                                                                    <span ng-show="number2.length"> {{ phone2 }} {{ number2 | tel }} </span>
+                -->
+                                                                    <span ng-show="resume.number1.length">  {{ resume.phone1 }} {{ resume.number1  }} </span>
+                                                                    <span ng-show="resume.number2.length"> {{ resume.phone2 }} {{ resume.number2 }} </span>
+                                                                    {{ eMail }}
+                                                                    <span ng-show="resume.socialMedia.length">
+                                                                        <img height=19 width=19 ng-src="{{ resume.socialMediaLogo }}"> {{ resume.socialMedia }}
+                                                                    </span>
+                                                                </span>
+
+                                                            </td>
+                                                            <td class="ci_dtl2"></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
+                                    </td>
+                                    <td class="ci_qr" id="ci_qrcode"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="plain">
+                            <table border=0 width=100% cellpadding=0 cellspacing=0>
+                                <tr>
+                                    <td class="ci_ppn_spacer"></td>
+                                    <td class="ci_ppn_chk"><input type="checkbox" id="chk_picture" onclick="checkPic();"></td>
+                                    <td class="ci_ppn_title1">Display My Picture</td>
+                                    <td class="ci_ppn_main" >PREVIEW PANE</td>
+                                    <td class="ci_ppn_chk"><input type="checkbox" id="chk_qrcode" onclick="checkQR();" value="show" type="text"></td>
+                                    <td class="ci_ppn_title2">Display QR Code</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div id ="util_car" align="PREV">
+                            <br>
+
+                            <table id="tableHeader" width=100% border=0>
+                                <tr style="margin-bottom: 10px;">
+                                    <td class="ci_txt1" style="width: 150px;">Name</td>
+
+
+                                    <td style="width: 260px; Text-align: justified">
+                                        <div >
+
+                                            <div style="display: inline-block;">
+                                                <div class="ci_txt2" style="width: 70px;">First Name</div>
+                                                <input type="text" name="q" id="txtU_Name_F" placeholder=""
+                                                       style="width: 13ch" ng-model="resume.firstName">
+                                            </div>
+
+                                            <div style="display: inline-block; margin-left: 19px;">
+                                                <div class="ci_txt2" style="width: 90px;">Middle Name</div>
+
+                                                <input style="width: 14ch;" type="text" name="q" id="txtU_Name_M" placeholder="" ng-model="resume.middleName">
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+                                    <td>
+
+                                        <div style="display: inline-block; margin-left: 0px;">
+                                            <div class="ci_txt2" style="width: 90px;">Last Name</div>
+
+                                            <input style="margin-left:auto; margin-right:auto;" type="text" name="q" id="txtU_Name_L" placeholder="" ng-model="resume.lastName">
+                                        </div>
+
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="ci_txt1"  rowspan=1>Address</td>
+
+                                    <td >
+                                        <div class="ci_txt2">Street Address</div>
+                                        <div style="display: inline-block; vertical-align: top;">
+                                            <input type="text" name="q" id="address" placeholder="" ng-model="resume.addrStreet">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div style="vertical-align: top;">
+
+                                            <div style="display: inline-block; vertical-align: top; margin-left: 0px">
+                                                <div class="ci_txt2" >city/town</div>
+                                                <input style="width: 12ch;" type="text" name="q" id="city" placeholder="" ng-model="resume.addrTown">
+                                            </div>
+
+                                            <div style="display: inline-block; vertical-align: top; margin-left: 0px">
+                                                <div class="ci_txt2" >state/county</div>
+                                                <statedropdown placeholder="state" class="input_active_ob" passedmodel="resume.addrState"></statedropdown>
+                                            </div>
+
+                                            <div style="display: inline-block; vertical-align: top;">
+                                                <div class="ci_txt2" >zip/postal code</div>
+                                                <input type="text" name="q" id="zipCode" style="margin-left: 12px; width: 11ch"
+                                                       placeholder="" ng-model="resume.addrZip">
+                                            </div>
+                                        </div>
+
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td class="ci_txt1"  rowspan=1>Phone</td>
+
+
+                                    <td colspan="1" >
+                                        <div class="ci_txt2" style="width: 100px; text-align: right;">phone 1</div>
+                                        <div style="display: inline-block; vertical-align: top;">
+
+                                            <div style="display: inline-block; vertical-align: top;">
+                                                <select data-ng-options="o.id as o.name for o in phoneTypes" data-ng-model="resume.phone1"></select>
+                                            </div>
+
+                                            <div style="display: inline-block; vertical-align: top; margin-left: 10px">
+                                                <input type="text" name="q" id="phonenum1" style="width: 15ch"
+                                                       placeholder="" ng-model="resume.number1" ng-bind="number1 | tel">
+                                            </div>
+                                        </div>
+                                    </td>
+
+
+                                    <td colspan="1" >
+
+                                        <div class="ci_txt2" style="width: 100px; text-align: right;">phone 2</div>
+
+                                        <div style="display: inline-block; vertical-align: top;">
+
+
+                                            <div style="display: inline-block; vertical-align: top; margin-left: 0px">
+                                                <select data-ng-options="o.id as o.name for o in phoneTypes" data-ng-model="resume.phone2"></select>
+                                            </div>
+
+                                            <div style="display: inline-block; vertical-align: top;margin-left: 10px">
+                                                <input type="text" name="q" id="phonenum2" style="width: 15ch"
+                                                       placeholder="" ng-model="resume.number2">
+                                            </div>
+                                        </div>
+                                   </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="ci_txt1" rowspan=1>Online</td>
+
+                                    <td class="ci_txt22">
+                                        <div style="vertical-align: top;">
+
+                                            <div style="display: inline-block; vertical-align: top;">
+                                                <span class="ci_txt2">Email Address</span>
+
+                                                <input type="text" name="q" id="txtU_Email_Address"
+                                                       ng-model="resume.eMail">
+
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+                                    <td class="ci_txt22">
+                                        <div style="vertical-align: top;">
+                                            <div class="ci_txt2">Social Media</div>
+                                            <div style="display: inline-block; vertical-align: top; margin-left: 0px">
+
+                                                <select data-ng-options="o.img as o.name for o in socialMediaTypes" data-ng-model="resume.socialMediaLogo"></select>
+                                            </div>
+
+                                            <div style="display: inline-block; vertical-align: top;">
+
+                                                <input type="text" name="q" id="txtU_Media_Id"
+                                                       ng-model="resume.socialMedia">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr></tr>
+
+                                <tr>
+
+                <!--
+                                        <td class="ci_txt1"  >Photo</td>
+                                        <td id="1ci_pic" colspan="2">
+                                            <div id="ci_pic" style="display: inline-block; vertical-align: top;">
+                                                <img height=135 height=130 src="./data/photos/akabret-1.jpg">
+                                            </div>
+
+                                            <div style="display: inline-block; vertical-align: bottom; height: 60px">
+                                                <input type="file" id="file" name="file">
+                                            </div>
+                -->
+                                </tr>
+
+                                <tr><td height="20px;"></td></tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <a style="background-color: #0066aa" class="btn"  ng-click="saveLocalContact()" href="index.html">
+                                            <span class="white-icon" toggleclass="red-icon"> <i class="glyphicon glyphicon-arrow-left"> Home Page </i> </span> </a>
+                                    </td>
+                                    <td>
+                                        <a style="background-color: #0066aa" class="btn" ng-click="saveLocalContact()" href="career.htm">
+                                            <span class="white-icon" toggleclass="red-icon"> Career Experience <i class="glyphicon glyphicon-arrow-right"></i> </span> </a>
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                        </div>
+                    </form>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+
+        <script>
+
+            jQuery(function($){
+
+//                $("#phonenum1").mask("(9ZZ) ZZZ-ZZZZ", {translation:  {'Z': {pattern: /[0-9]/, optional: true}}});
+//                $("#phonenum2").mask("(999) 999-9999");
+
+
+                $("#phonenum1").mask("(9?99) 999-9999");
+                $("#phonenum2").mask("(9?99) 999-9999");
+
+                $("#zipCode").mask("9?9999-9999");
+
+            });
+
+        </script>
+
+

@@ -1,0 +1,355 @@
+<div id="mypopup" class="modal-dialog modal-wide"  style="table-layout:fixed; overflow: hidden;">
+    <div class="pop_top" width="">
+        <!--<a id="popupContactClose" ng-click="cancel()">close popup</a>-->
+
+<!--
+        <table border="0" cellpadding="0" cellspacing="0" width="" style="table-layout:fixed;">
+            <tbody>
+            <tr>
+                <td colspan="8">
+                    <table border="0" cellpadding="0" cellspacing="0" width="900px">
+                        <tbody>
+                        <tr>
+                            <td class="cr_hdr_title0"  style="white-space: nowrap"> {{ modalTitle }} </td>
+                            <td class="cr_hdr_title1">Hold the mouse over any object for details.
+                            </td>
+                            <td id="cr_del" ng-click="cancel()"  class="cr_hdr_del_off" title="Delete this job, exit to the Career page." onmouseover="javascript:set_dtl_hdr(1);" onmouseout="javascript:set_dtl_hdr(0);">
+                            </td>
+                            <td id="cr_mid1" class="cr_hdr_mid_0"></td>
+
+                            <td id="cr_can" ng-click="cancel()" class="cr_hdr_can_off" title="Don't save changes, exit to the Career page." onmouseover="javascript:set_dtl_hdr(2);" onmouseout="javascript:set_dtl_hdr(0);"></td>
+
+                            <td id="cr_mid2" class="cr_hdr_mid_0"></td>
+
+                            <td id="cr_sav" ng-click="saveJob()"  class="cr_hdr_sav_off" title="Save changes, exit to the Career page	." onmouseover="javascript:set_dtl_hdr(3);"
+                                onmouseout="javascript:set_dtl_hdr(0);" style="overflow:hidden;white-space:nowrap;"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                </tr>
+                <tr>
+                    <td class="util_txt2" width="10">&nbsp;</td>
+                    <td colspan="3">
+                        <table width="400px">
+                            <tbody>
+                            <tr>
+                                <td class="cr_pop_txt7" >Position</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+
+                    <td colspan="2">
+
+                    <table fwidth="400px">
+                        <tbody>
+                        <tr>
+                            <td class="cr_pop_txt7">Dates</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </td>
+
+                    <td colspan="2">
+
+                        <table fwidth="400px">
+                            <tbody>
+                            <tr>
+                                <td class="cr_pop_txt7">Timeline</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="util_txt2" width="10">&nbsp;</td>
+                    <td class="cr_pop_txt5">Firm Name</td>
+                    <td class="cr_pop_txt5">Job Title</td>
+                    <td class="cr_pop_txt5">City</td>
+                    <td class="cr_pop_txt5">State</td>
+                    <td class="cr_pop_txt5">From</td>
+                    <td class="cr_pop_txt5">To</td>
+                </tr>
+
+                <tr>
+                    <td class="util_txt2" width="10">&nbsp;</td>
+                    <td>
+                        <input class="input_active_ob" id="txt_Firm_Long" title="What was the name of the place where you worked?&lt;br&gt;Ex: Acme Corporation" style="width: 150px" ng-model="job.firmLong">
+                    </td>
+
+                    <td>
+                        <input class="input_inactive_ob" name="txt_Title_Long" title="What was your official job title?  Ex: Senior Business Analyst"  style="width: 150px" ng-model="job.titleLong">
+                    </td>
+
+                    <td>
+                        <input class="input_inactive_ob" name="txt_Location" title="Where was your job located?  Ex: Boston, MA" style="width: 100px"  ng-model="job.city">
+                    </td>
+
+                    <td>
+                        <input class="input_inactive_ob" name="txt_Start" title="When did you start this job (month/date)?  Ex: 01/12" style="width: 100px" ng-model="job.state">
+                    </td>
+
+                    <td>
+                        <input class="input_inactive_ob" name="txt_Start" title="When did you start this job (month/date)?  Ex: 01/12" style="width: 50px" ng-model="job.startDate">
+                    </td>
+
+                    <td>
+                        <input class="input_inactive_ob" name="txt_End" title="When did you leave this job? (Blank if you're still there!)" style="width: 50px" ng-model="job.endDate">
+                    </td>
+
+                </tr>
+
+
+                <tr>
+                    <td></td>
+                    <td class="cr_pop_txt5">Firm</td>
+                    <td class="cr_pop_txt5">Title</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <input class="input_inactive_ob" name="txt_Firm" title="How should the company appear on the timeline (keep it short)?  Ex: ACME Corp" style="width: 100px" ng-model="job.firmShort">
+                    </td>
+
+                    <td>
+                        <input class="input_inactive_ob" name="txt_Title" title="How should your job appear on the timeline (keep it short)?  Ex: Sr. Analyst" style="width: 100px" ng-model="job.titleShort">
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="8" class="cr_pop_txt5"><table border="0" width="400px">
+                        <tbody>
+                        <tr>
+                            <td width="40"></td>
+
+                            <td class="cr_pop_txt5" style="height: 60px; vertical-align: bottom;">Job Details:</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+-->
+
+
+        <div id="divHeader" border="0" cellpadding="0" cellspacing="0" width="" style="table-layout:fixed;">
+            <div>
+                <table border="0" cellpadding="0" cellspacing="0" width="900px">
+                    <tbody>
+                    <tr>
+                        <td class="cr_hdr_title0"  style="white-space: nowrap"> {{ modalTitle }} </td>
+                        <td class="cr_hdr_title1">Hold the mouse over any object for details.
+                        </td>
+                        <td id="cr_del" ng-click="cancel()"  class="cr_hdr_del_off" title="Delete this job, exit to the Career page." onmouseover="javascript:set_dtl_hdr(1);" onmouseout="javascript:set_dtl_hdr(0);">
+                        </td>
+                        <td id="cr_mid1" class="cr_hdr_mid_0"></td>
+
+                        <td id="cr_can" ng-click="cancel()" class="cr_hdr_can_off" title="Don't save changes, exit to the Career page." onmouseover="javascript:set_dtl_hdr(2);" onmouseout="javascript:set_dtl_hdr(0);"></td>
+
+                        <td id="cr_mid2" class="cr_hdr_mid_0"></td>
+
+                        <td id="cr_sav" ng-click="saveJob()"  class="cr_hdr_sav_off" title="Save changes, exit to the Career page	." onmouseover="javascript:set_dtl_hdr(3);"
+                            onmouseout="javascript:set_dtl_hdr(0);" style="overflow:hidden;white-space:nowrap;"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <span style="vertical-align: top;">
+                <!--<span class="modalHeaderSpacer" width="10">&nbsp; </span>-->
+                <span class="modalHeaderSpacer">
+                    <span class="cr_pop_txt7" style="vertical-align: top;">Position </span>
+                    <div class="cr_pop_txt5">
+                        Firm Name <br>
+
+                        <input class="input_active_ob" id="txt_Firm_Long" title="What was the name of the place where you worked?&lt;br&gt;Ex: Acme Corporation" style="width: 150px" ng-model="job.firmLong">
+                    </div>
+
+
+
+                </span>
+
+                <span>
+                   <span class="cr_pop_txt7">Dates</span>
+                </span>
+
+                <td colspan="2">
+
+                    <table fwidth="400px">
+                        <tbody>
+                        <tr>
+                            <td class="cr_pop_txt7">Timeline</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+
+            </span>
+            <tr>
+                <td class="util_txt2" width="10">&nbsp;</td>
+
+                <td class="cr_pop_txt5">Job Title</td>
+                <td class="cr_pop_txt5">City</td>
+                <td class="cr_pop_txt5">State</td>
+                <td class="cr_pop_txt5">From</td>
+                <td class="cr_pop_txt5">To</td>
+            </tr>
+
+            <tr>
+                <td class="util_txt2" width="10">&nbsp;</td>
+                <td>
+                </td>
+
+                <td>
+                    <input class="input_inactive_ob" name="txt_Title_Long" title="What was your official job title?  Ex: Senior Business Analyst"  style="width: 150px" ng-model="job.titleLong">
+                </td>
+
+                <td>
+                    <input class="input_inactive_ob" name="txt_Location" title="Where was your job located?  Ex: Boston, MA" style="width: 100px"  ng-model="job.city">
+                </td>
+
+                <td>
+                    <input class="input_inactive_ob" name="txt_Start" title="When did you start this job (month/date)?  Ex: 01/12" style="width: 100px" ng-model="job.state">
+                </td>
+
+                <td>
+                    <input class="input_inactive_ob" name="txt_Start" title="When did you start this job (month/date)?  Ex: 01/12" style="width: 50px" ng-model="job.startDate">
+                </td>
+
+                <td>
+                    <input class="input_inactive_ob" name="txt_End" title="When did you leave this job? (Blank if you're still there!)" style="width: 50px" ng-model="job.endDate">
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td></td>
+                <td class="cr_pop_txt5">Firm</td>
+                <td class="cr_pop_txt5">Title</td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <input class="input_inactive_ob" name="txt_Firm" title="How should the company appear on the timeline (keep it short)?  Ex: ACME Corp" style="width: 100px" ng-model="job.firmShort">
+                </td>
+
+                <td>
+                    <input class="input_inactive_ob" name="txt_Title" title="How should your job appear on the timeline (keep it short)?  Ex: Sr. Analyst" style="width: 100px" ng-model="job.titleShort">
+                </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="8" class="cr_pop_txt5"><table border="0" width="400px">
+                    <tbody>
+                    <tr>
+                        <td width="40"></td>
+
+                        <td class="cr_pop_txt5" style="height: 60px; vertical-align: bottom;">Job Details:</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <div style="max-height: 400px; overflow: hidden; overflow-y: scroll;">
+            <table>
+                <tbody>
+                        <tr ng-repeat="detail in job.details">
+                            <td colspan="8">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td id="sort_up1" title="Move this job detail up." class="cr_sortup_null" onmouseover='javascript:sort_mouse_event(1,"up","over")'
+                                            onmouseout='sort_mouse_event(1,"up","out")' onclick="javascript:sortCr(1,1)">
+                                        </td>
+
+                                        <td id="sort_down1" title="Move this job detail down." class="cr_sortdown_null" onmouseover='javascript:sort_mouse_event(1,"down","over")'
+                                            onmouseout='sort_mouse_event(1,"down","out")' onclick="javascript:sortCr(1,-1)">
+                                        </td>
+
+                                        <td class="pop_details">
+                                            <textarea class="input_inactive_ob" id="cr_dtl1" title="Describe what you did at this job." style="width:700px" onkeyup="setSorts();" ng-model="detail.description"></textarea>
+                                        </td>
+
+                                        <td class="cr_pop_chk" title="Hide this detail from your resume.  (Good when it's a work-in-progress.)">
+                                            <input type="checkbox">H
+                                        </td>
+
+                                        <td class="cr_pop_chk" title="Private: Don't let others see this in their 'Other People Have Said' section.">
+                                            <input type="checkbox">P
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr><td style="height: 10px"></td></tr>
+
+                        <tr>
+                            <td></td><td></td><td></td>
+                            <td> <a style="color: navy;" ng-click="addJobDetail()">+ Add Job Detail</a>  </td>
+
+                        </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+</table>
+        </div>
+
+
+        <div class="pop_push">
+        </div>
+    </div>
+
+    <div class="pop_bottom">
+        <table cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td class="hdr_peek0">Other people have said...</td>
+                <td class="hdr_peek1" title="Show what other people said!" onmouseover="this.className='hdr_peek2'" onmouseout="this.className='hdr_peek1'">
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table cellpadding="0" cellspacing="0" width="700px">
+            <tbody>
+            <tr height="64">
+                <td class="cr_peek_spacer" style="width: 20px"> </td>
+
+                <td title="Reading other people's descriptions might help you describe your own." class="cr_txt_peek" >Ambitious,
+                                results-oriented software engineer seeks a full-time position at a
+                                socially-responsible biotech or technology firm, where I can leverage my
+                                web development and interpersonal skills.
+
+                </td>
+
+                <td class="cr_peek_spacer"> </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

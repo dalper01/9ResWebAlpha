@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Resume Builder";
+    ViewBag.ngApp = "ResumeBuilderModule";
+}
+
+
+@section scripts {
+@* ---------- Angular Libs ---------------- *@
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/angular-route.js"></script>
+
+<script src="~/Scripts/NGApps/ResumeBuilderApp.js"></script>
+
+@* ---------- Template Controllers / Apps ----------------- *@
+<script src="~/Scripts/NGControllers/ContactInfoController.js"></script>
+<script src="~/Scripts/NGControllers/CareerController.JS"></script>
+<script src="~/Scripts/NGControllers/educationController.js"></script>
+<script src="~/Scripts/NGControllers/jobModalControllers.js"></script>
+
+<script src="~/Scripts/NGDirectives/commonDirectives.js"></script>
+<script src="~/Scripts/NGDirectives/navBarApp.js"></script>
+
+<script src="~/Scripts/NGServices/localStorageService.js"></script>
+
+@* ----------   Modal Libs   ------------ *@
+<script src="~/Scripts/JSPlugins/angular-strap.js"></script>
+<script src="~/Scripts/JSPlugins/ui-bootstrap-tpls-0.7.0.js"></script>
+<script src="~/Scripts/JSPlugins/bootstrap.js"></script>
+
+<script src="~/Scripts/mask.js"></script>
+<script src="~/Scripts/jquery.maskedinput.js"></script>
+
+<script src="~/Scripts/animatedcollapse.js"></script>
+
+<script src="http://api.qrtag.net/js"></script>
+
+
+@* ---------- Brett JS ----------------- *@
+<script src="~/Scripts/BrettJS/ContactInfo.js"></script>
+<script src="~/Scripts/BrettJS/career.JS"></script>
+<link href="~/Content/education.css" rel="stylesheet" />
+
+}
+
+
+
+
+@section styles {
+<link href="~/Content/9res-nie.css" rel="stylesheet" />
+<link href="~/Content/9resModal.css" rel="stylesheet" />
+}
+
+
+
+
+<div class="row" style="height: 43px"></div>
+
+<resume-builder-nav></resume-builder-nav>
+<div ng-view></div>

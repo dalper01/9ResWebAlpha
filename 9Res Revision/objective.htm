@@ -1,0 +1,291 @@
+<html>
+<head>
+<title>9Res - Objective</title>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<link rel="stylesheet" type="text/css" href="9res-nie.css" />
+<!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="9res-ie.css" />
+<![endif]-->
+
+ <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script type="text/javascript" src="animatedcollapse.js"></script>
+<script type="text/javascript" src="archive/OldFiles/jquery.fileinput.js"></script>
+<script type="text/javascript" src="archive/OldFiles/jquery.selectbox-0.5.js"></script>
+<script type="text/javascript">
+
+animatedcollapse.addDiv('hdr2', 'fade=0,speed=400,height=128px,hide=1');
+
+animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is expanded/contracted
+	//$: Access to jQuery
+	//divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
+	//state: "block" or "none", depending on state
+}
+function info_mouse_over(td_obj) {
+  if(td_obj.className == "hdr_info3") { td_obj.className = "hdr_info4";} else { td_obj.className = "hdr_info2";}
+}
+function info_mouse_out(td_obj) {
+   if(td_obj.className == "hdr_info4") { td_obj.className = "hdr_info3";} else { td_obj.className = "hdr_info1";}
+}
+function info_mouse_click(td_obj) {
+  if(td_obj.className == "hdr_info1") {n = "hdr_info3"; animatedcollapse.toggle('hdr2');}
+  if(td_obj.className == "hdr_info2") {n = "hdr_info4"; animatedcollapse.toggle('hdr2');}
+  if(td_obj.className == "hdr_info3") {n = "hdr_info1"; animatedcollapse.toggle('hdr2');}
+  if(td_obj.className == "hdr_info4") {n = "hdr_info2"; animatedcollapse.toggle('hdr2');}
+  td_obj.className = n;
+}
+animatedcollapse.init();
+
+  $(document).ready(function() {
+    $("input#txt_O_Industry1").autocomplete({source: ["brett","bob","balkan"]});
+  });
+ 
+function getEl(htm_obj) {
+	var x = document.getElementById(htm_obj);
+	switch(x.type){
+		case "text": return x.value;
+		case "select-one": return x.options[x.selectedIndex].value;
+		default: return x.type + "??";
+	}
+}
+
+function evalWord(){
+	inp_phrase = document.getElementById("obj_ppane").innerHTML;
+	var word_count = inp_phrase.length;
+	var obj_eval = "";
+
+	switch(true) {
+		case (word_count < 50): obj_val = "LET'S GET STARTED!"; break;
+		case ((word_count >= 50) && (word_count < 75)): obj_val = "MAYBE A BIT TOO SHORT."; document.getElementById("slide_tab").src="./images/word_slide_tab_yellow.bmp"; break;
+		case ((word_count >= 75) && (word_count < 140)): obj_val = "THIS SEEMS LIKE A NICE LENGTH!"; document.getElementById("slide_tab").src="./images/word_slide_tab_green.bmp"; break;
+		case ((word_count >= 140) && (word_count < 175)): obj_val = "MAYBE A BIT TOO LONG."; document.getElementById("slide_tab").src="./images/word_slide_tab_yellow.bmp"; break;
+		case ((word_count >= 175) && (word_count < 200)): obj_val = "PROBABLY TOO LONG."; document.getElementById("slide_tab").src="./images/word_slide_tab_red.bmp"; break;		
+		default: obj_val = "PEOPLE MIGHT NOT READ THIS MUCH."; document.getElementById("slide_tab").src="./images/word_slide_tab_red.bmp";
+	}
+	var word_adj;
+	if(word_count > 200) { word_adj = 200;} else {word_adj = word_count;}
+	document.getElementById("word_res").innerHTML = obj_val;
+	word_count += 6;
+	document.getElementById("trans_slider").style.width=word_adj;
+	document.getElementById("trans_slider").style.height=15;	
+	
+}
+	
+	
+function getCode(htm_obj) {
+	var x = getEl(htm_obj);
+	switch(x){
+		case "": return "";
+		case "ft": return "full-time";
+		case "pt": return "part-time position";
+		case "con": return "a contract position";
+		default:  return  x + "?";
+	}
+}
+
+function updObjective() {
+
+var Uadj1 = getEl("txt_O_User_Adj1_P");
+var Uadj2 = getEl("txt_O_User_Adj2_P");
+var Unoun = getEl("txt_O_User_Noun");
+
+if(Unoun == "") {Unoun ="person";}
+var Ujob_type = getEl("ddl_O_Job_Type_P");
+var Ujob_type2 = getEl("txt_O_Job_Type_P");
+var phr1 = getEl("O_phrase1");
+
+if(Ujob_type2.length > 0 & Ujob_type.length > 0) { Ujob_type += " " + Ujob_type2; }
+
+var phr2 = getEl("O_phrase2");
+
+var sk1 = getEl("txt_O_Job_Adj1_P");
+var sk2 = getEl("txt_O_Job_Adj2_P");
+
+
+var comp1 = getEl("txt_O_Comp_Adj1_P");
+var comp2 = getEl("txt_O_Comp_Adj2_P");
+var comp3 = getEl("ddl_O_Comp_Type_P");
+var ind1 = getEl("txt_O_Industry1");
+var ind2 = getEl("txt_O_Industry2");
+var adj_comma = "";
+
+if(Uadj1.length > 0 & Uadj2.length > 0) { adj_comma=",";}
+
+// Skills
+var skills_phrase = "";
+var sk_and = "";
+if(sk1.length > 0 & sk2.length > 0) { sk_and=" and ";}
+if(sk1.length > 0 | sk2.length > 0) {skills_phrase = ", " + phr2 +" " + sk1 + sk_and + sk2 +" skills";}
+var ind_or= "";
+if(ind1.length > 0 & ind2.length > 0) { ind_or = " or "; }
+
+
+var firm_phrase = "";
+var comp_and = "";
+if(comp1.length > 0 & comp2.length > 0) { comp_and = " and ";}
+if(comp1.length >0 | comp2.length >0 | ind1.length > 0 | ind2.length > 0 | comp3 != "firm") { firm_phrase = " at a " + comp1 + comp_and + " " + comp2 +" " + ind1 +" " + ind_or +" " + ind2 + " " + comp3;}
+
+var phrase = Uadj1 + adj_comma + " " + Uadj2 + " " + Unoun + " " + phr1 + " a " + Ujob_type + " position" + firm_phrase  + skills_phrase +"." ;
+
+// find & capitalize the first letter 
+// ...this'd be easier with a trim, but I'm doing it on the train and don't have the luxury of using jquery
+
+var counter = 0;
+var found_first = 0;
+var next_letter ="";
+while(found_first == 0) {
+	if(phrase.charAt(counter) != " ") {
+		found_first =1;
+		phrase = phrase.substring(0,counter) + phrase.charAt(counter).toUpperCase() + phrase.substring(counter+1);
+    }
+	if(counter >= phrase.length) { found_first = 1;}
+	counter += 1;
+}
+document.getElementById("obj_ppane").innerHTML = phrase;
+}
+
+$(document).ready(function(){
+    $("input:text, textarea, select").addClass("input_inactive");
+        $("input:text, textarea, select").focus(function(){
+            $(this).addClass("input_active_ob").removeClass("input_inactive_ob");
+    }).blur(function(){
+            $(this).removeClass("input_active_ob").addClass("input_inactive_ob");
+    });
+		
+});
+</script>
+</head>
+<body>
+<div id ="nav">
+	<table class="nav_tab" height=100% width=158>
+	<tr><td ><img src="./images/logo.bmp" width=157 height=113></td></tr>
+	<tr><td ><img src="./images/logo_footer.bmp" width=157 height=53></td></tr>
+    <tr><td class="nav_oth_off" onmouseover="this.className='nav_oth_on'" onmouseout="this.className='nav_oth_off'" onclick="document.location='welcome.htm'">Welcome!</td></tr>
+	<tr><td class="res_off" onmouseover="this.className='res_on'" onmouseout="this.className='res_off'" onclick="document.location='resume.htm'">Your Resume</td></tr>
+	<tr><td class="nav_off" onmouseover="this.className='nav_on'" onmouseout="this.className='nav_off'" onclick="document.location='contact_info.htm'">Contact Info</td></tr>
+	<tr><td class="nav_sel">Objective</td></tr>
+	<tr><td class="nav_off" onmouseover="this.className='nav_on'" onmouseout="this.className='nav_off'" onclick="document.location='expertise.htm'">Expertise</td></tr>
+	<tr><td class="nav_off" onmouseover="this.className='nav_on'" onmouseout="this.className='nav_off'" onclick="document.location='career.htm'">Career</td></tr>
+	<tr><td class="nav_off" onmouseover="this.className='nav_on'" onmouseout="this.className='nav_off'" onclick="document.location='distinctions.htm'">Distinctions</td></tr>
+	<tr><td class="nav_lof" onmouseover="this.className='nav_lon'" onmouseout="this.className='nav_lof'" onclick="document.location='keywords.htm'">Keywords</td></tr>
+	<tr height=100%><td>&nbsp;<br></td></tr>
+	<tr><td><img src="./images/nav_footer.bmp" width=157 height=11></td></tr>
+	<tr><td class="nav_oth_off" onmouseover="this.className='nav_oth_on'" onmouseout="this.className='nav_oth_off'">About the Site</td></tr>
+	</table>
+</div>
+<div id="main" align="left">
+  <div id ="hdr" align="left">
+	<table border=0 cellpadding=0 cellspacing=0 height=100% width=100%>
+	<tr height=42>
+	<td width=40 class="hdr_line"></td>
+	<td width=237 class="ob_title"></td>
+	<td width=493 class="hdr_line" align="right"></td>
+	<td width=96 class="hdr_info1" onclick="javascript:info_mouse_click(this)" onmouseover="javascript:info_mouse_over(this)" onmouseout="javascript:info_mouse_out(this)"></td>	
+	</tr>
+	<tr height=100%><td class="display" colspan=4 width=100%>
+	<table width=100%><tr><td class="hdr_txt">Your objective serves as a router: its job is to help your resume navigate to the people most interested in hiring you! It�s a concise 15-second elevator pitch, and it �speaks� very well.</td></tr>
+	</table>
+	</td></tr>
+	</table>
+  </div>
+  <div id="hdr2" align="left">	<table width=100%><tr><td class="hdr_txt">...In case you hadn't noticed, this site is cool as shit.</td></tr></table></div>
+  <div id ="ppane_obj" align="left"><table border=0 cellpadding=0 cellspacing=0 height=100% width=100%><tr><td id="obj_ppane" class="ob_dtl1"></td></tr></table></div>
+  <div id ="plain">
+  	<table cellpadding=0 cellspacing=0 class="util" width=100%>
+	<tr height=14><td class="ppn_title_left" width=327>OBJECTIVE LENGTH:</td>
+		<td class="ob_word" width=212><img height=1 id="trans_slider" src="./images/spacer.gif"><img height=14 id="slide_tab" src="./images/word_slide_tab.bmp"></td>
+		<td id="word_res" class="ppn_title_right" width=327></td></tr>
+	</table>
+  </div>
+  <div id ="util">
+  <table cellpadding=0 cellspacing=0 width="100%">
+  <tr><td colspan=1 class="ob_txt1">Tell us about...</td></tr>
+  <tr><td colspan=1 class="ob_txt2">...yourself</td></tr>
+  <tr><td class="ob_txt3">What adjective(s) best describe you?</td>
+      <td><input type="text" name="q" id="txt_O_User_Adj1_P" onkeyup="javascript:updObjective();" onblur="javascript:evalWord();" /></td>
+      <td><input type="text" name="q" id="txt_O_User_Adj2_P" onkeyup="javascript:updObjective();" onblur="javascript:evalWord();" /></td></tr>
+  <tr><td class="ob_txt3">What is a title that best describes you?</td>
+      <td colspan=2><input type="text" name="q" id="txt_O_User_Noun" onkeyup="javascript:updObjective();" onblur="javascript:evalWord();"/></td></tr>
+
+  <tr><td colspan=1 class="ob_txt2">...your ideal job</td></tr>
+  <tr><td class="ob_txt3">What type of work are you looking for?</td>
+      <td><select id="ddl_O_Job_Type_P" type="text" onchange="javascript:updObjective();evalWord();">
+		<option value="" class=""><Unspecified></option>
+		<option value="full-time" class="">Full-Time</option>
+            	<option value="part-time" class="">Part-Time</option>
+            	<option value="contract" class="">Contract</option>
+            	<option value="tenure track" class="">Tenure Track</option>				
+	   </select></td>
+    <td><input type="text" name="q" id="txt_O_Job_Type_P" onkeyup="javascript:updObjective();"  onblur="javascript:evalWord();"/></td>
+   </tr>
+  <tr><td class="ob_txt3">What skills would you like to use on the job?</td>
+      <td><input type="text" name="q" id="txt_O_Job_Adj1_P" onkeyup="javascript:updObjective();" onblur="javascript:evalWord();" /></td>
+      <td><input type="text" name="q" id="txt_O_Job_Adj2_P" onkeyup="javascript:updObjective();" onblur="javascript:evalWord();"/></td></tr>
+
+  <tr><td colspan=1 class="ob_txt2">...your ideal company</td></tr>
+  <tr><td class="ob_txt3">What type of place would you like to work?</td>
+      <td colspan=2><select id="ddl_O_Comp_Type_P" type="text" onchange="javascript:updObjective(); evalWord();">
+				<option value="firm" 			class=""></option>
+            	<option value="startup" 		class="">Startup</option>				
+				<option value="non-profit" 		class="">Non-Profit</option>
+				<option value="not-for-profit" 	class="">Not-For-Profit</option>
+				<option value="hospital" 		class="">Hospital</option>
+            	<option value="practice" 		class="">Practice</option>
+            	<option value="organization" 	class="">Organization</option>				
+            	<option value="institute" 		class="">Institution</option>								
+            	<option value="think tank" 		class="">Think Tank</option>												
+            	<option value="university" 		class="">University</option>																
+            	<option value="school" 			class="">School</option>																				
+            	<option value="multi-national" 	class="">Multi-National</option>
+	   </select></td></tr>
+  <tr><td class="ob_txt3">In what industries would you like to work?</td>
+      <td><input id="txt_O_Industry1"  type="text" onkeyup="javascript:updObjective();" onblur="javascript:evalWord();" /></td>
+	  <td><input id="txt_O_Industry2"  type="text" onkeyup="javascript:updObjective(); " onblur="javascript:evalWord();" /></td></tr>
+  <tr><td class="ob_txt3">What adjectives describe your ideal company?</td>
+      <td><input type="text" name="q" id="txt_O_Comp_Adj1_P" onkeyup="javascript:updObjective();" onblur="javascript:evalWord();" /></td>
+      <td><input type="text" name="q" id="txt_O_Comp_Adj2_P" onkeyup="javascript:updObjective();" onblur="javascript:evalWord();" /></td></tr>
+  <tr><td colspan=1 class="ob_txt2">...other stuff</td></tr>
+  <tr><td class="ob_txt3">Choose a few action phrases:</td>
+      <td><select id="O_phrase1" type="text" onchange="javascript:updObjective();evalWord();">
+		<option value="seeks" class="">seeks</option>
+            	<option value="looking for" class="">looking for</option>
+            	<option value="desires" class="">desires</option>
+	   </select></td>
+      <td><select id="O_phrase2" type="text" onchange="javascript:updObjective();evalWord();">
+				<option value="where I can leverage my">where I can leverage my</option>
+            	<option value="where I can apply my">where I can apply my</option>
+            	<option value="where I can improve my">where I can improve my</option>
+	   </select></td></tr>
+	</table>
+<br>
+
+  </div> 
+  <div id="peek_hdr">
+  <table width="100%"><tr>
+    <td class="hdr_peek0">Other people have said...</td>
+    <td class="hdr_peek1" onmouseover="this.className='hdr_peek2'" onmouseout="this.className='hdr_peek1'"></td></tr>
+   </tr>
+  </table>
+  </div>
+  <div id="ob_peek_dtl"><table height=100%><tr height=100%>
+	<td class="ob_txt3">Ambitious, results-oriented software engineer seeks a full-time position at a socially-responsible biotech or technology firm, where I can leverage my web development and interpersonal skills.
+	</td></tr></table>
+</div>
+</div>
+
+</body>
+<script type="text/javascript">
+ updObjective();
+ evalWord();
+ $(document).ready(function() {
+        $('#ddl_O_Comp_Type_P').selectbox();
+        $('#ddl_O_Job_Type_P').selectbox();		
+		$('#O_phrase1').selectbox();		
+		$('#O_phrase2').selectbox();		
+    });
+
+</script>
+
+
+</html>

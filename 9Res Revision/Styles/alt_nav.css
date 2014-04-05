@@ -1,0 +1,82 @@
+
+
+/* Nav Tab manipulation */
+
+.container {
+
+    max-width: 925px;
+
+}
+
+.greyskin {
+
+    background-image: url('../images/color_grey.bmp');
+    /*background-color: grey;
+    /*border-radius: 15px;*/
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+
+.topHeader{
+
+    border-bottom-color: black;
+    border: 0 1 1 1;
+    /*background-repeat: no-repeat;*/
+    /*background-image: linear-gradient(to top, white 0%, #555555 100%);*/
+    /*background-color:#cccccc;*/
+
+}
+
+
+.nav-tabs > li > a{
+
+    background-image: linear-gradient(to top, white 0%, #0066aa 100%);
+    border: solid 1px;
+    border-color: #eeeeee #cccccc #dddddd #ffffff;
+    /*
+            background-image: linear-gradient(to bottom, #00aaff 0%, #0088cc 100%);
+            background-image: url( '../images/input_gradient1.bmp' );
+            background-repeat: repeat-x;
+            background-position: top;
+    */
+    color: white;
+    /*font-weight: bold;*/
+
+}
+
+
+/* Nav Bar Styling*/
+.nav-tabs > li.active > a {
+    background-image: linear-gradient(to top, white 0%, #999999 100%);
+    color: red;
+    font-weight: bolder;
+    border: solid 1px;
+    border-color: #cccccc #cccccc #dddddd #cccccc;
+    /*
+            background-image:  url( '../images/input_gradient2.bmp' );
+            background-repeat: repeat-x;
+            background-position: top;
+    */
+    /*font-size: 13px;*/
+}
+
+
+
+.nav-tabs > li:not(active) > a:hover,
+.nav-tabs > li:not(active) > a:focus{
+    /*
+            background-image:  url( '../images/input_gradient2.bmp' );
+            border: solid 1px;
+            border-color: #cccccc #cccccc #dddddd #cccccc;
+            background-repeat: repeat-x;
+            background-position: top;
+    */
+    background-color: #006dcc;
+    color: green;
+}
+
+
+/* Nav Tabs finished */
+
+

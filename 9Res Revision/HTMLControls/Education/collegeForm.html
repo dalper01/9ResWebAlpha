@@ -1,0 +1,93 @@
+
+<div style="float: left; max-height: 300px;">
+
+    <div class="schoolHeader" colspan="2" style="height: 35px; width: 350px; vertical-align: middle">
+        <span style="color: #444444; font-size: 14; font-weight: bold; vertical-align: middle"> Enter College</span>
+    </div>
+
+
+    <table class="schoolForm" style="margin-top: 15px;">
+        <tr>
+            <td>
+                School Name
+            </td>
+            <td>
+                <input type="text" ng-model="college.name">
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Location
+            </td>
+            <td nowrap style="vertical-align: top">
+                <div style="display: inline-block">
+                    <input type="text" placeholder="City" ng-model="college.city" style="width: 14ch">
+                </div>
+                <div style="display: inline-block;vertical-align: top;">
+                    , <statedropdown passedmodel="college.state"></statedropdown>
+                </div>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Degree Program
+            </td>
+            <td>
+                <input type="text" ng-model="college.degreeProgram">
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Degree Type
+            </td>
+            <td>
+                <degree-drop-down passed-model="college.degreeType"></degree-drop-down>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Graduated?
+            </td>
+            <td>
+                <input type="checkbox" ng-model="college.graduated">
+            </td>
+        </tr>
+
+        <tr ng-show="college.graduated">
+            <td>
+                Graduation <br> Date
+            </td>
+            <td>
+                <monthdropdown passedmodel="college.gradMonth"></monthdropdown>
+                <yeardropdown passedmodel="college.gradYear"></yeardropdown>
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <a class="btn btn-primary" ng-click="saveCollege()"> Save </a>
+
+            </td>
+
+            <td>
+                <a class="btn btn-danger" ng-click="cancelCollege()"> Cancel </a>
+
+            </td>
+
+
+        </tr>
+
+    </table>
+
+</div>
+
+
+<div style="float: left; vertical-align: bottom;">
+    <img src="./icons/types-of-college-degrees.jpg" style="margin-left: 110px; margin-top: 20px;"
+         height="200px">
+</div>

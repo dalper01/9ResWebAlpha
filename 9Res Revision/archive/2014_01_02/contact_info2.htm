@@ -1,0 +1,443 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" id="ng-app" ng-app>
+
+<head>
+
+<title>9Res - Contact Information</title>
+
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+		<link rel="stylesheet" type="text/css" href="9res-nie.css" />
+
+
+	<!--[if IE]>
+
+		<link rel="stylesheet" type="text/css" href="9res-ie.css" />
+
+	<![endif]-->
+
+    <script src="JSLibs/angular.min.js"></script>
+    <script type="text/javascript" src="NGControllers/ContactInfo.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script type="text/javascript" src="animatedcollapse.js"></script>
+
+    <script type="text/javascript" src="http://api.qrtag.net/js"></script>
+
+    <script type="text/javascript" src="jquery.selectbox-0.5.js"></script>
+
+    <script type="text/javascript" src="jquery.fileinput.js"></script>
+
+
+
+    <!-- Inserting the Ajax code base here -->
+
+    <script language="javascript" type="text/javascript">
+
+
+    animatedcollapse.init();
+
+
+
+    function getEl(htm_obj) {
+        var x = document.getElementById(htm_obj);
+        switch(x.type){
+            case "text": return x.value;
+            case "select-one": return x.options[x.selectedIndex].value;
+            default: return x.type + "??";
+        }
+    }
+
+    function getCode(htm_obj) {
+        var x = getEl(htm_obj);
+        switch(x){
+            case "": return "";
+            case "Home": return " (h)";
+            case "Mobile": return " (c)";
+            case "Work": return " (w)";
+            case "Facebook": return "<img height=19 width=19 src='./images/icon_facebook.bmp' alt='fb' />";
+            case "LinkedIn": return "<img height=19 width=19 src='./images/icon_linkedin.bmp' alt='li' />";
+            case "Skype":    return "<img height=19 width=19 src='./images/icon_skype.bmp' alt='sk' />";
+            default:  return  x + "?";
+        }
+    }
+
+    function insertCharInHeader() {
+        var v_def_name = "Your Name Here";
+        var v_def_addr = "where you live";
+        var v_def_cont = "your contact info";
+
+        // name line
+        var v_fname  = getEl("txtU_Name_F");
+        var v_mname  = getEl("txtU_Name_M");
+        var v_lname  = getEl("txtU_Name_L");
+        var htm_Name =  v_fname +" " + v_mname + " " + v_lname;
+        if(htm_Name.length == 2) { htm_Name = v_def_name;}
+
+        // address line
+        var v_addr   = getEl("txtU_Addr_Street") + " " + getEl("txtU_Addr_Town");
+        var v_str    = getEl("txtU_Addr_Street");
+        var v_town   = getEl("txtU_Addr_Town");
+        var v_state  = getEl("txtU_Addr_State");
+        var v_code   = getEl("txtU_Addr_Code");
+        var htm_Addr = v_str + " " + v_town;
+
+
+        if(v_town   != "" & v_state != "") { htm_Addr +=", ";}
+        htm_Addr    += v_state;
+        if(v_state  != "" & v_code != "") { htm_Addr += "&nbsp;&nbsp;" + v_code;}
+        if(htm_Addr.length == 1) { htm_Addr = v_def_addr;}
+
+        // phone & email line
+        var v_ptyp1  = getCode("ddlU_Phone1_Type_P");
+        var v_pnum1  = getEl("txtU_Phone1_Number");
+        var v_ptyp2  = getCode("ddlU_Phone2_Type_P");
+        var v_pnum2  = getEl("txtU_Phone2_Number");
+        var v_email  = getEl("txtU_Email_Address");
+        var v_smtyp  = getCode("ddlU_Media_Type_P");
+        var v_smid   = getEl("txtU_Media_Id");
+        var htm_Cont = "<table width=100% border=0><tr>";
+
+        //determine percentages
+        var v_pct_ct =0;
+        var v_pct1 = "100%";
+
+        if(v_pnum1  !="") { v_pct_ct += 1;}
+        if(v_pnum2  !="") { v_pct_ct += 1;}
+        if(v_email  !="") { v_pct_ct += 1;}
+        if(v_smtyp  !="" & v_smid != "") { v_pct_ct += 1;}
+
+        switch(v_pct_ct) {
+            case 0: v_pct = "100%"; break;
+            case 1: v_pct = "100%"; break;
+            case 2: v_pct = "50%"; break;
+            case 3: v_pct = "33%"; break;
+            case 4: v_pct = "25%"; break;
+            case 5: v_pct = "20%"; break;
+            default: v_pct = "";
+        }
+        var ci_dtl_class;
+
+        if(v_pct_ct == 0) { v_email=v_def_cont; ci_dtl_class = "ci_dtl2_def"} else {ci_dtl_class = "ci_dtl2";}
+
+        if(v_pnum1  !="") { htm_Cont += "<td width='" + v_pct +"' class='" + ci_dtl_class +"'>" + v_pnum1 + v_ptyp1 + "</td>";}
+        if(v_pnum2  !="") { htm_Cont += "<td width='" + v_pct +"' class='" + ci_dtl_class +"'>" + v_pnum2 + v_ptyp2 + "</td>";}
+        if(v_email  !="") { htm_Cont += "<td width='" + v_pct +"' class='" + ci_dtl_class +"'>" + v_email + "</td>";}
+        if(v_smtyp !="" & v_smid != "") { htm_Cont += "<td width=1/" + v_pct_ct +" class='" + ci_dtl_class + "'>" + v_smtyp + " " + v_smid +"</td>";}
+        htm_Cont    += "</tr></table>";
+
+
+        //if(htm_Name == v_def_name) { document.getElementById("ci_name").className = "ci_name_def";} else {document.getElementById("ci_name").className = "ci_name";}
+        //document.getElementById("ci_name").innerHTML = htm_Name;
+        //if(htm_Addr == v_def_addr) { document.getElementById("ci_addr").className = "ci_dtl1_def";} else {document.getElementById("ci_addr").className = "ci_dtl1";}
+        //document.getElementById("ci_addr").innerHTML = htm_Addr;
+        //document.getElementById("ci_cont").innerHTML = htm_Cont;
+    }
+    var httpObject = null;
+
+    animatedcollapse.addDiv('hdr2', 'fade=0,speed=400,height=128px,hide=1');
+    animatedcollapse.ontoggle=function($, divobj, state){ //fires each time a DIV is expanded/contracted
+        //$: Access to jQuery
+        //divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
+        //state: "block" or "none", depending on state
+    }
+    function info_mouse_over(td_obj) {
+        if(td_obj.className == "hdr_info3") {
+         td_obj.className = "hdr_info4";
+        }
+        else {
+         td_obj.className = "hdr_info2";
+        }
+    }
+
+    function info_mouse_out(td_obj) {
+        if(td_obj.className == "hdr_info4") { td_obj.className = "hdr_info3";} else { td_obj.className = "hdr_info1";}
+    }
+
+    function info_mouse_click(td_obj) {
+        if(td_obj.className == "hdr_info1") {n = "hdr_info3"; animatedcollapse.toggle('hdr2');}
+        if(td_obj.className == "hdr_info2") {n = "hdr_info4"; animatedcollapse.toggle('hdr2');}
+        if(td_obj.className == "hdr_info3") {n = "hdr_info1"; animatedcollapse.toggle('hdr2');}
+        if(td_obj.className == "hdr_info4") {n = "hdr_info2"; animatedcollapse.toggle('hdr2');}
+        td_obj.className = n;
+    }
+
+
+
+    function checkPic() {
+
+        var chkPic = document.getElementById("chk_picture").checked;
+
+        if(chkPic==true) { document.getElementById("ci_hdr_pic").innerHTML = document.getElementById("ci_pic").innerHTML;
+     }
+
+        else {
+         document.getElementById("ci_hdr_pic").innerHTML = "";
+        }
+
+    }
+
+
+    function checkQR() {
+        var chkQR = document.getElementById("chk_qrcode").checked;
+        if(chkQR==true) {
+            var qrtag = new QRtag();
+            qrtag.link("http://www.9res.com/bmclaugh-res1");
+            qrtag.size(105);
+            qrtag.border(0);
+            qrtag.color("#95E2FF");
+            qrtag.bgcolor("#ffffff");
+            qrtag.target("ci_qrcode");
+            qrtag.image();
+        }
+        else { document.getElementById("ci_qrcode").innerHTML ="";}
+    }
+
+    $(document).ready(function(){
+        $("input:text, textarea, select").addClass("input_inactive");
+            $("input:text, textarea, select").focus(function(){
+                $(this).addClass("input_active").removeClass("input_inactive");
+        }).blur(function(){
+
+                $(this).removeClass("input_active").addClass("input_inactive");
+
+        });
+
+
+    });
+
+
+
+	</script>
+
+</head>
+
+
+<body>
+
+    <div id="nav">
+    	<table cellspacing=0 cellpadding=0 class="nav_tab" cellpadding=0 cellspacing=0 height=100% width=158>
+            <tr><td ><img src="./images/logo.bmp" width=157 height=113></td></tr>
+            <tr><td ><img src="./images/logo_footer.bmp" width=157 height=53></td></tr>
+            <tr><td class="nav_oth_off" onmouseover="this.className='nav_oth_on'" onmouseout="this.className='nav_oth_off'" onclick="document.location='welcome.htm'">Welcome!</td></tr>
+            <tr><td class="res_off" onmouseover="this.className='res_on'" onmouseout="this.className='res_off'" onclick="document.location='resume.htm'">Your Resume</td></tr>
+            <tr><td class="nav_sel">Contact Info</td></tr>
+            <tr><td class="nav_off" onmouseover="this.className='nav_on'" onmouseout="this.className='nav_off'" onclick="document.location='objective.htm'">Objective</td></tr>
+            <tr><td class="nav_off" onmouseover="this.className='nav_on'" onmouseout="this.className='nav_off'" onclick="document.location='expertise.htm'">Expertise</td></tr>
+            <tr><td class="nav_off" onmouseover="this.className='nav_on'" onmouseout="this.className='nav_off'" onclick="document.location='career.htm'">Career</td></tr>
+            <tr><td class="nav_off" onmouseover="this.className='nav_on'" onmouseout="this.className='nav_off'" onclick="document.location='distinctions.htm'">Distinctions</td></tr>
+            <tr><td class="nav_lof" onmouseover="this.className='nav_lon'" onmouseout="this.className='nav_lof'" onclick="document.location='keywords.htm'">Keywords</td></tr>
+            <tr height=100%><td>&nbsp;<br></td></tr>
+            <tr><td><img src="./images/nav_footer.bmp" width=157 height=11></td></tr>
+            <tr><td class="nav_oth_off" onmouseover="this.className='nav_oth_on'" onmouseout="this.className='nav_oth_off'">About the Site</td></tr>
+        </table>
+    </div>
+
+
+    <div id="main" align="left" ng-controller="ContactInfoController">
+        <form name="ContactDetails" method="post" action="/YourGreatResume/ContactInfo.php" target="_self">
+        <div id ="hdr" align="left">
+            <table border=0 cellpadding=0 cellspacing=0 height=100% width=100%>
+                <tr height=42>
+                <td width=40 class="hdr_line"></td>
+                <td width=280 class="ci_title"></td>
+                <td width=450 class="hdr_line" align="right"></td>
+                <td width=96 class="hdr_info1" onclick="javascript:info_mouse_click(this)" onmouseover="javascript:info_mouse_over(this)" onmouseout="javascript:info_mouse_out(this)"></td>
+                </tr>
+                <tr height=100%><td class="display" colspan=4 width=100%>
+                <table width=100%>
+                    <tr><td class="hdr_txt">This section is a breeze.  Just enter any information you'd like available on your resume (just leave out any details you don't want to show up).&nbsp;&nbsp;  You can even jump-start the process by importing your info from LinkedIn!</td></tr>
+                </table>
+                </td></tr>
+            </table>
+        </div>
+
+        <div id= "hdr2" align="left">
+            <table width=100%>
+                <tr>
+                    <td class="hdr_txt">...In case you hadn't noticed, this site is cool as shit.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="ppane_ci" align="left">
+            <table cellpadding=0 cellspacing=0 name="ci_hdr" height=100% width=100% border=0>
+                <tr>
+                    <td class="ci_pic" id="ci_hdr_pic"></td>
+                    <td width=100%>
+
+                        <table cellpadding=0 cellspacing=0 border=0 width=100%>
+                            <tr>
+                                <td width=20 rowspan=4>&nbsp;</td>
+                                <td id="ci_name2" style="text-align: center">
+                                    <span class="ci_name_def" ng-hide="showNameMessage()"> {{ noNameMessage }} </span>
+                                    <span class="ci_name"> {{ firstName }} {{ middleName }} {{ lastName }}  </span>
+                                </td>
+                                <td width=20 rowspan=4>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="ci_hline" height=1></td>
+                            </tr>
+                            <tr>
+                                <td class="ci_dtl1" id="ci_addr" height=1>
+                                    <span class="ci_dtl1_def" ng-hide="showAddressMessage()"> {{ noAddressMessage }} </span>
+
+                                    <span class="ci_dtl1">
+                                        {{ addrStreet }} {{ addrTown }} {{ addrState }} {{ addrZip }}
+                                    </span>
+
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td name="ci_dtl2" id="ci_cont">
+                                    <table width=100%>
+                                        <tr>
+                                            <td class="ci_dtl2"></td>
+                                            <td class="ci_dtl2">
+                                                <span class="ci_dtl1_def" ng-hide="showContactMessage()"> {{ noContactMessage }} </span>
+
+                                                <span class="ci_dtl1">
+                                                    <span ng-show="number1.length"> {{ phone1 }} {{ number1 }} </span>
+                                                    <span ng-show="number2.length"> {{ phone2 }} {{ number2 }} </span>
+                                                    {{ eMail }}
+                                                    <span ng-show="socialMedia.length">
+                                                        <img  height=19 width=19 ng-src="{{socialMediaLogo}}"> {{ socialMedia }}
+                                                    </span>
+                                                </span>
+
+                                            </td>
+                                            <td class="ci_dtl2"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </td>
+                    <td class="ci_qr" id="ci_qrcode"></td>
+                </tr>
+            </table>
+        </div>
+        <div id="plain">
+            <table border=0 width=100% cellpadding=0 cellspacing=0>
+                <tr>
+                    <td class="ci_ppn_spacer"></td>
+                    <td class="ci_ppn_chk"><input type="checkbox" id="chk_picture" onclick="checkPic();"></td>
+                    <td class="ci_ppn_title1">Display My Picture</td>
+                    <td class="ci_ppn_main" >PREVIEW PANE</td>
+                    <td class="ci_ppn_chk"><input type="checkbox" id="chk_qrcode" onclick="checkQR();" value="show" type="text"></td>
+                    <td class="ci_ppn_title2">Display QR Code</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id ="util_car" align="PREV">
+            <br>
+            <table width=100% border=0>
+                <tr>
+                    <td class="ci_txt1" rowspan=2>Name</td>
+                    <td class="ci_txt2">first</td>
+                    <td class="ci_txt2">middle</td>
+                    <td class="ci_txt2">last</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="q" id="txtU_Name_F" ng-model="firstName"></td>
+                    <td><input type="text" name="q" id="txtU_Name_M" ng-model="middleName" ></td>
+                    <td><input type="text" name="q" id="txtU_Name_L" ng-model="lastName" ></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="ci_txt1"  rowspan=2>Address</td>
+                    <td class="ci_txt2">street</td>
+                    <td class="ci_txt2">city/town</td>
+                    <td class="ci_txt2">state/province</td>
+                    <td class="ci_txt2">zip/postal code</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="q" id="txtU_Addr_Street" ng-model="addrStreet"></td>
+                    <td><input type="text" name="q" id="txtU_Addr_Town" ng-model="addrTown"></td>
+                    <td><input type="text" name="q" id="txtU_Addr_State"  ng-model="addrState"></td>
+                    <td><input type="text" name="q" id="txtU_Addr_Code"  ng-model="addrZip"></td>
+                </tr>
+                <tr>
+                    <td class="ci_txt1"  rowspan=2>Phone</td>
+                    <td class="ci_txt2">phone 1</td>
+                    <td class="ci_txt2">number 1</td>
+                    <td class="ci_txt2">phone 2</td>
+                    <td class="ci_txt2">number 2</td>
+                </tr>
+                <tr>
+                    <td>
+                        <select data-ng-options="o.id as o.name for o in phoneTypes" data-ng-model="phone1"></select>
+                    </td>
+                    <td>
+                        <input type="text" name="q" id="txtU_Phone1_Number" ng-model="number1">
+                    </td>
+                    <td>
+                        <select data-ng-options="o.id as o.name for o in phoneTypes" data-ng-model="phone2"></select>
+                   </td>
+                    <td>
+                        <input type="text" name="q" id="txtU_Phone2_Number" ng-model="number2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ci_txt1" rowspan=2>Online</td>
+                    <td class="ci_txt2">email</td>
+                    <td class="ci_txt2">social media</td>
+                    <td class="ci_txt2">ID</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="ci_txt22">
+                        <input type="text" name="q" id="txtU_Email_Address" ng-model="eMail">
+                    </td>
+
+                    <td>
+                        <select data-ng-options="o.img as o.name for o in socialMediaTypes" data-ng-model="socialMediaLogo"></select>
+                    </td>
+                    <td>
+                        <input type="text" name="q" id="txtU_Media_Id" ng-model="socialMedia">
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr><td class="ci_txt1"  rowspan=5>Photo</td>
+                    <td rowspan=5 id="ci_pic"><img height=135 height=130 src="./data/photos/akabret-1.jpg"></td>
+                    <td rowspan=5 colspan=2 class="ci_upload"><input type="file" id="file" name="file"></td>
+                    <td rowspan=5 colspan=2 class="ci_upload">&nbsp;</td></tr>
+                <tr></tr>
+            </table>
+        </div>
+    </form>
+
+    </div>
+
+</body>
+
+<script type="text/javascript">
+
+insertCharInHeader();
+
+checkPic();
+
+checkQR();
+
+$(document).ready(function() {
+
+        $('#ddlU_Phone1_Type_P').selectbox();
+
+		$('#ddlU_Phone2_Type_P').selectbox();
+
+		$('#ddlU_Media_Type_P').selectbox();
+
+		$('#file').customFileInput();
+
+    });
+
+
+</script>
+
+
+</html>

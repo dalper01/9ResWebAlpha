@@ -1,0 +1,251 @@
+﻿<div class="row">
+
+
+
+    <table cellpadding=0 cellspacing=0 border=0 width=100%>
+        <tr height=42>
+            <td width=40 class="hdr_line"></td>
+            <td width=247 nowrap>
+                <span style="display: block; text-align: center; font-weight: bolder; color: #003399; font-size: 30px;">
+                    Education History
+                </span>
+
+            </td>
+            <td width=500 class="hdr_line" align="right"></td>
+            <td width=96 class="hdr_info1" onclick="javascript:info_mouse_click(this)" onmouseover="javascript:info_mouse_over(this)" onmouseout="javascript:info_mouse_out(this)"></td>
+        </tr>
+        <tr height=100%>
+            <td class="display" colspan=4 width=100%>
+                <table width=100%>
+                    <tr>
+                        <td class="hdr_txt">
+                            What part of your education history do you want to share?
+                            High School Diploma? College Diploma? Graduate School? Add any information you want.
+                            Feel free to skip anything you don't want.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div id="hdr2" align="left">
+    <table width=100%>
+        <tr>
+            <td class="hdr_txt">
+                ...In case you hadn't noticed, this site is cool as shit.
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+<!-- Preview Pane -->
+<div id="ppane_ds" align="left" style="background-image: url('../icons/DiplmaBG.bmp');border: 1px solid; border-color: black; border-left-width: 0px;
+                text-align: justify;">
+
+    <!-- High School Data-->
+    <div style="display: inline-block; max-width: 25%; text-align: center; vertical-align: top;">
+        <div style="" class="educationPresentation" ng-repeat="highSchool in highSchools">
+            <div style="text-align: right;" ng-if="(addNavShow == true)">
+                <i class="glyphicon glyphicon-edit microIcons" title="Edit HighSchool"
+                   ng-click="editHighSchool(highSchool)"></i>
+                <i class="glyphicon glyphicon-trash microIcons" title="Delete HighSchool"
+                   ng-click="deleteHighSchool(highSchool)"></i>
+            </div>
+
+
+            <div> <b> {{ highSchool.name }} </b> </div>
+            <div> {{ highSchool.city }} {{ highSchool.state }}  </div>
+            <div ng-show="highSchool.graduated">
+                <img src="/Content/images/degree.bmp" height="20px">
+                {{ highSchool.gradMonth }} {{ highSchool.gradYear }}
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- College Data -->
+    <div style="display: inline-block; max-width: 50%; vertical-align: top; ">
+
+
+        <div style="; " class="educationPresentation"
+             ng-repeat="college in colleges">
+
+            <div style="text-align: right;" ng-if="(addNavShow == true)">
+                <i class="glyphicon glyphicon-edit microIcons" title="Edit College"
+                   ng-click="editCollege(college)"></i>
+                <i class="glyphicon glyphicon-trash microIcons" title="Delete College"
+                   ng-click="deleteCollege(college)"></i>
+            </div>
+
+            <div> <b> {{ college.name }} </b> </div>
+            <div> {{ college.city }} {{ college.state }}  </div>
+            <div> {{ college.degreeType }} {{ college.degreeProgram }}  </div>
+            <div ng-show="college.graduated">
+                <img src="/Content/images/degree.bmp" height="20px">
+                {{ college.gradMonth }} {{ college.gradYear }}
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <!-- Certificate Data -->
+
+    <div style="display: inline-block; width: auto; vertical-align: top;">
+
+        <div style="display: block; " class="educationPresentation"
+             ng-repeat="certificate in certificates">
+
+            <div style="text-align: right;" ng-if="(addNavShow == true)">
+                <i class="glyphicon glyphicon-edit microIcons" title="Edit Certificate"
+                   ng-click="editCertificate(certificate)"></i>
+                <i class="glyphicon glyphicon-trash microIcons" title="Delete Certificate"
+                   ng-click="deleteCertificate(certificate)"></i>
+            </div>
+
+            <div>
+                <img src="/Content/images/icons/certification.bmp" height="20px">
+                <b> {{ certificate.type }} </b> ( {{ certificate.Provider }}
+                {{ certificate.compMonth }} {{ certificate.compYear }})
+            </div>
+            <!--<div> <b> {{ certificate.Provider }} </b> </div>-->
+            <!--<div> {{ certificate.city }} {{ certificate.state }}  </div>-->
+            <!--
+                                    <div ng-show="certificate.completed">
+                                        ({{ certificate.compMonth }} {{ certificate.compYear }}) </div>
+        -->
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<div id="ppane_w" align="PREV">
+    <table cellpadding=0 cellspacing=0 class="util" width=866>
+        <tr>
+            <td class="ppn_title" width=50%>PREVIEW PANE</td>
+            <td class="ppn_title" width=50%>PREVIEW PANE</td>
+        </tr>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+<div style="margin-top: 10px; min-height: 250px;">
+
+    <div ng-if="(addNavShow == true)" style="vertical-align: top">
+        <div satyle="float: left;">
+            <a class="btn btn-success" ng-click="addHighSchool()"> <i class=""></i> Add High School </a>
+            <a class="btn btn-success" ng-click="addCollege()"> <i class=""></i> Add College </a>
+            <a class="btn btn-success" ng-click="addCertificate()"> <i class=""></i> Add Certification </a>
+
+            <!--<div style="; height:300px; background-image:url('http://www.daymarksi.com/Portals/30865/images/Tech_certifcaitons_2a.jpg');">-->
+        </div>
+
+
+        <div style="vertical-align: middle; margin-top: 0px; margin-left: 460px;">
+            <img src="/Content/images/schools.jpg" style="align-self: center center"
+                 swidth="355" height="66">
+            <!--width="100" height="100px">-->
+        </div>
+
+
+        <div style="vertical-align: middle; margin-top: 25px; margin-left: 40px;">
+            <img src="https://www.bellevuecollege.edu/careerpath/images/certifications.png" style="align-self: center center"
+                    swidth="355" height="45">
+            <!--width="100" height="100px">-->
+        </div>
+
+
+    </div>
+
+
+
+
+    <div ng-if="!(addNavShow == true)" style="">
+        <div id="highSchoolEntry" style="min-height: 250px; display: inline-block; vertical-align: top"
+                sng-if="highSchoolEdit">
+
+            <div ng-repeat="highSchool in highSchools">
+                <div ng-if="highSchool.add">
+                    <high-school-form passed-model="highSchool" reset-fn="resetHighSchool()"
+                                        save-fn="saveHighSchoolLocalStorage()" closeform="showNavHideForms()">
+                    </high-school-form>
+                </div>
+
+                <div ng-if="highSchool.edit">
+                    <high-school-form passed-model="highSchool" reset-fn="resetHighSchool()"
+                                        save-fn="saveHighSchoolLocalStorage()" closeform="showNavHideForms()">
+                    </high-school-form>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+        <div id="collegeEntry" style="min-height: 250px; display: inline-block; vertical-align: top; margin-left: 15px;">
+
+
+            <div ng-repeat="college in colleges">
+                <div ng-if="college.add">
+                    <college-form-add passed-model="college" save-fn="saveCollegesLocalStorage()"
+                                        reset-fn="resetColleges()" closeform="showNavHideForms()"></college-form-add>
+                </div>
+
+                <div ng-if="college.edit">
+                    <college-form-edit passed-model="college" save-fn="saveCollegesLocalStorage()"
+                                        reset-fn="resetColleges()" closeform="showNavHideForms()"></college-form-edit>
+                </div>
+
+            </div>
+
+
+
+
+            <div id="certificateEntry" style="min-height: 250px; display: inline-block; vertical-align: top; margin-left: 15px;">
+
+
+                <div ng-repeat="certificate in certificates">
+                    <div ng-if="certificate.add">
+                        <certificate-form-add passed-model="certificate" save-fn="saveCertificatesLocalStorage()"
+                                                reset-fn="resetCertificates()" closeform="showNavHideForms()"></certificate-form-add>
+                    </div>
+
+                    <div ng-if="certificate.edit">
+                        <certificate-form-edit passed-model="certificate" save-fn="saveCertificatesLocalStorage()"
+                                                reset-fn="resetCertificates()" closeform="showNavHideForms()"></certificate-form-edit>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
