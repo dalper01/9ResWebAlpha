@@ -1,45 +1,47 @@
 
 var educationApp = angular.module('educationApp', ['commonDirectives', 'navBarApp', 'storageServiceApp']);
 
-educationApp.controller('educationController', function($scope, localStorageService) {
+educationApp.controller('educationController', function ($scope, $rootScope, localStorageService) {
 
-    // initialize Arrays
-    $scope.colleges = [];
-    $scope.certificates = [];
-    $scope.highSchools = [];
+    // -------------- initialize $scp[e Model --------------------- //
+    //$scope.education = {};
+    //$scope.education.colleges = [];
+    //$scope.education.certificates = [];
+    //$scope.education.highSchools = [];
     //$scope.highSchoolEdit = false;
     //$scope.collegeEdit = false;
     //$scope.collegeAdd = false;
     //$scope.certificateEdit = false;
     $scope.addNavShow = true;
+    $scope.education = $rootScope.education;
 
-    var resetHighSchool = "";
+    //var resetHighSchool = "";
 
 
 
     // if localstorage available
-    if(typeof(Storage)!=="undefined")
-    {
+    //if(typeof(Storage)!=="undefined")
+    //{
 
-        getHighSchoolLocalStorage();
-        getCollegesLocalStorage();
-        getCertificatesLocalStorage();
+    //    getHighSchoolLocalStorage();
+    //    getCollegesLocalStorage();
+    //    getCertificatesLocalStorage();
 
-    };
+    //};
 
 
     function getHighSchoolLocalStorage(){
-        $scope.highSchools = localStorageService.getLocalStorage("resume.highSchools") || [];
+        $scope.education = localStorageService.getLocalStorage("resume.education") || { colleges: [], certificates: [], highSchools: []};
     };
 
 
     function getCollegesLocalStorage(){
-        $scope.colleges = localStorageService.getLocalStorage("resume.colleges") || [];
+        $scope.education = localStorageService.getLocalStorage("resume.education") || { colleges: [], certificates: [], highSchools: []};
     };
 
 
     function getCertificatesLocalStorage(){
-        $scope.certificates = localStorageService.getLocalStorage("resume.certificates") || [];
+        $scope.education = localStorageService.getLocalStorage("resume.education") || { colleges: [], certificates: [], highSchools: [] };
     };
 
 
@@ -47,17 +49,17 @@ educationApp.controller('educationController', function($scope, localStorageServ
 
 
     $scope.saveHighSchoolLocalStorage = function(){
-        localStorageService.saveLocalStorage("resume.highSchools", $scope.highSchools);
+        localStorageService.saveLocalStorage("resume.education", $scope.education);
     };
 
 
     $scope.saveCollegesLocalStorage = function(){
-        localStorageService.saveLocalStorage("resume.colleges", $scope.colleges);
+        localStorageService.saveLocalStorage("resume.education", $scope.education);
     };
 
 
     $scope.saveCertificatesLocalStorage = function(){
-        localStorageService.saveLocalStorage("resume.certificates", $scope.certificates);
+        localStorageService.saveLocalStorage("resume.education", $scope.education);
     };
 
 
@@ -95,7 +97,7 @@ educationApp.controller('educationController', function($scope, localStorageServ
     // activate Add/Edit Forms
     $scope.addHighSchool = function() {
 
-        $scope.highSchools.push({ add: true});
+        $scope.education.highSchools.push({ add: true});
         $scope.addNavShow = false;
     };
 
@@ -108,9 +110,9 @@ educationApp.controller('educationController', function($scope, localStorageServ
 
     $scope.deleteHighSchool = function(highSchool) {
 
-        var i = $scope.highSchools.indexOf(highSchool);
+        var i = $scope.education.highSchools.indexOf(highSchool);
         if(i != -1) {
-            $scope.highSchools.splice(i, 1);
+            $scope.education.highSchools.splice(i, 1);
         }
 
         $scope.saveHighSchoolLocalStorage();
@@ -123,7 +125,7 @@ educationApp.controller('educationController', function($scope, localStorageServ
     $scope.addCollege = function() {
 
         //$scope.collegeAdd = true;
-        $scope.colleges.push({ add: true})
+        $scope.education.colleges.push({ add: true})
         $scope.addNavShow = false;
 
     };
@@ -137,9 +139,9 @@ educationApp.controller('educationController', function($scope, localStorageServ
 
     $scope.deleteCollege = function(college) {
 
-        var i = $scope.colleges.indexOf(college);
+        var i = $scope.education.colleges.indexOf(college);
         if(i != -1) {
-            $scope.colleges.splice(i, 1);
+            $scope.education.colleges.splice(i, 1);
         }
         $scope.saveCollegesLocalStorage();
     };
@@ -149,7 +151,7 @@ educationApp.controller('educationController', function($scope, localStorageServ
     $scope.addCertificate = function() {
 
         //$scope.certificateAdd = true;
-        $scope.certificates.push({ add: true})
+        $scope.education.certificates.push({ add: true})
         $scope.addNavShow = false;
 
     };
@@ -164,9 +166,9 @@ educationApp.controller('educationController', function($scope, localStorageServ
 
     $scope.deleteCertificate = function(certificate) {
 
-        var i = $scope.certificates.indexOf(certificate);
+        var i = $scope.education.certificates.indexOf(certificate);
         if(i != -1) {
-            $scope.certificates.splice(i, 1);
+            $scope.education.certificates.splice(i, 1);
         }
 
         $scope.saveCertificatesLocalStorage();
@@ -221,7 +223,7 @@ educationApp.controller('addCollegeController', function($scope) {
 
         $scope.college.add = false;
         $scope.college.edit = false;
-        //localStorage.setItem('resume.colleges', JSON.stringify($scope.colleges));
+        //localStorage.setItem('resume.education.colleges', JSON.stringify($scope.education.colleges));
         $scope.saveFn();
         $scope.closeform();
     }
@@ -231,9 +233,9 @@ educationApp.controller('addCollegeController', function($scope) {
 
 
         // remove new college
-//        var i = $scope.colleges.indexOf($scope.college);
+//        var i = $scope.education.colleges.indexOf($scope.college);
 //        if(i != -1) {
-//            $scope.colleges.splice(i, 1);
+//            $scope.education.colleges.splice(i, 1);
 //        }
 
         $scope.resetFn();
@@ -249,7 +251,7 @@ educationApp.controller('editCollegeController', function($scope) {
 
         $scope.college.add = false;
         $scope.college.edit = false;
-        //localStorage.setItem('resume.colleges', JSON.stringify($scope.colleges));
+        //localStorage.setItem('resume.education.colleges', JSON.stringify($scope.education.colleges));
         $scope.saveFn();
         $scope.closeform();
 
@@ -281,7 +283,7 @@ educationApp.controller('addCertificateController', function($scope) {
 
         $scope.certificate.add = false;
         $scope.certificate.edit = false;
-        //localStorage.setItem('resume.certificates', JSON.stringify($scope.certificates));
+        //localStorage.setItem('resume.education.certificates', JSON.stringify($scope.education.certificates));
         $scope.saveFn();
         $scope.closeform();
     }
@@ -292,9 +294,9 @@ educationApp.controller('addCertificateController', function($scope) {
 
         // remove new certificate
 
-//        var i = $scope.certificates.indexOf($scope.certificate);
+//        var i = $scope.education.certificates.indexOf($scope.certificate);
 //        if(i != -1) {
-//            $scope.certificates.splice(i, 1);
+//            $scope.education.certificates.splice(i, 1);
 //        }
 
         $scope.resetFn();
@@ -321,7 +323,7 @@ educationApp.controller('editCertificateController', function($scope) {
 
         $scope.certificate.add = false;
         $scope.certificate.edit = false;
-        //localStorage.setItem('resume.certificates', JSON.stringify($scope.certificates));
+        //localStorage.setItem('resume.education.certificates', JSON.stringify($scope.education.certificates));
         $scope.saveFn();
         $scope.closeform();
     }

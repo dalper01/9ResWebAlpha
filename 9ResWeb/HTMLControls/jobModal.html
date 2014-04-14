@@ -1,19 +1,19 @@
-<div id="mypopup" class="modal-dialog modal-wide"  style="table-layout:fixed; overflow: hidden; min-height: 410px;">
-    <div  width="">
+<div id="popupJobDetails" class="modal-dialog modal-wide"  style="table-layout:fixed; overflow: hidden; min-height: 410px;">
+    <div >
         <!--<a id="popupContactClose" ng-click="cancel()">close popup</a>-->
-        <table border="0" cellpadding="0" cellspacing="0" width="900px">
+        <table border="0" cellpadding="0" cellspacing="0" >
             <tbody>
-            <tr>
-                <td class="cr_hdr_title0"  style="white-space: nowrap"> {{ modalTitle }} </td>
+            <tr style="overflow: hidden;">
+                <td class="cr_hdr_title0"  style="overflow: hidden; white-space: nowrap"> {{ modalTitle }} </td>
                 <td class="cr_hdr_title1">Hold the mouse over any object for details.
                 </td>
                 <td id="cr_del" ng-click="cancel()"  class="cr_hdr_del_off" title="Delete this job, exit to the Career page." onmouseover="javascript:set_dtl_hdr(1);" onmouseout="javascript:set_dtl_hdr(0);">
                 </td>
-                <td id="cr_mid1" class="cr_hdr_mid_0"></td>
+                <td id="cr_mid1" class="cr_hdr_mid_0" style="overflow: hidden;"></td>
 
-                <td id="cr_can" ng-click="cancel()" class="cr_hdr_can_off" title="Don't save changes, exit to the Career page." onmouseover="javascript:set_dtl_hdr(2);" onmouseout="javascript:set_dtl_hdr(0);"></td>
+                <td id="cr_can" style="overflow: hidden;" ng-click="cancel()" class="cr_hdr_can_off" title="Don't save changes, exit to the Career page." onmouseover="javascript:set_dtl_hdr(2);" onmouseout="javascript:set_dtl_hdr(0);"></td>
 
-                <td id="cr_mid2" class="cr_hdr_mid_0"></td>
+                <td id="cr_mid2" style="overflow: hidden;" class="cr_hdr_mid_0"></td>
 
                 <td id="cr_sav" ng-click="saveJob()"  class="cr_hdr_sav_off" title="Save changes, exit to the Career page	." onmouseover="javascript:set_dtl_hdr(3);"
                     onmouseout="javascript:set_dtl_hdr(0);" style="overflow:hidden;white-space:nowrap;"></td>
@@ -158,90 +158,78 @@
 <!--
     <div style="max-height: 250px; min-height: 140px; overflow: hidden; overflow-y: scroll;">
 -->
-    <div style="height:180px; overflow: hidden; overflow-y: scroll;">
-        <table>
+    <div style="max-height: 200px; overflow: hidden; overflow-y: scroll; width: 100%; ">
+
+        <table style="display: table; width: 800px; ">
             <tbody>
-                    <tr ng-repeat="detail in job.details | orderBy:'order'">
-                        <td colspan="8">
-                            <table>
-                                <tbody>
-                                <tr>
-                                    <td title="Move this job detail up." style="vertical-align: top;width: 22px; text-align: center;"
-                                        ng-click="switchDetailOrderUp(detail)">
-                                        <span class="glyphicon glyphicon-arrow-up black-icon" toggleclass="glyphicon glyphicon-arrow-up red-icon"></span>
-                                    </td>
+                <tr ng-repeat="detail in job.details | orderBy:'order'">
+                    <td title="Move this job detail up." style="vertical-align: top;width: 22px; text-align: center;"
+                        ng-click="switchDetailOrderUp(detail)">
+                        <span class="glyphicon glyphicon-arrow-up small" toggleclass="glyphicon glyphicon-arrow-up red-icon small"></span>
+                    </td>
 
 
-                                    <!--<td> <span style="color: black;"> {{ detail.order }} </span></td>-->
+                    <!--<td> <span style="color: black;"> {{ detail.order }} </span></td>-->
 
-                                    <td title="Move this job detail down."  style="vertical-align: top; width: 22px;" ng-click="switchDetailOrderDown(detail)">
-                                       <span class="glyphicon glyphicon-arrow-down black-icon" toggleclass="glyphicon glyphicon-arrow-down red-icon"></span>
-                                    </td>
+                    <td title="Move this job detail down." style="vertical-align: top; width: 22px;" ng-click="switchDetailOrderDown(detail)">
+                        <span class="glyphicon glyphicon-arrow-down small" toggleclass="glyphicon glyphicon-arrow-down red-icon small"></span>
+                    </td>
 
-                                    <td class="pop_details">
-                                        <textarea class="input_inactive_ob" id="cr_dtl1" title="Describe what you did at this job." style="width:700px" onkeyup="setSorts();" ng-model="detail.description"></textarea>
-                                    </td>
+                    <td class="pop_details" style="width:900px;">
+                        <textarea cols="250" class="input_inactive_ob" id="cr_dtl1" title="Describe what you did at this job." style="width:100%" ng-model="detail.description"></textarea>
+                    </td>
 
-                                    <td  title="discard detail  (carefull!)" ng-click="deleteJobDetail(job, detail)">
-                                        <!--<button type="submit" class="btn btn-primary"></button>-->
-                                        <span class="glyphicon glyphicon-trash black-icon" toggleclass="glyphicon glyphicon-trash red-icon"></span>
-                                    </td>
+                    <td title="discard detail  (carefull!)" ng-click="deleteJobDetail(job, detail)">
+                        <!--<button type="submit" class="btn btn-primary"></button>-->
+                        <span class="glyphicon glyphicon-trash small" toggleclass="glyphicon glyphicon-trash red-icon small"></span>
+                    </td>
 
-                                </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
 
-                    <tr>
-                        <td style="height: 10px"></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <tr>
+                    <td style="height: 10px"></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 
     <div id="addJobs" style="text-align: right; width: 200px;">
-            <a style="color: navy;" ng-click="addJobDetail(job)">
-                <span class="glyphicon glyphicon-plus"  toggleclass="glyphicon glyphicon-plus pink-color"> Add Job Detail </span>
+        <a class="btn btn-primary" ng-click="addJobDetail(job)">
+            <i class="glyphicon glyphicon-plus"></i> Job Detail
 
-            </a>
+        </a>
     </div>
 
 
+</div>
 
 
-    <div class="" style="height: 120px">
-        <table cellpadding="0" cellspacing="0">
-            <tbody>
-            <tr><td style="height: 15px"></td></tr>
+<div class="modal-footer" style="height: 120px">
+    <table cellpadding="0" cellspacing="0">
+        <tbody>
             <tr>
                 <td class="hdr_peek0">Other people have said...</td>
-                <td class="hdr_peek1" title="Show what other people said!" onmouseover="this.className='hdr_peek2'" onmouseout="this.className='hdr_peek1'">
-
-                </td>
+                <td class="hdr_peek1" title="Show what other people said!" onmouseover="this.className='hdr_peek2'" onmouseout="this.className='hdr_peek1'"></td>
             </tr>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 
-        <table cellpadding="0" cellspacing="0" width="700px">
-            <tbody>
+    <table cellpadding="0" cellspacing="0" width="700px">
+        <tbody>
             <tr height="64">
                 <td class="cr_peek_spacer" style="width: 20px"> </td>
 
-                <td title="Reading other people's descriptions might help you describe your own." class="cr_txt_peek" >Ambitious,
-                                results-oriented software engineer seeks a full-time position at a
-                                socially-responsible biotech or technology firm, where I can leverage my
-                                web development and interpersonal skills.
+                <td title="Reading other people's descriptions might help you describe your own." class="cr_txt_peek">
+                    Ambitious,
+                    results-oriented software engineer seeks a full-time position at a
+                    socially-responsible biotech or technology firm, where I can leverage my
+                    web development and interpersonal skills...
 
                 </td>
 
                 <td class="cr_peek_spacer"> </td>
 
             </tr>
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </div>
-
-

@@ -28,55 +28,55 @@ var CareerModule = angular.module('CareerModule', ['ui.bootstrap', 'commonDirect
 
 CareerModule.controller('CareerController',
 function ($scope, $modal){
- //   var CareerController = function ($scope, $modal){
 
+    $scope.jobs = [];
         //alert("hello");
-        $scope.jobs = [
-            {id: 1,
-                firmLong: "Akamai Technologies",
-                titleLong: "Sr. Business Intelligence Architect",
-                city: "Cambridge",
-                state: "MA",
-                firmShort: "Akamai",
-                titleShort: "Sr. BI Architect",
-                startDate: "07/01/2009",
-                startDateString: "",
-                endDate: "Present",
-                endDateStr: "",
-                details: [
-                    {
-                        id: 1,
-                        order: 1,
-                        description: "Generated Robot, Akamai's Revenue Forecasting system, which is used to generate company revenue forecasts announced each quarter to Wall Street analysts. This system forecasts internet traffic for every Akamai client, identifying client-specific trending and seasonality. It then runs these forecasts through our Invoicing system, to generate a very detailed revenue forecast. In its first quarter of operations, Revenue was forecasted within 1% -- a substantial improvement over Akamai�s historical 5-8% forecast accuracy."
-                    }
-                ]
-            },
+        //$scope.jobs = [
+        //    {id: 1,
+        //        firmLong: "Akamai Technologies",
+        //        titleLong: "Sr. Business Intelligence Architect",
+        //        city: "Cambridge",
+        //        state: "MA",
+        //        firmShort: "Akamai",
+        //        titleShort: "Sr. BI Architect",
+        //        startDate: "07/01/2009",
+        //        startDateString: "",
+        //        endDate: "Present",
+        //        endDateStr: "",
+        //        details: [
+        //            {
+        //                id: 1,
+        //                order: 1,
+        //                description: "Generated Robot, Akamai's Revenue Forecasting system, which is used to generate company revenue forecasts announced each quarter to Wall Street analysts. This system forecasts internet traffic for every Akamai client, identifying client-specific trending and seasonality. It then runs these forecasts through our Invoicing system, to generate a very detailed revenue forecast. In its first quarter of operations, Revenue was forecasted within 1% -- a substantial improvement over Akamai�s historical 5-8% forecast accuracy."
+        //            }
+        //        ]
+        //    },
 
-            {id: 2,
-                firmLong: "Lenovo Corporation",
-                titleLong: "Business Intelligence Consultant",
-                city: "Boston",
-                state: "MA",
-                firmShort: "MC Comm",
-                titleShort: "BI Consultant",
-                startDate: "07/01/2006",
-                startDateString: "",
-                endDate: "04/01/2008",
-                endDateStr: "",
-                details: [
-                    {
-                        id: 2,
-                        order: 1,
-                        description: "Proposed, designed and developed LGOS (Lenovo Global Order Status), a reporting application that handles all Lenovo order reporting, for internal business users, external partners and major customers"
-                    },
-                    {
-                        id: 3,
-                        order: 2,
-                        description: "Built a data model and reporting system, AppTracker, for Lenovo to track and report upon over five thousand IBM and Lenovo business applications. This is part of its strategy to fully separate Lenovo's business activities from IBM's, and to migrate Lenovo to its own long-term IT platform."
-                    }
-                ]
+        //    {id: 2,
+        //        firmLong: "Lenovo Corporation",
+        //        titleLong: "Business Intelligence Consultant",
+        //        city: "Boston",
+        //        state: "MA",
+        //        firmShort: "MC Comm",
+        //        titleShort: "BI Consultant",
+        //        startDate: "07/01/2006",
+        //        startDateString: "",
+        //        endDate: "04/01/2008",
+        //        endDateStr: "",
+        //        details: [
+        //            {
+        //                id: 2,
+        //                order: 1,
+        //                description: "Proposed, designed and developed LGOS (Lenovo Global Order Status), a reporting application that handles all Lenovo order reporting, for internal business users, external partners and major customers"
+        //            },
+        //            {
+        //                id: 3,
+        //                order: 2,
+        //                description: "Built a data model and reporting system, AppTracker, for Lenovo to track and report upon over five thousand IBM and Lenovo business applications. This is part of its strategy to fully separate Lenovo's business activities from IBM's, and to migrate Lenovo to its own long-term IT platform."
+        //            }
+        //        ]
 
-            }];
+        //    }];
 
 
 

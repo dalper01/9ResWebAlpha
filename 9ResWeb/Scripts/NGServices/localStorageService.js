@@ -2,8 +2,9 @@
 
 var storageServiceApp=angular.module('storageServiceApp', []);
 
-storageServiceApp.factory('localStorageService', function() {
+storageServiceApp.factory('localStorageService', function ($rootScope) {
 
+    //alert('creating localStorageService');
 
     var _getLocalStorage = function (storageKey) {
 
@@ -19,7 +20,7 @@ storageServiceApp.factory('localStorageService', function() {
         }
         else {
             storageVariable = JSON.parse(localValue);
-            };
+        };
 
         return storageVariable;
     }
@@ -31,11 +32,31 @@ storageServiceApp.factory('localStorageService', function() {
     }
 
 
+    // load data types from Local Cache
+    $rootScope.contactInfo = _getLocalStorage("resume.contactInfo");
+    if ($rootScope.contactInfo == 'undefined' || $rootScope.contactInfo == undefined) {
+        $rootScope.contactInfo = {};
+    }
+
+    $rootScope.education = _getLocalStorage("resume.education");
+    if ($rootScope.education == 'undefined' || $rootScope.education == undefined) {
+        $rootScope.education = { colleges: [], certificates: [], highSchools: [] };
+    }
+
+
+    $rootScope.jobs = _getLocalStorage("resume.jobs");
+    if ($rootScope.jobs == 'undefined' || $rootScope.jobs == undefined) {
+        $rootScope.jobs = [];
+    }
+
+
+
     return {
         getLocalStorage: _getLocalStorage,
         saveLocalStorage: _saveLocalStorage
 
     };
+
 
 
 })
