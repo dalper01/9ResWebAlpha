@@ -5,7 +5,7 @@
 // modalAddJobCtrl
 // manage Add Job Popup Callbacks
 
-var modalAddJobCtrl = function ($scope, $modalInstance, jobs) {
+var modalAddJobCtrl = function ($scope, localStorageService, $modalInstance, jobs) {
 
     $scope.modalTitle='Add New Job';
     $scope.job = {
@@ -34,11 +34,13 @@ var modalAddJobCtrl = function ($scope, $modalInstance, jobs) {
     // Save job changes within Add Job Pop-up
     $scope.saveJob = function () {
         jobs.push($scope.job);
+        localStorageService.saveLocalStorage("resume.jobs", jobs);
         $modalInstance.dismiss('cancel');
     };
 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
+
     };
 
     $scope.deleteJobDetail = function(job, detail) {
@@ -54,7 +56,7 @@ var modalAddJobCtrl = function ($scope, $modalInstance, jobs) {
 // modalEditJobCtrl
 // manage Edit Job Popup Callbacks
 
-var modalEditJobCtrl = function ($scope, $modalInstance, job) {
+var modalEditJobCtrl = function ($scope, $rootScope, localStorageService, $modalInstance, job) {
 
     $scope.modalTitle='Edit Job';
     $scope.job = angular.copy(job);
@@ -82,6 +84,7 @@ var modalEditJobCtrl = function ($scope, $modalInstance, job) {
     // Save job changes within Add Job Pop-up
     $scope.saveJob = function () {
         angular.copy($scope.job, job);
+        localStorageService.saveLocalStorage("resume.jobs", $rootScope.jobs);
         $modalInstance.dismiss('cancel');
     };
 

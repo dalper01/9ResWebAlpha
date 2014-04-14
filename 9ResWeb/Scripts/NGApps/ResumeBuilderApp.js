@@ -1,5 +1,5 @@
 ﻿//var ResumeBuilderModule = angular.module('ResumeBuilderModule', ['commonDirectives', 'ui.mask', 'navBarApp', 'storageServiceApp']);
-var ResumeBuilderModule = angular.module('ResumeBuilderModule', ['ngRoute', 'ContactInfoModule', 'CareerModule', 'educationApp']);
+var ResumeBuilderModule = angular.module('ResumeBuilderModule', ['ngRoute', 'storageServiceApp', 'ContactInfoModule', 'CareerModule', 'educationApp']);
 
 ResumeBuilderModule.config(function ($routeProvider) {
     $routeProvider.when('/', {
@@ -19,10 +19,16 @@ ResumeBuilderModule.config(function ($routeProvider) {
 
     })
 
-    .otherwise({ 
+    .otherwise({
         redirectTo: '/'
     })
 
 }
 
-)
+);
+
+//ResumeBuilderModule.$inject = ["$rootScope", "storageServiceApp"];
+
+//ResumeBuilderModule.run(['$rootScope', 'storageServiceApp', function ($rootScope, localStorageService) {
+//    $rootScope.resume.contactInfo = localStorageService.getLocalStorage("resume.contactInfo") || {};
+//}]);
