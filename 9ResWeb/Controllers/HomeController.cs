@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DataLayer;
+//using DataLayer;
 using System.Data.Entity;
+using LogicLayer;
+
 
 namespace _9ResWeb.Controllers
 {
@@ -12,22 +14,28 @@ namespace _9ResWeb.Controllers
     {
         public ActionResult Index()
         {
-            using ( var context = new ExamContext() )
-            {
+            //using ( var context = new ExamContext() )
+            //{
 
-                //var Exams = context.Exam
-                //    .Where(e => e.Tests.Any(t => t.UserTests.Any(u => u.UserId == "0"))).ToList();
+            //    //var Exams = context.Exam
+            //    //    .Where(e => e.Tests.Any(t => t.UserTests.Any(u => u.UserId == "0"))).ToList();
 
-                //var Exams2 = context.Exam
-                //    .Where(e => e.Tests.Any(t => t.UserTests.Any(u => u.UserId == "0"))).ToList();
+            //    //var Exams2 = context.Exam
+            //    //    .Where(e => e.Tests.Any(t => t.UserTests.Any(u => u.UserId == "0"))).ToList();
 
-                //var Exams2 = context.Exam
-                //    .Include(e => e.Tests.Select(t => t.UserTests.Any(u => u.UserId == "0")).Include(e => e.Tests.Select(t => t.UserTests.Any(u => u.UserId == "0"))).ToList();
+            //    //var Exams2 = context.Exam
+            //    //    .Include(e => e.Tests.Select(t => t.UserTests.Any(u => u.UserId == "0")).Include(e => e.Tests.Select(t => t.UserTests.Any(u => u.UserId == "0"))).ToList();
             
-                //var Exams2 = context.Exam
-                //    .Include(e => e.Tests.Select(t => t.UserTests)).Where(e => e.Tests.Distinct(t => t.UserTests.Any(u => u.UserId == "0")) && 1==1).ToList();
+            //    //var Exams2 = context.Exam
+            //    //    .Include(e => e.Tests.Select(t => t.UserTests)).Where(e => e.Tests.Distinct(t => t.UserTests.Any(u => u.UserId == "0")) && 1==1).ToList();
             
-            }
+            //}
+            //var something = new ResumeRepo();
+
+            //var ctx = new ResumeContext();
+
+            //var res = ctx.Resume.ToList();
+            //var context = new ResumeRepo();
 
             return View();
         }

@@ -10,7 +10,7 @@ namespace _9ResWeb.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection")
+            : base("ResumeContext")
         {
         }
     }

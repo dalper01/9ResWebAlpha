@@ -176,11 +176,20 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ResumeBuilderController.cs" />
+    <Compile Include="Controllers\ResumeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Certifications.cs" />
+    <Compile Include="Models\Colleges.cs" />
+    <Compile Include="Models\ContactInfo.cs" />
+    <Compile Include="Models\Education.cs" />
+    <Compile Include="Models\Highschools.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\JobDetail.cs" />
+    <Compile Include="Models\Resume.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -195,6 +204,16 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\education.css" />
+    <Content Include="Content\icons\certification.bmp" />
+    <Content Include="Content\icons\degree.bmp" />
+    <Content Include="Content\icons\DiplomaBG.jpg" />
+    <Content Include="Content\icons\hierarchy.bmp" />
+    <Content Include="Content\icons\images.jpg" />
+    <Content Include="Content\icons\money.bmp" />
+    <Content Include="Content\icons\process.bmp" />
+    <Content Include="Content\icons\report.bmp" />
+    <Content Include="Content\icons\server.bmp" />
+    <Content Include="Content\icons\types-of-college-degrees.jpg" />
     <Content Include="Content\images\icons\certification.bmp" />
     <Content Include="Content\images\icons\degree.bmp" />
     <Content Include="Content\images\icons\DiplomaBG.jpg" />
@@ -403,6 +422,7 @@
     <Content Include="Content\images\nav_bullets.vsd" />
     <Content Include="Content\images\set1\desktop.ini" />
     <Content Include="Content\images\icons\desktop.ini" />
+    <Content Include="Content\icons\desktop.ini" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -739,9 +759,9 @@
       <Project>{150892d6-ba1c-49a2-9aaa-5f14f2061e9f}</Project>
       <Name>DataLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DTOModels\Models.csproj">
-      <Project>{845d0424-0b8c-44ed-9097-b773d59d825d}</Project>
-      <Name>Models</Name>
+    <ProjectReference Include="..\LogicLayer\LogicLayer.csproj">
+      <Project>{2ad8b2c1-23d9-4c89-abb4-9a2108a158f7}</Project>
+      <Name>LogicLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

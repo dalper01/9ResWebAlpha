@@ -1,4 +1,4 @@
-﻿//var ResumeBuilderModule = angular.module('ResumeBuilderModule', ['commonDirectives', 'ui.mask', 'navBarApp', 'storageServiceApp']);
+﻿
 var ResumeBuilderModule = angular.module('ResumeBuilderModule', ['ngRoute', 'storageServiceApp', 'ContactInfoModule', 'CareerModule', 'educationApp']);
 
 ResumeBuilderModule.config(function ($routeProvider) {
@@ -23,9 +23,26 @@ ResumeBuilderModule.config(function ($routeProvider) {
         redirectTo: '/'
     })
 
-}
+});
 
-);
+
+ResumeBuilderModule.controller('saveResume',
+function ($http, $scope, $rootScope, localStorageService) {
+
+    $scope.newResume = function () {
+        //alert('saving!!');
+
+        $http.post("/api/Resume", {
+            contactInfo: $rootScope.contactInfo,
+            education: $rootScope.education,
+            jobs: $rootScope.jobs
+        });
+
+
+    }
+
+});
+
 
 //ResumeBuilderModule.$inject = ["$rootScope", "storageServiceApp"];
 
