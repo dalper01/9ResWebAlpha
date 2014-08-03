@@ -8,7 +8,7 @@ ResumeBuilderModule.config(function ($routeProvider) {
     })
     .when('/careers', {
         templateUrl: '/HTMLTemplates/ResumeBuilder/Careers.html',
-        controller: 'CareerController'
+        controller: 'Care=erController'
 
 
     })
@@ -32,7 +32,7 @@ function ($http, $scope, $rootScope, localStorageService) {
     $scope.newResume = function () {
         //alert('saving!!');
 
-        $http.post("/api/Resume", {
+        $http.post("/api/ResumeApi", {
             contactInfo: $rootScope.contactInfo,
             education: $rootScope.education,
             jobs: $rootScope.jobs

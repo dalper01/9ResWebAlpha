@@ -5,7 +5,7 @@ using System.Text;
 
 namespace _9ResWeb.Models
 {
-    public class JobDetail
+    public class JobDetailViewModel
     {
         public int Id { get; set; }
         public string description { get; set; }

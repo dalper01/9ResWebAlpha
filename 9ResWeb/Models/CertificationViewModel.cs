@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataLayer
+namespace _9ResWeb.Models
 {
-    public class Certifications
+    public class CertificationViewModel
     {
         public int Id { get; set; }
         public string type { get; set; }
@@ -13,7 +13,6 @@ namespace DataLayer
 
         public bool completed { get; set; }
         public string compMonth { get; set; }
-        public string compYear { get; set; }
-
+        public string compYear { get; set; } 
     }
 }

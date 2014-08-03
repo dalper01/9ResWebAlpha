@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace _9ResWeb.Models
+namespace LogicLayer.DTOs.Resume
 {
-    public class ContactInfo
+    public class ResumeDTO
     {
+        public int Id { get; set; }
         public string firstName { get; set; }
         public string middleName { get; set; }
         public string lastName { get; set; }
@@ -21,6 +23,7 @@ namespace _9ResWeb.Models
 
         public string phone2 { get; set; }
         public string number2 { get; set; }
+
 
     }
 }

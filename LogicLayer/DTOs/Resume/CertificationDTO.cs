@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace _9ResWeb.Models
+namespace LogicLayer.DTOs.Resume
 {
-    public class Certifications
+    public class CertificationDTO
     {
         public int Id { get; set; }
         public string type { get; set; }
@@ -13,6 +14,6 @@ namespace _9ResWeb.Models
 
         public bool completed { get; set; }
         public string compMonth { get; set; }
-        public string compYear { get; set; } 
+        public string compYear { get; set; }
     }
 }
