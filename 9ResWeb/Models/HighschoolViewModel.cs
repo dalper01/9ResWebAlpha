@@ -5,7 +5,7 @@ using System.Text;
 
 namespace _9ResWeb.Models
 {
-    public class Highschools
+    public class HighschoolViewModel
     {
         public int Id { get; set; }
         public string name { get; set; }

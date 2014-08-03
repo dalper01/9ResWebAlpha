@@ -5,7 +5,7 @@ using System.Text;
 
 namespace _9ResWeb.Models
 {
-    public class Job
+    public class JobViewModel
     {
         public int Id { get; set; }
         public string firmLong { get; set; }
@@ -18,7 +18,7 @@ namespace _9ResWeb.Models
         public string startMonth { get; set; }
         public string startYear { get; set; }
 
-        public IEnumerable<JobDetail> details { get; set; }
+        public IEnumerable<JobDetailViewModel> details { get; set; }
 
     }
 }
