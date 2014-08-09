@@ -54,14 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Certifications.cs" />
-    <Compile Include="Colleges.cs" />
-    <Compile Include="Highschools.cs" />
-    <Compile Include="JobDetails.cs" />
-    <Compile Include="Jobs.cs" />
+    <Compile Include="Entities\ResumeEntities\Certifications.cs" />
+    <Compile Include="Entities\ResumeEntities\Colleges.cs" />
+    <Compile Include="Entities\ResumeEntities\Highschools.cs" />
+    <Compile Include="Entities\ResumeEntities\JobDetails.cs" />
+    <Compile Include="Entities\ResumeEntities\Jobs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resume.cs" />
+    <Compile Include="Entities\ResumeEntities\Resume.cs" />
     <Compile Include="ResumeContext.cs" />
+    <Compile Include="ResumeRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
