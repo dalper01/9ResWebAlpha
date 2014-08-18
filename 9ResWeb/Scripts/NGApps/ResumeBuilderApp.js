@@ -8,7 +8,7 @@ ResumeBuilderModule.config(function ($routeProvider) {
     })
     .when('/careers', {
         templateUrl: '/HTMLTemplates/ResumeBuilder/Careers.html',
-        controller: 'Care=erController'
+        controller: 'CareerController'
 
 
     })
