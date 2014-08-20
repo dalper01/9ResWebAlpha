@@ -1,5 +1,6 @@
 ﻿using _9ResWeb.Models;
 using AutoMapper;
+using LogicLayer;
 using LogicLayer.DTOs.Resume;
 using System;
 using System.Collections.Generic;
@@ -12,21 +13,31 @@ namespace _9ResWeb.Controllers
 {
     public class ResumeApiController : ApiController
     {
+
+        private ResumeManager _resumeManager;
+
+        public ResumeApiController()
+        {
+            _resumeManager = new ResumeManager();
+        }
+
+
         public HttpResponseMessage Post( [FromBody]ResumeViewModel newResume)
         {
 
-            var contactInfo = Mapper.Map<ResumeDTO>(newResume.contactInfo);
+            ResumeDTO resumeDTO = Mapper.Map<ResumeDTO>(newResume.contactInfo);
 
-            var collegeList = Mapper.Map<List<CollegeDTO>>(newResume.education.colleges);
-            var highschoolList = Mapper.Map<List<HighschoolDTO>>(newResume.education.highschools);
-            var certificationList = Mapper.Map<List<CertificationDTO>>(newResume.education.certificates);
+            resumeDTO.collegeList = Mapper.Map<List<CollegeDTO>>(newResume.education.colleges);
+            resumeDTO.highschoolList = Mapper.Map<List<HighschoolDTO>>(newResume.education.highschools);
+            resumeDTO.certificationList = Mapper.Map<List<CertificationDTO>>(newResume.education.certificates);
 
-            var jobList = Mapper.Map<List<JobViewModel>>(newResume.jobs);
+            resumeDTO.jobList = Mapper.Map<List<JobDTO>>(newResume.jobs);
+
+            var a = _resumeManager.AddResume(resumeDTO);
+
+
 
             return Request.CreateResponse(HttpStatusCode.Created);
-
-            //return Request.CreateResponse(HttpStatusCode.BadRequest);
-
         }
     }
 }
