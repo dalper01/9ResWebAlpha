@@ -434,7 +434,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Scripts\BrettJS\career.JS" />
+    <Content Include="Javascript\BrettJS\career.JS" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -704,19 +704,19 @@
     <Content Include="Scripts\JSPlugins\jquery.maskedinput.js" />
     <Content Include="Scripts\JSPlugins\mask.js" />
     <Content Include="Scripts\JSPlugins\ui-bootstrap-tpls-0.7.0.js" />
-    <Content Include="Scripts\BrettJS\ContactInfo.js" />
+    <Content Include="Javascript\BrettJS\ContactInfo.js" />
     <Content Include="Scripts\mask.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\NGApps\ResumeBuilderApp.js" />
-    <Content Include="Scripts\NGControllers\Career.JS" />
-    <Content Include="Scripts\NGControllers\CareerController.JS" />
-    <Content Include="Scripts\NGControllers\ContactInfoController.js" />
-    <Content Include="Scripts\NGControllers\educationController.js" />
-    <Content Include="Scripts\NGControllers\indexController.js" />
-    <Content Include="Scripts\NGControllers\jobModalControllers.js" />
-    <Content Include="Scripts\NGDirectives\commonDirectives.js" />
-    <Content Include="Scripts\NGDirectives\navBarApp.js" />
-    <Content Include="Scripts\NGServices\localStorageService.js" />
+    <Content Include="Javascript\NGApps\ResumeBuilderApp.js" />
+    <Content Include="Javascript\NGControllers\Career.JS" />
+    <Content Include="Javascript\NGControllers\CareerController.JS" />
+    <Content Include="Javascript\NGControllers\ContactInfoController.js" />
+    <Content Include="Javascript\NGControllers\educationController.js" />
+    <Content Include="Javascript\NGControllers\indexController.js" />
+    <Content Include="Javascript\NGControllers\jobModalControllers.js" />
+    <Content Include="Javascript\NGDirectives\commonDirectives.js" />
+    <Content Include="Javascript\NGDirectives\navBarApp.js" />
+    <Content Include="Javascript\NGServices\localStorageService.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />

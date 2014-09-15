@@ -37,7 +37,7 @@ namespace _9ResWeb.Controllers
 
 
 
-            return Request.CreateResponse(HttpStatusCode.Created);
+            return Request.CreateResponse(HttpStatusCode.Created, a);
         }
     }
 }

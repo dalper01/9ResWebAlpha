@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Entities.ResumeEntities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;

@@ -5,33 +5,31 @@ var ContactInfoModule = angular.module('ContactInfoModule', ['commonDirectives',
 
 
 ContactInfoModule.controller('ContactInfoController',
-    function ($rootScope, $scope, $filter, localStorageService) {
-        //alert($scope.hasrun);
-        //$scope.contactInfo = { firstName: "" };
-        $scope.contactInfo = $rootScope.contactInfo;
-        $scope.hasrun = true;
+    function ($scope, $filter, localStorageService) {
+
+        $scope.resume = { firstName: "" };
 
 
 
         // show / hide empty data functions ----------------
 
         $scope.showNameMessage = function() {
-            return ($scope.contactInfo.firstName + $scope.contactInfo.middleName + $scope.contactInfo.lastName).length;
+            return ($scope.resume.firstName + $scope.resume.middleName + $scope.resume.lastName).length;
         }
 
         $scope.showAddressMessage = function() {
-            return ($scope.contactInfo.addrStreet + $scope.contactInfo.addrTown + $scope.contactInfo.addrState + $scope.contactInfo.addrZip).length;
+            return ($scope.resume.addrStreet + $scope.resume.addrTown + $scope.resume.addrState + $scope.resume.addrZip).length;
         }
 
         $scope.showContactMessage = function() {
-            return ($scope.contactInfo.number1 + $scope.contactInfo.number2 + $scope.contactInfo.eMail + $scope.contactInfo.socialMedia).length;
+            return ($scope.resume.number1 + $scope.resume.number2 + $scope.resume.eMail + $scope.resume.socialMedia).length;
         }
 
         $scope.showCommaCityState = function () {
-            if (typeof $scope.contactInfo.addrState == "undefined" || typeof $scope.contactInfo.addrTown == "undefined")
+            if (typeof $scope.resume.addrState == "undefined" || typeof $scope.resume.addrTown == "undefined")
                 return false;
 
-            return ($scope.contactInfo.addrState.length > 0 && $scope.contactInfo.addrTown.length > 0);
+            return ($scope.resume.addrState.length > 0 &&  $scope.resume.addrTown.length > 0);
         }
 
         $scope.saveLocalContact = function() {
@@ -48,16 +46,8 @@ ContactInfoModule.controller('ContactInfoController',
 
         if(typeof(Storage)!=="undefined")
         {
-            //if ($rootScope.contactInfoLoaded == undefined) {
-            //    alert('undefined1');
 
-
-            //}
-
-
-            //$rootScope.resume = localStorageService.getLocalStorage("resume.contactinfo") || {};
-
-            $scope.contactInfo = localStorageService.getLocalStorage("resume.contactinfo") || {};
+            $scope.resume = localStorageService.getLocalStorage("resume.contactinfo") || {};
 //            $scope.resume.firstName = localStorage.getItem("resume.firstName") || "";
 //            $scope.resume.middleName = localStorage.getItem("resume.middleName") || "";
 //            $scope.resume.lastName = localStorage.getItem("resume.lastName") || "";
@@ -113,7 +103,7 @@ ContactInfoModule.controller('ContactInfoController',
         // check if HTML 5 local storage supported. Else bail (vernacular)
         if (typeof(Storage)=="undefined") { return;}
 
-        localStorageService.saveLocalStorage("resume.contactInfo", $scope.contactInfo);
+        localStorageService.saveLocalStorage("resume.contactinfo", $scope.resume);
 
         //localStorage.setItem("resume.firstName", $scope.firstName);
         //localStorage.setItem("resume.middleName", $scope.middleName);
@@ -158,16 +148,6 @@ ContactInfoModule.controller('ContactInfoController',
 
 
 
-        //loadLocalContactInfo();
-    //$scope.contactInfo = $rootScope.resume.contactInfo;
-
-
-        // Activate Brett's animatedcollapse script
-    //animatedcollapse.addDiv('hdr2', 'fade=0,speed=400,height=128px,hide=1');
-    //animatedcollapse.ontoggle = function ($, divobj, state) { //fires each time a DIV is expanded/contracted
-        //$: Access to jQuery
-        //divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
-        //state: "block" or "none", depending on state
-    //}
+    loadLocalContactInfo();
 
 });

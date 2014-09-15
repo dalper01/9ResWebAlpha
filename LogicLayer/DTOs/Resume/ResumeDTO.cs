@@ -25,7 +25,6 @@ namespace LogicLayer.DTOs.Resume
         public string number2 { get; set; }
 
         public List<JobDTO> jobList { get; set; }
-
         public List<CollegeDTO> collegeList { get; set; }
         public List<HighschoolDTO> highschoolList { get; set; }
         public List<CertificationDTO> certificationList { get; set; }

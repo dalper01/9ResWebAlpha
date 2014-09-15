@@ -36,7 +36,13 @@ function ($http, $scope, $rootScope, localStorageService) {
             contactInfo: $rootScope.contactInfo,
             education: $rootScope.education,
             jobs: $rootScope.jobs
-        });
+        }).
+            success(function (data, status, headers, config) {
+
+                console.log(data);
+
+
+            });
 
 
     }
