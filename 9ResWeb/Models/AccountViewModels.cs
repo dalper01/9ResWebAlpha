@@ -32,6 +32,7 @@ namespace _9ResWeb.Models
     {
         [Required]
         [Display(Name = "User name")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string UserName { get; set; }
 
         [Required]
@@ -47,6 +48,7 @@ namespace _9ResWeb.Models
     {
         [Required]
         [Display(Name = "User name")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string UserName { get; set; }
 
         [Required]

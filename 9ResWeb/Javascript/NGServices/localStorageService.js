@@ -4,9 +4,29 @@ var storageServiceApp=angular.module('storageServiceApp', []);
 
 storageServiceApp.factory('localStorageService', function ($rootScope) {
 
+
+    /// Declare Service Variables
+
     //alert('creating localStorageService');
+    var _contactInfo;
+    var _education;
+    var _jobs;
+
+
+    // Declare Getters
+    var _getContactInfo = function () { return _contactInfo; }
+    var _getEducation = function () { return _education; }
+    var _getJobs = function () { return _jobs; }
+
+
+
+
+    /// Declare LocalStorage Load / Save
 
     var _getLocalStorage = function (storageKey) {
+
+        //if (typeof (Storage) !== "undefined") {
+        //}
 
         var storageVariable = [];
         var localValue = localStorage.getItem(storageKey);
@@ -32,29 +52,79 @@ storageServiceApp.factory('localStorageService', function ($rootScope) {
     }
 
 
-    // load data types from Local Cache
-    $rootScope.contactInfo = _getLocalStorage("resume.contactInfo");
-    if ($rootScope.contactInfo == 'undefined' || $rootScope.contactInfo == undefined) {
-        $rootScope.contactInfo = {};
+
+
+
+    /// Declare service variable Loaders from Local Cache
+
+    // ContactInfo
+    var _loadLocalStorageContactInfo = function () {
+
+        _contactInfo = _getLocalStorage("resume.contactInfo");
+
+        if (_contactInfo == 'undefined' || _contactInfo == undefined) {
+            _contactInfo = {};
+        }
+
     }
 
-    $rootScope.education = _getLocalStorage("resume.education");
-    if ($rootScope.education == 'undefined' || $rootScope.education == undefined) {
-        $rootScope.education = { colleges: [], certificates: [], highSchools: [] };
+    var _saveLocalStorageContactInfo = function () {
+        _saveLocalStorage("resume.contactInfo", _contactInfo);
+    }
+
+    // Education
+    var _loadLocalStorageEducation = function () {
+
+        _education = _getLocalStorage("resume.education");
+
+        if (_education == 'undefined' || _education == undefined) {
+            _education = { colleges: [], certificates: [], highSchools: [] };
+        }
+    }
+
+    var _saveLocalStorageEducation = function () {
+        _saveLocalStorage("resume.education", _education);
     }
 
 
-    $rootScope.jobs = _getLocalStorage("resume.jobs");
-    if ($rootScope.jobs == 'undefined' || $rootScope.jobs == undefined) {
-        $rootScope.jobs = [];
+    // Jobs
+    var _loadLocalStorageJobs = function () {
+
+        _jobs = _getLocalStorage("resume.jobs");
+        if (_jobs == 'undefined' || _jobs == undefined) {
+            _jobs = [];
+        }
+    }
+
+    var _saveLocalStorageJobs = function () {
+        _saveLocalStorage("resume.jobs", _jobs);
     }
 
 
 
+    // Pulling Resume Values from Repo
+    _loadLocalStorageContactInfo();
+    _loadLocalStorageEducation();
+    _loadLocalStorageJobs();
+
+
+    // Exposed Methods
     return {
-        getLocalStorage: _getLocalStorage,
-        saveLocalStorage: _saveLocalStorage
 
+        // exposed ContactInfo Methods
+        GetContactInfo: _getContactInfo,
+        LoadStorageContactInfo: _loadLocalStorageContactInfo,
+        SaveStorageContactInfo: _saveLocalStorageContactInfo,
+
+        // exposed Education Methods
+        GetEducation: _getEducation,
+        LoadStorageEducation: _loadLocalStorageEducation,
+        SaveStorageEducation: _saveLocalStorageEducation,
+
+        // exposed Career Methods
+        GetJobs: _getJobs,
+        LoadStorageJobs: _loadLocalStorageJobs,
+        SaveStorageJobs: _saveLocalStorageJobs
     };
 
 

@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -208,9 +208,13 @@
   <ItemGroup>
     <Content Include="Content\9res-nie.css" />
     <Content Include="Content\9resModal.css" />
+    <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\docs.css" />
     <Content Include="Content\education.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\icons\certification.bmp" />
     <Content Include="Content\icons\degree.bmp" />
     <Content Include="Content\icons\DiplomaBG.jpg" />
@@ -400,6 +404,155 @@
     <Content Include="HTMLTemplates\ResumeBuilder\Careers.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\ContactInfo.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\Education.html" />
+    <Content Include="images\9res.bmp" />
+    <Content Include="images\9resAdvantages.png" />
+    <Content Include="images\9resGetStarted.png" />
+    <Content Include="images\9resGetStarted_hover.png" />
+    <Content Include="images\9resViewFormat.png" />
+    <Content Include="images\add_job_off.bmp" />
+    <Content Include="images\add_job_on.bmp" />
+    <Content Include="images\arrow_down_off.bmp" />
+    <Content Include="images\arrow_down_on.bmp" />
+    <Content Include="images\arrow_left_off.bmp" />
+    <Content Include="images\arrow_left_on.bmp" />
+    <Content Include="images\arrow_right_off.bmp" />
+    <Content Include="images\arrow_right_on.bmp" />
+    <Content Include="images\arrow_up_off.bmp" />
+    <Content Include="images\arrow_up_on.bmp" />
+    <Content Include="images\back\cmd_import.bmp" />
+    <Content Include="images\back\cmd_import_on.bmp" />
+    <Content Include="images\back\cmd_upload.bmp" />
+    <Content Include="images\back\cmd_upload_on.bmp" />
+    <Content Include="images\back\cr_cancel_off.bmp" />
+    <Content Include="images\back\cr_cancel_on.bmp" />
+    <Content Include="images\back\cr_delete_off.bmp" />
+    <Content Include="images\back\cr_delete_on.bmp" />
+    <Content Include="images\back\cr_save_off.bmp" />
+    <Content Include="images\back\cr_save_on.bmp" />
+    <Content Include="images\bg_select.png" />
+    <Content Include="images\blue_pixel.bmp" />
+    <Content Include="images\border_pixel.bmp" />
+    <Content Include="images\career_timeline1.bmp" />
+    <Content Include="images\career_timeline2.bmp" />
+    <Content Include="images\career_timeline3.bmp" />
+    <Content Include="images\cmd_import.bmp" />
+    <Content Include="images\cmd_import_on.bmp" />
+    <Content Include="images\cmd_upload.bmp" />
+    <Content Include="images\cmd_upload_on.bmp" />
+    <Content Include="images\color_grey.bmp" />
+    <Content Include="images\cr_border0.bmp" />
+    <Content Include="images\cr_border1.bmp" />
+    <Content Include="images\cr_border2.bmp" />
+    <Content Include="images\cr_cancel_off.bmp" />
+    <Content Include="images\cr_cancel_on.bmp" />
+    <Content Include="images\cr_dtl_header.bmp" />
+    <Content Include="images\cr_remove_off.bmp" />
+    <Content Include="images\cr_remove_on.bmp" />
+    <Content Include="images\cr_save_off.bmp" />
+    <Content Include="images\cr_save_on.bmp" />
+    <Content Include="images\cr_sort_down_off.bmp" />
+    <Content Include="images\cr_sort_down_on.bmp" />
+    <Content Include="images\cr_sort_up_off.bmp" />
+    <Content Include="images\cr_sort_up_on.bmp" />
+    <Content Include="images\degree.bmp" />
+    <Content Include="images\dist_bkg.bmp" />
+    <Content Include="images\dist_bkg_academic.bmp" />
+    <Content Include="images\dist_bkg_certification.bmp" />
+    <Content Include="images\dist_bkg_degree.bmp" />
+    <Content Include="images\dist_bkg_none.bmp" />
+    <Content Include="images\dist_bkg_other.bmp" />
+    <Content Include="images\dist_bkg_personal.bmp" />
+    <Content Include="images\dist_bkg_pie.bmp" />
+    <Content Include="images\dist_bkg_speak.bmp" />
+    <Content Include="images\exp_title_bkg.bmp" />
+    <Content Include="images\hdr\hdr_border0.bmp" />
+    <Content Include="images\hdr\hdr_border1.bmp" />
+    <Content Include="images\hdr\hdr_border2.bmp" />
+    <Content Include="images\hdr\hdr_cancel_off.bmp" />
+    <Content Include="images\hdr\hdr_cancel_on.bmp" />
+    <Content Include="images\hdr\hdr_remove_off.bmp" />
+    <Content Include="images\hdr\hdr_remove_on.bmp" />
+    <Content Include="images\hdr\hdr_save_off.bmp" />
+    <Content Include="images\hdr\hdr_save_on.bmp" />
+    <Content Include="images\hdr_career.bmp" />
+    <Content Include="images\hdr_career_objective.bmp" />
+    <Content Include="images\hdr_contact_info - Copy.bmp" />
+    <Content Include="images\hdr_contact_info.bmp" />
+    <Content Include="images\hdr_distinctions.bmp" />
+    <Content Include="images\hdr_expertise.bmp" />
+    <Content Include="images\hdr_info1.bmp" />
+    <Content Include="images\hdr_info2.bmp" />
+    <Content Include="images\hdr_info3.bmp" />
+    <Content Include="images\hdr_info4.bmp" />
+    <Content Include="images\hdr_keywords.bmp" />
+    <Content Include="images\hdr_line.bmp" />
+    <Content Include="images\h_scroll.bmp" />
+    <Content Include="images\icon_facebook.bmp" />
+    <Content Include="images\icon_linkedin.bmp" />
+    <Content Include="images\icon_skype.bmp" />
+    <Content Include="images\input_gradient1.bmp" />
+    <Content Include="images\input_gradient2.bmp" />
+    <Content Include="images\input_gradient3.bmp" />
+    <Content Include="images\input_gradient4.bmp" />
+    <Content Include="images\input_gradient5.bmp" />
+    <Content Include="images\input_gradient6.bmp" />
+    <Content Include="images\input_gradient7.bmp" />
+    <Content Include="images\input_gradient8.bmp" />
+    <Content Include="images\kw_add.bmp" />
+    <Content Include="images\kw_enter.bmp" />
+    <Content Include="images\kw_found.bmp" />
+    <Content Include="images\kw_textarea_focus.bmp" />
+    <Content Include="images\logo.bmp" />
+    <Content Include="images\logo_black.bmp" />
+    <Content Include="images\logo_footer.bmp" />
+    <Content Include="images\logo_grey.bmp" />
+    <Content Include="images\logo_text.png" />
+    <Content Include="images\move_text.bmp" />
+    <Content Include="images\nav_blast_off.bmp" />
+    <Content Include="images\nav_blast_on.bmp" />
+    <Content Include="images\nav_blast_sel.bmp" />
+    <Content Include="images\nav_bullets.bmp" />
+    <Content Include="images\nav_bullet_off.bmp" />
+    <Content Include="images\nav_bullet_off_chk.bmp" />
+    <Content Include="images\nav_bullet_on.bmp" />
+    <Content Include="images\nav_bullet_on_chk.bmp" />
+    <Content Include="images\nav_bullet_sel.bmp" />
+    <Content Include="images\nav_color.png" />
+    <Content Include="images\nav_footer.bmp" />
+    <Content Include="images\nav_res_off.bmp" />
+    <Content Include="images\nav_res_on.bmp" />
+    <Content Include="images\peek_another1.bmp" />
+    <Content Include="images\peek_another2.bmp" />
+    <Content Include="images\peek_gradient1.bmp" />
+    <Content Include="images\peek_gradient2.bmp" />
+    <Content Include="images\peek_gradient3.bmp" />
+    <Content Include="images\peek_gradient4.bmp" />
+    <Content Include="images\peek_gradient5.bmp" />
+    <Content Include="images\popup_bullet.bmp" />
+    <Content Include="images\popup_bullet_off.bmp" />
+    <Content Include="images\ppane_more_off.bmp" />
+    <Content Include="images\ppane_more_on.bmp" />
+    <Content Include="images\schools.jpg" />
+    <Content Include="images\set1\cr_cancel_off.bmp" />
+    <Content Include="images\set1\cr_cancel_on.bmp" />
+    <Content Include="images\set1\cr_delete_off.bmp" />
+    <Content Include="images\set1\cr_delete_on.bmp" />
+    <Content Include="images\set1\cr_save_off.bmp" />
+    <Content Include="images\set1\cr_save_on.bmp" />
+    <Content Include="images\set1\nav_blast_sel.bmp" />
+    <Content Include="images\sort_arrow_down_off.bmp" />
+    <Content Include="images\sort_arrow_down_on.bmp" />
+    <Content Include="images\sort_arrow_up_off.bmp" />
+    <Content Include="images\sort_arrow_up_on.bmp" />
+    <Content Include="images\spacer.gif" />
+    <Content Include="images\tpixel.gif" />
+    <Content Include="images\travel.bmp" />
+    <Content Include="images\word_slider.bmp" />
+    <Content Include="images\word_slider2.bmp" />
+    <Content Include="images\word_slide_tab.bmp" />
+    <Content Include="images\word_slide_tab_green.bmp" />
+    <Content Include="images\word_slide_tab_red.bmp" />
+    <Content Include="images\word_slide_tab_yellow.bmp" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
@@ -430,6 +583,17 @@
     <Content Include="Content\images\set1\desktop.ini" />
     <Content Include="Content\images\icons\desktop.ini" />
     <Content Include="Content\icons\desktop.ini" />
+    <Content Include="images\back\Thumbs.db" />
+    <Content Include="images\hdr\Thumbs.db" />
+    <Content Include="images\logo.vsd" />
+    <Content Include="images\logo_footer.vsd" />
+    <Content Include="images\nav_bullets.vsd" />
+    <Content Include="images\set1\Thumbs.db" />
+    <Content Include="images\Thumbs.db" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <None Include="Properties\PublishProfiles\winhost 9res.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -711,7 +875,7 @@
     <Content Include="Javascript\NGControllers\Career.JS" />
     <Content Include="Javascript\NGControllers\CareerController.JS" />
     <Content Include="Javascript\NGControllers\ContactInfoController.js" />
-    <Content Include="Javascript\NGControllers\educationController.js" />
+    <Content Include="Javascript\NGControllers\EducationController.js" />
     <Content Include="Javascript\NGControllers\indexController.js" />
     <Content Include="Javascript\NGControllers\jobModalControllers.js" />
     <Content Include="Javascript\NGDirectives\commonDirectives.js" />
@@ -723,7 +887,9 @@
     <Content Include="Views\ResumeBuilder\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -792,7 +958,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54556</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54556/</IISUrl>
+          <IISUrl>https://localhost:44300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

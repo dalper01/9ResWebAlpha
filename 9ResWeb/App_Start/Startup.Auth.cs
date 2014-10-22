@@ -2,6 +2,8 @@
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
+using System.Configuration;
+using System.Web.Configuration;
 
 namespace _9ResWeb
 {
@@ -10,6 +12,10 @@ namespace _9ResWeb
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            // Get Environment from Web.Config
+            string _environment = WebConfigurationManager.AppSettings["Environment"];
+
+
             // Enable the application to use a cookie to store information for the signed in user
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
@@ -24,15 +30,29 @@ namespace _9ResWeb
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            if (_environment == "Production")
+            {
+                app.UseFacebookAuthentication(
+                   appId: "286786211517047",
+                   appSecret: "e4e39ab82e072c787bb221b67e6ddebd");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            }
+            else
+            {
+                app.UseFacebookAuthentication(
+                   appId: "1484397018497780",
+                   appSecret: "aafdbf1aa9e8236966bfce1a95b93a86");
 
-            //app.UseGoogleAuthentication();
+            }
+
+
+            app.UseTwitterAuthentication(
+               consumerKey: "Mtohd501N7RG5sWYiB6VAHyl7",
+               consumerSecret: "dnHpKe5gdXn4yEU3OIUeQj4qmULwimSiuUdPi1cZWWWJGIi97a");
+
+            app.UseGoogleAuthentication();
+
+
         }
     }
 }

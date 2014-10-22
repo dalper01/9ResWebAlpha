@@ -1,86 +1,26 @@
 
 var educationApp = angular.module('educationApp', ['commonDirectives', 'navBarApp', 'storageServiceApp']);
 
-educationApp.controller('educationController', function ($scope, $rootScope, localStorageService) {
-
-    // -------------- initialize $scp[e Model --------------------- //
-    //$scope.education = {};
-    //$scope.education.colleges = [];
-    //$scope.education.certificates = [];
-    //$scope.education.highSchools = [];
-    //$scope.highSchoolEdit = false;
-    //$scope.collegeEdit = false;
-    //$scope.collegeAdd = false;
-    //$scope.certificateEdit = false;
-    $scope.addNavShow = true;
-    $scope.education = $rootScope.education;
-
-    //var resetHighSchool = "";
+educationApp.controller('educationController', function ($scope, localStorageService) {
 
 
-
-    // if localstorage available
-    //if(typeof(Storage)!=="undefined")
-    //{
-
-    //    getHighSchoolLocalStorage();
-    //    getCollegesLocalStorage();
-    //    getCertificatesLocalStorage();
-
-    //};
-
-
-    function getHighSchoolLocalStorage(){
-        $scope.education = localStorageService.getLocalStorage("resume.education") || { colleges: [], certificates: [], highSchools: []};
-    };
-
-
-    function getCollegesLocalStorage(){
-        $scope.education = localStorageService.getLocalStorage("resume.education") || { colleges: [], certificates: [], highSchools: []};
-    };
-
-
-    function getCertificatesLocalStorage(){
-        $scope.education = localStorageService.getLocalStorage("resume.education") || { colleges: [], certificates: [], highSchools: [] };
+    // Universal LocalStorage Getter
+    function getEducationLocalStorage() {
+        $scope.education = localStorageService.GetEducation();
     };
 
 
 
-
-
-    $scope.saveHighSchoolLocalStorage = function(){
-        localStorageService.saveLocalStorage("resume.education", $scope.education);
+    // Education LocalStorage Saver
+    $scope.SaveEducationLocalStorage = function () {
+        localStorageService.SaveStorageEducation();
     };
 
-
-    $scope.saveCollegesLocalStorage = function(){
-        localStorageService.saveLocalStorage("resume.education", $scope.education);
-    };
-
-
-    $scope.saveCertificatesLocalStorage = function(){
-        localStorageService.saveLocalStorage("resume.education", $scope.education);
-    };
-
-
-
-
-
-
-    $scope.resetHighSchool = function() {
-        getHighSchoolLocalStorage();
-    }
-
-
-
-    $scope.resetColleges = function() {
-        getCollegesLocalStorage();
-    }
-
-
-
-    $scope.resetCertificates = function() {
-        getCertificatesLocalStorage();
+    //Reset Education; load from storage to service and pass to local
+    $scope.resetEducation = function () {
+        localStorageService.LoadStorageEducation();
+        getEducationLocalStorage();
+        
     }
 
 
@@ -115,7 +55,7 @@ educationApp.controller('educationController', function ($scope, $rootScope, loc
             $scope.education.highSchools.splice(i, 1);
         }
 
-        $scope.saveHighSchoolLocalStorage();
+        $scope.SaveEducationLocalStorage();
     };
 
 
@@ -143,7 +83,7 @@ educationApp.controller('educationController', function ($scope, $rootScope, loc
         if(i != -1) {
             $scope.education.colleges.splice(i, 1);
         }
-        $scope.saveCollegesLocalStorage();
+        $scope.SaveEducationLocalStorage();
     };
 
 
@@ -171,9 +111,21 @@ educationApp.controller('educationController', function ($scope, $rootScope, loc
             $scope.education.certificates.splice(i, 1);
         }
 
-        $scope.saveCertificatesLocalStorage();
+        $scope.SaveEducationLocalStorage();
     };
 
+
+    // -------------- initialize $scope Model --------------------- //
+    //$scope.highSchoolEdit = false;
+    //$scope.collegeEdit = false;
+    //$scope.collegeAdd = false;
+    //$scope.certificateEdit = false;
+
+    //var resetHighSchool = "";
+
+    // setup Education Variable
+    $scope.addNavShow = true;
+    getEducationLocalStorage();
 
 
 
@@ -187,7 +139,10 @@ educationApp.controller('educationController', function ($scope, $rootScope, loc
 educationApp.controller('highSchoolController', function($scope) {
 
     // check if Name field populated (Save button disabled until)
-    $scope.isNamePopulated = function() {
+    $scope.isNamePopulated = function () {
+        if ($scope.highSchool.name == undefined)
+            $scope.highSchool.name = '';
+
         return ($scope.highSchool.name.length);
     }
 
@@ -230,13 +185,6 @@ educationApp.controller('addCollegeController', function($scope) {
 
 
     $scope.cancelCollege = function(){
-
-
-        // remove new college
-//        var i = $scope.education.colleges.indexOf($scope.college);
-//        if(i != -1) {
-//            $scope.education.colleges.splice(i, 1);
-//        }
 
         $scope.resetFn();
         $scope.closeform();
@@ -291,14 +239,6 @@ educationApp.controller('addCertificateController', function($scope) {
 
     $scope.cancelCertificate = function(){
 
-
-        // remove new certificate
-
-//        var i = $scope.education.certificates.indexOf($scope.certificate);
-//        if(i != -1) {
-//            $scope.education.certificates.splice(i, 1);
-//        }
-
         $scope.resetFn();
         // hide forms and show Nav
         $scope.closeform();
@@ -319,8 +259,6 @@ educationApp.controller('editCertificateController', function($scope) {
 
     $scope.saveCertificate = function(){
 
-        //restoreOldHighSchool();
-
         $scope.certificate.add = false;
         $scope.certificate.edit = false;
         //localStorage.setItem('resume.education.certificates', JSON.stringify($scope.education.certificates));
@@ -330,7 +268,6 @@ educationApp.controller('editCertificateController', function($scope) {
 
 
     $scope.cancelCertificate = function(){
-
 
         // re-set Certificate array
         $scope.resetFn();

@@ -14,7 +14,7 @@
             <td width=500 class="hdr_line" align="right"></td>
             <td width=96 class="hdr_info1" onclick="javascript:info_mouse_click(this)" onmouseover="javascript:info_mouse_over(this)" onmouseout="javascript:info_mouse_out(this)"></td>
         </tr>
-        <tr height=100%>
+        <tr >
             <td class="display" colspan=4 width=100%>
                 <table width=100%>
                     <tr>
@@ -46,7 +46,7 @@
 <!-- Preview Pane -->
 <!--<div id="ppane_ds" align="left" style="background-image: url('../icons/DiplmaBG.bmp');border: 1px solid; border-color: black; border-left-width: 0px;
                 text-align: justify;">-->
-<div id="ppane_ds" align="left" style="background-image: url('../icons/DiplmaBG.bmp');border: 1px solid; border-color: black; border-left-width: 0px;
+<div id="ppane_ds" style="background-image: url('../icons/DiplmaBG.bmp');border: 1px solid; border-color: black; border-left-width: 0px;
                 text-align: justify;" class="row">
 
     <!-- High School Data-->
@@ -80,7 +80,7 @@
     <div class="col-md-4" >
 
 
-        <div style="; " class="educationPresentation"
+        <div style="" class="educationPresentation"
              ng-repeat="college in education.colleges">
 
             <div style="text-align: right;" ng-if="(addNavShow == true)">
@@ -189,19 +189,19 @@
 
 
     <div ng-if="!(addNavShow == true)" style="">
-        <div id="highSchoolEntry" style="min-height: 250px; display: inline-block; vertical-align: top"
+        <div id="highSchoolEntry" sstyle="min-height: 250px; display: inline-block; vertical-align: top"
                 sng-if="highSchoolEdit">
 
             <div ng-repeat="highSchool in education.highSchools">
                 <div ng-if="highSchool.add">
-                    <high-school-form passed-model="highSchool" reset-fn="resetHighSchool()"
-                                      save-fn="saveHighSchoolLocalStorage()" closeform="showNavHideForms()">
+                    <high-school-form passed-model="highSchool" reset-fn="resetEducation()"
+                                      save-fn="SaveEducationLocalStorage()" closeform="showNavHideForms()">
                     </high-school-form>
                 </div>
 
                 <div ng-if="highSchool.edit">
-                    <high-school-form passed-model="highSchool" reset-fn="resetHighSchool()"
-                                      save-fn="saveHighSchoolLocalStorage()" closeform="showNavHideForms()">
+                    <high-school-form passed-model="highSchool" reset-fn="resetEducation()"
+                                      save-fn="SaveEducationLocalStorage()" closeform="showNavHideForms()">
                     </high-school-form>
                 </div>
 
@@ -211,38 +211,38 @@
 
         </div>
 
-
-        <div id="collegeEntry" style="min-height: 250px; display: inline-block; vertical-align: top; margin-left: 15px;">
+        <!-- College Form -->
+        <div id="collegeEntry" sstyle="min-height: 250px; display: inline-block; vertical-align: top; margin-left: 15px;">
 
 
             <div ng-repeat="college in education.colleges">
                 <div ng-if="college.add">
-                    <college-form-add passed-model="college" save-fn="saveCollegesLocalStorage()"
-                                      reset-fn="resetColleges()" closeform="showNavHideForms()"></college-form-add>
+                    <college-form-add passed-model="college" save-fn="SaveEducationLocalStorage()"
+                                      reset-fn="resetEducation()" closeform="showNavHideForms()"></college-form-add>
                 </div>
 
                 <div ng-if="college.edit">
-                    <college-form-edit passed-model="college" save-fn="saveCollegesLocalStorage()"
-                                       reset-fn="resetColleges()" closeform="showNavHideForms()"></college-form-edit>
+                    <college-form-edit passed-model="college" save-fn="SaveEducationLocalStorage()"
+                                       reset-fn="resetEducation()" closeform="showNavHideForms()"></college-form-edit>
                 </div>
 
-            </div>
+            <!--</div>
 
 
 
 
-            <div id="certificateEntry" style="min-height: 250px; display: inline-block; vertical-align: top; margin-left: 15px;">
+            <div id="certificateEntry" style="min-height: 250px; display: inline-block; vertical-align: top; margin-left: 15px;">-->
 
 
                 <div ng-repeat="certificate in education.certificates">
                     <div ng-if="certificate.add">
-                        <certificate-form-add passed-model="certificate" save-fn="saveCertificatesLocalStorage()"
-                                              reset-fn="resetCertificates()" closeform="showNavHideForms()"></certificate-form-add>
+                        <certificate-form-add passed-model="certificate" save-fn="SaveEducationLocalStorage()"
+                                              reset-fn="resetEducation()" closeform="showNavHideForms()"></certificate-form-add>
                     </div>
 
                     <div ng-if="certificate.edit">
-                        <certificate-form-edit passed-model="certificate" save-fn="saveCertificatesLocalStorage()"
-                                               reset-fn="resetCertificates()" closeform="showNavHideForms()"></certificate-form-edit>
+                        <certificate-form-edit passed-model="certificate" save-fn="SaveEducationLocalStorage()"
+                                               reset-fn="resetEducation()" closeform="showNavHideForms()"></certificate-form-edit>
                     </div>
 
                 </div>
@@ -253,3 +253,31 @@
     </div>
 </div>
 
+
+<!-- Wizard Nav Buttons -->
+
+<div class="row">
+    <div class="col-xs-1"></div>
+
+    <div class="col-xs-3">
+        <a style="background-color: #0066aa" class="btn" ng-click="SaveEducationLocalStorage()" href="#careers">
+            <span class="white-icon" toggleclass="red-icon"> <i class="glyphicon glyphicon-arrow-left"></i> Career Experience </span>
+        </a>
+
+    </div>
+
+    <div class="col-xs-3">
+        <a style="sbackground-color: #0066aa" class="btn btn-success" ng-click="SaveNewResume()">
+            <span class="white-icon" toggleclass="red-icon"> Save Resume <i class="glyphicon glyphicon-"></i> </span>
+        </a>
+
+    </div>
+
+    <div class="col-xs-3">
+        <a style="background-color: #0066aa" class="btn" ng-click="saveLocalContact()" href="#expertise">
+            <span class="white-icon" toggleclass="red-icon"> Expertise <i class="glyphicon glyphicon-arrow-right"></i> </span>
+        </a>
+
+    </div>
+
+</div>

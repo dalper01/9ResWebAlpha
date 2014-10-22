@@ -13,12 +13,13 @@ var modalAddJobCtrl = function ($scope, localStorageService, $modalInstance, job
     };
 
 
-    $scope.switchDetailOrderUp = function(detail){
+    // move clicked job detail up in order
+    $scope.switchDetailOrderUp = function (detail) {
         moveDetailOrderUp(detail, $scope.job)
     }
 
 
-    // move clicked job detail up in order
+    // move clicked job detail down in order
     $scope.switchDetailOrderDown = function(detail){
         moveDetailOrderDown(detail, $scope.job)
     }
@@ -34,7 +35,8 @@ var modalAddJobCtrl = function ($scope, localStorageService, $modalInstance, job
     // Save job changes within Add Job Pop-up
     $scope.saveJob = function () {
         jobs.push($scope.job);
-        localStorageService.saveLocalStorage("resume.jobs", jobs);
+        //localStorageService.saveLocalStorage("resume.jobs", jobs);
+        localStorageService.SaveStorageJobs();
         $modalInstance.dismiss('cancel');
     };
 
@@ -44,6 +46,7 @@ var modalAddJobCtrl = function ($scope, localStorageService, $modalInstance, job
     };
 
     $scope.deleteJobDetail = function(job, detail) {
+        deleteArrayElement(job.details, detail);
 
     };
 };
@@ -56,7 +59,7 @@ var modalAddJobCtrl = function ($scope, localStorageService, $modalInstance, job
 // modalEditJobCtrl
 // manage Edit Job Popup Callbacks
 
-var modalEditJobCtrl = function ($scope, $rootScope, localStorageService, $modalInstance, job) {
+var modalEditJobCtrl = function ($scope, localStorageService, $modalInstance, job) {
 
     $scope.modalTitle='Edit Job';
     $scope.job = angular.copy(job);
@@ -84,7 +87,8 @@ var modalEditJobCtrl = function ($scope, $rootScope, localStorageService, $modal
     // Save job changes within Add Job Pop-up
     $scope.saveJob = function () {
         angular.copy($scope.job, job);
-        localStorageService.saveLocalStorage("resume.jobs", $rootScope.jobs);
+        //localStorageService.saveLocalStorage("resume.jobs", $rootScope.jobs);
+        localStorageService.SaveStorageJobs();
         $modalInstance.dismiss('cancel');
     };
 

@@ -1,117 +1,26 @@
-/*
-
-addJobDetails(3,1,"Conducted extensive interviews with upper level management throughout the organization to precisely define its business nomenclature (e.g., product, account, event, stage, track, etc). Once precise definitions were defined, this nomenclature was published and distributed throughout the organization.");
-addJobDetails(3,2,"Designed and implemented SLX-Report, M|C�s enterprise-wide sales reporting system. This reporting system provides up-to-the-minute sales reporting across the entire organization, using the unified business nomenclature.");
-addJobDetails(3,3,"Integrated SLX-Report into the company's operations management system, to automatically notify operations project leaders and help define a proper sales commissions policy � further unifying M|C�s business processes.");
-*/
-/*  addJobDetails(4,1,"Developed and implemented Prospector, a global Business Intelligence system that merges business activity from seven sales offices and six manufacturing plants in the United States, Belgium, Canada, Denmark, France, Germany, Japan, Russia and the United Kingdom");
- addJobDetails(4,2,"Prospector allows upper management to see total company sales, on an up-to-the-moment basis, in any currency used within the organization. It also provides tight coordination between sales offices and manufacturing plants, to quickly route sales to the optimal manufacturing plant. This routing process uses a sophisticated algorithm that assesses the customer�s desired delivery date, current plant utilization levels, the specific items ordered, plant/customer proximity, and even country-specific customs issues.");
- addJobDetails(4,3,"Prospector�s global implementation involved designing over-arching data flow diagrams (illustrating the entire lifecycle of all data flowing into the company, through validation / normalization / aggregation, and into the data warehouse); full network topologies (illustrating every machine, connection, application, protocol and operating system); logical and physical data models; and ETL documentation standards used by on-site warehousing teams in each country.");
- *//*
-
-if(jtoshow >= 3) {addJob(3,"M|C Communications", "Business Intelligence Consultant", "Boston, MA", "MC Comm.","BI Consultant","07/01/2006","04/01/2008","");}
-if(jtoshow >= 4) {addJob(4,"Areva", "Business Intelligence Consultant", "Meriden, CT", "Areva","BI Consultant","08/01/2005","06/01/2006","");}
-if(jtoshow >= 5) {addJob(5,"EMD Serono", "Business Intelligence Consultant", "Rockland, MA", "EMD Serono","BI Consultant","04/01/2003","08/01/2005","");}
-if(jtoshow >= 6) {addJob(6,"Verispan", "Business Intelligence Consultant", "Waltham, MA", "Verispan","BI Consultant","01/01/2003","04/01/2003","");}
-if(jtoshow >= 7) {addJob(7,"Investment Technology Group", "Business Intelligence Consultant", "Boston, MA", "ITG","BI Consultant","10/01/2001","12/01/2002","");}
-if(jtoshow >= 8) {addJob(8,"Palm Computing", "Business Intelligence Consultant", "Cambridge, MA", "Palm Computing","BI Consultant","03/01/2001","10/01/2001","");}
-if(jtoshow >= 9) {addJob(9,"Akamai Technologies", "Technical Team Leader", "Cambridge, MA", "Akamai","Tech. Team Leader","04/01/2000","03/01/2001","Y");}
-if(jtoshow >= 10) {addJob(10,"Akamai Technologies", "Senior Developer", "Cambridge, MA", "Akamai","Senior Developer","10/01/1999","04/01/2000","");}
-if(jtoshow >= 11) {addJob(11,"Oracle Corporatoin", "Sr. Member of the Technical Staff", "Waltham, MA", "Oracle Corp","Sr. Member Tech Staff","10/01/1997","10/01/1999","");}
-if(jtoshow >= 12) {addJob(12,"IMS", "Business Intelligence Consultant", "Philadelphia, PA", "IMS","BI Consultant","08/01/1996","09/01/1997","");}
-if(jtoshow >= 13) {addJob(13,"BellSouth", "Report Developer", "Atlanta, GA", "BellSouth","Report Developer","05/01/1995","08/01/1996","");}
-
-*/
 
 var CareerModule = angular.module('CareerModule', ['ui.bootstrap', 'commonDirectives', 'navBarApp', 'storageServiceApp']);
 
 
 CareerModule.controller('CareerController',
 function ($scope, $rootScope, $modal, localStorageService) {
- //   var CareerController = function ($scope, $modal){
 
-    $scope.jobs = $rootScope.jobs;
-        //alert("hello");
-        //$scope.jobs = [
-        //    {id: 1,
-        //        firmLong: "Akamai Technologies",
-        //        titleLong: "Sr. Business Intelligence Architect",
-        //        city: "Cambridge",
-        //        state: "MA",
-        //        firmShort: "Akamai",
-        //        titleShort: "Sr. BI Architect",
-        //        startMonth: "07",
-        //        startYear: "2009",
-        //        startDateString: "",
-        //        endMonth: "",
-        //        endYear: "",
-        //        endDateStr: "",
-        //        details: [
-        //            {
-        //                id: 1,
-        //                order: 1,
-        //                description: "Generated Robot, Akamai's Revenue Forecasting system, which is used to generate company revenue forecasts announced each quarter to Wall Street analysts. This system forecasts internet traffic for every Akamai client, identifying client-specific trending and seasonality. It then runs these forecasts through our Invoicing system, to generate a very detailed revenue forecast. In its first quarter of operations, Revenue was forecasted within 1% -- a substantial improvement over Akamai�s historical 5-8% forecast accuracy."
-        //            }
-        //        ]
-        //    },
-
-        //    {id: 2,
-        //        firmLong: "Lenovo Corporation",
-        //        titleLong: "Business Intelligence Consultant",
-        //        city: "Boston",
-        //        state: "MA",
-        //        firmShort: "MC Comm",
-        //        titleShort: "BI Consultant",
-        //        startMonth: "04",
-        //        startYear: "2008",
-        //        startDateString: "",
-        //        endMonth: "07",
-        //        endYear: "2009",
-        //        endDateStr: "",
-        //        details: [
-        //            {
-        //                id: 2,
-        //                order: 1,
-        //                description: "Proposed, designed and developed LGOS (Lenovo Global Order Status), a reporting application that handles all Lenovo order reporting, for internal business users, external partners and major customers"
-        //            },
-        //            {
-        //                id: 3,
-        //                order: 2,
-        //                description: "Built a data model and reporting system, AppTracker, for Lenovo to track and report upon over five thousand IBM and Lenovo business applications. This is part of its strategy to fully separate Lenovo's business activities from IBM's, and to migrate Lenovo to its own long-term IT platform."
-        //            }
-        //        ]
-
-        //    }];
+    $scope.jobs = localStorageService.GetJobs();
 
 
-    jobArray = new Array();
     jobArray = $scope.jobs;
-    //jobDetails = new Array();
-    old_msg="";
+
+
+    old_msg = "";
     chk_msg="";
     display_jobs('');
     set_cr_height();
-    //edit_job(1);
 
     $("input:text, textarea, select").addClass("input_inactive_ob");
     $("input:text, textarea, select").focus(function(){$(this).addClass("input_active_ob").removeClass("input_inactive_ob");
     }).blur(function(){$(this).removeClass("input_active_ob").addClass("input_inactive_ob");
         });
 
-
-
-        /*
-            $scope.maxDetailOrder = function(){
-
-                var highestOrder=0;
-
-                for (var i = 1; i < 100*99999; i++) {
-
-                }
-
-                return 1;
-            }
-        */
 
 
     $scope.openAddJob = function () {
