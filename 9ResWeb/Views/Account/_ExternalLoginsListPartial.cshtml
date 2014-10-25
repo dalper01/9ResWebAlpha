@@ -21,7 +21,7 @@
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
 
     string action = "ExternalLogin";
-    string returnUrl = "";
+    string returnUrl = "http://9res.org/Account/ExternalLoginCallback";
     using (Html.BeginForm(action, "Account", new { ReturnUrl = returnUrl }))
     {
         @Html.AntiForgeryToken()
@@ -30,7 +30,7 @@
 
                 <div id="socialLoginList">
 
-                    <button type="submit" class="btn btn-block btn-social btn-google-plus" id="Google" name="provider" value="Google" title="Log in using your Google account"><i class="fa fa-google-plus"></i> Sign in with Google </button>
+                    <button type="submit" class="btn btn-block btn-social btn-google-plus" id="GooglePlus" name="provider" value="GooglePlus" title="Log in using your GooglePlus account"><i class="fa fa-google-plus"></i> Sign in with Google </button>
                     <button type="submit" class="btn btn-block btn-social btn-facebook" id="Facebook" name="provider" value="Facebook" title="Log in using your Facebook account"><i class="fa fa-facebook"></i> Sign in with Facebook</button>
                     <button type="submit" class="btn btn-block btn-social btn-twitter" id="Twitter" name="provider" value="Twitter" title="Log in using your Twitter account"><i class="fa fa-twitter"></i> Sign in with Twitter</button>
 

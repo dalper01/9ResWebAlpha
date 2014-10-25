@@ -1,7 +1,7 @@
 ﻿@model _9ResWeb.Models.LoginViewModel
 <link href="~/Content/bootstrap-social.css" rel="stylesheet" />
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
-<link href="~/Content/docs.css" rel="stylesheet" />
+
 @{
     ViewBag.Title = "Log in";
 }
@@ -9,7 +9,8 @@
 <div class="row" style="height:40px"> </div>
 
 <div class="row">
-    <div class="col-md-8">
+
+    <div class="col-md-8 col-md-offset-3">
 
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", autocomplete = "off" }))
         {
@@ -54,7 +55,7 @@
 
 <div class="row" style="height: 25px;"></div>
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 col-md-offset-3">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
         </section>

@@ -192,6 +192,14 @@ namespace _9ResWeb.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
+
+        [AllowAnonymous]
+        public ActionResult Login2()
+        {
+
+            return View();
+        }
+
         //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
