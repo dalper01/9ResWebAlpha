@@ -1,149 +1,11 @@
     /* GENERAL ----------------------------------------------------------------------------- */
 
 
-    ::-webkit-input-placeholder { /* WebKit browsers */
-        color:    #999;
-        align-content: center;
-        text-align: center;
-    }
-    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-        color:    #999;
-        align-content: center;
-        text-align: center;
-    }
-    ::-moz-placeholder { /* Mozilla Firefox 19+ */
-        color:    #999;
-        align-content: center;
-        text-align: center;
-    }
-    :-ms-input-placeholder { /* Internet Explorer 10+ */
-        color:    #999;
-        align-content: center;
-        text-align: center;
-    }
-
-    /*to make mouse pointer when hovering over angular ong-click*/
-    [ng-click],
-    [data-ng-click],
-    [x-ng-click] {
-        cursor: pointer;
-    }
-
     .container {
         max-width: 925px;
         border-bottom-width: 1px;
         border-bottom-color: #000000;
     }
-
-    .topHeader{
-
-        /*background-image:url('images/nav_color.png');*/
-        /*background-color:#cccccc;*/
-
-    }
-
-
-    .small {
-                font-size: 13px;
-    }
-
-    /* used for glyph manipulation */
-    span.pink-color{
-        color: #ff1493;
-    }
-
-
-    .red-color{
-        color: #d14;
-    }
-
-
-    .red-icon{
-        /*font-weight: bolder;
-        text-align: center;*/
-        color: #d14;
-        /*font-size: 13px;*/
-    }
-
-
-    .white-icon{
-        font-weight: bolder;
-        text-align: center;
-        color: white;
-        /*font-size: 13px;*/
-    }
-
-    span.black-icon{
-        font-weight: bolder;
-        text-align: center;
-        color: #000000;
-        /*font-size: 13px;*/
-    }
-
-    span.inverse-icon{
-        text-align: center;
-        color: #ffffff;
-        background-color: #000000;;
-        font-size: 13px;
-    }
-
-    span.blue-icon{
-        font-weight: bolder;
-        text-decoration-color: blue;
-        color: blue;
-        font-size: 13px;
-    }
-
-
-
-
-    /* Nav Tab manipulation */
-    .nav-tabs > li > a{
-
-        background-image: linear-gradient(to top, #BBBBBB 0%, #222 100%);
-                background-color: #222;
-        border: solid 1px;
-        border-color: #eeeeee #cccccc #dddddd #ffffff;
-/*
-        background-image: linear-gradient(to bottom, #00aaff 0%, #0088cc 100%);
-        background-image: url( 'images/input_gradient1.bmp' );
-        background-repeat: repeat-x;
-        background-position: top;
-*/
-        color: white;
-        /*font-weight: bold;*/
-
-    }
-
-    .nav-tabs > li.active > a {
-        background-image: linear-gradient(to top, white 0%, #aa3333 100%);
-        color: black;
-        border: solid 1px;
-        border-color: #cccccc #cccccc #dddddd #cccccc;
-/*
-        background-image:  url( 'images/input_gradient2.bmp' );
-        background-repeat: repeat-x;
-        background-position: top;
-*/
-        /*font-size: 13px;*/
-    }
-
-
-     /*.nav-tabs > li:not(active) > a:focus,*/
-    .nav-tabs > li:not(active) > a:hover{
-/*
-        background-image:  url( 'images/input_gradient2.bmp' );
-        border: solid 1px;
-        border-color: #cccccc #cccccc #dddddd #cccccc;
-        background-repeat: repeat-x;
-        background-position: top;
-*/
-        background-color: #006dcc;
-        color: orange;
-    }
-
-
-    /* Nav Tabs finished */
 
 
 
@@ -152,9 +14,9 @@
         img.btn {vertical-align:text-bottom;}
         body,html {	height:100%;	background:white;	margin:0;	padding:0;	color:#000;	}
         table, td, th, tr{padding:0;border-spacing:0;color:black; font-family: calibri, Arial, sans-serif;font-size:14pt;}
-        textarea, select[type="text"], input[type="text"]	{
+        /*textarea, select[type="text"], input[type="text"]	{
             font-family: Arial, Sans-Serif;	font-size: 12px; margin-bottom: 5px; margin-right: 5px; display: block; padding: 2px; 
-            border: solid 1px #6887BB; }
+            border: solid 1px #6887BB; }*/
 
 	td.hdr_top	{color:#0070C0;}
 	td.ppn		{background:white;	color:navy;}
@@ -488,11 +350,11 @@ margin-top:0px; margin-bottom:5px; }
 
     input:not(:focus), textarea:not(:focus), select:not(:focus){
         background-image: url( 'images/input_gradient1.bmp' );
-        border: solid 1px #33677F;
+        /*border: solid 1px #33677F;*/
         background-repeat: repeat-x;
         background-position: top;
         /*width:160px;*/
-        font-size: 13px;
+        font-size: 14px;
     }
 
 /*
@@ -501,7 +363,7 @@ margin-top:0px; margin-bottom:5px; }
 */
     input:focus, textarea:focus, select:focus{
         background-image:  url( 'images/input_gradient2.bmp' ); border: solid 1px #33677F;
-        background-repeat: repeat-x; background-position: top;  font-size: 13px;	}
+        background-repeat: repeat-x; background-position: top;  font-size: 14px;	}
 
     textarea:not(:focus){
         height:30px;
@@ -512,7 +374,7 @@ margin-top:0px; margin-bottom:5px; }
 }
 
 .input_inactive_ob input, textarea{
-		background-image: url( 'images/input_gradient1.bmp' ); border: solid 1px #33677F; background-repeat: repeat-x; background-position: top;	 font-size: 13px;	 }
+		background-image: url( 'images/input_gradient1.bmp' ); border: solid 1px #33677F; background-repeat: repeat-x; background-position: top;	 font-size: 14px;	 }
 		
 	/* Drop down styles*/
 div.selectbox-wrapper {

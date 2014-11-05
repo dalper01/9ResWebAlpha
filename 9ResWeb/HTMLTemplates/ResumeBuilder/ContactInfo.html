@@ -120,14 +120,14 @@
 
                             <div style="display: inline-block;">
                                 <div class="ci_txt2" style="width: 70px;">First Name</div>
-                                <input type="text" name="q" id="txtU_Name_F" placeholder=""
+                                <input type="text" placeholder="First Name" class="form-control"
                                        style="width: 13ch" ng-model="contactInfo.firstName">
                             </div>
 
                             <div style="display: inline-block; margin-left: 19px;">
                                 <div class="ci_txt2" style="width: 90px;">Middle Name</div>
 
-                                <input style="width: 14ch;" type="text" name="q" id="txtU_Name_M" placeholder="" ng-model="contactInfo.middleName">
+                                <input style="width: 14ch;" type="text" name="q" class="form-control" placeholder="Middle Name" ng-model="contactInfo.middleName">
                             </div>
 
                         </div>
@@ -138,7 +138,7 @@
                         <div style="display: inline-block; margin-left: 0px;">
                             <div class="ci_txt2" style="width: 90px;">Last Name</div>
 
-                            <input style="margin-left:auto; margin-right:auto;" type="text" name="q" id="txtU_Name_L" placeholder="" ng-model="contactInfo.lastName">
+                            <input class="form-control" type="text" placeholder="Last Name" ng-model="contactInfo.lastName">
                         </div>
 
 
@@ -151,7 +151,7 @@
                     <td>
                         <div class="ci_txt2">Street Address</div>
                         <div style="display: inline-block; vertical-align: top;">
-                            <input type="text" name="q" id="address" placeholder="" ng-model="contactInfo.addrStreet">
+                            <input type="text" class="form-control" id="address" placeholder="Street Address" ng-model="contactInfo.addrStreet">
                         </div>
                     </td>
 
@@ -160,7 +160,7 @@
 
                             <div style="display: inline-block; vertical-align: top; margin-left: 0px">
                                 <div class="ci_txt2">city/town</div>
-                                <input style="width: 12ch;" type="text" name="q" id="city" placeholder="" ng-model="contactInfo.addrTown">
+                                <input style="width: 12ch;" class="form-control" type="text" id="city" placeholder="city/town" ng-model="contactInfo.addrTown">
                             </div>
 
                             <div style="display: inline-block; vertical-align: top; margin-left: 0px">
@@ -170,8 +170,8 @@
 
                             <div style="display: inline-block; vertical-align: top;">
                                 <div class="ci_txt2">zip/postal code</div>
-                                <input type="text" name="q" id="zipCode" style="margin-left: 12px; width: 11ch"
-                                       placeholder="" ng-model="contactInfo.addrZip">
+                                <input type="text" class="form-control" id="zipCode" style="margin-left: 12px; width: 11ch"
+                                       placeholder="zip/postal code" ng-model="contactInfo.addrZip">
                             </div>
                         </div>
 
@@ -188,12 +188,12 @@
                         <div style="display: inline-block; vertical-align: top;">
 
                             <div style="display: inline-block; vertical-align: top;">
-                                <select data-ng-options="o.id as o.name for o in phoneTypes" data-ng-model="contactInfo.phone1"></select>
+                                <select class="form-control" data-ng-options="o.id as o.name for o in phoneTypes" data-ng-model="contactInfo.phone1"></select>
                             </div>
 
                             <div style="display: inline-block; vertical-align: top; margin-left: 10px">
-                                <input type="text" name="q" id="phonenum1" style="width: 15ch"
-                                       placeholder="" ng-model="contactInfo.number1" ng-bind="number1 | tel">
+                                <input type="text" class="form-control" id="phonenum1" style="width: 15ch"
+                                       placeholder="Phone 1" ng-model="contactInfo.number1" ng-bind="number1 | tel">
                             </div>
                         </div>
                     </td>
@@ -207,11 +207,11 @@
 
 
                             <div style="display: inline-block; vertical-align: top; margin-left: 0px">
-                                <select data-ng-options="o.id as o.name for o in phoneTypes" data-ng-model="contactInfo.phone2"></select>
+                                <select class="form-control" data-ng-options="o.id as o.name for o in phoneTypes" data-ng-model="contactInfo.phone2"></select>
                             </div>
 
                             <div style="display: inline-block; vertical-align: top;margin-left: 10px">
-                                <input type="text" name="q" id="phonenum2" style="width: 15ch"
+                                <input class="form-control" type="text" id="phonenum2" style="width: 15ch"
                                        placeholder="" ng-model="contactInfo.number2">
                             </div>
                         </div>
@@ -227,7 +227,7 @@
                             <div style="display: inline-block; vertical-align: top;">
                                 <span class="ci_txt2">Email Address</span>
 
-                                <input type="text" name="q" id="txtU_Email_Address"
+                                <input class="form-control" type="text" name="q" id="txtU_Email_Address"
                                        ng-model="contactInfo.eMail">
 
                             </div>
@@ -240,12 +240,12 @@
                             <div class="ci_txt2">Social Media</div>
                             <div style="display: inline-block; vertical-align: top; margin-left: 0px">
 
-                                <select data-ng-options="o.img as o.name for o in socialMediaTypes" data-ng-model="contactInfo.socialMediaLogo"></select>
+                                <select class="form-control" data-ng-options="o.img as o.name for o in socialMediaTypes" data-ng-model="contactInfo.socialMediaLogo"></select>
                             </div>
 
                             <div style="display: inline-block; vertical-align: top;">
 
-                                <input type="text" name="q" id="txtU_Media_Id"
+                                <input class="form-control" type="text" id="txtU_Media_Id"
                                        ng-model="contactInfo.socialMedia">
                             </div>
                         </div>
