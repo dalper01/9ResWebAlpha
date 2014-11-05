@@ -4,7 +4,7 @@
 AuthenticationModule.controller('AuthenticationController', ['$scope', 'GooglePlus', 'Facebook', function ($scope, GooglePlus, Facebook) {
 
 
-    $scope.showLogin = true;
+    $scope.showLogin = false;
     $scope.showRegister = false;
     $scope.email = "";
     $scope.password = "";
