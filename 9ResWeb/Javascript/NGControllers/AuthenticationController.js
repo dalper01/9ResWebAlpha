@@ -1,38 +1,86 @@
 ﻿//  Authentication Controller
 
 
-AuthenticationModule.controller('AuthenticationController', ['$scope', 'GooglePlus', 'Facebook', function ($scope, GooglePlus, Facebook) {
+AuthenticationModule.controller('AuthenticationController', ['$scope', '$http','GooglePlus', 'Facebook', function ($scope, $http, GooglePlus, Facebook) {
 
 
     $scope.showLogin = false;
     $scope.showRegister = false;
-    $scope.email = "";
-    $scope.password = "";
-    $scope.confirmPassword = "";
 
+    $scope.Register = {};
+    $scope.Login = {};
+
+
+    // show Login Dialog
     $scope.OpenLogin = function () {
         $scope.showLogin = true;
         $scope.showRegister = false;
     }
 
+    // close Login Dialog
     $scope.CloseLogin = function () {
         $scope.showLogin = false;
     }
 
+    // switch to Register
     $scope.SwitchRegister = function () {
         $scope.showRegister = true;
     }
 
+    // switch to Login
     $scope.SwitchLogin = function () {
         $scope.showRegister = false;
     }
 
+
     $scope.Login9Res = function () {
         console.log('Login9Res');
+
+        console.log($scope.Login);
+
+        //return;
+
+        $http.post("/Login", {
+            UserName: $scope.Login.Email,
+            Password: $scope.Login.Password,
+            RememberMe: $scope.Login.RememberMe
+
+        }).
+    success(function (data, status, headers, config) {
+        console.log('Success Handler');
+        console.log(data);
+        console.log(status);
+    }).
+    error(function (data, status, headers, config) {
+        console.log('Error Handler');
+        console.log(data);
+        console.log(status);
+    });
+
     }
 
     $scope.Register9Res = function () {
         console.log('Register9Res');
+
+        console.log($scope.Register);
+
+        $http.post("/Register", {
+            UserName: $scope.Register.UserName,
+            Password: $scope.Register.Password,
+            ConfirmPassword: $scope.Register.ConfirmPassword,
+            RememberMe: $scope.Register.RememberMe
+
+        }).
+            success(function (data, status, headers, config) {
+                console.log(data);
+                console.log(status);
+            }).
+            error(function (data, status, headers, config) {
+                console.log(data);
+                console.log(status);
+            });
+
+
     }
 
 

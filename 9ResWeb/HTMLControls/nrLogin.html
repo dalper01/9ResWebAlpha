@@ -28,14 +28,14 @@
 
                         <div class="col-md-10 col-sm-offset-1 form-group input-group">
                             <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                            <input id="email" type="email" class="form-control" placeholder="email address" ng-model="email">
+                            <input id="email" type="email" class="form-control" placeholder="email address" ng-model="Login.Email">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-10 col-sm-offset-1 form-group input-group">
                             <div class="input-group-addon"><i class="fa fa-lock"></i></div>
-                            <input type="password" class="form-control" placeholder="password" ng-model="Password">
+                            <input type="password" class="form-control" placeholder="password" ng-model="Login.Password">
                         </div>
                     </div>
 
@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col-sm-9">
                             <div class="checkbox">
-                                <label> <input type="checkbox" ng-model="Remember"> Remember me? </label>
+                                <label> <input type="checkbox" ng-model="Login.Remember"> Remember me? </label>
                             </div>
                         </div>
 
@@ -77,21 +77,21 @@
                     <div class="row">
                         <div class="col-md-10 col-sm-offset-1 form-group input-group">
                             <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                            <input id="email" type="email" class="form-control" placeholder="email address" ng-model="email">
+                            <input id="email" type="email" class="form-control" placeholder="email address" ng-model="Register.UserName">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-10 col-sm-offset-1 form-group input-group">
                             <div class="input-group-addon"><i class="fa fa-lock"></i></div>
-                            <input type="password" class="form-control" placeholder="password" ng-model="password">
+                            <input type="password" class="form-control" placeholder="password" ng-model="Register.Password">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-10 col-sm-offset-1 form-group input-group">
                             <div class="input-group-addon"><i class="fa fa-lock"></i></div>
-                            <input type="password" class="form-control" placeholder="confirm password" ng-model="confirmPassword">
+                            <input type="password" class="form-control" placeholder="confirm password" ng-model="Register.ConfirmPassword">
                         </div>
                     </div>
 
@@ -111,7 +111,7 @@
                     <div class="row">
                         <div class="col-sm-9">
                             <div class="checkbox">
-                                <label> <input type="checkbox" ng-model="Remember"> Remember me? </label>
+                                <label> <input type="checkbox" ng-model="Register.RememberMe"> Remember me? </label>
                             </div>
                         </div>
 

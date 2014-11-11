@@ -1,4 +1,8 @@
-﻿body {
+﻿html, body {
+    height: 100%;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -9,12 +13,174 @@
     padding-right: 15px;
 }
 
+/* Set the fixed height of the footer here */
+#footer {
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.page-wrap {
+  min-height: 100%;
+  /*height: auto;*/
+  /* Negative indent footer by its height */
+  margin-bottom: -70px;
+  /* Pad bottom by footer height */
+    padding-bottom: 70px;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 /*input,
 select,
 textarea {
     max-width: 280px;
 }*/
+
+
+    /*::-webkit-input-placeholder { 
+        color:    #999;
+        align-content: center;
+        text-align: center;
+    }
+    :-moz-placeholder { 
+        color:    #999;
+        align-content: center;
+        text-align: center;
+    }
+    ::-moz-placeholder { 
+        color:    #999;
+        align-content: center;
+        text-align: center;
+    }
+    :-ms-input-placeholder { 
+        color:    #999;
+        align-content: center;
+        text-align: center;
+    }*/
+
+    /*to make mouse pointer when hovering over angular ong-click*/
+    [ng-click],
+    [data-ng-click],
+    [x-ng-click] {
+        cursor: pointer;
+    }
+
+
+    .topHeader{
+
+        /*background-image:url('images/nav_color.png');*/
+        /*background-color:#cccccc;*/
+
+    }
+
+
+    .small {
+                font-size: 13px;
+    }
+
+    /* used for glyph manipulation */
+    span.pink-color{
+        color: #ff1493;
+    }
+
+
+    .red-color{
+        color: #d14;
+    }
+
+
+    .red-icon{
+        /*font-weight: bolder;
+        text-align: center;*/
+        color: #d14;
+        /*font-size: 13px;*/
+    }
+
+
+    .white-icon{
+        font-weight: bolder;
+        text-align: center;
+        color: white;
+        /*font-size: 13px;*/
+    }
+
+    span.black-icon{
+        font-weight: bolder;
+        text-align: center;
+        color: #000000;
+        /*font-size: 13px;*/
+    }
+
+    span.inverse-icon{
+        text-align: center;
+        color: #ffffff;
+        background-color: #000000;;
+        font-size: 13px;
+    }
+
+    span.blue-icon{
+        font-weight: bolder;
+        text-decoration-color: blue;
+        color: blue;
+        font-size: 13px;
+    }
+
+
+
+
+    /* Nav Tab manipulation */
+    .nav-tabs > li > a{
+
+        background-image: linear-gradient(to top, #BBBBBB 0%, #222 100%);
+                background-color: #222;
+        border: solid 1px;
+        border-color: #eeeeee #cccccc #dddddd #ffffff;
+/*
+        background-image: linear-gradient(to bottom, #00aaff 0%, #0088cc 100%);
+        background-image: url( 'images/input_gradient1.bmp' );
+        background-repeat: repeat-x;
+        background-position: top;
+*/
+        color: white;
+        /*font-weight: bold;*/
+
+    }
+
+    .nav-tabs > li.active > a {
+        background-image: linear-gradient(to top, white 0%, #aa3333 100%);
+        color: black;
+        border: solid 1px;
+        border-color: #cccccc #cccccc #dddddd #cccccc;
+/*
+        background-image:  url( 'images/input_gradient2.bmp' );
+        background-repeat: repeat-x;
+        background-position: top;
+*/
+        /*font-size: 13px;*/
+    }
+
+
+     /*.nav-tabs > li:not(active) > a:focus,*/
+    .nav-tabs > li:not(active) > a:hover{
+/*
+        background-image:  url( 'images/input_gradient2.bmp' );
+        border: solid 1px;
+        border-color: #cccccc #cccccc #dddddd #cccccc;
+        background-repeat: repeat-x;
+        background-position: top;
+*/
+        background-color: #006dcc;
+        color: orange;
+    }
+
+
+    /* Nav Tabs finished */
+
+
+
+/*Angular JS specific css*/
+a{
+    cursor: pointer;
+}
 
 /* styles for validation helpers */
 .field-validation-error {

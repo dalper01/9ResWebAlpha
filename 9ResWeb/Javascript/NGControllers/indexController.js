@@ -1,5 +1,5 @@
 //  index Controller
-var indexModule = angular.module('indexModule', ['commonDirectives', 'navBarApp']);
+var indexModule = angular.module('indexModule', ['commonDirectives', 'navBarApp', 'AuthenticationModule']);
 
 indexModule.controller('indexController',
     function ($scope, $filter) {
@@ -18,7 +18,7 @@ indexModule.controller('indexController',
         }
 
 
-    });
+});
 
 
 

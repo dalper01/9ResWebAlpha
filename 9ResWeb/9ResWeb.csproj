@@ -78,6 +78,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.0.0\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -185,6 +188,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountApiController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ResumeBuilderController.cs" />
@@ -240,6 +244,7 @@
     <Content Include="Content\images\icons\report.bmp" />
     <Content Include="Content\images\icons\server.bmp" />
     <Content Include="Content\images\icons\types-of-college-degrees.jpg" />
+    <Content Include="Content\LoginPopUp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -404,6 +409,7 @@
     <Content Include="HTMLControls\monthDropDown.html" />
     <Content Include="HTMLControls\navResBuilder.html" />
     <Content Include="HTMLControls\navResumeBuilder.html" />
+    <Content Include="HTMLControls\nrLogin.html" />
     <Content Include="HTMLControls\stateDropDown.html" />
     <Content Include="HTMLControls\yearDropDown.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\Careers.html" />
@@ -558,11 +564,15 @@
     <Content Include="images\word_slide_tab_green.bmp" />
     <Content Include="images\word_slide_tab_red.bmp" />
     <Content Include="images\word_slide_tab_yellow.bmp" />
+    <Content Include="Javascript\NGApps\AuthenticationApp.js" />
+    <Content Include="Javascript\NGControllers\AuthenticationController.js" />
+    <Content Include="Javascript\NGDirectives\Authentication\loginDirective.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-csp.css" />
+    <Content Include="Scripts\angular-facebook.js" />
     <Content Include="Scripts\angular-google-plus.js" />
     <Content Include="Scripts\angular-loader.js" />
     <Content Include="Scripts\angular-loader.min.js" />
@@ -923,6 +933,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\ResumeBuilder\Index2.cshtml" />
     <Content Include="Views\Account\Login2.cshtml" />
+    <Content Include="Views\Account\HangoutsTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

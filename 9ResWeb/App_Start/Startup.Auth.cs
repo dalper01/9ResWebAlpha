@@ -45,9 +45,23 @@ namespace _9ResWeb
             }
             else
             {
-                app.UseGooglePlusAuthentication(
-                    clientId: "771894512430-87bjckbtnd5k14gj08ira8im6j60fdcn.apps.googleusercontent.com",
-                    clientSecret: "1GsMYrISqDThdy0qyhoeK1oA");
+                GooglePlusAuthenticationOptions GPA = new GooglePlusAuthenticationOptions() {
+                    ClientId = "771894512430-87bjckbtnd5k14gj08ira8im6j60fdcn.apps.googleusercontent.com",
+                    ClientSecret = "1GsMYrISqDThdy0qyhoeK1oA"
+                    //AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode.Passive
+                    //AuthenticationType = '
+                    //Scope = new List <string>();
+                    
+                };
+
+                //GPA.Scope.Add("https://www.googleapis.com/auth/userinfo.email");
+                //GPA.Scope.Add("https://www.googleapis.com/auth/plus.login");
+
+                app.UseGooglePlusAuthentication(GPA);
+
+                //app.UseGooglePlusAuthentication(
+                //    clientId: "771894512430-87bjckbtnd5k14gj08ira8im6j60fdcn.apps.googleusercontent.com",
+                //    clientSecret: "1GsMYrISqDThdy0qyhoeK1oA");
                 
                 app.UseFacebookAuthentication(
                    appId: "1484397018497780",
