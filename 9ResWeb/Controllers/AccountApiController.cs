@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
+using System.Web.Http.Results;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -19,6 +20,7 @@ using Microsoft.Owin.Security.OAuth;
 //using System.Web.Mvc;
 using Microsoft.Owin.Host.SystemWeb;
 using _9ResWeb.Models;
+using System.Web.Http.Description;
 
 namespace _9ResWeb.Controllers
 {
@@ -26,7 +28,7 @@ namespace _9ResWeb.Controllers
     {
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
-
+        IdentityDbContext<ApplicationUser> AuthContext = new IdentityDbContext<ApplicationUser>();
 
         public AccountApiController()
         {
@@ -44,7 +46,15 @@ namespace _9ResWeb.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.UserName };
+            var user = new ApplicationUser() { 
+                UserName = model.UserName,
+                UserInfo = new UserInfo()
+                {
+                    DisplayName = "",
+                    FirstName = "",
+                    LastName = ""
+                }
+            };
             var result = await UserManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
@@ -70,6 +80,8 @@ namespace _9ResWeb.Controllers
 
             var user = await UserManager.FindAsync(model.UserName, model.Password);
 
+            //UserManager.Update<ApplicationUser>(user);
+
             if (user == null)
             {
                 return BadRequest("Bad Username / Password");
@@ -82,14 +94,136 @@ namespace _9ResWeb.Controllers
         }
 
 
+        [AllowAnonymous]
+        [Route("Logout")]
+        public IHttpActionResult Logout()
+        {
+
+            AuthenticationManager.SignOut();
+
+            return Ok();
+
+        }
+
+
+        [AllowAnonymous]
+        [Route("GetUserInfo")]
+        [ResponseType(typeof(ApplicationUser))]
+        public async Task<IHttpActionResult> GetUserInfo()
+        {
+            ApplicationUser user;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                return Ok(user);
+
+            }
+
+            //AuthContext.Entry<UserInfo>().
+
+            return null;
+        }
+
+
+        [AllowAnonymous]
+        [Route("ExternalLogin")]
+        [ResponseType(typeof(ExternalLoginViewResult))]
+        public async Task<IHttpActionResult> ExternalLogin(ExternalLoginViewModel model)
+        {
+
+            ApplicationUser user;
+            IdentityResult identityResult;
+            ExternalLoginViewResult result = new ExternalLoginViewResult()
+            {
+                Issuer = model.Issuer,
+                Id = model.Id,
+                AccessToken = model.AccessToken,
+                Success = true,
+                NewAccount = false,
+                UserInfo = new UserInformation()
+                {
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    DisplayName = model.FullName,
+                    Gender = model.Gender,
+                    Link = model.Link,
+                    Picture = model.Picture,
+
+                }
+
+            };
+
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Look for record of Login Provider
+            var login = new UserLoginInfo(model.Issuer, model.Id);
+            user = await UserManager.FindAsync(login);
+
+            // If user not loggedin (IsAuthenticated true)
+            if (!User.Identity.IsAuthenticated)
+            {
+
+                // Sign in the user with this external login provider if the user already has a login
+                if (user != null)
+                {
+                    await SignInAsync(user, isPersistent: false);
+                    return Ok(result);
+                }
+
+                // User NOT logged in and Login Provider NOT recorded so assume new account
+                // And create new Application User
+                result.NewAccount = true;
+                user = new ApplicationUser() 
+                {
+                    UserName = model.Email,
+                    UserInfo = new UserInfo()
+                    {
+                        Email = model.Email,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        DisplayName = model.FullName,
+                        ProfilePicture = model.Picture
+                    }
+                };
+
+                identityResult = await UserManager.CreateAsync(user, "NewPassword");
+
+                // If Error creating user Return Error
+                if (!identityResult.Succeeded)
+                {
+                    return InternalServerError();
+                }
+
+                // Login new Application User
+                await SignInAsync(user, isPersistent: false);
+            }
+            // Else user Authenticated, Get handle to logged in User
+            else
+            {
+                user = UserManager.FindById(User.Identity.GetUserId());
+            }
+
+
+            identityResult = await UserManager.AddLoginAsync(user.Id, login);
+
+            if (!identityResult.Succeeded)
+            {
+                return InternalServerError();
+            }
+
+            return Ok();
+
+        }
+
+
         #region Helpers
 
-
-        
-        //private IAuthenticationManager Authentication
-        //{
-        //    get { return Request.GetOwinContext().Authentication; }
-        //}
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -101,6 +235,7 @@ namespace _9ResWeb.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+
         }
 
         private IHttpActionResult GetErrorResult(IdentityResult result)
@@ -132,74 +267,7 @@ namespace _9ResWeb.Controllers
             return null;
         }
 
-        private class ExternalLoginData
-        {
-            public string LoginProvider { get; set; }
-            public string ProviderKey { get; set; }
-            public string UserName { get; set; }
 
-            public IList<Claim> GetClaims()
-            {
-                IList<Claim> claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, ProviderKey, null, LoginProvider));
-
-                if (UserName != null)
-                {
-                    claims.Add(new Claim(ClaimTypes.Name, UserName, null, LoginProvider));
-                }
-
-                return claims;
-            }
-
-            public static ExternalLoginData FromIdentity(ClaimsIdentity identity)
-            {
-                if (identity == null)
-                {
-                    return null;
-                }
-
-                Claim providerKeyClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
-
-                if (providerKeyClaim == null || String.IsNullOrEmpty(providerKeyClaim.Issuer)
-                    || String.IsNullOrEmpty(providerKeyClaim.Value))
-                {
-                    return null;
-                }
-
-                if (providerKeyClaim.Issuer == ClaimsIdentity.DefaultIssuer)
-                {
-                    return null;
-                }
-
-                return new ExternalLoginData
-                {
-                    LoginProvider = providerKeyClaim.Issuer,
-                    ProviderKey = providerKeyClaim.Value,
-                    UserName = identity.FindFirstValue(ClaimTypes.Name)
-                };
-            }
-        }
-
-        //private static class RandomOAuthStateGenerator
-        //{
-        //    private static RandomNumberGenerator _random = new RNGCryptoServiceProvider();
-
-        //    public static string Generate(int strengthInBits)
-        //    {
-        //        const int bitsPerByte = 8;
-
-        //        if (strengthInBits % bitsPerByte != 0)
-        //        {
-        //            throw new ArgumentException("strengthInBits must be evenly divisible by 8.", "strengthInBits");
-        //        }
-
-        //        int strengthInBytes = strengthInBits / bitsPerByte;
-
-        //        byte[] data = new byte[strengthInBytes];
-        //        _random.GetBytes(data);
-        //        return HttpServerUtility.UrlTokenEncode(data);
-        //    }
-        //}
 
         #endregion
     }

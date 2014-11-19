@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
 
+    @*<script>
+        var IsLoggedIn = @(User.Identity.IsAuthenticated);
+    </script>*@
+
+
     <link rel="icon" href="/content/images/9res.bmp" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -16,10 +21,8 @@
     @RenderSection("styles", required: false)
     @RenderSection("scripts", required: false)
 
-    @*<script src="~/Javascript/NGDirectives/Authentication/loginDirective.js"></script>*@
-
 </head>
-<body ng-app="@ViewBag.ngApp" ng-controller="AuthenticationController">
+<body ng-app="@ViewBag.ngApp" ng-controller="AuthenticationController" ng-init="LoggedIn=@Convert.ToInt32(User.Identity.IsAuthenticated)">
     <div class="page-wrap">
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -29,7 +32,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @*@Html.ActionLink("Application name", "Index", "Home", null, new { @class = "navbar-brand" })*@
+
                     <div style="max-height: 45px; overflow: hidden;  margin-right: 10px;">
                         <a href="/">
                             <span style="font-family: 'Bauhaus 93'; color: #AAAAAA; font-size: 50px; margin-right: 0; position: relative; top: -.25em; overflow: hidden;">9</span>
@@ -43,12 +46,9 @@
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     </ul>
-                    @*@Html.Partial("_LoginPartial")*@
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                        <li ng-click="OpenLogin()"><a id="loginLink" ng-click="OpenLogin()">Log in</a></li>
-                        @*<li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
-                    </ul>
+
+                    @* Login Header Directive *@
+                    <header-login></header-login>
 
                 </div>
             </div>
@@ -62,7 +62,7 @@
         <div class="container">
             <div class="row">
                 <hr style="margin-bottom: -10px;" />
-                @*<a href="@Url.Action("Index","Home")"><img src="@Url.Content("~/content/images/logo_white.bmp")" height="45" /></a>*@ 
+                @*<a href="@Url.Action("Index","Home")"><img src="@Url.Content("~/content/images/logo_white.bmp")" height="45" /></a>*@
                 <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 42px; margin-right: -7px;">9</span> <span style="font-family: 'Bauhaus 93'; font-size: 22px; margin-right: 5px;">res</span>
                 &copy; @DateTime.Now.Year
 
@@ -73,6 +73,5 @@
     @* Login Temlate Directive *@
     <nr-login></nr-login>
 
-    @*@RenderSection("scripts", required: false)*@
 </body>
 </html>

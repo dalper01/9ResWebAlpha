@@ -1,44 +1,98 @@
 ﻿//  Authentication Controller
 
 
-AuthenticationModule.controller('AuthenticationController', ['$scope', '$http','GooglePlus', 'Facebook', function ($scope, $http, GooglePlus, Facebook) {
-
+AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 'GooglePlus', 'Facebook', function ($scope, $http, GooglePlus, Facebook) {
 
     $scope.showLogin = false;
     $scope.showRegister = false;
+    $scope.UserData = {
+        FullName: '',
+        Picture: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'
+    };
 
     $scope.Register = {};
     $scope.Login = {};
 
 
-    // show Login Dialog
+
+    $scope.Logout = function () {
+        $http.post("/Logout", {
+
+        }).
+        success(function (data, status, headers, config) {
+            console.log('Success Logout');
+            $scope.SetUserLoggedOut();
+
+        }).
+        error(function (data, status, headers, config) {
+            console.log('Error Logout');
+        });
+
+
+    }
+    
+    // Set Client Status to User Logged In
+    $scope.SetUserLoggedIn = function () {
+        $scope.LoggedIn = true;
+    }
+
+    // Set Client Status to User Logged Out
+    $scope.SetUserLoggedOut = function () {
+        $scope.LoggedIn = false;
+    }
+
+    // Set Client Status to User Logged Out
+    $scope.SetUserData = function (data) {
+        $scope.UserData = data.UserInfo;
+    }
+    
+    // Show Login Dialog
     $scope.OpenLogin = function () {
         $scope.showLogin = true;
         $scope.showRegister = false;
     }
 
-    // close Login Dialog
+    // Hide Login Dialog
     $scope.CloseLogin = function () {
         $scope.showLogin = false;
     }
 
-    // switch to Register
+    // Switch Dialog to Register Template
     $scope.SwitchRegister = function () {
         $scope.showRegister = true;
     }
 
-    // switch to Login
+    // Switch Dialog to Login Template
     $scope.SwitchLogin = function () {
         $scope.showRegister = false;
     }
 
+    // Get Login User Info
+    $scope.GetUserInfo = function () {
+        $http({
+            url: "/GetUserInfo",
+            method: "Get"
+            //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            //data: $.param(GooglePlusResult)
+        }).success(function (data, status, headers, config) {
 
+            console.log('Get User Data');
+            console.log(data);
+
+            $scope.SetUserData(data);
+
+        }).error(function (data, status, headers, config) {
+            $scope.status = status;
+            console.log('Get User Data Failed');
+        });
+    }
+
+
+    // Send Login Credentials to Login API
     $scope.Login9Res = function () {
         console.log('Login9Res');
-
         console.log($scope.Login);
 
-        //return;
 
         $http.post("/Login", {
             UserName: $scope.Login.Email,
@@ -46,19 +100,22 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http','
             RememberMe: $scope.Login.RememberMe
 
         }).
-    success(function (data, status, headers, config) {
-        console.log('Success Handler');
-        console.log(data);
-        console.log(status);
-    }).
-    error(function (data, status, headers, config) {
-        console.log('Error Handler');
-        console.log(data);
-        console.log(status);
-    });
+        success(function (data, status, headers, config) {
+            console.log('Success Handler');
+            console.log(data);
+            console.log(status);
+            $scope.SetUserLoggedIn();
+
+        }).
+        error(function (data, status, headers, config) {
+            console.log('Error Handler');
+            console.log(data);
+            console.log(status);
+        });
 
     }
 
+    // Send Register Credentials to Register API
     $scope.Register9Res = function () {
         console.log('Register9Res');
 
@@ -83,24 +140,31 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http','
 
     }
 
-
+    // Request Validation from Google API
     $scope.loginGooglePlus = function () {
         GPlogin();
         //$scope.showLogin = false;
     }
 
+    // Request Validation from Facebook API
     $scope.loginFacebook = function () {
         //$scope.showLogin = false;
     }
 
+    // Request Validation from Twitter API
     $scope.loginTwitter = function () {
         //$scope.showLogin = false;
     }
 
     
+    if (true) {
+        $scope.GetUserInfo();
+    }
+    console.log('logged in status:' + $scope.LoggedIn);
 
 
 
+    // Request Validation from Google API
     var GPlogin = function () {
         //console.log('checkAuth');
         //GooglePlus.checkAuth().then(function (authResult) {
@@ -115,29 +179,73 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http','
         //    console.log(err);
         //});
 
+        var GooglePlusResult = { };
+
         console.log('login');
         GooglePlus.login().then(function (authResult) {
             console.log('authResult');
             console.log(authResult);
 
+            GooglePlusResult.AccessToken = authResult.access_token;
+            GooglePlusResult.FullId = authResult.client_id;
+
+
             GooglePlus.getUser().then(function (user) {
                 console.log('user');
                 console.log(user);
+
+                GooglePlusResult.Issuer = "Google";
+                GooglePlusResult.Id = user.id;
+
+                GooglePlusResult.Email = user.email;
+                GooglePlusResult.LastName = user.family_name;
+                GooglePlusResult.FirstName = user.given_name;
+                GooglePlusResult.FullName = user.name;
+                GooglePlusResult.Gender = user.gender;
+                GooglePlusResult.Link = user.link;
+                GooglePlusResult.Picture = user.picture;
+
+                console.log(GooglePlusResult);
+
+
+
+                $http({
+                    url: "/ExternalLogin",
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    data: $.param(GooglePlusResult)
+                }).success(function (data, status, headers, config) {
+
+                    console.log('Google Login Succeeded');
+                    console.log(data);
+                    $scope.SetUserLoggedIn();
+                    $scope.SetUserData(data);
+                    $scope.CloseLogin();
+                }).error(function (data, status, headers, config) {
+                    $scope.status = status;
+                    console.log('Google Login Failed');
+                });
+
+
+
+
             });
         }, function (err) {
             console.log('err callback');
             console.log(err);
             GooglePlus.getUser().then(function (user) {
                 console.log('user');
-                console.log(user);
+                console.log(GooglePlusResult);
             });
         }).finally(function (result) {
-            console.log('final check');
+            console.log('final Data Result');
+            //console.log(GooglePlusResult);
 
-            GooglePlus.getUser().then(function (user) {
-                console.log('user');
-                console.log(user);
-            });
+
+            //GooglePlus.getUser().then(function (user) {
+            //    console.log('user');
+            //    console.log(user);
+            //});
 
 
         });

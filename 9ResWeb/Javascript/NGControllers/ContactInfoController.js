@@ -5,7 +5,7 @@ var ContactInfoModule = angular.module('ContactInfoModule', ['commonDirectives',
 
 
 ContactInfoModule.controller('ContactInfoController',
-    function ($rootScope, $scope, $filter, localStorageService) {
+    function ($rootScope, $scope, $http, $filter, localStorageService) {
 
 
 
@@ -75,7 +75,20 @@ ContactInfoModule.controller('ContactInfoController',
 
     $scope.SaveNewResume = function () {
 
-        alert('Saving');
+        console.log('Saving');
+
+        $http.post("/api/ResumeApi", {
+            contactInfo: localStorageService.GetContactInfo(),
+            education: localStorageService.GetEducation(),
+            jobs: localStorageService.GetJobs()
+        }).
+            success(function (data, status, headers, config) {
+
+                console.log(data);
+
+
+            });
+
     }
 
 
