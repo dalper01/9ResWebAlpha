@@ -1,0 +1,12 @@
+﻿<ul class="nav navbar-nav navbar-right" ng-if="!LoggedIn">
+    <li ng-click="OpenLogin()"><a id="loginLink" ng-click="OpenLogin()">Log in / Register </a></li>
+</ul>
+
+<ul class="nav navbar-nav navbar-right" ng-if="LoggedIn">
+    <li >
+        <a style="padding-bottom: 0px;">
+            <img ng-src="{{ UserData.Picture }}" style="padding: 0px 0px 0px 0px;  margin-right: 5px; position: relative; top: -.05em; overflow: hidden;" height="22" /> {{ UserData.DisplayName }}
+        </a>
+    </li>
+    <li ng-click="Logout()"><a ng-click="Logout()">Log Out </a></li>
+</ul>
