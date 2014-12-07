@@ -403,6 +403,7 @@
     <Content Include="Content\images\word_slide_tab_red.bmp" />
     <Content Include="Content\images\word_slide_tab_yellow.bmp" />
     <Content Include="HTMLControls\Authentication\headerLogin.html" />
+    <Content Include="HTMLControls\Careers\showJob.html" />
     <Content Include="HTMLControls\Education\certificationForm.html" />
     <Content Include="HTMLControls\Education\collegeForm.html" />
     <Content Include="HTMLControls\Education\degreeDropDown.html" />
@@ -420,6 +421,8 @@
     <Content Include="HTMLTemplates\ResumeBuilder\Careers.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\ContactInfo.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\Education.html" />
+    <Content Include="HTMLTemplates\ResumeBuilder\Expertise.html" />
+    <Content Include="HTMLTemplates\ResumeBuilder\Objective.html" />
     <Content Include="images\9res.bmp" />
     <Content Include="images\9resAdvantages.png" />
     <Content Include="images\9resGetStarted.png" />
@@ -571,7 +574,10 @@
     <Content Include="images\word_slide_tab_yellow.bmp" />
     <Content Include="Javascript\NGApps\AuthenticationApp.js" />
     <Content Include="Javascript\NGControllers\AuthenticationController.js" />
+    <Content Include="Javascript\NGControllers\expertiseController.js" />
+    <Content Include="Javascript\NGControllers\objectiveController.js" />
     <Content Include="Javascript\NGDirectives\Authentication\loginDirective.js" />
+    <Content Include="Javascript\NGDirectives\CareerDirectives\showJobs.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
@@ -894,7 +900,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Javascript\NGApps\ResumeBuilderApp.js" />
     <Content Include="Javascript\NGControllers\Career.JS" />
-    <Content Include="Javascript\NGControllers\CareerController.JS" />
+    <Content Include="Javascript\NGControllers\CareerController.js" />
     <Content Include="Javascript\NGControllers\ContactInfoController.js" />
     <Content Include="Javascript\NGControllers\EducationController.js" />
     <Content Include="Javascript\NGControllers\indexController.js" />

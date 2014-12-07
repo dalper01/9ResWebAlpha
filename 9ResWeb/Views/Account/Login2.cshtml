@@ -1,5 +1,9 @@
 ﻿@model _9ResWeb.Models.LoginViewModel
 
+<script type="text/javascript" src="https://platform.linkedin.com/in.js">
+    api_key: 771ndf3j8fj7yn
+    authorize: true
+</script>
 
 @{
     ViewBag.ngApp = "AuthenticationModule";
@@ -10,7 +14,23 @@
 
     <title>DOM Test</title>
 
-<div ng-controller="AuthenticationController">
+
+    @*<script type="in/Login">
+        <form action="/register.html">
+            <p>Your Name: <input type="text" name="name" value="<?js= firstName ?> <?js= lastName ?>" /></p>
+            <p>Your Password: <input type="password" name="password" /></p>
+            <input type="hidden" name="linkedin-id" value="<?js= id ?>" />
+            <input type="submit" name="submit" value="Sign Up" />
+        </form>
+
+    </script>*@
+
+<script type="in/Login">
+    Hello, <?js= firstName ?> <?js= lastName ?>.
+</script>
+
+
+@*<div ng-controller="AuthenticationController">
     <a href="javascript:void(0);" ng-click="GPlogin()">Login with Google Plus</a>
     <button type="button" id="login" ng-click="FBlogin()">Login with Facebook</button>
     <button type="button" id="api" ng-click="FBgetLoginStatus()">Get login Status</button>
@@ -18,7 +38,7 @@
     <pre>status: <span id="login_status" ng-bind="loginStatus"></span></pre>
     <pre>username: <span id="api_first_name" ng-bind="user.first_name"></span></pre>
 
-</div>
+</div>*@
 
 
 <div>

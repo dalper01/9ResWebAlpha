@@ -1,301 +1,299 @@
 ﻿<div class="row">
 
-    <form name="ContactDetails" method="post" action="/YourGreatResume/ContactInfo.php" target="_self">
-        <div id="hdr" align="left">
-            <table border=0 cellpadding=0 cellspacing=0 height=100% width=100%>
-                <tr height=42>
-                    <td width=40 class="hdr_line"></td>
-                    <td width=280 class="ci_title"></td>
-                    <td width=450 class="hdr_line" align="right"></td>
-                    <td width=96 class="hdr_info1" onclick="javascript:info_mouse_click(this)" onmouseover="javascript:info_mouse_over(this)" onmouseout="javascript:info_mouse_out(this)"></td>
-                </tr>
-                <tr height=100%>
-                    <td class="display" colspan=4 width=100%>
-                        <table width=100%>
-                            <tr><td class="hdr_txt">This section is a breeze.  Just enter any information you'd like available on your resume (just leave out any details you don't want to show up).&nbsp;&nbsp;  You can even jump-start the process by importing your info from LinkedIn!</td></tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
+
+    <div class="col-xs-12">
+        <div class="col-xs-1" style="border-left: 1px solid #4466AA; padding: 0px;"><hr style="color: blue; background-color: blue; border-color: blue; width: 100%;"></div>
+        <div class="col-xs-5">
+            <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 30px; margin-right: -7px; margin-left: 5px;">9</span>
+            <span style="font-family: 'Bauhaus 93'; font-size: 16px; margin-right: 5px; margin-left: -0px;  position: relative; top: -.40em;">res</span>
+
+            <span style="text-align: center; font-weight: 800; font-family: 'Arial'; color: #4466AA; font-size: 26px;">
+                Contact Information
+            </span>
         </div>
+        <div class="col-xs-6" style="border-left: 1px solid blue; padding: 0px;"> <hr style="color: blue; background-color: blue; border-color: blue;"> </div>
 
-        <div id="hdr2" align="left">
-            <table width=100%>
-                <tr>
-                    <td class="hdr_txt">...In case you hadn't noticed, this site is cool as shit.</td>
-                </tr>
-            </table>
-        </div>
+    </div>
+</div>
 
-        <div id="ppane_ci" align="left">
-            <table cellpadding=0 cellspacing=0 name="ci_hdr" height=100% width=100% border=0>
-                <tr>
-                    <td class="ci_pic" id="ci_hdr_pic"></td>
-                    <td width=100%>
+<div class="row">
+    <div class="col-sm-offset-0 col-sm-12 hdr_txt" style="padding-left: 25px;">
+        This section is a breeze.  Just enter any information you'd like available on your resume (just leave out any details you don't want to show up).&nbsp;&nbsp;
+        You can even jump-start the process by importing your info from LinkedIn!
+    </div>
 
-                        <table cellpadding=0 cellspacing=0 border=0 width=100%>
-                            <tr>
-                                <td width=20 rowspan=4>&nbsp;</td>
-                                <td id="ci_name2" style="text-align: center">
-                                    <span class="ci_name_def" ng-hide="showNameMessage()"> {{ noNameMessage }} </span>
-                                    <span class="ci_name"> {{ contactInfo.firstName }} {{ contactInfo.middleName }} {{ contactInfo.lastName }}  </span>
-                                </td>
-                                <td width=20 rowspan=4>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td class="ci_hline" height=1></td>
-                            </tr>
-                            <tr>
-                                <td class="ci_dtl1" id="ci_addr" height=1>
-                                    <span class="ci_dtl1_def" ng-hide="showAddressMessage()"> {{ noAddressMessage }} </span>
+    <div class="col-sm-offset-1 col-sm-10 hdr_txt">
+        ...In case you hadn't noticed, this site is cool as shit.
 
-                                    <span class="ci_dtl1">
-                                        {{ contactInfo.addrStreet }} {{ contactInfo.addrTown }}
-                                        <span ng-show="showCommaCityState()">, </span>
-                                        {{ contactInfo.addrState }} {{ contactInfo.addrZip }}
-                                    </span>
+    </div>
+
+</div>
+<div class="row">
+    <div id="ppane_ci" align="left">
+        <table cellpadding=0 cellspacing=0 name="ci_hdr" height=100% width=100% border=0>
+            <tr>
+                <td class="ci_pic" id="ci_hdr_pic"></td>
+                <td width=100%>
+
+                    <table cellpadding=0 cellspacing=0 border=0 width=100%>
+                        <tr>
+                            <td width=20 rowspan=4>&nbsp;</td>
+                            <td id="ci_name2" style="text-align: center">
+                                <span class="ci_name_def" ng-hide="showNameMessage()"> {{ noNameMessage }} </span>
+                                <span class="ci_name"> {{ contactInfo.firstName }} {{ contactInfo.middleName }} {{ contactInfo.lastName }}  </span>
+                            </td>
+                            <td width=20 rowspan=4>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="ci_hline" height=1></td>
+                        </tr>
+                        <tr>
+                            <td class="ci_dtl1" id="ci_addr" height=1>
+                                <span class="ci_dtl1_def" ng-hide="showAddressMessage()"> {{ noAddressMessage }} </span>
+
+                                <span class="ci_dtl1">
+                                    {{ contactInfo.addrStreet }} {{ contactInfo.addrTown }}
+                                    <span ng-show="showCommaCityState()">, </span>
+                                    {{ contactInfo.addrState }} {{ contactInfo.addrZip }}
+                                </span>
 
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
 
-                            <tr>
-                                <td name="ci_dtl2" id="ci_cont">
-                                    <table width=100%>
-                                        <tr>
-                                            <td class="ci_dtl2"></td>
-                                            <td class="ci_dtl2">
-                                                <span class="ci_dtl1_def" ng-hide="showContactMessage()"> {{ noContactMessage }} </span>
+                        <tr>
+                            <td name="ci_dtl2" id="ci_cont">
+                                <table width=100%>
+                                    <tr>
+                                        <td class="ci_dtl2"></td>
+                                        <td class="ci_dtl2">
+                                            <span class="ci_dtl1_def" ng-hide="showContactMessage()"> {{ noContactMessage }} </span>
 
-                                                <span class="ci_dtl1">
-                                                    <!--
-                                                                                                        <span ng-show="number1.length"> {{ phone1 }} {{ number1 | tel }} </span>
-                                                                                                        <span ng-show="number2.length"> {{ phone2 }} {{ number2 | tel }} </span>
-                                                    -->
-                                                    <span ng-show="contactInfo.number1.length">  {{ contactInfo.phone1 }} {{ contactInfo.number1  }} </span>
-                                                    <span ng-show="contactInfo.number2.length"> {{ contactInfo.phone2 }} {{ contactInfo.number2 }} </span>
-                                                    {{ eMail }}
-                                                    <span ng-show="contactInfo.socialMedia.length">
-                                                        <img height=19 width=19 ng-src="{{ contactInfo.socialMediaLogo }}"> {{ contactInfo.socialMedia }}
-                                                    </span>
+                                            <span class="ci_dtl1">
+                                                <span ng-show="contactInfo.number1.length">  {{ contactInfo.phone1 }} {{ contactInfo.number1  }} </span>
+                                                <span ng-show="contactInfo.number2.length"> {{ contactInfo.phone2 }} {{ contactInfo.number2 }} </span>
+                                                {{ contactInfo.eMail }}
+                                                <span ng-show="contactInfo.socialMedia.length">
+                                                    <img height=19 width=19 ng-src="{{ contactInfo.socialMediaLogo }}"> {{ contactInfo.socialMedia }}
                                                 </span>
+                                            </span>
 
-                                            </td>
-                                            <td class="ci_dtl2"></td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-
-
-                    </td>
-                    <td class="ci_qr" id="ci_qrcode"></td>
-                </tr>
-            </table>
-        </div>
-        <div id="plain">
-            <table border=0 width=100% cellpadding=0 cellspacing=0>
-                <tr>
-                    <td class="ci_ppn_spacer"></td>
-                    <td class="ci_ppn_chk"><input type="checkbox" id="chk_picture" onclick="checkPic();"></td>
-                    <td class="ci_ppn_title1">Display My Picture</td>
-                    <td class="ci_ppn_main">PREVIEW PANE</td>
-                    <td class="ci_ppn_chk"><input type="checkbox" id="chk_qrcode" onclick="checkQR();" value="show" type="text"></td>
-                    <td class="ci_ppn_title2">Display QR Code</td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="util_car" align="PREV">
-            <br>
-
-            <table id="tableHeader" width=100% border=0>
-                <tr style="margin-bottom: 10px;">
-                    <td class="ci_txt1" style="width: 150px;">Name</td>
+                                        </td>
+                                        <td class="ci_dtl2"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
 
 
-                    <td style="width: 260px; Text-align: justified">
-                        <div>
+                </td>
+                <td class="ci_qr" id="ci_qrcode"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="plain">
+        <table border=0 width=100% cellpadding=0 cellspacing=0>
+            <tr>
+                <td class="ci_ppn_spacer"></td>
+                <td class="ci_ppn_chk"><input type="checkbox" id="chk_picture" onclick="checkPic();"></td>
+                <td class="ci_ppn_title1">Display My Picture</td>
+                <td class="ci_ppn_main">PREVIEW PANE</td>
+                <td class="ci_ppn_chk"><input type="checkbox" id="chk_qrcode" onclick="checkQR();" value="show" type="text"></td>
+                <td class="ci_ppn_title2">Display QR Code</td>
+            </tr>
+        </table>
+    </div>
 
-                            <div style="display: inline-block;">
-                                <div class="ci_txt2" style="width: 70px;">First Name</div>
-                                <input type="text" placeholder="First Name" class="form-control"
-                                       style="width: 13ch" ng-model="contactInfo.firstName">
-                            </div>
+    <div id="util_car" align="PREV">
+        <br>
 
-                            <div style="display: inline-block; margin-left: 19px;">
-                                <div class="ci_txt2" style="width: 90px;">Middle Name</div>
+        <table id="tableHeader" width=100% border=0>
+            <tr style="margin-bottom: 10px;">
+                <td class="ci_txt1" style="width: 150px;">Name</td>
 
-                                <input style="width: 14ch;" type="text" name="q" class="form-control" placeholder="Middle Name" ng-model="contactInfo.middleName">
-                            </div>
 
-                        </div>
-                    </td>
+                <td style="width: 260px; Text-align: justified">
+                    <div>
 
-                    <td>
-
-                        <div style="display: inline-block; margin-left: 0px;">
-                            <div class="ci_txt2" style="width: 90px;">Last Name</div>
-
-                            <input class="form-control" type="text" placeholder="Last Name" ng-model="contactInfo.lastName">
+                        <div style="display: inline-block;">
+                            <div class="ci_txt2" style="width: 70px;">First Name</div>
+                            <input type="text" placeholder="First Name" class="form-control"
+                                   style="width: 13ch" ng-model="contactInfo.firstName">
                         </div>
 
+                        <div style="display: inline-block; margin-left: 19px;">
+                            <div class="ci_txt2" style="width: 90px;">Middle Name</div>
 
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="ci_txt1" rowspan=1>Address</td>
-
-                    <td>
-                        <div class="ci_txt2">Street Address</div>
-                        <div style="display: inline-block; vertical-align: top;">
-                            <input type="text" class="form-control" id="address" placeholder="Street Address" ng-model="contactInfo.addrStreet">
-                        </div>
-                    </td>
-
-                    <td>
-                        <div style="vertical-align: top;">
-
-                            <div style="display: inline-block; vertical-align: top; margin-left: 0px">
-                                <div class="ci_txt2">city/town</div>
-                                <input style="width: 12ch;" class="form-control" type="text" id="city" placeholder="city/town" ng-model="contactInfo.addrTown">
-                            </div>
-
-                            <div style="display: inline-block; vertical-align: top; margin-left: 0px">
-                                <div class="ci_txt2">state/county</div>
-                                <statedropdown placeholder="state" class="input_active_ob" passedmodel="contactInfo.addrState"></statedropdown>
-                            </div>
-
-                            <div style="display: inline-block; vertical-align: top;">
-                                <div class="ci_txt2">zip/postal code</div>
-                                <input type="text" class="form-control" id="zipCode" style="margin-left: 12px; width: 11ch"
-                                       placeholder="zip/postal code" ng-model="contactInfo.addrZip">
-                            </div>
+                            <input style="width: 14ch;" type="text" name="q" class="form-control" placeholder="Middle Name" ng-model="contactInfo.middleName">
                         </div>
 
-                    </td>
+                    </div>
+                </td>
+
+                <td>
+
+                    <div style="display: inline-block; margin-left: 0px;">
+                        <div class="ci_txt2" style="width: 90px;">Last Name</div>
+
+                        <input class="form-control" type="text" placeholder="Last Name" ng-model="contactInfo.lastName">
+                    </div>
 
 
-                </tr>
-                <tr>
-                    <td class="ci_txt1" rowspan=1>Phone</td>
+                </td>
+            </tr>
 
+            <tr>
+                <td class="ci_txt1" rowspan=1>Address</td>
 
-                    <td colspan="1">
-                        <div class="ci_txt2" style="width: 100px; text-align: right;">phone 1</div>
-                        <div style="display: inline-block; vertical-align: top;">
+                <td>
+                    <div class="ci_txt2">Street Address</div>
+                    <div style="display: inline-block; vertical-align: top;">
+                        <input type="text" class="form-control" id="address" placeholder="Street Address" ng-model="contactInfo.addrStreet">
+                    </div>
+                </td>
 
-                            <div style="display: inline-block; vertical-align: top;">
-                                <select class="form-control" data-ng-options="o.id as o.name for o in phoneTypes" data-ng-model="contactInfo.phone1"></select>
-                            </div>
+                <td>
+                    <div style="vertical-align: top;">
 
-                            <div style="display: inline-block; vertical-align: top; margin-left: 10px">
-                                <input type="text" class="form-control" id="phonenum1" style="width: 15ch"
-                                       placeholder="Phone 1" ng-model="contactInfo.number1" ng-bind="number1 | tel">
-                            </div>
+                        <div style="display: inline-block; vertical-align: top; margin-left: 0px">
+                            <div class="ci_txt2">city/town</div>
+                            <input style="width: 12ch;" class="form-control" type="text" id="city" placeholder="city/town" ng-model="contactInfo.addrTown">
                         </div>
-                    </td>
 
-
-                    <td colspan="1">
-
-                        <div class="ci_txt2" style="width: 100px; text-align: right;">phone 2</div>
+                        <div style="display: inline-block; vertical-align: top; margin-left: 0px">
+                            <div class="ci_txt2">state/county</div>
+                            <statedropdown placeholder="state" class="input_active_ob" passedmodel="contactInfo.addrState"></statedropdown>
+                        </div>
 
                         <div style="display: inline-block; vertical-align: top;">
-
-
-                            <div style="display: inline-block; vertical-align: top; margin-left: 0px">
-                                <select class="form-control" data-ng-options="o.id as o.name for o in phoneTypes" data-ng-model="contactInfo.phone2"></select>
-                            </div>
-
-                            <div style="display: inline-block; vertical-align: top;margin-left: 10px">
-                                <input class="form-control" type="text" id="phonenum2" style="width: 15ch"
-                                       placeholder="" ng-model="contactInfo.number2">
-                            </div>
+                            <div class="ci_txt2">zip/postal code</div>
+                            <input type="text" class="form-control" id="zipCode" style="margin-left: 12px; width: 11ch"
+                                   placeholder="zip/postal code" ng-model="contactInfo.addrZip">
                         </div>
-                    </td>
-                </tr>
+                    </div>
 
-                <tr>
-                    <td class="ci_txt1" rowspan=1>Online</td>
+                </td>
 
-                    <td class="ci_txt22">
-                        <div style="vertical-align: top;">
 
-                            <div style="display: inline-block; vertical-align: top;">
-                                <span class="ci_txt2">Email Address</span>
+            </tr>
+            <tr>
+                <td class="ci_txt1" rowspan=1>Phone</td>
 
-                                <input class="form-control" type="text" name="q" id="txtU_Email_Address"
-                                       ng-model="contactInfo.eMail">
 
-                            </div>
+                <td colspan="1">
+                    <div class="ci_txt2" style="width: 100px; text-align: right;">phone 1</div>
+                    <div style="display: inline-block; vertical-align: top;">
+
+                        <div style="display: inline-block; vertical-align: top;">
+                            <select class="form-control" data-ng-options="o.id as o.name for o in phoneTypes" data-ng-model="contactInfo.phone1"></select>
+                        </div>
+
+                        <div style="display: inline-block; vertical-align: top; margin-left: 10px">
+                            <input type="text" class="form-control" id="phonenum1" style="width: 15ch"
+                                   placeholder="Phone 1" ng-model="contactInfo.number1" ng-bind="number1 | tel">
+                        </div>
+                    </div>
+                </td>
+
+
+                <td colspan="1">
+
+                    <div class="ci_txt2" style="width: 100px; text-align: right;">phone 2</div>
+
+                    <div style="display: inline-block; vertical-align: top;">
+
+
+                        <div style="display: inline-block; vertical-align: top; margin-left: 0px">
+                            <select class="form-control" data-ng-options="o.id as o.name for o in phoneTypes" data-ng-model="contactInfo.phone2"></select>
+                        </div>
+
+                        <div style="display: inline-block; vertical-align: top;margin-left: 10px">
+                            <input class="form-control" type="text" id="phonenum2" style="width: 15ch"
+                                   placeholder="" ng-model="contactInfo.number2">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="ci_txt1" rowspan=1>Online</td>
+
+                <td class="ci_txt22">
+                    <div style="vertical-align: top;">
+
+                        <div style="display: inline-block; vertical-align: top;">
+                            <span class="ci_txt2">Email Address</span>
+
+                            <input class="form-control" type="text" name="q" id="txtU_Email_Address"
+                                   ng-model="contactInfo.eMail">
 
                         </div>
-                    </td>
 
-                    <td class="ci_txt22">
-                        <div style="vertical-align: top;">
-                            <div class="ci_txt2">Social Media</div>
-                            <div style="display: inline-block; vertical-align: top; margin-left: 0px">
+                    </div>
+                </td>
 
-                                <select class="form-control" data-ng-options="o.img as o.name for o in socialMediaTypes" data-ng-model="contactInfo.socialMediaLogo"></select>
-                            </div>
+                <td class="ci_txt22">
+                    <div style="vertical-align: top;">
+                        <div class="ci_txt2">Social Media</div>
+                        <div style="display: inline-block; vertical-align: top; margin-left: 0px">
 
-                            <div style="display: inline-block; vertical-align: top;">
-
-                                <input class="form-control" type="text" id="txtU_Media_Id"
-                                       ng-model="contactInfo.socialMedia">
-                            </div>
+                            <select class="form-control" data-ng-options="o.img as o.name for o in socialMediaTypes" data-ng-model="contactInfo.socialMediaLogo"></select>
                         </div>
-                    </td>
-                </tr>
 
-                <tr></tr>
+                        <div style="display: inline-block; vertical-align: top;">
 
-                <tr>
+                            <input class="form-control" type="text" id="txtU_Media_Id"
+                                   ng-model="contactInfo.socialMedia">
+                        </div>
+                    </div>
+                </td>
+            </tr>
 
-                    <!--
-                                            <td class="ci_txt1"  >Photo</td>
-                                            <td id="1ci_pic" colspan="2">
-                                                <div id="ci_pic" style="display: inline-block; vertical-align: top;">
-                                                    <img height=135 height=130 src="./data/photos/akabret-1.jpg">
-                                                </div>
+            <tr></tr>
 
-                                                <div style="display: inline-block; vertical-align: bottom; height: 60px">
-                                                    <input type="file" id="file" name="file">
-                                                </div>
-                    -->
-                </tr>
+            <tr>
 
-                <tr><td height="20px;"></td></tr>
+                <!--
+                                        <td class="ci_txt1"  >Photo</td>
+                                        <td id="1ci_pic" colspan="2">
+                                            <div id="ci_pic" style="display: inline-block; vertical-align: top;">
+                                                <img height=135 height=130 src="./data/photos/akabret-1.jpg">
+                                            </div>
 
-                <tr>
-                    <td></td>
-                    <td>
-                        <a style="background-color: #0066aa" class="btn" ng-click="saveLocalContact()" href="/Home">
-                            <span class="white-icon" toggleclass="red-icon"> <i class="glyphicon glyphicon-arrow-left"> Home Page </i> </span>
-                        </a>
-                    </td>
+                                            <div style="display: inline-block; vertical-align: bottom; height: 60px">
+                                                <input type="file" id="file" name="file">
+                                            </div>
+                -->
+            </tr>
 
-                    <td>
-                        <a style="sbackground-color: #0066aa" class="btn btn-success" ng-click="SaveNewResume()">
-                            <span class="white-icon" toggleclass="red-icon"> Save Resume <i class="glyphicon glyphicon-"></i> </span>
-                        </a>
-                    </td>
+            <tr><td height="20px;"></td></tr>
 
-                    <td>
-                        <a style="background-color: #0066aa" class="btn" ng-click="saveLocalContact()" href="#careers">
-                            <span class="white-icon" toggleclass="red-icon"> Career Experience <i class="glyphicon glyphicon-arrow-right"></i> </span>
-                        </a>
-                    </td>
+            <tr>
+                <td></td>
+                <td>
+                    <a class="btn btn-primary" ng-click="saveLocalContact()" href="/Home">
+                        <span class="white-icon"> <i class="glyphicon glyphicon-arrow-left"> Home Page </i> </span>
+                    </a>
+                </td>
 
-                </tr>
+                <td>
+                    <a style="sbackground-color: #0066aa" class="btn btn-success" ng-click="SaveNewResume()">
+                        <span class="white-icon" toggleclass="red-icon"> Save Resume <i class="glyphicon glyphicon-"></i> </span>
+                    </a>
+                </td>
+
+                <td>
+                    <a class="btn btn-primary" ng-click="saveLocalContact()" href="#careers">
+                        <span class="white-icon"> Career Experience <i class="glyphicon glyphicon-arrow-right"></i> </span>
+                    </a>
+                </td>
+
+            </tr>
 
 
-            </table>
-        </div>
-    </form>
+        </table>
+    </div>
+
 
 </div>

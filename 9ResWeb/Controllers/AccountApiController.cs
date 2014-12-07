@@ -28,7 +28,7 @@ namespace _9ResWeb.Controllers
     {
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
-        IdentityDbContext<ApplicationUser> AuthContext = new IdentityDbContext<ApplicationUser>();
+        ApplicationDbContext AuthContext = new ApplicationDbContext();
 
         public AccountApiController()
         {
@@ -108,15 +108,31 @@ namespace _9ResWeb.Controllers
 
         [AllowAnonymous]
         [Route("GetUserInfo")]
-        [ResponseType(typeof(ApplicationUser))]
+        [ResponseType(typeof(ExternalLoginViewResult))]
         public async Task<IHttpActionResult> GetUserInfo()
         {
             ApplicationUser user;
+            // ExternalLoginViewResult response = new ExternalLoginViewResult();
 
             if (User.Identity.IsAuthenticated)
             {
+                var UserId = User.Identity.GetUserId();
                 user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                return Ok(user);
+
+                var userInfo = AuthContext.UserInfo.FirstOrDefault(u => u.Id == user.UserInfo_Id);
+
+                return Ok(new ExternalLoginViewResult()
+                    {
+                        UserInfo = new UserInformation()
+                        {
+                            UserId = user.Id,
+                            Email = userInfo.Email,
+                            FirstName = userInfo.FirstName,
+                            LastName = userInfo.LastName,
+                            DisplayName = userInfo.DisplayName,
+                            Picture = userInfo.ProfilePicture,
+                        }
+                    });
 
             }
 
@@ -217,7 +233,7 @@ namespace _9ResWeb.Controllers
                 return InternalServerError();
             }
 
-            return Ok();
+            return Ok(result);
 
         }
 

@@ -9,6 +9,9 @@ namespace _9ResWeb.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        [ForeignKey("UserInfo")]
+        public int UserInfo_Id { get; set; }
+
         public virtual UserInfo UserInfo { get; set; }
     }
 
@@ -23,7 +26,8 @@ namespace _9ResWeb.Models
 
         public string ProfilePicture { get; set; }
 
-        public virtual IEnumerable<UserEmail> UserEmails { get; set; }
+        //public virtual IEnumerable<UserEmail> UserEmails { get; set; }
+
     }
 
     [Table("UserEmails")]
@@ -51,6 +55,16 @@ namespace _9ResWeb.Models
         public DbSet<UserInfo> UserInfo  { get; set; }
         public DbSet<UserEmail> UserEmail  { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ApplicationUser>()
+              .HasRequired<UserInfo>(profile => profile.UserInfo);
+            //modelBuilder.Configurations.Add(new ResourceConfiguration());
+            //modelBuilder.Entity<UserInfo>()
+            //  .HasRequired<ApplicationUser>(profile => profile.User);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 
     class AuthenticationMigrationsConfiguration : DbMigrationsConfiguration<ApplicationDbContext>

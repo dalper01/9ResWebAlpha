@@ -18,7 +18,18 @@ ResumeBuilderModule.config(function ($routeProvider) {
 
 
     })
+    .when('/expertise', {
+        templateUrl: '/HTMLTemplates/ResumeBuilder/Expertise.html',
+        controller: 'expertiseController'
 
+
+    })
+    .when('/objective', {
+        templateUrl: '/HTMLTemplates/ResumeBuilder/Objective.html',
+        controller: 'objectiveController'
+
+
+    })
     .otherwise({
         redirectTo: '/'
     })

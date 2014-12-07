@@ -148,6 +148,7 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
 
     // Request Validation from Facebook API
     $scope.loginFacebook = function () {
+        $scope.FBlogin();
         //$scope.showLogin = false;
     }
 
@@ -156,7 +157,7 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
         //$scope.showLogin = false;
     }
 
-    
+
     if (true) {
         $scope.GetUserInfo();
     }
@@ -179,7 +180,7 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
         //    console.log(err);
         //});
 
-        var GooglePlusResult = { };
+        var GooglePlusResult = { Issuer: "Google" };
 
         console.log('login');
         GooglePlus.login().then(function (authResult) {
@@ -194,7 +195,7 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
                 console.log('user');
                 console.log(user);
 
-                GooglePlusResult.Issuer = "Google";
+                //GooglePlusResult.Issuer = "Google";
                 GooglePlusResult.Id = user.id;
 
                 GooglePlusResult.Email = user.email;
@@ -286,7 +287,7 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
     };
 
     $scope.FBlogin = function () {
-        var AllUserData = {};
+        var FaceBookResult = { Issuer: "Facebook" };
 
         FB.getLoginStatus(function (response) {
             $scope.loginStatus = response.status;
@@ -314,24 +315,70 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
         FB.login(function (response) {
             console.log(response);
 
-            AllUserData.accessToken = response.authResponse.accessToken;
-            AllUserData.userID = response.authResponse.userID;
+            FaceBookResult.AccessToken = response.authResponse.accessToken;
+            FaceBookResult.Id = response.authResponse.userID;
 
             if (response.authResponse) {
                 console.log(response);
 
-                AllUserData.grantedScopes = response.authResponse.grantedScopes;
+                FaceBookResult.grantedScopes = response.authResponse.grantedScopes;
 
-                console.log('Welcome!  Fetching your information.... ');
+                console.log('Granted!  Fetching your information.... ');
                 FB.api('/me', function (response) {
                     console.log(response);
 
-                    AllUserData.name = response.name;
-                    AllUserData.email = response.email;
-                    AllUserData.first_name = response.first_name;
-                    AllUserData.last_name = response.last_name;
-                    AllUserData.verified = response.verified;
-                    console.log(AllUserData);
+                    FaceBookResult.Email = response.email;
+                    FaceBookResult.FirstName = response.first_name;
+                    FaceBookResult.LastName = response.last_name;
+                    FaceBookResult.FullName = response.name;
+
+                    FaceBookResult.Link = response.link;
+                    FaceBookResult.Gender = response.gender;
+
+
+                    FaceBookResult.verified = response.verified;
+                    //console.log(FaceBookResult);
+
+
+                    FB.api(
+                        "/me/picture",
+                        {
+                            "type": "square",  //  "small", "normal", "large",
+                        },
+                        function (response) {
+                            if (response && !response.error) {
+                                FaceBookResult.Picture = response.data.url;
+                            }
+                            else {
+                                console.log('error');
+                                console.log(response);
+                            }
+
+
+                            $http({
+                                url: "/ExternalLogin",
+                                method: "POST",
+                                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                                data: $.param(FaceBookResult)
+                            }).success(function (data, status, headers, config) {
+
+                                console.log('Google Login Succeeded');
+                                console.log(data);
+                                $scope.SetUserLoggedIn();
+                                $scope.SetUserData(data);
+                                $scope.CloseLogin();
+                            }).error(function (data, status, headers, config) {
+                                $scope.status = status;
+                                console.log('Google Login Failed');
+                            });
+
+                        }
+                    );
+
+
+                    console.log('FaceBookResult');
+                    console.log(FaceBookResult);
+
 
                 });
             } else {
@@ -339,13 +386,19 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
             }
         },
         {
-            scope: 'email,user_likes',
+            scope: 'email',
+            //scope: 'email,user_likes',
             //auth_type: 'reauthenticate',
             return_scopes: true
         });
 
+        //    .then(function () {
 
-        console.log(AllUserData);
+
+        //});;
+
+
+        console.log(FaceBookResult);
         //console.log('Name: ' + response.name);
         //console.log('Email: ' + response.email);
         //console.log('status: ' + response.status);
@@ -362,24 +415,6 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
             $scope.loginStatus = response.status;;
         });
 
-        //Facebook.getLoginStatus(function (response) {
-        //    console.log(response.status);
-        //    $scope.loginStatus = response.status;;
-
-        //    if (response.status == 'connected') {
-        //        console.log('9es Connected to FB');
-        //        console.log(response.authResponse);
-        //    }
-        //    if (response.status == 'disconnected') {
-        //        console.log('9es Connected to FB');
-        //        Facebook.login(function (response) {
-        //            $scope.loginStatus = response.status;
-        //            return;
-        //        });
-        //$scope.loginStatus = response.status;
-
-        //    }
-        //});
 
 
 

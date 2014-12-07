@@ -16,11 +16,15 @@ function ($scope, $rootScope, $modal, localStorageService) {
     display_jobs('');
     set_cr_height();
 
-    $("input:text, textarea, select").addClass("input_inactive_ob");
-    $("input:text, textarea, select").focus(function(){$(this).addClass("input_active_ob").removeClass("input_inactive_ob");
-    }).blur(function(){$(this).removeClass("input_active_ob").addClass("input_inactive_ob");
-        });
+    //$("input:text, textarea, select").addClass("input_inactive_ob");
+    //$("input:text, textarea, select").focus(function(){$(this).addClass("input_active_ob").removeClass("input_inactive_ob");
+    //}).blur(function(){$(this).removeClass("input_active_ob").addClass("input_inactive_ob");
+    //    });
 
+
+    $scope.EditJob = function (job) {
+        job.edit = true;
+    };
 
 
     $scope.openAddJob = function () {

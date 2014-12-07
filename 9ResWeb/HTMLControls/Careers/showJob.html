@@ -1,0 +1,138 @@
+﻿<div class="row">
+
+    <table class="JobsDisplay" border="0" cellpadding="0" cellspacing="0" width="100%" ng-click="EditJob(job)">
+        <tr class="hdr" ng-click="open(job)">
+            <td width="10" class="res_title">&nbsp;</td>
+            <td class="res_title" align="left">
+                {{ job.firmLong }}
+            </td>
+            <td class="res_title" align="left">
+                {{ job.titleLong }}
+            </td>
+            <td class="res_title" align="right">
+                {{ job.city }}, {{ job.state }}
+            </td>
+            <td class="res_title" align="right">
+                {{ job.startMonth }}/{{ job.startYear }}  -  {{ job.endMonth }}/{{ job.endYear }}
+            </td>
+        </tr>
+
+        <tr class="dtl">
+            <td width="10">&nbsp;</td>
+            <td colspan="4" class="res_body">
+                <ul>
+                    <li sstyle="max-width: 500px" ng-repeat="detail in job.details | orderBy:'order'"> {{ detail.description }} </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <div class="row container" style="border: 1px solid #ddddff; margin-bottom: 35px; margin-top: 35px;  padding-bottom: 0px; background-color: #ffffff" ng-if="job.edit">
+        <div class="row" style="border: 1px solid #eeeeee; background-color: #ddddff; text-align: center; font-weight: bold; margin-bottom: 25px;">
+            <div class="col-sm-12" style="padding: 10px 0px 10px 0px;">
+                Edit Job
+            </div>
+        </div>
+        <div class="row" style="height: 70px;">
+            <div class="col-sm-offset-0 col-xs-7 inputTitles">
+                <div class="col-xs-6">
+                    Company Name
+                    <input class="form-control input_inactive_ob" id="txt_Firm_Long" title="What was the name of the place where you worked?&lt;br&gt;Ex: Acme Corporation" style="width: 180px" ng-model="job.firmLong">
+                </div>
+                <div class="col-xs-6">
+                    Position Title
+                    <input class="form-control input_inactive_ob" name="txt_Title_Long" title="What was your official job title?  Ex: Senior Business Analyst" style="width: 200px" ng-model="job.titleLong">
+                </div>
+            </div>
+
+            <div class="col-xs-5 inputTitles" style="text-align: center">
+                Location <br />
+                <div class="col-xs-4 col-sm-offset-2">
+                    <input class="form-control input_inactive_ob" name="txt_Location" title="Where was your job located?  Ex: Boston, MA" style="width: 100px" ng-model="job.city">
+                </div>
+                <div class="col-xs-4">
+                    <statedropdown class="input_active_ob" passedmodel="job.state"></statedropdown>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-offset-0 col-xs-6 inputTitles">
+                <div class="col-xs-6">
+                    Company (timeline)
+                    <input class="form-control input_inactive_ob" id="txt_Firm_Long" title="Short name of Company for Timeline" style="width: 100px" ng-model="job.firmShort">
+                </div>
+                <div class="col-xs-6">
+                    Position (timeline)
+                    <input class="form-control input_inactive_ob" name="txt_Title_Long" title="Short job title for Timeline" style="width: 100px" ng-model="job.titleShort">
+                </div>
+            </div>
+
+            <div class="col-xs-3 inputTitles" style="text-align: center">
+                Start Date <br />
+                <div class="col-xs-5 col-sm-offset-2">
+                    <monthdropdown class="input_active_ob" passedmodel="job.startMonth"></monthdropdown>
+                </div>
+                <div class="col-xs-4">
+                    <yeardropdown class="input_active_ob" passedmodel="job.startYear"></yeardropdown>
+                </div>
+            </div>
+
+            <div class="col-xs-3 inputTitles" style="text-align: center">
+                End Date <br />
+                <div class="col-xs-5 col-sm-offset-0">
+                    <monthdropdown class="input_active_ob" passedmodel="job.endMonth"></monthdropdown>
+                </div>
+                <div class="col-xs-4">
+                    <yeardropdown class="input_active_ob" passedmodel="job.endYear"></yeardropdown>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" style="margin-top:40px; margin-bottom: 20px;">
+            <div class="col-sm-offset-4 col-sm-3">
+                <strong>Job Details</strong> ( <a ng-click="addJobDetail(job)"> <i class="glyphicon glyphicon-plus">Add</i> </a> )
+            </div>
+        </div>
+
+        <div class="row" ng-repeat="detail in job.details | orderBy:'order'" style="margin-bottom: 10px;">
+            <!--{{ detail.description }}-->
+            <div class="col-sm-2">
+                <div class="col-sm-12" title="Move this job detail up.">
+                    <span class="glyphicon glyphicon-chevron-up small hov-red" ng-click="switchDetailOrderUp(detail)"></span>
+                    <span class="glyphicon glyphicon-chevron-down small hov-red" ng-click="switchDetailOrderDown(detail)"></span>
+                </div>
+            </div>
+
+
+            <!--<td> <span style="color: black;"> {{ detail.order }} </span></td>-->
+
+
+            <div class="col-sm-9 col-sm-pull-1 pop_details">
+                <textarea class="form-control input_inactive_ob" title="Describe what you did at this job." style="width:100%" ng-model="detail.description"></textarea>
+            </div>
+
+            <div class="col-sm-1 col-sm-pull-1" title="discard detail  (carefull!)" ng-click="deleteJobDetail(job, detail)">
+                <span class="glyphicon glyphicon-trash small hov-red"></span>
+            </div>
+
+
+
+        </div>
+
+        <div class="row" style="margin-top: 20px; background-color: #555555; padding: 25px 0 25px 0;">
+            <div class="col-sm-offset-2 col-sm-2">
+                <a style="" class="btn btn-primary" ng-click="saveJob(job)">
+                    <span class="white-icon"> <i class="glyphicon glyphicon-thumbs-up"> Confirm Changes </i> </span>
+                </a>
+            </div>
+            <div class="col-sm-offset-3 col-sm-2">
+                <a style="" class="btn btn-danger" ng-click="cancel(job)">
+                    <span class="white-icon"> <i class="glyphicon glyphicon-thumbs-down"> Cancel Changes </i> </span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
