@@ -1,18 +1,20 @@
 ﻿@{
+    ViewBag.ngApp = "indexModule"; 
     ViewBag.Title = "Home Page";
 }
 
 @section scripts {
-<script src="~/Scripts/angular.js"></script>
 
-<script type="text/javascript" src="~/Scripts/NGControllers/indexController.js"></script>
-<script type="application/javascript" src="~/Scripts/NGDirectives/commonDirectives.js"></script>
-<script type="application/javascript" src="~/Scripts/NGDirectives/navBarApp.js"></script>
+    <script type="text/javascript" src="~/Javascript/NGControllers/indexController.js"></script>
+    <script type="application/javascript" src="~/Javascript/NGDirectives/commonDirectives.js"></script>
+    <script type="application/javascript" src="~/Javascript/NGDirectives/navBarApp.js"></script>
 
 }
 
 <div class="jumbotron">
-    <h2>The 9Res Advantages</h2>
+    <h4> 
+        <span style="font-family: 'Bauhaus 93'; font-weight:100; color: #4466AA; font-size: 42px; margin-right: -9px;">9</span> <span style="font-family: 'Bauhaus 93'; font-weight: lighter; font-size: 22px; margin-right: 5px;">res</span>
+     Advantages</h4>
 
     <div style="display: inline-block">
         <ul>
@@ -30,35 +32,23 @@
 
     </div>
 
-    @*<p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>*@
 </div>
 
 <div class="row" ng-app="indexModule">
 
     <div class="col-md-4">
-        @*<h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>*@
 
-        <span style="display: block; text-align: center; font-weight: bolder; color: blue;">
-            The 9Res Advantages
+        <span style="display: block; text-align: center; font-weight: bolder;">
+             Advantages
             <img src="@Url.Content("~/content/images/9resAdvantages.png")" height="400px">
         </span>
     </div>
 
 
     <div class="col-md-4">
-        @*<h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>*@
 
-        <span style="display: block; text-align: center; font-weight: bolder; color: blue;">
-            The 9Res Format
+        <span style="display: block; text-align: center; font-weight: bolder;">
+            Format
             <img src="@Url.Content("~/content/images/9resViewFormat.png")" height="400px">
         </span>
 
@@ -67,12 +57,9 @@
 
 
     <div class="col-md-4" ng-controller="indexController">
-        @*<h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>*@
 
-        <span style="display: block; text-align: center; font-weight: bolder; color: blue;">
-            Let's Get Started!
+        <span style="display: block; text-align: center; font-weight: bolder;">
+            Let's Get Started with!
         </span>
 
         <img ng-src="{{ getStartedSrc }}" height="400px" ng-mouseenter="changeStartImg('@Url.Content("~/content/images/9resGetStarted_hover.png")')"

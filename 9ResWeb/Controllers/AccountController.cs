@@ -23,6 +23,7 @@ namespace _9ResWeb.Controllers
         public AccountController(UserManager<ApplicationUser> userManager)
         {
             UserManager = userManager;
+            UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager) { AllowOnlyAlphanumericUserNames = false };
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
@@ -191,31 +192,110 @@ namespace _9ResWeb.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
+
+        [AllowAnonymous]
+        public ActionResult Login2()
+        {
+
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult HangoutsTest()
+        {
+
+            return View();
+        }
+
         //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
+
+            ApplicationUser user;
+            AuthenticateResult authResult;
+            IdentityResult identityResult;
+            string userName;
+
+            // Check if External Login Succeeded, Else Return to Login
+            #region Authentication Succeeded
+            // Confirm Authentication Succeeded
+            authResult = await AuthenticationManager.AuthenticateAsync(DefaultAuthenticationTypes.ExternalCookie);
+            if (authResult == null || authResult.Identity == null)
             {
                 return RedirectToAction("Login");
             }
 
-            // Sign in the user with this external login provider if the user already has a login
-            var user = await UserManager.FindAsync(loginInfo.Login);
-            if (user != null)
+            // Get Name Claim
+            var idClaim = authResult.Identity.FindFirst(ClaimTypes.NameIdentifier);
+            var emailClaim = authResult.Identity.FindFirst(ClaimTypes.Email);
+            if (idClaim == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            // Get Name Claim from Auhtication Cookie
+            var login = new UserLoginInfo(idClaim.Issuer, idClaim.Value);
+
+            if (idClaim.Issuer == "Facebook")
+                userName = authResult.Identity.Claims.ToArray()[1].Value;
+            else
+                userName = authResult.Identity.Name == null ? "" : authResult.Identity.Name.Replace(" ", "");
+
+            #endregion
+
+
+            // Check User logged in
+            // If User not logged in: Find and Login User
+            // If User not Exist: Create New User
+            if (!User.Identity.IsAuthenticated)
+            {
+
+                // Sign in the user with this external login provider if the user already has a login
+                user = await UserManager.FindAsync(login);
+                if (user != null)
+                {
+                    await SignInAsync(user, isPersistent: false);
+                    return RedirectToLocal(returnUrl);
+                }
+
+                // Else user is NOT logged in and Login NOT exist
+                // Assume user does not exist
+                // So create User
+                else
+                {
+                    user = new ApplicationUser() { UserName = userName };
+                    identityResult = await UserManager.CreateAsync(user);
+
+                    // If Error creating user Return Error
+                    if (!identityResult.Succeeded)
+                    {
+                        return View("Error");
+                    }
+                }
+
+            }
+            // Else user Authenticated, Get handle to logged in User
+            else
+            {
+                user = UserManager.FindById(User.Identity.GetUserId());
+            }
+
+
+
+            //var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+
+            identityResult = await UserManager.AddLoginAsync(user.Id, login);
+
+            if (identityResult.Succeeded)
             {
                 await SignInAsync(user, isPersistent: false);
                 return RedirectToLocal(returnUrl);
             }
-            else
-            {
-                // If the user does not have an account, then prompt the user to create an account
-                ViewBag.ReturnUrl = returnUrl;
-                ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { UserName = loginInfo.DefaultUserName });
-            }
+
+            return RedirectToLocal(returnUrl);
+
         }
 
         //

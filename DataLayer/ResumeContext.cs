@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Entities.ResumeEntities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
@@ -11,7 +12,7 @@ namespace DataLayer
     public class ResumeContext : DbContext
     {
         public ResumeContext()
-            : base("name=ResumeContext") 
+            : base("name=ResumeContext")
         {
             this.Configuration.LazyLoadingEnabled = false;
             this.Configuration.ProxyCreationEnabled = false;

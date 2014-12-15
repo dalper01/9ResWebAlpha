@@ -1,0 +1,51 @@
+﻿#loginForm {
+
+    position:fixed;
+    top:90px;left:40%;
+    z-index:1050;
+    /*padding-bottom: 20px;*/
+    /*max-width: 500px;*/
+    min-height: 400px;
+    height:auto;
+    width: 400px;
+    background-color: white;
+    border:1px solid #dddddd;
+
+}
+
+.Login-Header{
+   
+    padding-top: 0px;
+    height: 42px;
+    background-color: #DDDDDD;
+    color: #555555;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 2px solid #AAAAAA;
+    margin-bottom: 20px;
+}
+
+.Login-Header  a {
+    color: #428BCA;
+}
+
+.Login-Header  a:hover {
+    color: red;
+}
+
+.btn-9res {
+    color: #DDDDDD; 
+    background-color: #333333; 
+    border-color: #aaaaaa; 
+}
+
+.btn-9res:hover, 
+.btn-9res:focus, 
+.btn-9res:active, 
+.btn-9res.active, 
+.open .dropdown-toggle.btn-sample { 
+  color: #DDDDDD; 
+  background-color: #454545; 
+  border-color: #666666; 
+} 

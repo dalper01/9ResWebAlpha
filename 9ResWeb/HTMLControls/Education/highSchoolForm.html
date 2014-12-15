@@ -1,86 +1,85 @@
 
-<div class="schoolHeader" colspan="2" style="height: 35px; width: 250px; vertical-align: middle;
-            background-image: url('./icons/DiplomaBG.jpg')">
-    <span style="color: #444444; font-size: 14; font-weight: bold; vertical-align: middle"> Enter Highschool</span>
+<div class="row container" style="background-image: url('/Content/icons/graduation_cap_and_diploma.png'); min-height: 260px; background-repeat: no-repeat; width: 900px; background-position: 610px 80px;">
+    <div class="row" style="border: 1px solid #eeeeee; background-color: #ddddff; text-align: center; font-weight: bold; margin-bottom: 25px; width: 900px">
+        <div class="col-sm-1 col-sm-offset-0" style="text-align: left;">
+            <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 30px; margin-right: -7px;">9</span>
+            <span style="font-family: 'Bauhaus 93'; color: #555555; font-size: 15px; margin-right: 5px; position: relative; top: -.42em;">res</span>
+        </div>
+        <div class="col-sm-10" sstyle="padding: 0px 0px 0px 0px;">
+            <h4 style="font-weight: bold"> {{ Title }} </h4>
+        </div>
+        <div class="col-sm-1 col-sm-offset-0" style=" text-align: right;">
+            <a ng-click="cancelHighSchool(job)"><i class="fa fa-times" style="color: black; text-align: right;"></i></a>
+        </div>
+    </div>
 
-</div>
 
 
-<div>
-    <div style="float: left">
-        <div style="float: left;">
+    <div class="row">
+        <div class="col-sm-9 space5">
+            <div class="row">
+                <div class="col-sm-2 schoolform">
+                    School Name
+                </div>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" ng-model="highSchool.name">
+                </div>
+            </div>
 
-            <table class="schoolForm" style="margin-top: 15px;" ng-hide="highSchool.hide">
-                <tr>
-                    <td>
-                        School Name
-                    </td>
-                    <td>
-                        <input type="text" ng-model="highSchool.name">
-                    </td>
-                </tr>
+            <div class="row">
+                <div class="col-sm-2 schoolform">
+                    Location
+                </div>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" placeholder="City" ng-model="highSchool.city" style="width: 14ch">
+                </div>
+                <div class="col-sm-4">
+                    , <statedropdown passedmodel="highSchool.state"></statedropdown>
+                </div>
+            </div>
 
-                <tr>
-                    <td>
-                        Location
-                    </td>
-                    <td nowrap style="vertical-align: top">
-                        <div style="display: inline-block">
-                            <input type="text" placeholder="City" ng-model="highSchool.city" style="width: 14ch">
-                        </div>
-                        <div style="display: inline-block;vertical-align: top;">
-                            , <statedropdown passedmodel="highSchool.state"></statedropdown>
-                        </div>
-                    </td>
-                </tr>
+            <div class="row">
+                <div class="col-sm-2 schoolform">
+                    Graduated?
+                </div>
+                <div class="col-sm-2">
+                    <input type="checkbox" ng-model="highSchool.graduated">
+                </div>
+            </div>
 
-                <tr>
-                    <td>
-                        Graduated?
-                    </td>
-                    <td>
-                        <input type="checkbox" ng-model="highSchool.graduated">
-                    </td>
-                </tr>
-
-                <tr ng-show="highSchool.graduated">
-                    <td>
-                        Graduation <br> Date
-                    </td>
-                    <td>
+            <div class="row" ng-show="highSchool.graduated">
+                <div class="col-sm-2 schoolform"> Graduation <br> Date </div>
+                <div class="col-sm-5">
+                    <div class="col-sm-4" style="align-content: flex-start; text-align: left;">
                         <monthdropdown passedmodel="highSchool.gradMonth"></monthdropdown>
+                    </div>
+                    <div class="col-sm-5">
                         <yeardropdown passedmodel="highSchool.gradYear"></yeardropdown>
-                    </td>
-                </tr>
-
-                <tr>
-
-                    <td>
-                        <a class="btn btn-primary" ng-disabled="!isNamePopulated()" ng-click="saveHighSchool()"> Save </a>
-                    </td>
-
-                    <td>
-                        <a class="btn btn-danger" ng-click="cancelHighSchool()"> Cancel </a>
-                    </td>
+                    </div>
+                </div>
+            </div>
 
 
-                </tr>
+            <!--<div style="float: left; vertical-align: top; margin-left: 105px;">
 
-
-            </table>
-        </div>
-
-        <div style="float: left; vertical-align: top; margin-left: 105px;">
-
-            <img src="http://sweetclipart.com/multisite/sweetclipart/files/imagecache/middle/graduation_cap_and_diploma.png"
-                    height="150px">
-
-
-
-
+                <img src="http://sweetclipart.com/multisite/sweetclipart/files/imagecache/middle/graduation_cap_and_diploma.png"
+                     height="150px">-->
         </div>
 
 
+    </div>
+
+    <div class="row" style="margin-top: 20px; background-color: #555555; width: 900px; padding-top: 15px; padding-bottom:15px;">
+        <div class="col-sm-1 col-sm-offset-2">
+            <a style="" class="btn btn-primary" ng-disabled="!isNamePopulated()" ng-click="saveHighSchool(job)">
+                <span> <i class="glyphicon glyphicon-thumbs-up"> Confirm Changes </i> </span>
+            </a>
+        </div>
+        <div class="col-sm-2 col-sm-offset-4">
+            <a style="" class="btn btn-danger" ng-click="cancelHighSchool()">
+                <span> <i class="glyphicon glyphicon-thumbs-down"> Cancel Changes </i> </span>
+            </a>
+        </div>
     </div>
 
 </div>

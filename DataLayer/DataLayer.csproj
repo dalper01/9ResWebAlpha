@@ -59,6 +59,7 @@
     <Compile Include="Entities\ResumeEntities\Highschools.cs" />
     <Compile Include="Entities\ResumeEntities\JobDetails.cs" />
     <Compile Include="Entities\ResumeEntities\Jobs.cs" />
+    <Compile Include="Entities\ResumeEntities\ResumeEntitiesWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\ResumeEntities\Resume.cs" />
     <Compile Include="ResumeContext.cs" />

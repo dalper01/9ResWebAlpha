@@ -6,31 +6,41 @@ using System.Threading.Tasks;
 using DataLayer;
 using LogicLayer.DTOs.Resume;
 using AutoMapper;
+using DataLayer.Entities.ResumeEntities;
 
 namespace LogicLayer
 {
     public class ResumeManager
     {
 
-        private ResumeRepo _resumeRepo;
+        private ResumeRepo resumeRepo;
 
         public ResumeManager()
         {
-            _resumeRepo = new ResumeRepo();
+            resumeRepo = new ResumeRepo();
         }
 
         public ResumeDTO AddResume( ResumeDTO newResume)
         {
+            ResumeEntitiesWrapper resWrapper = new ResumeEntitiesWrapper();
 
-            Resume resumeEnt = Mapper.Map<Resume>(newResume);
+            // map DTO's to Entities in Wrapper
+            resWrapper.resume = Mapper.Map<Resume>(newResume);
+            resWrapper.jobList = Mapper.Map<List<Jobs>>(newResume.jobList);
+            resWrapper.collegeList = Mapper.Map<List<Colleges>>(newResume.collegeList);
+            resWrapper.highschoolList = Mapper.Map<List<Highschools>>(newResume.highschoolList);
+            resWrapper.certificationList = Mapper.Map<List<Certifications>>(newResume.certificationList);
 
-            List<Jobs> jobList = Mapper.Map<List<Jobs>>(newResume.jobList);
+            Resume savedRes = resumeRepo.AddResume(resWrapper);
 
-            List<Colleges> collegeList = Mapper.Map<List<Colleges>>(newResume.collegeList);
-            List<Highschools> highschoolList = Mapper.Map<List<Highschools>>(newResume.highschoolList);
-            List<Certifications> certificationList = Mapper.Map<List<Certifications>>(newResume.certificationList);
+            ResumeDTO retRes = Mapper.Map<ResumeDTO>(savedRes);
+            retRes.jobList = Mapper.Map<List<JobDTO>>(savedRes.jobs);
+            retRes.collegeList = Mapper.Map<List<CollegeDTO>>(savedRes.colleges);
+            retRes.highschoolList = Mapper.Map<List<HighschoolDTO>>(savedRes.highschools);
+            retRes.certificationList = Mapper.Map<List<CertificationDTO>>(savedRes.certificates);
 
-            return newResume;
+
+            return retRes;
         }
 
 

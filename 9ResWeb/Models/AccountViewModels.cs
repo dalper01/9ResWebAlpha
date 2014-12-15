@@ -32,6 +32,7 @@ namespace _9ResWeb.Models
     {
         [Required]
         [Display(Name = "User name")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string UserName { get; set; }
 
         [Required]
@@ -47,6 +48,7 @@ namespace _9ResWeb.Models
     {
         [Required]
         [Display(Name = "User name")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string UserName { get; set; }
 
         [Required]
@@ -59,5 +61,8 @@ namespace _9ResWeb.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Remember me?")]
+        public bool RememberMe { get; set; }
     }
 }

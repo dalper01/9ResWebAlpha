@@ -1,0 +1,21 @@
+﻿<ul class="nav navbar-nav navbar-right" ng-if="!LoggedIn">
+    <li ng-click="OpenLogin()"><a id="loginLink" ng-click="OpenLogin()">Log in / Register </a></li>
+</ul>
+
+<ul class="nav navbar-nav navbar-right" ng-if="LoggedIn">
+    <li class="dropdown dropdown-dark">
+        <a style="padding-bottom: 0px;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <img ng-src="{{ UserData.Picture }}" style="padding: 0px 0px 0px 0px;  margin-right: 5px; position: relative; top: -.05em; overflow: hidden;" height="22" />
+            {{ UserData.DisplayName }} <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu dropdown-dark" role="menu">
+            <li><a href="">Resumes</a></li>
+            <li><a href="">Articles</a></li>
+            <li><a href="">Stuff</a></li>
+            <li class="divider"></li>
+            <li><a href="">Account</a></li>
+            <li class="divider"></li>
+            <li ng-click="Logout()"><a ng-click="Logout()">Log Out </a></li>
+        </ul>
+    </li>
+</ul>

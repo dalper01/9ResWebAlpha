@@ -24,7 +24,7 @@
 .modal-footer:after{clear:both;}
 .modal-footer .btn+.btn{margin-left:5px;margin-bottom:0;}
 .modal-footer .btn-group .btn+.btn{margin-left:-1px;}
-.modal-footer .btn-block+.btn-block{margin-left:0;}*/
+.modal-footer .btn-block+.btn-block{margin-left:0;}
 /*
 .modal-form{margin-bottom:0;}
 

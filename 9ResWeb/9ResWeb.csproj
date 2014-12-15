@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -54,6 +54,21 @@
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin.Security.Providers">
+      <HintPath>..\packages\Owin.Security.Providers.1.9.0\lib\net45\Owin.Security.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -63,6 +78,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.0.0\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -107,10 +125,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <Private>True</Private>
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -145,14 +159,8 @@
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin">
-      <HintPath>..\packages\Microsoft.Owin.2.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Owin.Host.SystemWeb">
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security">
-      <HintPath>..\packages\Microsoft.Owin.Security.2.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Facebook">
       <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
@@ -180,6 +188,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountApiController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ResumeBuilderController.cs" />
@@ -187,16 +196,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CertificationViewModel.cs" />
     <Compile Include="Models\CollegeViewModel.cs" />
     <Compile Include="Models\ContactInfoViewModel.cs" />
     <Compile Include="Models\EducationViewModel.cs" />
+    <Compile Include="Models\ExternalLoginViewModel.cs" />
+    <Compile Include="Models\ExternalLoginViewResult.cs" />
     <Compile Include="Models\HighschoolViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JobViewModel.cs" />
     <Compile Include="Models\JobDetailViewModel.cs" />
     <Compile Include="Models\ResumeViewModel.cs" />
+    <Compile Include="Models\UserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -208,12 +221,19 @@
   <ItemGroup>
     <Content Include="Content\9res-nie.css" />
     <Content Include="Content\9resModal.css" />
+    <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\docs.css" />
     <Content Include="Content\education.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\icons\certification.bmp" />
+    <Content Include="Content\icons\certs.jpg" />
     <Content Include="Content\icons\degree.bmp" />
     <Content Include="Content\icons\DiplomaBG.jpg" />
+    <Content Include="Content\icons\graduation_cap_and_diploma.png" />
+    <Content Include="Content\icons\graduation_cap_old.png" />
     <Content Include="Content\icons\hierarchy.bmp" />
     <Content Include="Content\icons\images.jpg" />
     <Content Include="Content\icons\money.bmp" />
@@ -231,6 +251,7 @@
     <Content Include="Content\images\icons\report.bmp" />
     <Content Include="Content\images\icons\server.bmp" />
     <Content Include="Content\images\icons\types-of-college-degrees.jpg" />
+    <Content Include="Content\LoginPopUp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -384,6 +405,8 @@
     <Content Include="Content\images\word_slide_tab_green.bmp" />
     <Content Include="Content\images\word_slide_tab_red.bmp" />
     <Content Include="Content\images\word_slide_tab_yellow.bmp" />
+    <Content Include="HTMLControls\Authentication\headerLogin.html" />
+    <Content Include="HTMLControls\Careers\showJob.html" />
     <Content Include="HTMLControls\Education\certificationForm.html" />
     <Content Include="HTMLControls\Education\collegeForm.html" />
     <Content Include="HTMLControls\Education\degreeDropDown.html" />
@@ -395,16 +418,177 @@
     <Content Include="HTMLControls\monthDropDown.html" />
     <Content Include="HTMLControls\navResBuilder.html" />
     <Content Include="HTMLControls\navResumeBuilder.html" />
+    <Content Include="HTMLControls\Authentication\nrLogin.html" />
+    <Content Include="HTMLControls\placeholder.html" />
     <Content Include="HTMLControls\stateDropDown.html" />
     <Content Include="HTMLControls\yearDropDown.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\Careers.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\ContactInfo.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\Education.html" />
+    <Content Include="HTMLTemplates\ResumeBuilder\Expertise.html" />
+    <Content Include="HTMLTemplates\ResumeBuilder\Objective.html" />
+    <Content Include="images\9res.bmp" />
+    <Content Include="images\9resAdvantages.png" />
+    <Content Include="images\9resGetStarted.png" />
+    <Content Include="images\9resGetStarted_hover.png" />
+    <Content Include="images\9resViewFormat.png" />
+    <Content Include="images\add_job_off.bmp" />
+    <Content Include="images\add_job_on.bmp" />
+    <Content Include="images\arrow_down_off.bmp" />
+    <Content Include="images\arrow_down_on.bmp" />
+    <Content Include="images\arrow_left_off.bmp" />
+    <Content Include="images\arrow_left_on.bmp" />
+    <Content Include="images\arrow_right_off.bmp" />
+    <Content Include="images\arrow_right_on.bmp" />
+    <Content Include="images\arrow_up_off.bmp" />
+    <Content Include="images\arrow_up_on.bmp" />
+    <Content Include="images\back\cmd_import.bmp" />
+    <Content Include="images\back\cmd_import_on.bmp" />
+    <Content Include="images\back\cmd_upload.bmp" />
+    <Content Include="images\back\cmd_upload_on.bmp" />
+    <Content Include="images\back\cr_cancel_off.bmp" />
+    <Content Include="images\back\cr_cancel_on.bmp" />
+    <Content Include="images\back\cr_delete_off.bmp" />
+    <Content Include="images\back\cr_delete_on.bmp" />
+    <Content Include="images\back\cr_save_off.bmp" />
+    <Content Include="images\back\cr_save_on.bmp" />
+    <Content Include="images\bg_select.png" />
+    <Content Include="images\blue_pixel.bmp" />
+    <Content Include="images\border_pixel.bmp" />
+    <Content Include="images\career_timeline1.bmp" />
+    <Content Include="images\career_timeline2.bmp" />
+    <Content Include="images\career_timeline3.bmp" />
+    <Content Include="images\cmd_import.bmp" />
+    <Content Include="images\cmd_import_on.bmp" />
+    <Content Include="images\cmd_upload.bmp" />
+    <Content Include="images\cmd_upload_on.bmp" />
+    <Content Include="images\color_grey.bmp" />
+    <Content Include="images\cr_border0.bmp" />
+    <Content Include="images\cr_border1.bmp" />
+    <Content Include="images\cr_border2.bmp" />
+    <Content Include="images\cr_cancel_off.bmp" />
+    <Content Include="images\cr_cancel_on.bmp" />
+    <Content Include="images\cr_dtl_header.bmp" />
+    <Content Include="images\cr_remove_off.bmp" />
+    <Content Include="images\cr_remove_on.bmp" />
+    <Content Include="images\cr_save_off.bmp" />
+    <Content Include="images\cr_save_on.bmp" />
+    <Content Include="images\cr_sort_down_off.bmp" />
+    <Content Include="images\cr_sort_down_on.bmp" />
+    <Content Include="images\cr_sort_up_off.bmp" />
+    <Content Include="images\cr_sort_up_on.bmp" />
+    <Content Include="images\degree.bmp" />
+    <Content Include="images\dist_bkg.bmp" />
+    <Content Include="images\dist_bkg_academic.bmp" />
+    <Content Include="images\dist_bkg_certification.bmp" />
+    <Content Include="images\dist_bkg_degree.bmp" />
+    <Content Include="images\dist_bkg_none.bmp" />
+    <Content Include="images\dist_bkg_other.bmp" />
+    <Content Include="images\dist_bkg_personal.bmp" />
+    <Content Include="images\dist_bkg_pie.bmp" />
+    <Content Include="images\dist_bkg_speak.bmp" />
+    <Content Include="images\exp_title_bkg.bmp" />
+    <Content Include="images\hdr\hdr_border0.bmp" />
+    <Content Include="images\hdr\hdr_border1.bmp" />
+    <Content Include="images\hdr\hdr_border2.bmp" />
+    <Content Include="images\hdr\hdr_cancel_off.bmp" />
+    <Content Include="images\hdr\hdr_cancel_on.bmp" />
+    <Content Include="images\hdr\hdr_remove_off.bmp" />
+    <Content Include="images\hdr\hdr_remove_on.bmp" />
+    <Content Include="images\hdr\hdr_save_off.bmp" />
+    <Content Include="images\hdr\hdr_save_on.bmp" />
+    <Content Include="images\hdr_career.bmp" />
+    <Content Include="images\hdr_career_objective.bmp" />
+    <Content Include="images\hdr_contact_info - Copy.bmp" />
+    <Content Include="images\hdr_contact_info.bmp" />
+    <Content Include="images\hdr_distinctions.bmp" />
+    <Content Include="images\hdr_expertise.bmp" />
+    <Content Include="images\hdr_info1.bmp" />
+    <Content Include="images\hdr_info2.bmp" />
+    <Content Include="images\hdr_info3.bmp" />
+    <Content Include="images\hdr_info4.bmp" />
+    <Content Include="images\hdr_keywords.bmp" />
+    <Content Include="images\hdr_line.bmp" />
+    <Content Include="images\h_scroll.bmp" />
+    <Content Include="images\icon_facebook.bmp" />
+    <Content Include="images\icon_linkedin.bmp" />
+    <Content Include="images\icon_skype.bmp" />
+    <Content Include="images\input_gradient1.bmp" />
+    <Content Include="images\input_gradient2.bmp" />
+    <Content Include="images\input_gradient3.bmp" />
+    <Content Include="images\input_gradient4.bmp" />
+    <Content Include="images\input_gradient5.bmp" />
+    <Content Include="images\input_gradient6.bmp" />
+    <Content Include="images\input_gradient7.bmp" />
+    <Content Include="images\input_gradient8.bmp" />
+    <Content Include="images\kw_add.bmp" />
+    <Content Include="images\kw_enter.bmp" />
+    <Content Include="images\kw_found.bmp" />
+    <Content Include="images\kw_textarea_focus.bmp" />
+    <Content Include="images\logo.bmp" />
+    <Content Include="images\logo_black.bmp" />
+    <Content Include="images\logo_footer.bmp" />
+    <Content Include="images\logo_grey.bmp" />
+    <Content Include="images\logo_text.png" />
+    <Content Include="images\move_text.bmp" />
+    <Content Include="images\nav_blast_off.bmp" />
+    <Content Include="images\nav_blast_on.bmp" />
+    <Content Include="images\nav_blast_sel.bmp" />
+    <Content Include="images\nav_bullets.bmp" />
+    <Content Include="images\nav_bullet_off.bmp" />
+    <Content Include="images\nav_bullet_off_chk.bmp" />
+    <Content Include="images\nav_bullet_on.bmp" />
+    <Content Include="images\nav_bullet_on_chk.bmp" />
+    <Content Include="images\nav_bullet_sel.bmp" />
+    <Content Include="images\nav_color.png" />
+    <Content Include="images\nav_footer.bmp" />
+    <Content Include="images\nav_res_off.bmp" />
+    <Content Include="images\nav_res_on.bmp" />
+    <Content Include="images\peek_another1.bmp" />
+    <Content Include="images\peek_another2.bmp" />
+    <Content Include="images\peek_gradient1.bmp" />
+    <Content Include="images\peek_gradient2.bmp" />
+    <Content Include="images\peek_gradient3.bmp" />
+    <Content Include="images\peek_gradient4.bmp" />
+    <Content Include="images\peek_gradient5.bmp" />
+    <Content Include="images\popup_bullet.bmp" />
+    <Content Include="images\popup_bullet_off.bmp" />
+    <Content Include="images\ppane_more_off.bmp" />
+    <Content Include="images\ppane_more_on.bmp" />
+    <Content Include="images\schools.jpg" />
+    <Content Include="images\set1\cr_cancel_off.bmp" />
+    <Content Include="images\set1\cr_cancel_on.bmp" />
+    <Content Include="images\set1\cr_delete_off.bmp" />
+    <Content Include="images\set1\cr_delete_on.bmp" />
+    <Content Include="images\set1\cr_save_off.bmp" />
+    <Content Include="images\set1\cr_save_on.bmp" />
+    <Content Include="images\set1\nav_blast_sel.bmp" />
+    <Content Include="images\sort_arrow_down_off.bmp" />
+    <Content Include="images\sort_arrow_down_on.bmp" />
+    <Content Include="images\sort_arrow_up_off.bmp" />
+    <Content Include="images\sort_arrow_up_on.bmp" />
+    <Content Include="images\spacer.gif" />
+    <Content Include="images\tpixel.gif" />
+    <Content Include="images\travel.bmp" />
+    <Content Include="images\word_slider.bmp" />
+    <Content Include="images\word_slider2.bmp" />
+    <Content Include="images\word_slide_tab.bmp" />
+    <Content Include="images\word_slide_tab_green.bmp" />
+    <Content Include="images\word_slide_tab_red.bmp" />
+    <Content Include="images\word_slide_tab_yellow.bmp" />
+    <Content Include="Javascript\NGApps\AuthenticationApp.js" />
+    <Content Include="Javascript\NGControllers\AuthenticationController.js" />
+    <Content Include="Javascript\NGControllers\expertiseController.js" />
+    <Content Include="Javascript\NGControllers\objectiveController.js" />
+    <Content Include="Javascript\NGDirectives\Authentication\loginDirective.js" />
+    <Content Include="Javascript\NGDirectives\CareerDirectives\showJobs.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-csp.css" />
+    <Content Include="Scripts\angular-facebook.js" />
+    <Content Include="Scripts\angular-google-plus.js" />
     <Content Include="Scripts\angular-loader.js" />
     <Content Include="Scripts\angular-loader.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
@@ -430,11 +614,22 @@
     <Content Include="Content\images\set1\desktop.ini" />
     <Content Include="Content\images\icons\desktop.ini" />
     <Content Include="Content\icons\desktop.ini" />
+    <Content Include="images\back\Thumbs.db" />
+    <Content Include="images\hdr\Thumbs.db" />
+    <Content Include="images\logo.vsd" />
+    <Content Include="images\logo_footer.vsd" />
+    <Content Include="images\nav_bullets.vsd" />
+    <Content Include="images\set1\Thumbs.db" />
+    <Content Include="images\Thumbs.db" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <None Include="Properties\PublishProfiles\winhost 9res.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Scripts\BrettJS\career.JS" />
+    <Content Include="Javascript\BrettJS\career.JS" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -704,26 +899,28 @@
     <Content Include="Scripts\JSPlugins\jquery.maskedinput.js" />
     <Content Include="Scripts\JSPlugins\mask.js" />
     <Content Include="Scripts\JSPlugins\ui-bootstrap-tpls-0.7.0.js" />
-    <Content Include="Scripts\BrettJS\ContactInfo.js" />
+    <Content Include="Javascript\BrettJS\ContactInfo.js" />
     <Content Include="Scripts\mask.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\NGApps\ResumeBuilderApp.js" />
-    <Content Include="Scripts\NGControllers\Career.JS" />
-    <Content Include="Scripts\NGControllers\CareerController.JS" />
-    <Content Include="Scripts\NGControllers\ContactInfoController.js" />
-    <Content Include="Scripts\NGControllers\educationController.js" />
-    <Content Include="Scripts\NGControllers\indexController.js" />
-    <Content Include="Scripts\NGControllers\jobModalControllers.js" />
-    <Content Include="Scripts\NGDirectives\commonDirectives.js" />
-    <Content Include="Scripts\NGDirectives\navBarApp.js" />
-    <Content Include="Scripts\NGServices\localStorageService.js" />
+    <Content Include="Javascript\NGApps\ResumeBuilderApp.js" />
+    <Content Include="Javascript\NGControllers\Career.JS" />
+    <Content Include="Javascript\NGControllers\CareerController.js" />
+    <Content Include="Javascript\NGControllers\ContactInfoController.js" />
+    <Content Include="Javascript\NGControllers\EducationController.js" />
+    <Content Include="Javascript\NGControllers\indexController.js" />
+    <Content Include="Javascript\NGControllers\jobModalControllers.js" />
+    <Content Include="Javascript\NGDirectives\commonDirectives.js" />
+    <Content Include="Javascript\NGDirectives\navBarApp.js" />
+    <Content Include="Javascript\NGServices\localStorageService.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\ResumeBuilder\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -750,6 +947,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\ResumeBuilder\Index2.cshtml" />
+    <Content Include="Views\Account\Login2.cshtml" />
+    <Content Include="Views\Account\HangoutsTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -792,7 +991,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54556</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54556/</IISUrl>
+          <IISUrl>https://localhost:44300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
