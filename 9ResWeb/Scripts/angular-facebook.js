@@ -40,7 +40,10 @@
          * Facebook appId
          * @type {Number}
          */
+          // localhost:44300
           settings.appId = 1484397018497780;
+          // 9res.org
+          settings.appId = 286786211517047;
 
         this.setAppId = function(appId) {
           settings.appId = appId;
@@ -84,7 +87,7 @@
          * by addressing issues with cross-domain communication in certain browsers.
          * @type {String}
          */
-        settings.channelUrl = 'https://localhost:44300/';
+        settings.channelUrl = '9res.org';
 
         this.setChannel = function(channel) {
           settings.channelUrl = channel;

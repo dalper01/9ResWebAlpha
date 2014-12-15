@@ -14,7 +14,10 @@ angular.module("googleplus", []).provider("GooglePlus", [function () {
      * clientId
      * @type {Number}
      */
+    // localhost:44300
     options.clientId = '771894512430-87bjckbtnd5k14gj08ira8im6j60fdcn.apps.googleusercontent.com';
+    // 9res.org
+    //options.clientId = '228666439060-r3o1v00h533j1q21ir06sprthjj9k3oi.apps.googleusercontent.com';
     this.setClientId = function (a) {
         options.clientId = a;
         return this;

@@ -2,7 +2,9 @@
 
 
     <div class="col-xs-12">
-        <div class="col-xs-1" style="border-left: 1px solid #4466AA; padding: 0px;"><hr style="color: blue; background-color: blue; border-color: blue; width: 100%;"></div>
+        <div class="col-xs-1" style="border-left: 0px solid #4466AA; padding: 0px;">
+            <!--<hr style="color: blue; background-color: blue; border-color: blue; width: 100%;">-->
+        </div>
         <div class="col-xs-5">
             <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 30px; margin-right: -7px; margin-left: 5px;">9</span>
             <span style="font-family: 'Bauhaus 93'; font-size: 16px; margin-right: 5px; margin-left: -0px;  position: relative; top: -.40em;">res</span>
@@ -11,7 +13,9 @@
                 Education History
             </span>
         </div>
-        <div class="col-xs-6" style="border-left: 1px solid blue; padding: 0px;"> <hr style="color: blue; background-color: blue; border-color: blue;"> </div>
+        <div class="col-xs-6" style="border-left: 0px solid blue; padding: 0px;"> 
+            <!--<hr style="color: blue; background-color: blue; border-color: blue;">--> 
+        </div>
 
     </div>
 </div>
@@ -31,16 +35,11 @@
 
 </div>
 
-<!-- Preview Pane -->
-<!--<div id="ppane_ds" align="left" style="background-image: url('../icons/DiplmaBG.bmp');border: 1px solid; border-color: black; border-left-width: 0px;
-                text-align: justify;">-->
 <div id="ppane_ds" style="background-image: url('../icons/DiplmaBG.bmp');border: 1px solid; border-color: black; border-left-width: 0px;
                 text-align: justify;" class="row">
 
-    <!-- High School Data-->
-    <!--<div style="display: inline-block; max-width: 25%; text-align: center; vertical-align: top;">-->
     <div class="col-md-4">
-        <div style="" class="educationPresentation" ng-repeat="highSchool in education.highSchools">
+        <div style="" class="educationPresentation" ng-repeat="highSchool in education.highSchools track by $index">
             <div style="text-align: right;" ng-if="(addNavShow == true)">
                 <i class="glyphicon glyphicon-edit microIcons" title="Edit HighSchool"
                    ng-click="editHighSchool(highSchool)"></i>
@@ -69,7 +68,7 @@
 
 
         <div style="" class="educationPresentation"
-             ng-repeat="college in education.colleges">
+             ng-repeat="college in education.colleges track by $index">
 
             <div style="text-align: right;" ng-if="(addNavShow == true)">
                 <i class="glyphicon glyphicon-edit microIcons" title="Edit College"
@@ -97,7 +96,7 @@
     <div class="col-md-4">
 
         <div style="display: block; " class="educationPresentation"
-             ng-repeat="certificate in education.certificates">
+             ng-repeat="certificate in education.certificates track by $index">
 
             <div style="text-align: right;" ng-if="(addNavShow == true)">
                 <i class="glyphicon glyphicon-edit microIcons" title="Edit Certificate"
@@ -111,12 +110,6 @@
                 <b> {{ certificate.type }} </b> ( {{ certificate.Provider }}
                 {{ certificate.compMonth }} {{ certificate.compYear }})
             </div>
-            <!--<div> <b> {{ certificate.Provider }} </b> </div>-->
-            <!--<div> {{ certificate.city }} {{ certificate.state }}  </div>-->
-            <!--
-                                    <div ng-show="certificate.completed">
-                                        ({{ certificate.compMonth }} {{ certificate.compYear }}) </div>
-        -->
         </div>
 
 
@@ -214,12 +207,12 @@
                                        reset-fn="resetEducation()" closeform="showNavHideForms()"></college-form-edit>
                 </div>
 
-                <!--</div>
+            </div>
 
 
 
 
-                <div id="certificateEntry" style="min-height: 250px; display: inline-block; vertical-align: top; margin-left: 15px;">-->
+            <div id="certificateEntry" sstyle="min-height: 250px; display: inline-block; vertical-align: top; margin-left: 15px;">
 
 
                 <div ng-repeat="certificate in education.certificates">
@@ -248,22 +241,22 @@
     <div class="col-xs-1"></div>
 
     <div class="col-xs-3">
-        <a style="sbackground-color: #0066aa" class="btn btn-primary" ng-click="SaveEducationLocalStorage()" href="#careers">
-            <span class="white-icon"> <i class="glyphicon glyphicon-arrow-left"></i> Career Experience </span>
+        <a style="sbackground-color: #0066aa" class="btn btn-primary" href="#careers">
+            <span> <i class="glyphicon glyphicon-arrow-left"></i> Career Experience </span>
         </a>
 
     </div>
 
     <div class="col-xs-3">
         <a style="" class="btn btn-success" ng-click="SaveNewResume()">
-            <span class="white-icon"> Save Resume <i class="glyphicon glyphicon-"></i> </span>
+            <span> Save Resume <i class="glyphicon glyphicon-"></i> </span>
         </a>
 
     </div>
 
     <div class="col-xs-3">
-        <a style="sbackground-color: #0066aa" class="btn btn-primary" ng-click="saveLocalContact()" href="#expertise">
-            <span class="white-icon"> Expertise <i class="glyphicon glyphicon-arrow-right"></i> </span>
+        <a style="sbackground-color: #0066aa" class="btn btn-primary" href="#expertise">
+            <span> Expertise <i class="glyphicon glyphicon-arrow-right"></i> </span>
         </a>
 
     </div>

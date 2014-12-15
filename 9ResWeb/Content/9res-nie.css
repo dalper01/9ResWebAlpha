@@ -2,7 +2,7 @@
 
 
     .container {
-        max-width: 925px;
+        max-width: 1000px;
         border-bottom-width: 1px;
         border-bottom-color: #000000;
     }
@@ -260,8 +260,6 @@
 	.pop_push {width:100%; height:100px;}
 	
 	#util_cr{overflow:auto;}
-	#ppane_car{	border-top-width:1px;	border-top-style:solid;	border-top-color:black;	border-right-width:1px;	border-right-style:solid; 
-		border-right-color:black;	float:top; margin:0px;	left:162px;	width:866px;	padding:0px;	background:white; }
 
 	#popupContact input[type="long"] {width:200px; font-family: Arial, Sans-Serif;	font-size: 12px; margin-bottom: 5px; margin-right: 5px; display: block; padding: 2	px; 
 		border: solid 1px #6887BB; background-image: url( 'images/input_gradient1.bmp' ); 	background-repeat: repeat-x; background-position: top;	}

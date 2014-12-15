@@ -37,13 +37,25 @@ textarea {
 
 
 
-    /*to make mouse pointer when hovering over angular ong-click*/
+/*to make mouse pointer when hovering over angular ong-click*/
 [ng-click],
 [data-ng-click],
 [x-ng-click] {
     cursor: pointer;
 }
 
+.space5 > div {
+    margin-bottom: 10px;
+}
+
+
+.placeholder { 
+    font-weight:bold; 
+    font-size:10pt; 
+    color:#D9E3F4; 
+    text-align:center;  
+    font-family: Arial, sans-serif;
+}
 
 .logo9res {
     color: #bbbbbb;
@@ -258,10 +270,15 @@ img.filling {
     font-size:13pt;	
 }
 
-/* Careers Page*/
+
+
+/* ------------- Contact Info ------------------- */
+
+
+/* ------------- Careers Page ------------------- */
 
 .JobsDisplay{  
-    padding-top:10px; 
+    padding:10px; 
     color:#285EA6;	
     font-size:11pt;	
     font-weight:bold; 
@@ -275,4 +292,25 @@ img.filling {
     font-size: 9pt;	
     font-weight: bold; 
     font-family: Arial, sans-serif;
+}
+
+.jobediting {
+    border: 1px dashed grey;
+    background-color: #ffffff;
+}
+
+
+#ppane_car{	
+    border-top-width:1px;	
+    border-top-style:solid;	
+    border-top-color:black;	border-right-width:1px;	
+    border-right-style:solid; 
+	border-right-color:black;	
+    /*float:top;*/ 
+    margin:0px;	
+    /*left:162px;*/	
+    /*width:866px;*/	
+    padding:0px;	
+    background:white; 
+
 }

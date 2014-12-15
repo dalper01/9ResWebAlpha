@@ -93,6 +93,7 @@ educationApp.controller('educationController', function ($scope, localStorageSer
         //$scope.certificateAdd = true;
         $scope.education.certificates.push({ add: true})
         $scope.addNavShow = false;
+        console.log($scope.education);
 
     };
 
@@ -116,27 +117,26 @@ educationApp.controller('educationController', function ($scope, localStorageSer
 
 
     // -------------- initialize $scope Model --------------------- //
-    //$scope.highSchoolEdit = false;
-    //$scope.collegeEdit = false;
-    //$scope.collegeAdd = false;
-    //$scope.certificateEdit = false;
 
-    //var resetHighSchool = "";
-
-    // setup Education Variable
     $scope.addNavShow = true;
     getEducationLocalStorage();
 
 
-
+    //$scope.addCollege();
+    //$scope.addHighSchool();
 });
 
 
 
 
 
-
+// ------------------------------ highSchoolController ----------------------------------
 educationApp.controller('highSchoolController', function($scope) {
+
+
+    $scope.Title = "Edit High School"
+
+
 
     // check if Name field populated (Save button disabled until)
     $scope.isNamePopulated = function () {
@@ -169,10 +169,22 @@ educationApp.controller('highSchoolController', function($scope) {
 
 
 
+// ------------------------------ addCollegeController ----------------------------------
 
 educationApp.controller('addCollegeController', function($scope) {
 
-    $scope.saveCollege = function(){
+    $scope.Title = "Add College"
+
+
+    // check if Name field populated (Save button disabled until)
+    $scope.isNamePopulated = function () {
+        if ($scope.college.name == undefined)
+            $scope.college.name = '';
+
+        return ($scope.college.name.length);
+    }
+
+    $scope.saveCollege = function () {
 
         //restoreOldHighSchool();
 
@@ -193,8 +205,23 @@ educationApp.controller('addCollegeController', function($scope) {
 });
 
 
+// ------------------------------ editCollegeController ----------------------------------
 educationApp.controller('editCollegeController', function($scope) {
-    $scope.saveCollege = function(){
+
+
+    $scope.Title = "Edit College"
+
+    // check if Name field populated (Save button disabled until)
+    $scope.isNamePopulated = function () {
+        if ($scope.college.name == undefined)
+            $scope.college.name = '';
+
+        return ($scope.college.name.length);
+    }
+
+
+
+    $scope.saveCollege = function () {
 
 
         $scope.college.add = false;
@@ -222,8 +249,10 @@ educationApp.controller('editCollegeController', function($scope) {
 
 
 
-educationApp.controller('addCertificateController', function($scope) {
+// ------------------------------ addCertificateController ----------------------------------
+educationApp.controller('addCertificateController', function ($scope) {
 
+    $scope.Title = "Add Certification";
 
     $scope.saveCertificate = function(){
 
@@ -253,9 +282,11 @@ educationApp.controller('addCertificateController', function($scope) {
 
 
 
+// ------------------------------ editCertificateController ----------------------------------
 
 educationApp.controller('editCertificateController', function($scope) {
 
+    $scope.Title = "Edit Certification";
 
     $scope.saveCertificate = function(){
 
@@ -279,6 +310,11 @@ educationApp.controller('editCertificateController', function($scope) {
 
 
 });
+
+
+
+
+// ------------------------------ Directives ----------------------------------
 
 
 educationApp.directive('highSchoolForm', [function($compile) {

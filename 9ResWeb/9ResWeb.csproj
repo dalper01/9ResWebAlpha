@@ -229,8 +229,11 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\icons\certification.bmp" />
+    <Content Include="Content\icons\certs.jpg" />
     <Content Include="Content\icons\degree.bmp" />
     <Content Include="Content\icons\DiplomaBG.jpg" />
+    <Content Include="Content\icons\graduation_cap_and_diploma.png" />
+    <Content Include="Content\icons\graduation_cap_old.png" />
     <Content Include="Content\icons\hierarchy.bmp" />
     <Content Include="Content\icons\images.jpg" />
     <Content Include="Content\icons\money.bmp" />
@@ -416,6 +419,7 @@
     <Content Include="HTMLControls\navResBuilder.html" />
     <Content Include="HTMLControls\navResumeBuilder.html" />
     <Content Include="HTMLControls\Authentication\nrLogin.html" />
+    <Content Include="HTMLControls\placeholder.html" />
     <Content Include="HTMLControls\stateDropDown.html" />
     <Content Include="HTMLControls\yearDropDown.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\Careers.html" />

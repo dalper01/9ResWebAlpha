@@ -1,92 +1,74 @@
 
-<div style="float: left">
-    <div class="schoolHeader" style="height: 35px; width: 250px; vertical-align: middle">
-        <span style="color: #444444; font-size: 14; font-weight: bold; vertical-align: middle"> Enter Certification Details</span>
+<div class="row container" style="background-image: url('/content/icons/certs.jpg'); background-repeat: no-repeat; width: 900px; background-position: 500px 60px; ">
+    <div class="row" style="border: 1px solid #eeeeee; background-color: #ddddff; text-align: center; font-weight: bold; margin-bottom: 25px; width: 900px">
+        <div class="col-sm-1 col-sm-offset-0" style="text-align: left;">
+            <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 30px; margin-right: -7px;">9</span>
+            <span style="font-family: 'Bauhaus 93'; color: #555555; font-size: 15px; margin-right: 5px; position: relative; top: -.42em;">res</span>
+        </div>
+        <div class="col-sm-10" sstyle="padding: 0px 0px 0px 0px;">
+            <h4 style="font-weight: bold"> {{ Title }} </h4>
+        </div>
+        <div class="col-sm-1 col-sm-offset-0" style=" text-align: right;">
+            <a ng-click="cancelCertificate()"><i class="fa fa-times" style="color: black; text-align: right;"></i></a>
+        </div>
     </div>
 
 
-    <table class="schoolForm" style="margin-top: 15px;">
-        <tr>
-            <td>
-                Certification Type
-            </td>
-            <td>
-                <input type="text" ng-model="certificate.type">
-            </td>
-        </tr>
 
-        <tr>
-            <td>
-                Certification Provider
-            </td>
-            <td>
-                <input type="text" ng-model="certificate.Provider">
-            </td>
-        </tr>
-
-<!--
-        <tr>
-            <td>
-                Location
-            </td>
-            <td nowrap style="vertical-align: top">
-                <div style="display: inline-block">
-                    <input type="text" placeholder="City" ng-model="certificate.city" style="width: 14ch">
+    <div class="row">
+        <div class="col-sm-9 space5">
+            <div class="row">
+                <div class="col-sm-2 schoolform">
+                    Certification Type
                 </div>
-                <div style="display: inline-block;vertical-align: top;">
-                    , <statedropdown passedmodel="certificate.state"></statedropdown>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" placeholder="Certification Type" ng-model="certificate.type">
                 </div>
-            </td>
-        </tr>
--->
+            </div>
 
-        <tr>
-            <td>
-                Completed?
-            </td>
-            <td>
-                <input type="checkbox" ng-model="certificate.completed">
-            </td>
-        </tr>
+            <div class="row">
+                <div class="col-sm-2 schoolform">
+                    Certification Provider
+                </div>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" placeholder="Certification Provider" ng-model="certificate.Provider" sstyle="width: 14ch">
+                </div>
+            </div>
 
-        <tr ng-show="certificate.completed">
-            <td>
-                Completion Date
-            </td>
-            <td>
-                <monthdropdown passedmodel="certificate.compMonth"></monthdropdown>
-                <yeardropdown passedmodel="certificate.compYear"></yeardropdown>
-            </td>
-        </tr>
+            <div class="row">
+                <div class="col-sm-4 schoolform">
+                    <label> <input type="checkbox" ng-model="certificate.completed"> Completed? </label>
+                </div>
+            </div>
 
-        <tr>
-
-            <td>
-                <a class="btn btn-primary" ng-disabled="!(certificate.type.length > 0)" ng-click="saveCertificate()"> Save </a>
-            </td>
-
-            <td>
-                <a class="btn btn-danger" ng-click="cancelCertificate()"> Cancel </a>
-            </td>
+            <div class="row" ng-show="certificate.completed">
+                <div class="col-sm-2 schoolform"> Completion <br> Date </div>
+                <div class="col-sm-5">
+                    <div class="col-sm-4" style="align-content: flex-start; text-align: left;">
+                        <monthdropdown passedmodel="certificate.compMonth"></monthdropdown>
+                    </div>
+                    <div class="col-sm-5">
+                        <yeardropdown passedmodel="certificate.compYear"></yeardropdown>
+                    </div>
+                </div>
+            </div>
 
 
-        </tr>
+        </div>
 
 
-    </table>
-</div>
-
-<div style="float: left; margin-left: 190px;">
-
-    <div>
-        <img src="http://3.bp.blogspot.com/-PlmYp6Cf2tQ/T2CrKkyWdzI/AAAAAAAAAEE/e-IxlKGsLns/s320/mcts.gif"
-             height="90px">
     </div>
-
-    <div>
-        <img src="http://i1.wp.com/unifiedtech.com/wp-content/uploads/ccie-rs.jpg?resize=150%2C150"
-             height="90px">
+    <div class="row" style="margin-top: 20px; background-color: #555555; width: 900px; padding-top: 15px; padding-bottom:15px;">
+        <div class="col-sm-1 col-sm-offset-2">
+            <a style="" class="btn btn-primary" ng-disabled="!(certificate.type.length > 0)" ng-click="saveCertificate()">
+                <span> <i class="glyphicon glyphicon-thumbs-up"> Confirm Changes </i> </span>
+            </a>
+        </div>
+        <div class="col-sm-2 col-sm-offset-4">
+            <a style="" class="btn btn-danger" ng-click="cancelCertificate()">
+                <span> <i class="glyphicon glyphicon-thumbs-down"> Cancel Changes </i> </span>
+            </a>
+        </div>
     </div>
-
 
 </div>

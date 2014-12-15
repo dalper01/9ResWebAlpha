@@ -111,50 +111,40 @@ commonModule.directive('toggleclass', function(){
     }
 })
 
-/*
 
-commonModule.directive('highlightclass', function(){
+
+//commonModule.directive('highlightclass', function () {
+//    return {
+//        scope: {
+//            class: "@",
+//            highlightclass: "@"
+
+//        },
+
+//        link: function (scope, element) {
+
+//            element.bind('focus', function () {
+//                element.removeClass(scope.class);
+//                element.addClass(scope.highlightclass);
+//            }).bind('blur', function () {
+//                element.removeClass(scope.highlightclass);
+//                element.addClass(scope.class);
+//            })
+//        }
+//    }
+//});
+
+
+commonModule.directive('placeHolder', [function ($compile) {
     return {
+        restrict: "EA",
         scope: {
-            class: "@",
-            highlightclass: "@"
-
+            bind: "=",
+            filler: "@"
         },
-
-        link: function(scope, element){
-
-            element.bind('mouseenter', function(){
-                element.addClass(scope.highlightclass);
-            }).bind('mouseleave', function(){
-                    element.removeClass(scope.highlightclass);
-                })
-        }
+        templateUrl: "/HTMLControls/placeholder.html"
     }
-});
-*/
-
-
-
-commonModule.directive('highlightclass', function(){
-    return {
-        scope: {
-            class: "@",
-            highlightclass: "@"
-
-        },
-
-        link: function(scope, element){
-
-            element.bind('focus', function(){
-                element.removeClass(scope.class);
-                element.addClass(scope.highlightclass);
-            }).bind('blur', function(){
-                    element.removeClass(scope.highlightclass);
-                    element.addClass(scope.class);
-                })
-        }
-    }
-});
+}]);
 
 
 
