@@ -11,12 +11,16 @@ storageServiceApp.factory('localStorageService', function ($rootScope) {
     var _contactInfo;
     var _education;
     var _jobs;
+    var _skills;
+    var _objective;
 
 
     // Declare Getters
     var _getContactInfo = function () { return _contactInfo; }
     var _getEducation = function () { return _education; }
     var _getJobs = function () { return _jobs; }
+    var _getSkills = function () { return _skills; }
+    var _getObjective = function () { return _objective; }
 
 
 
@@ -48,7 +52,6 @@ storageServiceApp.factory('localStorageService', function ($rootScope) {
 
     var _saveLocalStorage = function (storageKey, storageVal) {
         localStorage.setItem(storageKey, JSON.stringify(storageVal));
-
     }
 
 
@@ -97,7 +100,35 @@ storageServiceApp.factory('localStorageService', function ($rootScope) {
     }
 
     var _saveLocalStorageJobs = function () {
-        _saveLocalStorage("resume.jobs", _jobs);
+        _saveLocalStorage("resume.skills", _skills);
+    }
+
+
+    // Skills
+    var _loadLocalStorageSkills = function () {
+
+        _skills = _getLocalStorage("resume.skills");
+        if (_skills == 'undefined' || _skills == undefined) {
+            _skills = [];
+        }
+    }
+
+    var _saveLocalStorageSkills = function () {
+        _saveLocalStorage("resume.skills", _skills);
+    }
+
+
+    // Objective
+    var _loadLocalStorageObjective = function () {
+        
+        _objective = _getLocalStorage("resume.objective");
+        if (_objective == 'undefined' || _objective == undefined) {
+            _objective = '';
+        }
+    }
+
+    var _saveLocalStorageSkills = function () {
+        _saveLocalStorage("resume.objective", _objective);
     }
 
 
@@ -106,7 +137,8 @@ storageServiceApp.factory('localStorageService', function ($rootScope) {
     _loadLocalStorageContactInfo();
     _loadLocalStorageEducation();
     _loadLocalStorageJobs();
-
+    _loadLocalStorageSkills();
+    _loadLocalStorageObjective();
 
     // Exposed Methods
     return {
@@ -124,7 +156,18 @@ storageServiceApp.factory('localStorageService', function ($rootScope) {
         // exposed Career Methods
         GetJobs: _getJobs,
         LoadStorageJobs: _loadLocalStorageJobs,
-        SaveStorageJobs: _saveLocalStorageJobs
+        SaveStorageJobs: _saveLocalStorageJobs,
+
+        // exposed Skills Methods
+        GetSkills: _getSkills,
+        LoadStorageSkills: _loadLocalStorageSkills,
+        SaveStorageSkills: _saveLocalStorageSkills,
+
+        // exposed Skills Methods
+        GetObjective: _getObjective,
+        LoadLocalStorageObjective: _loadLocalStorageObjective,
+        SaveLocalStorageObjective: _saveLocalStorageSkills
+
     };
 
 

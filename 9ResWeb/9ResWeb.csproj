@@ -613,7 +613,6 @@
     <Content Include="Content\images\nav_bullets.vsd" />
     <Content Include="Content\images\set1\desktop.ini" />
     <Content Include="Content\images\icons\desktop.ini" />
-    <Content Include="Content\icons\desktop.ini" />
     <Content Include="images\back\Thumbs.db" />
     <Content Include="images\hdr\Thumbs.db" />
     <Content Include="images\logo.vsd" />
