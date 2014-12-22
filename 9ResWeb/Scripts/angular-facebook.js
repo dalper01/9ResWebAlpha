@@ -40,10 +40,7 @@
          * Facebook appId
          * @type {Number}
          */
-          // localhost:44300
-          settings.appId = 1484397018497780;
-          // 9res.org
-          settings.appId = 286786211517047;
+
 
         this.setAppId = function(appId) {
           settings.appId = appId;

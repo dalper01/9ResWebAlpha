@@ -44,6 +44,34 @@ textarea {
     cursor: pointer;
 }
 
+
+/* Animations */
+.sample-show-hide {
+  -webkit-transition:0.5s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
+  transition:0.5s linear all;
+  /*opacity:100;*/
+}
+
+.animate-show {
+  -webkit-transition:all linear 1s;
+  transition:all linear .3s;
+  height: 80px;
+  overflow: hidden;
+  /*opacity:1;*/
+}
+
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+  display:block!important;
+}
+
+.animate-show.ng-hide {
+  /*opacity:0;*/
+      height:0;
+}
+
 .space5 > div {
     margin-bottom: 10px;
 }
@@ -73,6 +101,7 @@ textarea {
 .hov-red:hover { 
     color: red;
 }
+
 /* used for glyph manipulation */
 span.pink-color{
     color: #ff1493;
@@ -120,6 +149,37 @@ span.blue-icon{
     font-size: 13px;
 }
 
+
+.inputLabel 	{   
+    color:#0070C0; 
+    font-size:14pt; 
+    font-weight:bold; 
+    vertical-align: middle; 
+    text-align:left; 
+    width:120px;
+}
+
+
+.badge-rounded {
+    border-radius: 1em;
+    margin-right: 2px;
+}
+
+.gold-black {
+    color: black;
+    background-color: gold;
+    border-color: #444444;
+}
+
+.gold-black i {
+    /*display: none;*/
+    color: gold;
+}
+
+.gold-black:hover i {
+    /*display: inline;*/
+    color: black;
+}
 
 
 
