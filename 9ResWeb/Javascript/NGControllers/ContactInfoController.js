@@ -1,6 +1,5 @@
 
-//var ContactInfoModule = angular.module('ContactInfoModule', ['ui.bootstrap', 'commonDirectives']);
-var ContactInfoModule = angular.module('ContactInfoModule', ['commonDirectives', 'ui.mask', 'navBarApp', 'storageServiceApp']);
+var ContactInfoModule = angular.module('ContactInfoModule', ['commonDirectives', 'ui.mask', 'navBarApp', 'storageServiceApp', 'ngAnimate']);
 
 
 
@@ -10,9 +9,9 @@ ContactInfoModule.controller('ContactInfoController',
 
 
         // Initialize Contact Info
-
         $scope.contactInfo = localStorageService.GetContactInfo();
 
+        $scope.ShowInstructions = false;
         $scope.noNameMessage = "Your Name Here";
         $scope.noAddressMessage = "Where You Live";
         $scope.noContactMessage = "Your Contact Info";
@@ -26,6 +25,11 @@ ContactInfoModule.controller('ContactInfoController',
 
 
         // show / hide empty data functions ----------------
+        
+        $scope.ShowInstructions = function () {
+            $scope.ShowInstructions = true;
+        }
+
 
         $scope.showNameMessage = function() {
             return ($scope.contactInfo.firstName + $scope.contactInfo.middleName + $scope.contactInfo.lastName).length;
