@@ -5,9 +5,9 @@ AuthenticationModule.config(['GooglePlusProvider', 'FacebookProvider', function 
     });
 
     // localhost:44300
-    FacebookProvider.init('1484397018497780');
+    //FacebookProvider.init('1484397018497780');
     // 9res.org
-    //FacebookProvider.init('286786211517047');
+    FacebookProvider.init('286786211517047');
     //GooglePlusProvider.setScopes('profile email');
 }]);
 

@@ -9,8 +9,10 @@
             <span style="text-align: center; font-weight: 800; color: #888888; font-size: 24px; text-shadow: 1px 1px #000000;">
                 Expertise &amp; Skills
             </span>
-            <span class="glyphicon glyphicon-chevron-down small hov-red" title="Explain More" ng-hide="ShowInstructions==true" ng-click="ShowInstructions=true"></span>
-            <span class="glyphicon glyphicon-chevron-up small hov-red" title="Hide Explanation" ng-show="ShowInstructions==true" ng-click="ShowInstructions=false"></span>
+            <!--<span class="glyphicon glyphicon-chevron-down small hov-red" title="Explain More" ng-hide="ShowInstructions==true" ng-click="ShowInstructions=true"></span>
+            <span class="glyphicon glyphicon-chevron-up small hov-red" title="Hide Explanation" ng-show="ShowInstructions==true" ng-click="ShowInstructions=false"></span>-->
+            <span class="glyphicon glyphicon-plus" title="Explain More" slide-down="#Instructions" ng-hide="ShowInstructions==true" ng-click="ShowInstructions=true">more</span>
+            <span class="glyphicon glyphicon-minus" title="Hide Explanation" slide-up="#Instructions" ng-show="ShowInstructions==true" ng-click="ShowInstructions=false">less</span>
 
         </div>
         <div class="col-xs-6" style="border-left: 0px solid blue; padding: 0px;">
@@ -22,7 +24,7 @@
 
 <div class="row">
 
-    <div class="sample-show-hide" style="clear:both;" ng-show="ShowInstructions==true">
+    <div id="Instructions" class="slideable" style="clear:both;" sng-show="ShowInstructions==true" duration=".9s">
         <div class="col-sm-offset-0 col-sm-12 hdr_txt">
             <p>What skills have you developed?</p>
             <p>Software Engineering (System Administration, Security, C++, JavaScript, etc)</p>

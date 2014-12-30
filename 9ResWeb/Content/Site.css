@@ -295,13 +295,22 @@ img.filling {
     content:url("~/content/images/9resGetStarted_hover.png");
 }
 
-.getStartetd hover {
+.getStartetd:hover {
     content:url("~/content/images/9resGetStarted_hover.png");
 }
 
 .dropdown-dark {
   color: #999999;
   background-color: #222222;
+  -webkit-transition:0.5s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
+  transition:0.5s linear all;
+  transition: ease-in-out;
+  transition-duration: .5s;
+  transition-timing-function: ease-in-out;
+  transition-property: height;
+
 }
 
 .dropdown-dark > li > a {
@@ -373,4 +382,9 @@ img.filling {
     padding:0px;	
     background:white; 
 
+}
+
+.job-edit {
+    border: 1px solid #ddddff; 
+    /*margin-bottom: 35px; margin-top: 20px;  padding-top: 20px; background-color: #ffffff;*/
 }

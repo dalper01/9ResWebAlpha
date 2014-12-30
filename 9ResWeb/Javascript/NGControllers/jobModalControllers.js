@@ -9,7 +9,8 @@ var modalAddJobCtrl = function ($scope, localStorageService, $modalInstance, job
 
     $scope.modalTitle='Add New Job';
     $scope.job = {
-        details: []
+        details: [],
+        edit: true
     };
 
 

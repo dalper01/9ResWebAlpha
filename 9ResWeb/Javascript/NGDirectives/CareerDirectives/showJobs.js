@@ -5,7 +5,9 @@ CareerModule.directive('showJob', [function ($compile) {
         //require: "CareerController",
         scope: {
             job: '=',
-            jobs: '='
+            jobs: '=',
+            newjobs: '=',
+            jobNumber: '='
         },
         controller: "editJobCtrl",
         templateUrl: "/HTMLControls/Careers/showJob.html"
@@ -22,8 +24,9 @@ CareerModule.directive('addJob', [function ($compile) {
         scope: {
             job: '=',
             jobs: '=',
-            newjobs: '='
-        },
+            newjobs: '=',
+            jobNumber: '='
+    },
         controller: "addJobCtrl",
         templateUrl: "/HTMLControls/Careers/showJob.html"
     }

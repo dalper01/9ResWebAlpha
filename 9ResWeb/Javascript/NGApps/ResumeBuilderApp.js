@@ -1,5 +1,5 @@
 ﻿
-var ResumeBuilderModule = angular.module('ResumeBuilderModule', ['ngRoute', 'storageServiceApp', 'ContactInfoModule', 'CareerModule', 'educationApp', 'AuthenticationModule', 'ngAnimate']);
+var ResumeBuilderModule = angular.module('ResumeBuilderModule', ['ngRoute', 'storageServiceApp', 'ui.bootstrap', 'ContactInfoModule', 'CareerModule', 'educationApp', 'AuthenticationModule', 'ngAnimate']);
 
 ResumeBuilderModule.config(function ($routeProvider) {
     $routeProvider.when('/', {

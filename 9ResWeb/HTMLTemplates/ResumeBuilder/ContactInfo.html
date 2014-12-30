@@ -12,7 +12,7 @@
                 </span>
                 <!--<span ng-class="{true:'glyphicon glyphicon-chevron-down', false: 'glyphicon glyphicon-chevron-up'}[ShowInstructions==true]" 
                       title="Explain More" slide-toggle="#Instructions" sng-hide="ShowInstructions==true" ng-click="ShowInstructions=true"></span>-->
-                <span class="glyphicon glyphicon-plus" title="Explain More" slide-down="#Instructions" ng-hide="ShowInstructions==true" ng-click="ShowInstructions=true">more</span>
+                <span class="glyphicon glyphicon-plus" title="Explain More" slide-down="#Instructions" sbuffer="0" ng-hide="ShowInstructions==true" ng-click="ShowInstructions=true">more</span>
                 <span class="glyphicon glyphicon-minus" title="Hide Explanation" slide-up="#Instructions" ng-show="ShowInstructions==true" ng-click="ShowInstructions=false">less</span>
             </div>
             <div class="col-xs-6" style="border-left: 0px solid blue; padding: 0px;">
@@ -22,15 +22,17 @@
         </div>
     </div>
 
-    <div class="row">
-        <div id="Instructions" class="slideable" sclass="animate-show" style="clear:both;" duration=".3s">
+    <div class="row">   
+        <div id="Instructions" class="slideable" sclass="animate-show" style="clear:both;" duration=".7s">
             <div class="col-sm-offset-0 col-sm-12 hdr_txt" style="padding-left: 25px;">
-                This section is a breeze.  Just enter any information you'd like available on your resume (just leave out any details you don't want to show up).&nbsp;&nbsp;
-                You can even jump-start the process by importing your info from LinkedIn!
+                <p>
+                    This section is a breeze.  Just enter any information you'd like available on your resume (just leave out any details you don't want to show up).&nbsp;&nbsp;
+                    You can even jump-start the process by importing your info from LinkedIn!
+                </p>
 
-                <br />
-                ...In case you hadn't noticed, this site is cool as $@&!.
-                <span class="glyphicon glyphicon-chevron-up small hov-red" title="Hide Explanation" ng-click="ShowInstructions=false"></span>
+                <p>
+                    ...In case you hadn't noticed, this site is cool as $@&!. <br />
+                </p>
 
             </div>
 
