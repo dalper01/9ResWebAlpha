@@ -89,7 +89,20 @@ namespace _9ResWeb.Controllers
 
             await SignInAsync(user, model.RememberMe);
 
-            return Ok();
+            var userInfo = AuthContext.UserInfo.FirstOrDefault(u => u.Id == user.UserInfo_Id);
+
+            return Ok(new ExternalLoginViewResult()
+            {
+                UserInfo = new UserInformation()
+                {
+                    UserId = user.Id,
+                    Email = userInfo.Email,
+                    FirstName = userInfo.FirstName,
+                    LastName = userInfo.LastName,
+                    DisplayName = userInfo.DisplayName,
+                    Picture = userInfo.ProfilePicture,
+                }
+            });
 
         }
 
@@ -117,7 +130,15 @@ namespace _9ResWeb.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var UserId = User.Identity.GetUserId();
-                user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+                try
+                {
+                    user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                }
+                catch (Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
 
                 var userInfo = AuthContext.UserInfo.FirstOrDefault(u => u.Id == user.UserInfo_Id);
 
@@ -181,6 +202,8 @@ namespace _9ResWeb.Controllers
             var login = new UserLoginInfo(model.Issuer, model.Id);
             user = await UserManager.FindAsync(login);
 
+
+
             // If user not loggedin (IsAuthenticated true)
             if (!User.Identity.IsAuthenticated)
             {
@@ -192,32 +215,47 @@ namespace _9ResWeb.Controllers
                     return Ok(result);
                 }
 
-                // User NOT logged in and Login Provider NOT recorded so assume new account
-                // And create new Application User
-                result.NewAccount = true;
-                user = new ApplicationUser() 
-                {
-                    UserName = model.Email,
-                    UserInfo = new UserInfo()
-                    {
-                        Email = model.Email,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        DisplayName = model.FullName,
-                        ProfilePicture = model.Picture
-                    }
-                };
+                // checked that Email exists
+                //var userInfo = AuthContext.UserInfo.FirstOrDefault(u => u.Email == model.Email);
+                var userByEmail = AuthContext.Users.FirstOrDefault(u => u.UserName == model.Email);
 
-                identityResult = await UserManager.CreateAsync(user, "NewPassword");
-
-                // If Error creating user Return Error
-                if (!identityResult.Succeeded)
+                if (userByEmail != null)
                 {
-                    return InternalServerError();
+                    user = await UserManager.FindByIdAsync(userByEmail.Id);
+                    await SignInAsync(user, isPersistent: false);
+                    //userInfo.
+                    //UserManager.
                 }
 
-                // Login new Application User
-                await SignInAsync(user, isPersistent: false);
+                else 
+                {
+                    // User NOT logged in and Login Provider NOT recorded so assume new account
+                    // And create new Application User
+                    result.NewAccount = true;
+                    user = new ApplicationUser()
+                    {
+                        UserName = model.Email,
+                        UserInfo = new UserInfo()
+                        {
+                            Email = model.Email,
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            DisplayName = model.FullName,
+                            ProfilePicture = model.Picture
+                        }
+                    };
+
+                    identityResult = await UserManager.CreateAsync(user, "NewPassword");
+
+                    // If Error creating user Return Error
+                    if (!identityResult.Succeeded)
+                    {
+                        return InternalServerError();
+                    }
+
+                    // Login new Application User
+                    await SignInAsync(user, isPersistent: false);
+                }
             }
             // Else user Authenticated, Get handle to logged in User
             else
@@ -230,7 +268,8 @@ namespace _9ResWeb.Controllers
 
             if (!identityResult.Succeeded)
             {
-                return InternalServerError();
+                result.Success = false;
+                return BadRequest("UserName Already Exists");
             }
 
             return Ok(result);

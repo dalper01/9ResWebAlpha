@@ -1,19 +1,25 @@
 ﻿//  Authentication Controller
 
 
-AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 'GooglePlus', 'Facebook', function ($scope, $http, GooglePlus, Facebook) {
+AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 'GooglePlus', 'Facebook', 'Authentication', function ($scope, $http, GooglePlus, Facebook, Authentication) {
 
+    //Authentication.init(1);
     $scope.showLogin = false;
     $scope.showRegister = false;
-    $scope.UserData = {
-        FullName: '',
-        Picture: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'
-    };
+    //$scope.UserData = {
+    //    FullName: '',
+    //    Picture: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'
+    //};
 
-    $scope.Register = {};
-    $scope.Login = {};
+    $scope.LoggedIn = Authentication.GetLoggedInStatus();
+    $scope.UserData = Authentication.GetUserData();
+    $scope.Register = { };
+    $scope.Login = { };
 
-
+    if ($scope.LoggedIn) {
+        Authentication.HTTPGetUserData();
+        //console.log('logged in');
+    }
 
     $scope.Logout = function () {
         $http.post("/Logout", {
@@ -33,6 +39,7 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
     
     // Set Client Status to User Logged In
     $scope.SetUserLoggedIn = function () {
+        console.log('logging in');
         $scope.LoggedIn = true;
     }
 
@@ -43,7 +50,8 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
 
     // Set Client Status to User Logged Out
     $scope.SetUserData = function (data) {
-        $scope.UserData = data.UserInfo;
+        //$scope.UserData = data.UserInfo;
+        Authentication.SetUserData(data);
     }
     
     // Show Login Dialog
@@ -67,51 +75,33 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
         $scope.showRegister = false;
     }
 
-    // Get Login User Info
-    $scope.GetUserInfo = function () {
-        $http({
-            url: "/GetUserInfo",
-            method: "Get"
-            //headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            //data: $.param(GooglePlusResult)
-        }).success(function (data, status, headers, config) {
-
-            console.log('Get User Data');
-            console.log(data);
-
-            $scope.SetUserData(data);
-
-        }).error(function (data, status, headers, config) {
-            $scope.status = status;
-            console.log('Get User Data Failed');
-        });
-    }
-
 
     // Send Login Credentials to Login API
     $scope.Login9Res = function () {
-        console.log('Login9Res');
-        console.log($scope.Login);
+        //console.log('Login9Res');
+        //console.log($scope.Login);
 
+        var promise = Authentication.Login9Res($scope.Login.Email, $scope.Login.Password, $scope.Login.RememberMe);
 
-        $http.post("/Login", {
-            UserName: $scope.Login.Email,
-            Password: $scope.Login.Password,
-            RememberMe: $scope.Login.RememberMe
+        promise.success(function (data, status, headers, config) {
+                //console.log('Success Handler');
+                //console.log(data);
+                //console.log(status);
 
-        }).
-        success(function (data, status, headers, config) {
-            console.log('Success Handler');
-            console.log(data);
-            console.log(status);
-            $scope.SetUserLoggedIn();
+                Authentication.SetUserData(data);
+                //Authentication.SetUserLoggedIn();
 
-        }).
-        error(function (data, status, headers, config) {
-            console.log('Error Handler');
-            console.log(data);
-            console.log(status);
-        });
+                $scope.SetUserLoggedIn();
+                $scope.CloseLogin();
+                $scope.$digest();
+                //$scope.SetUserData(data);
+                //$scope.CloseLogin();
+            }).
+            error(function (data, status, headers, config) {
+                console.log('Error Handler');
+                console.log(data);
+                console.log(status);
+            });
 
     }
 
@@ -136,14 +126,43 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
                 console.log(data);
                 console.log(status);
             });
-
-
     }
 
     // Request Validation from Google API
     $scope.loginGooglePlus = function () {
-        GPlogin();
-        //$scope.showLogin = false;
+        console.log('loginGooglePlus');
+
+        var promise = Authentication.GPlogin();
+
+        promise.then(function (data) {
+            //console.log('Success Handler');
+            //console.log(data);
+
+            var promise2 = Authentication.HTTPExternalLogin(data);
+
+            promise2.then(function (data) {
+                //console.log('promise2: data -' + data);
+                $scope.SetUserLoggedIn();
+                $scope.CloseLogin();
+
+                if (!$scope.$$phase) {
+                    $scope.$digest(); // or $apply
+                }
+
+            }, function (err) {
+                console.log('err callback');
+                console.log(err);
+            }).finally(function (result) {
+                console.log('final Data Result');
+            });
+
+        }, function (err) {
+            console.log('err callback');
+            console.log(err);
+        }).finally(function (result) {
+            console.log('final Data Result');
+        });
+
     }
 
     // Request Validation from Facebook API
@@ -158,10 +177,12 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
     }
 
 
-    if (true) {
-        $scope.GetUserInfo();
-    }
-    console.log('logged in status:' + $scope.LoggedIn);
+
+    // Execute get Data if user Logged in
+    //if ($scope.LoggedIn==true) {
+    //    $scope.GetUserInfo();
+    //}
+    //console.log('logged in status:' + $scope.LoggedIn);
 
 
 

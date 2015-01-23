@@ -7,7 +7,6 @@ storageServiceApp.factory('localStorageService', function ($rootScope) {
 
     /// Declare Service Variables
 
-    //alert('creating localStorageService');
     var _contactInfo;
     var _education;
     var _jobs;
