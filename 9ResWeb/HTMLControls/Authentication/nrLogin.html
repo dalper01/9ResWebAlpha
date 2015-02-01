@@ -1,0 +1,148 @@
+﻿<div id="loginForm" class="container" ng-if="showLogin">
+
+    <div class="row Login-Header">
+        <div class="col-sm-3 col-sm-offset-0">
+            <span style="font-family: 'Bauhaus 93'; color: black; font-size: 30px; margin-right: -7px;">9</span>
+        </div> 
+        <div class="col-sm-8 col-sm-offset-0" style="padding-top: 8px;">
+            <a href="" ng-click="SwitchLogin()"> Log in </a> or <a href="" ng-click="SwitchRegister()"> Sign up </a>
+        </div>
+        <div class="col-sm-1 col-sm-offset-0">
+            <a ng-click="CloseLogin()"><i class="fa fa-times" style="color: black;"></i></a>
+        </div>
+
+        <div class="col-sm-2 col-sm-offset-1" style="text-align: center;"></div>
+    </div>
+
+    <div class="row">
+        <div class="container">
+        </div>
+    </div>
+
+    <!-- Login Form -->
+    <div ng-if="!showRegister">
+        <div class="row">
+            <div class="container">
+                <form name="loginForm" autocomplete="on">
+                    <div class="row">
+
+                        <div class="col-md-10 col-sm-offset-1 form-group input-group">
+                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                            <input id="email" type="email" class="form-control" placeholder="email address" ng-model="Login.Email">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-10 col-sm-offset-1 form-group input-group">
+                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                            <input type="password" class="form-control" placeholder="password" ng-model="Login.Password">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-offset-1 col-sm-5">
+                            <button type="submit" class="btn btn-block btn-social btn-primary" id="Login" title="Log in with 9res" ng-click="Login9Res()">
+                                <span style="font-family: 'Bauhaus 93'; font-weight:100; font-size: 28px;">9</span> Log in
+                            </button>
+
+                        </div>
+                        <div class="col-sm-offset-0 col-sm-5">
+                            <!--<button type="submit" value="Cancel" style="width: 100%;" class="btn btn-danger" ng-click="CloseLogin()"> Cancel </button>-->
+                            <button type="submit" class="btn btn-block btn-social btn-danger" id="Cancel" title="Cancel Login" ng-click="CloseLogin()">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="checkbox">
+                                <label> <input type="checkbox" ng-model="Login.Remember"> Remember me? </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Registration Form -->
+    <div ng-if="showRegister">
+        <div class="row">
+            <div class="container">
+                <form name="registerForm" autocomplete="on">
+
+                    <div class="row">
+                        <div class="col-md-10 col-sm-offset-1 form-group input-group">
+                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                            <input id="email" type="email" class="form-control" placeholder="email address" ng-model="Register.UserName">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-10 col-sm-offset-1 form-group input-group">
+                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                            <input type="password" class="form-control" placeholder="password" ng-model="Register.Password">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-10 col-sm-offset-1 form-group input-group">
+                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                            <input type="password" class="form-control" placeholder="confirm password" ng-model="Register.ConfirmPassword">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-offset-1 col-sm-5">
+                            <button type="submit" class="btn btn-block btn-social btn-9res" id="GooglePlus" name="provider" value="GooglePlus" title="Register with 9res" ng-click="Register9Res()">
+                                <span style="font-family: 'Bauhaus 93'; font-weight:100; font-size: 28px;">9</span> Register
+                            </button>
+
+                        </div>
+
+                        <div class="col-sm-offset-0 col-sm-5">
+                            <button type="submit" value="Cancel" style="width: 100%;" class="btn btn-danger" ng-click="CloseLogin()"> Cancel </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="checkbox">
+                                <label> <input type="checkbox" ng-model="Register.RememberMe"> Remember me? </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" style="background-color:#555555;  padding-bottom: 25px;">
+        <div class="col-md-7 col-md-offset-2" style="text-align: center;">
+
+
+            <span style="width: 100%; color: white; text-align: center;">
+                - OR Connect thru -
+            </span>
+
+
+            <div id="socialLoginList" style="padding-top: 15px;">
+                <button type="submit" class="btn btn-block btn-social btn-google-plus" id="GooglePlus" name="provider" value="GooglePlus" title="Log in using your GooglePlus account" ng-click="loginGooglePlus()">
+                    <i class="fa fa-google-plus"></i> Sign in with Google </button>
+                <button type="submit" class="btn btn-block btn-social btn-facebook" id="Facebook" name="provider" value="Facebook" title="Log in using your Facebook account" ng-click="loginFacebook()">
+                    <i class="fa fa-facebook"></i> Sign in with Facebook
+                </button>
+                <button type="submit" class="btn btn-block btn-social btn-twitter" id="Twitter" name="provider" value="Twitter" title="Log in using your Twitter account" ng-click="loginTwitter()">
+                    <i class=" fa fa-twitter">
+                    </i> Sign in with Twitter
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

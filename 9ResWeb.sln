@@ -7,27 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9ResWeb", "9ResWeb\9ResWeb.csproj", "{A8D8B1F9-496C-4D60-B986-EC3A1E08BD86}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "9Res Revision(1)", "http://localhost:51375", "{7D546CCA-F3CC-4E72-ADF1-DE8BD75A9E2B}"
-	ProjectSection(WebsiteProperties) = preProject
-		UseIISExpress = "true"
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_51375"
-		Debug.AspNetCompiler.PhysicalPath = "9Res Revision\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51375\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_51375"
-		Release.AspNetCompiler.PhysicalPath = "9Res Revision\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51375\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "9Res Revision\"
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicLayer", "LogicLayer\LogicLayer.csproj", "{2AD8B2C1-23D9-4C89-ABB4-9A2108A158F7}"
 EndProject
 Global
@@ -44,10 +23,6 @@ Global
 		{A8D8B1F9-496C-4D60-B986-EC3A1E08BD86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8D8B1F9-496C-4D60-B986-EC3A1E08BD86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8D8B1F9-496C-4D60-B986-EC3A1E08BD86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D546CCA-F3CC-4E72-ADF1-DE8BD75A9E2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D546CCA-F3CC-4E72-ADF1-DE8BD75A9E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D546CCA-F3CC-4E72-ADF1-DE8BD75A9E2B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D546CCA-F3CC-4E72-ADF1-DE8BD75A9E2B}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{2AD8B2C1-23D9-4C89-ABB4-9A2108A158F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2AD8B2C1-23D9-4C89-ABB4-9A2108A158F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AD8B2C1-23D9-4C89-ABB4-9A2108A158F7}.Release|Any CPU.ActiveCfg = Release|Any CPU

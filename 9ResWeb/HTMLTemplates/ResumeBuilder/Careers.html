@@ -93,9 +93,9 @@
 
     <div class="row">
 
-        <div sstyle="width: 100%;" class="col-sm-12" ng-repeat="job in newJobs track by $index">
+        <div class="col-sm-12" ng-repeat="job in newJobs track by $index">
 
-            <add-job job="job" jobs="jobs" newjobs="newJobs"></add-job>
+            <add-job job="job" jobs="jobs" newjobs="newJobs" jobnumber="0"></add-job>
 
         </div>
 
@@ -104,12 +104,10 @@
     <div class="row">
 
         <div class="col-sm-12" ng-repeat="job in jobs track by $index">
-
-            <show-job job="job" jobs="jobs"></show-job>
-
+            <show-job job="job" jobs="jobs" job-number="$index" jobnumber="$index"></show-job>
         </div>
 
-        <div id="mypopup"></div>
+        <!--<div id="mypopup"></div>-->
     </div>
 
 

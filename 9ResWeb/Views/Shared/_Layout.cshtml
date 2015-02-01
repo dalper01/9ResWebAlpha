@@ -1,14 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Configuration
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-
-    @*<script>
-        var IsLoggedIn = @(User.Identity.IsAuthenticated);
-    </script>*@
-
 
     <link rel="icon" href="/content/images/9res.bmp" />
     @Styles.Render("~/Content/css")
@@ -21,8 +18,38 @@
     @RenderSection("styles", required: false)
     @RenderSection("scripts", required: false)
 
+    @{
+        int isLoggedIn = @Convert.ToInt32(User.Identity.IsAuthenticated);
+    }
+
 </head>
-<body ng-app="@ViewBag.ngApp" ng-controller="AuthenticationController" ng-init="LoggedIn=@Convert.ToInt32(User.Identity.IsAuthenticated)">
+<body ng-app="@ViewBag.ngApp" ng-controller="AuthenticationController" sng-init="GetUserInfo( LoggedIn=@Convert.ToInt32(User.Identity.IsAuthenticated) )">
+
+    <script>
+
+        //AuthenticationProvider.init();
+
+        var isLoggedIn = @isLoggedIn;
+        console.log('isLoggedIn: ' + isLoggedIn);
+        AuthenticationModule.config(['GooglePlusProvider', 'FacebookProvider', 'AuthenticationProvider', function (GooglePlusProvider, FacebookProvider, AuthenticationProvider, $http) {
+
+            GooglePlusProvider.init({
+                clientId: '@WebConfigurationManager.AppSettings["GooglePlusId"]',
+                apiKey: 'AIzaSyAHUVC3i2tNcpRTkNIrA4FAPXvRf-9tbvo'
+            });
+
+            FacebookProvider.init('@WebConfigurationManager.AppSettings["FacebookId"]');
+            GooglePlusProvider.setScopes('profile email');
+
+            AuthenticationProvider.init( {
+                loggedIn: isLoggedIn
+            });
+
+    }]);
+
+
+    </script>
+
     <div class="page-wrap">
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -66,7 +93,7 @@
             <div class="row">
                 <hr style="margin-bottom: -10px;" />
                 @*<a href="@Url.Action("Index","Home")"><img src="@Url.Content("~/content/images/logo_white.bmp")" height="45" /></a>*@
-                <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 42px; margin-right: -8px;">9</span> 
+                <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 42px; margin-right: -8px;">9</span>
                 <span style="font-family: 'Bauhaus 93'; font-size: 19px; margin-right: 5px; margin-left: -0px;">res</span>
                 &copy; @DateTime.Now.Year
 

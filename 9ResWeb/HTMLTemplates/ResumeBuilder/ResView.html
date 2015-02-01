@@ -1,0 +1,107 @@
+﻿
+<div>
+    <span class="ci_name">
+        <place-holder filler="First Name" bind="contactInfo.firstName"></place-holder>
+        <place-holder filler="Middle Name" bind="contactInfo.middleName"></place-holder>
+        <place-holder filler="Last Name" bind="contactInfo.lastName"></place-holder>
+    </span>
+
+    <br />
+
+    <span class="ci_dtl1">
+        {{ contactInfo.addrStreet }} {{ contactInfo.addrTown }}
+        <span ng-show="showCommaCityState()">, </span>
+        {{ contactInfo.addrState }} {{ contactInfo.addrZip }}
+    </span>
+
+    <br />
+
+    <span class="ci_dtl1">
+        <span ng-show="contactInfo.number1.length">  {{ contactInfo.phone1 }} {{ contactInfo.number1  }} </span>
+        <span ng-show="contactInfo.number2.length"> {{ contactInfo.phone2 }} {{ contactInfo.number2 }} </span>
+        {{ contactInfo.eMail }}
+        <span ng-show="contactInfo.socialMedia.length">
+            <img height=19 width=19 ng-src="{{ contactInfo.socialMediaLogo }}"> {{ contactInfo.socialMedia }}
+        </span>
+    </span>
+
+</div>
+
+
+<div>
+    <div class="row">
+
+        <div class="col-sm-12" ng-repeat="job in jobs track by $index">
+            hello
+            <show-job job="job" jobs="jobs" job-number="$index" jobnumber="$index"></show-job>
+        </div>
+
+        <!--<div id="mypopup"></div>-->
+    </div>
+
+</div>
+
+
+<div>
+    <div class="col-md-4">
+
+        <div style="" class="educationPresentation" ng-repeat="highSchool in education.highSchools track by $index">
+            <div style="text-align: right;" ng-if="(addNavShow == true)">
+                <i class="glyphicon glyphicon-edit microIcons" title="Edit HighSchool"
+                   ng-click="editHighSchool(highSchool)"></i>
+                <i class="glyphicon glyphicon-trash microIcons" title="Delete HighSchool"
+                   ng-click="deleteHighSchool(highSchool)"></i>
+            </div>
+
+
+            <div> <b> {{ highSchool.name }} </b> </div>
+            <div> {{ highSchool.city }} {{ highSchool.state }}  </div>
+            <div ng-show="highSchool.graduated">
+                <img src="/Content/images/degree.bmp" height="20px">
+                {{ highSchool.gradMonth }} {{ highSchool.gradYear }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div style="" class="educationPresentation"
+             ng-repeat="college in education.colleges track by $index">
+
+            <div style="text-align: right;" ng-if="(addNavShow == true)">
+                <i class="glyphicon glyphicon-edit microIcons" title="Edit College"
+                   ng-click="editCollege(college)"></i>
+                <i class="glyphicon glyphicon-trash microIcons" title="Delete College"
+                   ng-click="deleteCollege(college)"></i>
+            </div>
+
+            <div> <b> {{ college.name }} </b> </div>
+            <div> {{ college.city }} {{ college.state }}  </div>
+            <div> {{ college.degreeType }} {{ college.degreeProgram }}  </div>
+            <div ng-show="college.graduated">
+                <img src="/Content/images/degree.bmp" height="20px">
+                {{ college.gradMonth }} {{ college.gradYear }}
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4">
+        <div style="display: block; " class="educationPresentation"
+             ng-repeat="certificate in education.certificates track by $index">
+
+            <div style="text-align: right;" ng-if="(addNavShow == true)">
+                <i class="glyphicon glyphicon-edit microIcons" title="Edit Certificate"
+                   ng-click="editCertificate(certificate)"></i>
+                <i class="glyphicon glyphicon-trash microIcons" title="Delete Certificate"
+                   ng-click="deleteCertificate(certificate)"></i>
+            </div>
+
+            <div>
+                <img src="/Content/images/icons/certification.bmp" height="20px">
+                <b> {{ certificate.type }} </b> ( {{ certificate.Provider }}
+                {{ certificate.compMonth }} {{ certificate.compYear }})
+            </div>
+        </div>
+    </div>
+</div>
