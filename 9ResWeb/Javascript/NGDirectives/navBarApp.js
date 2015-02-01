@@ -80,6 +80,13 @@ navBarApp.controller('navController',
                 tabClass: "",
                 tabLink: "#/objective"
 
+            },
+
+            {
+                tabTitle: "View Resume",
+                tabClass: "",
+                tabLink: "#/resview"
+
             }
 
 

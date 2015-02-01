@@ -427,6 +427,7 @@
     <Content Include="HTMLTemplates\ResumeBuilder\Education.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\Expertise.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\Objective.html" />
+    <Content Include="HTMLTemplates\ResumeBuilder\ResView.html" />
     <Content Include="images\9res.bmp" />
     <Content Include="images\9resAdvantages.png" />
     <Content Include="images\9resGetStarted.png" />
@@ -580,6 +581,7 @@
     <Content Include="Javascript\NGControllers\AuthenticationController.js" />
     <Content Include="Javascript\NGControllers\expertiseController.js" />
     <Content Include="Javascript\NGControllers\objectiveController.js" />
+    <Content Include="Javascript\NGControllers\ResViewController.js" />
     <Content Include="Javascript\NGDirectives\Authentication\loginDirective.js" />
     <Content Include="Javascript\NGDirectives\CareerDirectives\showJobs.js" />
     <Content Include="Scripts\angular-animate.js" />

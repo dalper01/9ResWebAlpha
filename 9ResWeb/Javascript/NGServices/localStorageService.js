@@ -99,7 +99,7 @@ storageServiceApp.factory('localStorageService', function ($rootScope) {
     }
 
     var _saveLocalStorageJobs = function () {
-        _saveLocalStorage("resume.skills", _skills);
+        _saveLocalStorage("resume.jobs", _jobs);
     }
 
 

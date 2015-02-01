@@ -30,6 +30,12 @@ ResumeBuilderModule.config(function ($routeProvider) {
 
 
     })
+    .when('/resview', {
+        templateUrl: '/HTMLTemplates/ResumeBuilder/ResView.html',
+        controller: 'ResViewController'
+
+
+    })
     .otherwise({
         redirectTo: '/'
     })

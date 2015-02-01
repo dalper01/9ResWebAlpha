@@ -25,21 +25,21 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
     // intialize values (Config) from Razor Layout
     this.init = function (data) {
         LoggedInStatus = data.loggedIn;
-        console.log('set loginstatus: ' + data.loggedIn + ' :: ' + LoggedInStatus);
+        //console.log('set loginstatus: ' + data.loggedIn + ' :: ' + LoggedInStatus);
     };
 
 
     // GetLoggedInStatus:
     // Returns Logged In Status
     var GetLoggedInStatus = function () {
-        console.log('Get this.LoggedInStatus:' + this.LoggedInStatus);
+        //console.log('Get this.LoggedInStatus:' + this.LoggedInStatus);
         return LoggedInStatus;
     }
 
     // SetUserLoggedIn:
     // Returns Logged In Status
     var SetUserLoggedIn = function () {
-        console.log('Logging User In');
+        //console.log('Logging User In');
         LoggedInStatus = true;
         //angular.copy(true, LoggedInStatus);
 
@@ -48,15 +48,14 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
     // SetUserLoggedOut:
     // Returns Logged In Status
     var SetUserLoggedOut = function () {
-        console.log('Logging User Out');
+        //console.log('Logging User Out');
         LoggedInStatus = false;
     }
 
     // GetUserData: data -- object containing user data
     // Sets User Data
     var SetUserData = function (data) {
-        //UserData = data.UserInfo;
-        console.log(data.UserInfo);
+        //console.log(data.UserInfo);
         angular.copy(data.UserInfo, UserData);
     }
 
@@ -80,8 +79,8 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
             //data: $.param(GooglePlusResult)
         }).success(function (data, status, headers, config) {
 
-            console.log('Get User Data Succeeded');
-            console.log(data);
+            //console.log('Get User Data Succeeded');
+            //console.log(data);
 
             SetUserData(data);
             SetUserLoggedIn();
@@ -91,7 +90,6 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
             console.log('Get User Data (Service) Failed');
             deferred.reject('error');
         });
-        console.log('');
 
         return deferred.promise;
     }
@@ -108,14 +106,11 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
             data: $.param(loginData)
         }).success(function (data, status, headers, config) {
 
-            console.log('External Authentication Service Login Succeeded');
-            console.log(data);
+            //console.log('External Authentication Service Login Succeeded');
+            //console.log(data);
             SetUserData(data);
             deferred.resolve(data);
 
-            //$scope.SetUserLoggedIn();
-            //$scope.SetUserData(data);
-            //$scope.CloseLogin();
         }).error(function (data, status, headers, config) {
             deferred.reject('error');
             console.log('External Authentication Service Login Failed');
@@ -140,7 +135,7 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
     }
 
 
-    // Create Authentication Provider
+    /* ** Create Authentication Provider ** */
     this.$get = ['$q', '$http', 'GooglePlus', 'Facebook', function ($q, $http, GooglePlus, Facebook) {
 
         var initInjector = angular.injector(['ng']);
@@ -154,6 +149,9 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
             }
         };
 
+
+        /* *** GPlogin ()
+           *** Authenticate User with Google API   */
         var GPlogin = function () {
 
             var deferred = $q.defer();
@@ -182,9 +180,6 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
 
                 GooglePlus.getUser().then(function (user) {
                     //console.log('user: ' + user.email);
-                    //console.log('user: ' + user.family_name);
-                    //console.log('user: ' + user.given_name);
-                    //console.log('user: ' + user.gender);
 
                     //GooglePlusResult.Issuer = "Google";
                     GooglePlusResult.Id = user.id;
@@ -197,7 +192,7 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
                     GooglePlusResult.Link = user.link;
                     GooglePlusResult.Picture = user.picture;
 
-                    console.log('GooglePlusResult: ' + GooglePlusResult);
+                    //console.log('GooglePlusResult: ' + GooglePlusResult);
 
                     deferred.resolve(GooglePlusResult);
 
@@ -206,10 +201,6 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
                 console.log('err callback');
                 console.log(err);
                 deferred.reject('error');
-                //GooglePlus.getUser().then(function (user) {
-                //    console.log('user');
-                //    console.log(GooglePlusResult);
-                //});
             }).finally(function (result) {
                 console.log('final Data Result');
             });
@@ -217,6 +208,115 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
             return deferred.promise;
         };
 
+
+        /* *** FBlogin ()
+           *** Authenticate User with Facebook API   */
+        var FBlogin = function () {
+            var deferred = $q.defer();
+
+            var FaceBookResult = { Issuer: "Facebook" };
+
+            //FB.getLoginStatus(function (response) {
+            //    $scope.loginStatus = response.status;
+            //    console.log('starting status:' + $scope.loginStatus);
+            //}, true);
+
+            // check status
+            //Facebook.getLoginStatus(function (response) {
+            //    //$scope.loginStatus = response.status;
+            //    //if (response.status === 'connected') {
+            //    //    $scope.loggedIn = true;
+            //    //} else if (response.status === 'not_authorized') {
+            //    //    // the user is logged in to Facebook, 
+            //    //    // but has not authenticated your app
+            //    //} else {
+            //    //    // the user isn't logged in to Facebook.
+            //    //}
+            //    console.log(response.status);
+            //});
+
+
+            //if ($scope.loginStatus === 'connected')
+            //    return;
+
+            FB.login(function (response) {
+                console.log(response);
+
+                FaceBookResult.AccessToken = response.authResponse.accessToken;
+                FaceBookResult.Id = response.authResponse.userID;
+
+                if (response.authResponse) {
+                    console.log(response);
+
+                    FaceBookResult.grantedScopes = response.authResponse.grantedScopes;
+
+                    console.log('Granted!  Fetching your information.... ');
+                    FB.api('/me', function (response) {
+                        console.log(response);
+
+                        FaceBookResult.Email = response.email;
+                        FaceBookResult.FirstName = response.first_name;
+                        FaceBookResult.LastName = response.last_name;
+                        FaceBookResult.FullName = response.name;
+
+                        FaceBookResult.Link = response.link;
+                        FaceBookResult.Gender = response.gender;
+
+
+                        FaceBookResult.verified = response.verified;
+                        //console.log(FaceBookResult);
+
+
+                        FB.api(
+                            "/me/picture",
+                            {
+                                "type": "square",  //  "small", "normal", "large",
+                            },
+                            function (response) {
+                                if (response && !response.error) {
+                                    FaceBookResult.Picture = response.data.url;
+                                }
+                                else {
+                                    console.log('error');
+                                    console.log(response);
+                                }
+
+                                deferred.resolve(FaceBookResult);
+
+                                //$http({ url: "/ExternalLogin"
+                            }
+                        );
+
+
+                        console.log('FaceBookResult');
+                        console.log(FaceBookResult);
+                        //deferred.resolve(FaceBookResult);
+
+
+                    });
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                    deferred.reject('error');
+
+                }
+            },
+            {
+                scope: 'email',
+                //scope: 'email,user_likes',
+                auth_type: 'reauthenticate',
+                return_scopes: true
+            });
+
+            //    .then(function () {
+
+
+            //});;
+
+
+            console.log(FaceBookResult);
+            return deferred.promise;
+
+        }
 
         return {
             init: this.init,
@@ -226,9 +326,14 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
             Logout: SetUserLoggedOut,
             GetUserData: GetUserData,
             SetUserData: SetUserData,
+
+            //9Res Service Requests
             HTTPGetUserData: HTTPGetUserData,
             HTTPExternalLogin: HTTPExternalLogin,
-            GPlogin: GPlogin
+
+            // Social Network Authenticate Requests
+            GPlogin: GPlogin,
+            FBlogin: FBlogin
         };
 
     }];

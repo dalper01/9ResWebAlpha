@@ -167,8 +167,40 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
 
     // Request Validation from Facebook API
     $scope.loginFacebook = function () {
-        $scope.FBlogin();
+        //$scope.FBlogin();
         //$scope.showLogin = false;
+        //Authentication.FBlogin();
+        var promise = Authentication.FBlogin();
+
+        promise.then(function (data) {
+            //console.log('Success Handler');
+            //console.log(data);
+
+            var promise2 = Authentication.HTTPExternalLogin(data);
+
+            promise2.then(function (data) {
+                //console.log('promise2: data -' + data);
+                $scope.SetUserLoggedIn();
+                $scope.CloseLogin();
+
+                if (!$scope.$$phase) {
+                    $scope.$digest(); // or $apply
+                }
+
+            }, function (err) {
+                console.log('err callback');
+                console.log(err);
+            }).finally(function (result) {
+                console.log('final Data Result');
+            });
+
+        }, function (err) {
+            console.log('err callback');
+            console.log(err);
+        }).finally(function (result) {
+            console.log('final Data Result');
+        });
+
     }
 
     // Request Validation from Twitter API
@@ -177,101 +209,6 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
     }
 
 
-
-    // Execute get Data if user Logged in
-    //if ($scope.LoggedIn==true) {
-    //    $scope.GetUserInfo();
-    //}
-    //console.log('logged in status:' + $scope.LoggedIn);
-
-
-
-    // Request Validation from Google API
-    var GPlogin = function () {
-        //console.log('checkAuth');
-        //GooglePlus.checkAuth().then(function (authResult) {
-        //    console.log('authResult');
-        //    console.log(authResult);
-
-        //    GooglePlus.getUser().then(function (user) {
-        //        console.log('user');
-        //        console.log(user);
-        //    });
-        //}, function (err) {
-        //    console.log(err);
-        //});
-
-        var GooglePlusResult = { Issuer: "Google" };
-
-        console.log('login');
-        GooglePlus.login().then(function (authResult) {
-            console.log('authResult');
-            console.log(authResult);
-
-            GooglePlusResult.AccessToken = authResult.access_token;
-            GooglePlusResult.FullId = authResult.client_id;
-
-
-            GooglePlus.getUser().then(function (user) {
-                console.log('user');
-                console.log(user);
-
-                //GooglePlusResult.Issuer = "Google";
-                GooglePlusResult.Id = user.id;
-
-                GooglePlusResult.Email = user.email;
-                GooglePlusResult.LastName = user.family_name;
-                GooglePlusResult.FirstName = user.given_name;
-                GooglePlusResult.FullName = user.name;
-                GooglePlusResult.Gender = user.gender;
-                GooglePlusResult.Link = user.link;
-                GooglePlusResult.Picture = user.picture;
-
-                console.log(GooglePlusResult);
-
-
-
-                $http({
-                    url: "/ExternalLogin",
-                    method: "POST",
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    data: $.param(GooglePlusResult)
-                }).success(function (data, status, headers, config) {
-
-                    console.log('Google Login Succeeded');
-                    console.log(data);
-                    $scope.SetUserLoggedIn();
-                    $scope.SetUserData(data);
-                    $scope.CloseLogin();
-                }).error(function (data, status, headers, config) {
-                    $scope.status = status;
-                    console.log('Google Login Failed');
-                });
-
-
-
-
-            });
-        }, function (err) {
-            console.log('err callback');
-            console.log(err);
-            GooglePlus.getUser().then(function (user) {
-                console.log('user');
-                console.log(GooglePlusResult);
-            });
-        }).finally(function (result) {
-            console.log('final Data Result');
-            //console.log(GooglePlusResult);
-
-
-            //GooglePlus.getUser().then(function (user) {
-            //    console.log('user');
-            //    console.log(user);
-            //});
-
-
-        });
-    };
 
     $scope.loginStatus = 'disconnected';
     $scope.facebookIsReady = false;
@@ -286,15 +223,7 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
 
     $scope.FBgetLoginStatus = function () {
         Facebook.getLoginStatus(function (response) {
-            $scope.loginStatus = response.status;
-            //if (response.status === 'connected') {
-            //    $scope.loggedIn = true;
-            //} else if (response.status === 'not_authorized') {
-            //    // the user is logged in to Facebook, 
-            //    // but has not authenticated your app
-            //} else {
-            //    // the user isn't logged in to Facebook.
-            //}
+            return response.status;
         });
     };
 
@@ -310,10 +239,10 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
     $scope.FBlogin = function () {
         var FaceBookResult = { Issuer: "Facebook" };
 
-        FB.getLoginStatus(function (response) {
-            $scope.loginStatus = response.status;
-            console.log('starting status:' + $scope.loginStatus);
-        }, true);
+        //FB.getLoginStatus(function (response) {
+        //    $scope.loginStatus = response.status;
+        //    console.log('starting status:' + $scope.loginStatus);
+        //}, true);
 
         // check status
         //Facebook.getLoginStatus(function (response) {
@@ -330,8 +259,8 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
         //});
 
 
-        if ($scope.loginStatus === 'connected')
-            return;
+        //if ($scope.loginStatus === 'connected')
+        //    return;
 
         FB.login(function (response) {
             console.log(response);
@@ -431,10 +360,10 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
 
 
 
-        Facebook.getLoginStatus(function (response) {
-            console.log(response.status);
-            $scope.loginStatus = response.status;;
-        });
+        //Facebook.getLoginStatus(function (response) {
+        //    console.log(response.status);
+        //    $scope.loginStatus = response.status;;
+        //});
 
 
 
