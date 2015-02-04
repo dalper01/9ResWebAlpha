@@ -25,6 +25,7 @@ function ($scope, $rootScope, $modal, localStorageService) {
                 {
                     details: [{
                         description: "",
+                        edit: true,
                         order: 1
                     }]
                 });

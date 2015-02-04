@@ -406,6 +406,7 @@
     <Content Include="Content\images\word_slide_tab_red.bmp" />
     <Content Include="Content\images\word_slide_tab_yellow.bmp" />
     <Content Include="HTMLControls\Authentication\headerLogin.html" />
+    <Content Include="HTMLControls\Careers\addJob.html" />
     <Content Include="HTMLControls\Careers\showJob.html" />
     <Content Include="HTMLControls\Education\certificationForm.html" />
     <Content Include="HTMLControls\Education\collegeForm.html" />

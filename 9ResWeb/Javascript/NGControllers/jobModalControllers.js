@@ -2,108 +2,108 @@
 
 
 
-// modalAddJobCtrl
-// manage Add Job Popup Callbacks
+//// modalAddJobCtrl
+//// manage Add Job Popup Callbacks
 
-var modalAddJobCtrl = function ($scope, localStorageService, $modalInstance, jobs) {
+//var modalAddJobCtrl = function ($scope, localStorageService, $modalInstance, jobs) {
 
-    $scope.modalTitle='Add New Job';
-    $scope.job = {
-        details: [],
-        edit: true
-    };
-
-
-    // move clicked job detail up in order
-    $scope.switchDetailOrderUp = function (detail) {
-        moveDetailOrderUp(detail, $scope.job)
-    }
+//    $scope.modalTitle='Add New Job';
+//    $scope.job = {
+//        details: [],
+//        edit: true
+//    };
 
 
-    // move clicked job detail down in order
-    $scope.switchDetailOrderDown = function(detail){
-        moveDetailOrderDown(detail, $scope.job)
-    }
+//    // move clicked job detail up in order
+//    $scope.switchDetailOrderUp = function (detail) {
+//        moveDetailOrderUp(detail, $scope.job)
+//    }
+
+
+//    // move clicked job detail down in order
+//    $scope.switchDetailOrderDown = function(detail){
+//        moveDetailOrderDown(detail, $scope.job)
+//    }
 
 
 
-    // Add new job detail within Add Job Pop-up
-    $scope.addJobDetail = function (job) {
-        pushJobDetail(job);
-    };
+//    // Add new job detail within Add Job Pop-up
+//    $scope.addJobDetail = function (job) {
+//        pushJobDetail(job);
+//    };
 
 
-    // Save job changes within Add Job Pop-up
-    $scope.saveJob = function () {
-        jobs.push($scope.job);
-        //localStorageService.saveLocalStorage("resume.jobs", jobs);
-        localStorageService.SaveStorageJobs();
-        $modalInstance.dismiss('cancel');
-    };
+//    // Save job changes within Add Job Pop-up
+//    $scope.saveJob = function () {
+//        jobs.push($scope.job);
+//        //localStorageService.saveLocalStorage("resume.jobs", jobs);
+//        localStorageService.SaveStorageJobs();
+//        $modalInstance.dismiss('cancel');
+//    };
 
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+//    $scope.cancel = function () {
+//        $modalInstance.dismiss('cancel');
 
-    };
+//    };
 
-    $scope.deleteJobDetail = function(job, detail) {
-        deleteArrayElement(job.details, detail);
+//    $scope.deleteJobDetail = function(job, detail) {
+//        deleteArrayElement(job.details, detail);
 
-    };
-};
-
-
+//    };
+//};
 
 
 
 
-// modalEditJobCtrl
-// manage Edit Job Popup Callbacks
-
-var modalEditJobCtrl = function ($scope, localStorageService, $modalInstance, job) {
-
-    $scope.modalTitle = 'Edit Job';
-    $scope.job = angular.copy(job);
 
 
+//// modalEditJobCtrl
+//// manage Edit Job Popup Callbacks
 
-    // move clicked job detail up in order
-    $scope.switchDetailOrderUp = function (detail) {
-        moveDetailOrderUp(detail, $scope.job)
-    }
+//var modalEditJobCtrl = function ($scope, localStorageService, $modalInstance, job) {
 
-
-    // move clicked job detail up in order
-    $scope.switchDetailOrderDown = function (detail) {
-        moveDetailOrderDown(detail, $scope.job)
-    }
+//    $scope.modalTitle = 'Edit Job';
+//    $scope.job = angular.copy(job);
 
 
 
-    // Add new job Job Detail
-    $scope.addJobDetail = function (job) {
-        pushJobDetail(job);
-    };
-
-    // Save job changes
-    $scope.saveJob = function () {
-        angular.copy($scope.job, job);
-        localStorageService.SaveStorageJobs();
-        $modalInstance.dismiss('cancel');
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-
-    $scope.deleteJobDetail = function (job, detail) {
-
-        deleteArrayElement(job.details, detail);
+//    // move clicked job detail up in order
+//    $scope.switchDetailOrderUp = function (detail) {
+//        moveDetailOrderUp(detail, $scope.job)
+//    }
 
 
-    };
+//    // move clicked job detail up in order
+//    $scope.switchDetailOrderDown = function (detail) {
+//        moveDetailOrderDown(detail, $scope.job)
+//    }
 
-};
+
+
+//    // Add new job Job Detail
+//    $scope.addJobDetail = function (job) {
+//        pushJobDetail(job);
+//    };
+
+//    // Save job changes
+//    $scope.saveJob = function () {
+//        angular.copy($scope.job, job);
+//        localStorageService.SaveStorageJobs();
+//        $modalInstance.dismiss('cancel');
+//    };
+
+//    $scope.cancel = function () {
+//        $modalInstance.dismiss('cancel');
+//    };
+
+//    $scope.deleteJobDetail = function (job, detail) {
+
+//        deleteArrayElement(job.details, detail);
+
+
+//    };
+
+//};
 
 
 

@@ -28,7 +28,7 @@ CareerModule.directive('addJob', [function ($compile) {
             jobNumber: '='
     },
         controller: "addJobCtrl",
-        templateUrl: "/HTMLControls/Careers/showJob.html"
+        templateUrl: "/HTMLControls/Careers/addJob.html"
     }
 
 
