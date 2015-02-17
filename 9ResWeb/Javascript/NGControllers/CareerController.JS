@@ -1,5 +1,5 @@
 
-var CareerModule = angular.module('CareerModule', ['ui.bootstrap', 'commonDirectives', 'navBarApp', 'storageServiceApp']);
+var CareerModule = angular.module('CareerModule', ['ui.bootstrap', 'commonDirectives', 'navBarApp', 'storageServiceApp', 'ngAnimate']);
 
 
 CareerModule.controller('CareerController',

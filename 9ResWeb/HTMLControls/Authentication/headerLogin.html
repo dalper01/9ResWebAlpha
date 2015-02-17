@@ -1,8 +1,8 @@
-﻿<ul class="nav navbar-nav navbar-right" ng-if="!LoggedIn">
+﻿<ul class="nav navbar-nav navbar-right" ng-if="!IsLoggedIn()">
     <li ng-click="OpenLogin()"><a id="loginLink" ng-click="OpenLogin()">Log in / Register </a></li>
 </ul>
 
-<ul class="nav navbar-nav navbar-right" ng-if="LoggedIn">
+<ul class="nav navbar-nav navbar-right" ng-if="IsLoggedIn()">
     <li class="dropdown dropdown-dark">
         <a style="padding-bottom: 0px;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             <img ng-src="{{ UserData.Picture }}" style="padding: 0px 0px 0px 0px;  margin-right: 5px; position: relative; top: -.05em; overflow: hidden;" height="22" />

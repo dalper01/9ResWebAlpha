@@ -321,6 +321,7 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
         return {
             init: this.init,
             GetLoggedInStatus: GetLoggedInStatus,
+            SetUserLoggedOut: SetUserLoggedOut,
             SetUserLoggedIn: SetUserLoggedIn,
             Login9Res: Login9Res,
             Logout: SetUserLoggedOut,

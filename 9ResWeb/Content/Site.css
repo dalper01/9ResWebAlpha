@@ -58,18 +58,65 @@ textarea {
   -webkit-transition:all linear 1s;
   transition:all linear .3s;
   height: 80px;
+  display:block!important;
   overflow: hidden;
   /*opacity:1;*/
 }
 
-.animate-show.ng-hide-add,
-.animate-show.ng-hide-remove {
-  display:block!important;
-}
 
 .animate-show.ng-hide {
   /*opacity:0;*/
       height:0;
+}
+
+
+/*.add-job-enter {
+	-webkit-transition: 1s linear all;
+    overflow: hidden;
+	transition: 1s linear all;
+	max-height: 0;
+}
+ 
+.add-job-enter.animate-enter-active {
+	max-height: 500px;
+}*/
+
+/*.addjob {
+    height: 500px;
+	opacity: 1;
+}*/
+
+.addjob.ng-enter, 
+.addjob.ng-leave
+{ 
+	-webkit-transition: 1s linear all;
+	-moz-transition: 1s linear all;
+	-ms-transition: 1s linear all;
+	-o-transition: 1s linear all;
+	transition: 1s linear all;
+	position: relative;
+	display: block;
+    overflow: hidden;
+} 
+
+.addjob.ng-leave.ng-leave-active{
+
+} 
+.addjob.ng-leave.ng-leave-active,
+.addjob.ng-enter {
+	max-height: 0px;
+
+}
+ 
+.addjob.ng-leave, 
+.addjob.ng-enter.ng-enter-active {
+	max-height: 600px;
+	opacity: 1;
+
+}
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+  display:block!important;
 }
 
 .space5 > div {

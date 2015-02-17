@@ -3,13 +3,9 @@
 
 AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 'GooglePlus', 'Facebook', 'Authentication', function ($scope, $http, GooglePlus, Facebook, Authentication) {
 
-    //Authentication.init(1);
+    // Initialize User Status and Data
     $scope.showLogin = false;
     $scope.showRegister = false;
-    //$scope.UserData = {
-    //    FullName: '',
-    //    Picture: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg'
-    //};
 
     $scope.LoggedIn = Authentication.GetLoggedInStatus();
     $scope.UserData = Authentication.GetUserData();
@@ -21,6 +17,9 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
         //console.log('logged in');
     }
 
+
+
+    // Define Controller Globals
     $scope.Logout = function () {
         $http.post("/Logout", {
 
@@ -36,21 +35,26 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
 
 
     }
+
+    // Check if User is logged in
+    $scope.IsLoggedIn = function () {
+        return Authentication.GetLoggedInStatus();
+    }
+
     
     // Set Client Status to User Logged In
     $scope.SetUserLoggedIn = function () {
         console.log('logging in');
-        $scope.LoggedIn = true;
+        Authentication.SetUserLoggedIn();
     }
 
     // Set Client Status to User Logged Out
     $scope.SetUserLoggedOut = function () {
-        $scope.LoggedIn = false;
+        Authentication.SetUserLoggedOut();
     }
 
     // Set Client Status to User Logged Out
     $scope.SetUserData = function (data) {
-        //$scope.UserData = data.UserInfo;
         Authentication.SetUserData(data);
     }
     
@@ -84,19 +88,18 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
         var promise = Authentication.Login9Res($scope.Login.Email, $scope.Login.Password, $scope.Login.RememberMe);
 
         promise.success(function (data, status, headers, config) {
-                //console.log('Success Handler');
-                //console.log(data);
-                //console.log(status);
+            //console.log('Success Handler'); console.log(data); console.log(status);
 
-                Authentication.SetUserData(data);
-                //Authentication.SetUserLoggedIn();
+            //$scope.SetUserData(data);
+            Authentication.SetUserData(data);
 
-                $scope.SetUserLoggedIn();
-                $scope.CloseLogin();
-                $scope.$digest();
-                //$scope.SetUserData(data);
-                //$scope.CloseLogin();
-            }).
+            $scope.SetUserLoggedIn();
+            $scope.CloseLogin();
+            if (!$scope.$$phase) {
+                $scope.$digest(); // or $apply
+            }
+
+        }).
             error(function (data, status, headers, config) {
                 console.log('Error Handler');
                 console.log(data);
@@ -342,33 +345,12 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
             return_scopes: true
         });
 
-        //    .then(function () {
-
-
-        //});;
-
-
         console.log(FaceBookResult);
-        //console.log('Name: ' + response.name);
-        //console.log('Email: ' + response.email);
-        //console.log('status: ' + response.status);
-        //console.log('User ID: ' + response.authResponse.userID);
-        //console.log('Acess Token: ' + response.authResponse.accessToken);
-        //console.log('User Date: ' + response.email + '.' + response.name + '.');
-        //console.log('User Date: ' + response.email + '.' + response.name + '.');
-        //console.log('User Date: ' + response.email + '.' + response.name + '.');
-
-
 
         //Facebook.getLoginStatus(function (response) {
         //    console.log(response.status);
         //    $scope.loginStatus = response.status;;
         //});
-
-
-
-
-
     };
 
 
