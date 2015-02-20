@@ -70,22 +70,6 @@ textarea {
 }
 
 
-/*.add-job-enter {
-	-webkit-transition: 1s linear all;
-    overflow: hidden;
-	transition: 1s linear all;
-	max-height: 0;
-}
- 
-.add-job-enter.animate-enter-active {
-	max-height: 500px;
-}*/
-
-/*.addjob {
-    height: 500px;
-	opacity: 1;
-}*/
-
 .addjob.ng-enter, 
 .addjob.ng-leave
 { 
@@ -390,8 +374,12 @@ img.filling {
 
 /* ------------- Contact Info ------------------- */
 
+.Contact-Details {
+    font-weight:normal; font-size:11pt; color:#285EA6; text-align:center;  font-family: Arial, sans-serif;
+}
 
-/* ------------- Careers Page ------------------- */
+
+/* ------------- Careers ------------------- */
 
 .JobsDisplay{  
     padding:10px; 
@@ -400,6 +388,7 @@ img.filling {
     font-weight:bold; 
     font-family: Arial, sans-serif;
 }
+
 .JobsDisplay:hover{  background:#F6EEF7; }
 
 .inputTitles {
@@ -435,3 +424,40 @@ img.filling {
     border: 1px solid #ddddff; 
     /*margin-bottom: 35px; margin-top: 20px;  padding-top: 20px; background-color: #ffffff;*/
 }
+
+
+/* ------------- Education ------------------- */
+
+
+.Education {
+    color: #333333;
+    font-weight: normal; 
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+}
+
+.Ed-Header {
+    color: #285EA6;
+    font-weight: bold; 
+    font-size: 13px;
+}
+
+/* ------------- Expertise and Skill ------------------- */
+
+.skill {
+    background-color: #666666;
+}
+
+
+/* ------------- Resume Preview ------------------- */
+
+.res-heading {
+    /*color: #004400;*/
+    color: #888888;
+    text-shadow: 0px 0px 0px black;
+    font-weight: bold; 
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+    text-decoration: none;
+}
+
