@@ -1,4 +1,5 @@
-﻿<div class="container">
+﻿<resume-builder-nav settab="1"></resume-builder-nav>
+<main>
     <div class="row">
 
 
@@ -10,10 +11,8 @@
                 <span style="text-align: center; font-weight: 700; color: #888888; font-size: 26px; text-shadow: 1px 1px #000000;">
                     Contact Information
                 </span>
-                <!--<span ng-class="{true:'glyphicon glyphicon-chevron-down', false: 'glyphicon glyphicon-chevron-up'}[ShowInstructions==true]" 
-                      title="Explain More" slide-toggle="#Instructions" sng-hide="ShowInstructions==true" ng-click="ShowInstructions=true"></span>-->
-                <span class="glyphicon glyphicon-plus" title="Explain More" slide-down="#Instructions" sbuffer="0" ng-hide="ShowInstructions==true" ng-click="ShowInstructions=true">more</span>
-                <span class="glyphicon glyphicon-minus" title="Hide Explanation" slide-up="#Instructions" ng-show="ShowInstructions==true" ng-click="ShowInstructions=false">less</span>
+                <span class="glyphicon glyphicon-chevron-down" title="Explain More" slide-down="#Instructions" sbuffer="0" ng-hide="ShowInstructions==true" ng-click="ShowInstructions=true"></span>
+                <span class="glyphicon glyphicon-chevron-up" title="Hide Explanation" slide-up="#Instructions" ng-show="ShowInstructions==true" ng-click="ShowInstructions=false"></span>
             </div>
             <div class="col-xs-6" style="border-left: 0px solid blue; padding: 0px;">
                 <!--<hr style="color: blue; background-color: blue; border-color: blue;">-->
@@ -22,7 +21,7 @@
         </div>
     </div>
 
-    <div class="row">   
+    <div class="row">
         <div id="Instructions" class="slideable" sclass="animate-show" style="clear:both;" duration=".7s">
             <div class="col-sm-offset-0 col-sm-12 hdr_txt" style="padding-left: 25px;">
                 <p>
@@ -39,6 +38,9 @@
         </div>
 
     </div>
+
+</main>
+<div class="container">
     <div class="row">
         <div id="ppane_ci" align="left">
             <table cellpadding=0 cellspacing=0 name="ci_hdr" height=100% width=100% border=0>
@@ -111,11 +113,11 @@
             <table border=0 width=100% cellpadding=0 cellspacing=0>
                 <tr>
                     <td class="ci_ppn_spacer"></td>
-                    <td class="ci_ppn_chk"><input type="checkbox" id="chk_picture" onclick="checkPic();"></td>
-                    <td class="ci_ppn_title1">Display My Picture</td>
-                    <td class="ci_ppn_main">PREVIEW PANE</td>
-                    <td class="ci_ppn_chk"><input type="checkbox" id="chk_qrcode" onclick="checkQR();" value="show" type="text"></td>
-                    <td class="ci_ppn_title2">Display QR Code</td>
+                    <td class="ci_ppn_chk"></td>
+                    <td class="ci_ppn_title1"></td>
+                    <td class="ci_ppn_main">PREVIEW PANEL</td>
+                    <td class="ci_ppn_chk"></td>
+                    <td class="ci_ppn_title2"></td>
                 </tr>
             </table>
         </div>
@@ -123,24 +125,24 @@
         <div id="util_car" align="PREV">
             <br>
 
-            <table id="tableHeader" width=100% border=0>
+            <table id="tableHeader" style="width: 850px" border=0>
                 <tr style="margin-bottom: 10px;">
                     <td class="ci_txt1" style="width: 150px;">Name</td>
 
 
-                    <td style="width: 260px; Text-align: justified">
+                    <td style="width: 300px; Text-align: justified">
                         <div>
 
                             <div style="display: inline-block;">
                                 <div class="ci_txt2" style="width: 70px;">First Name</div>
                                 <input type="text" placeholder="First Name" class="form-control"
-                                       style="width: 13ch" ng-model="contactInfo.firstName">
+                                       style="width: 125px" ng-model="contactInfo.firstName">
                             </div>
 
                             <div style="display: inline-block; margin-left: 19px;">
                                 <div class="ci_txt2" style="width: 90px;">Middle Name</div>
 
-                                <input style="width: 14ch;" type="text" name="q" class="form-control" placeholder="Middle Name" ng-model="contactInfo.middleName">
+                                <input style="width: 110px;" type="text" name="q" class="form-control" placeholder="Middle Name" ng-model="contactInfo.middleName">
                             </div>
 
                         </div>
@@ -151,7 +153,7 @@
                         <div style="display: inline-block; margin-left: 0px;">
                             <div class="ci_txt2" style="width: 90px;">Last Name</div>
 
-                            <input class="form-control" type="text" placeholder="Last Name" ng-model="contactInfo.lastName">
+                            <input class="form-control" type="text" style="width: 300px" placeholder="Last Name" ng-model="contactInfo.lastName">
                         </div>
 
 
@@ -164,7 +166,7 @@
                     <td>
                         <div class="ci_txt2">Street Address</div>
                         <div style="display: inline-block; vertical-align: top;">
-                            <input type="text" class="form-control" id="address" placeholder="Street Address" ng-model="contactInfo.addrStreet">
+                            <input type="text" class="form-control" style="width: 250px" id="address" placeholder="Street Address" ng-model="contactInfo.addrStreet">
                         </div>
                     </td>
 
@@ -173,18 +175,18 @@
 
                             <div style="display: inline-block; vertical-align: top; margin-left: 0px">
                                 <div class="ci_txt2">city/town</div>
-                                <input style="width: 12ch;" class="form-control" type="text" id="city" placeholder="city/town" ng-model="contactInfo.addrTown">
+                                <input style="width: 120px;" class="form-control" type="text" id="city" placeholder="city/town" ng-model="contactInfo.addrTown">
                             </div>
 
                             <div style="display: inline-block; vertical-align: top; margin-left: 0px">
-                                <div class="ci_txt2">state/county</div>
+                                <div class="ci_txt2">state</div>
                                 <statedropdown placeholder="state" class="input_active_ob" passedmodel="contactInfo.addrState"></statedropdown>
                             </div>
 
                             <div style="display: inline-block; vertical-align: top;">
-                                <div class="ci_txt2">zip/postal code</div>
-                                <input type="text" class="form-control" id="zipCode" style="margin-left: 12px; width: 11ch"
-                                       placeholder="zip/postal code" ng-model="contactInfo.addrZip">
+                                <div class="ci_txt2">zip code</div>
+                                <input type="text" class="form-control" id="zipCode" style="margin-left: 12px; width: 90px"
+                                       placeholder="zip code" ng-model="contactInfo.addrZip">
                             </div>
                         </div>
 
@@ -205,7 +207,7 @@
                             </div>
 
                             <div style="display: inline-block; vertical-align: top; margin-left: 10px">
-                                <input type="tel" class="form-control" id="phonenum1" style="width: 15ch"
+                                <input type="tel" class="form-control" id="phonenum1" style="width: 140px"
                                        placeholder="Phone 1" ng-model="contactInfo.number1" ng-bind="number1 | tel">
                             </div>
                         </div>
@@ -224,7 +226,7 @@
                             </div>
 
                             <div style="display: inline-block; vertical-align: top;margin-left: 10px">
-                                <input class="form-control" type="text" id="phonenum2" style="width: 15ch"
+                                <input class="form-control" type="text" id="phonenum2" style="width: 140px"
                                        placeholder="" ng-model="contactInfo.number2">
                             </div>
                         </div>
@@ -240,7 +242,7 @@
                             <div style="display: inline-block; vertical-align: top;">
                                 <span class="ci_txt2">Email Address</span>
 
-                                <input class="form-control" type="email" placeholder="Email Address" ng-model="contactInfo.eMail">
+                                <input class="form-control" style="width: 250px" type="email" placeholder="Email Address" ng-model="contactInfo.eMail">
 
                             </div>
 
@@ -283,31 +285,40 @@
 
                 <tr><td height="20px;"></td></tr>
 
-                <tr>
-                    <td></td>
-                    <td>
-                        <a class="btn btn-primary" ng-click="saveLocalContact()" href="/Home">
-                            <span class="white-icon"> <i class="glyphicon glyphicon-arrow-left"> Home Page </i> </span>
-                        </a>
-                    </td>
-
-                    <td>
-                        <a ng-if="IsLoggedIn()" class="btn btn-success" ng-click="SaveNewResume()">
-                            <span aclass="white-icon"> Save Resume <i class="glyphicon glyphicon-"></i> </span>
-                        </a>
-                    </td>
-
-                    <td>
-                        <a class="btn btn-primary" ng-click="saveLocalContact()" href="#careers">
-                            <span > Career Experience <i class="glyphicon glyphicon-arrow-right"></i> </span>
-                        </a>
-                    </td>
-
-                </tr>
-
-
             </table>
         </div>
+
+        <!-- Wizard Nav Buttons -->
+
+        <div class="row" style="margin-top: 25px;">
+            <div class="col-xs-1"></div>
+
+            <div class="col-xs-3">
+                <!--<a class="btn btn-bitbucket" ng-click="saveLocalContact()" href="/Home">
+                    <span class="white-icon"> <i class="glyphicon glyphicon-arrow-left"> Home Page </i> </span>
+                </a>-->
+
+            </div>
+
+            <div class="col-xs-4">
+                <a ng-if="IsLoggedIn()" class="btn btn-success" ng-click="SaveNewResume()">
+                    <span aclass="white-icon"> Save Resume<i class="glyphicon glyphicon-"></i> </span>
+                </a>
+                <a class="btn btn-default" href="#/resview">
+                    <span aclass="white-icon"> Preview Resume </span>
+                </a>
+
+            </div>
+
+            <div class="col-xs-3">
+                <a class="btn btn-bitbucket" ng-click="saveLocalContact()" href="#careers">
+                    <span> Career Experience <i class="glyphicon glyphicon-arrow-right"></i> </span>
+                </a>
+
+            </div>
+
+        </div>
+
 
 
     </div>

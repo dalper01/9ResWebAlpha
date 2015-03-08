@@ -16,9 +16,22 @@ function ($scope, localStorageService) {
         $scope.newObjective = null;
     }
 
-    $scope.SaveObjective = function () {
-        console.log('SaveObjective');
-        //localStorageService.SaveLocalStorageObjective();
+    $scope.CancelObjective = function () {
+        $scope.newObjective = null;
     }
 
+    $scope.SaveObjective = function (Objective) {
+        console.log('SaveObjective');
+        //console.log(Objective);
+        $scope.objectiveList.push(Objective);
+        localStorageService.SaveLocalStorageObjectives();
+        $scope.newObjective = null;
+    }
+
+    $scope.ShowEditObjective = function (Objective) {
+        console.log('ShowEditObjective');
+        Objective.edit = true;
+    }
+
+    //$scope.NewObjective();
 });

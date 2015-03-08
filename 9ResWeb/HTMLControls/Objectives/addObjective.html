@@ -1,0 +1,47 @@
+﻿
+<div class="row col-sm-12 col-sm-offset-0 text-center  slideable" ng-attr-id="{{ 'addObjective' }}" sng-hide="newObjective==null">
+    <!--<div class="row text-center" style="min-height: 40px; background-color:white; ">
+        <span style="font-weight: bold; vertical-align: bottom;">Add Objective</span>
+    </div>-->
+    <div class="row pane-objective" style="border: 1px solid; border-color: black; border-left-width: 0px; 
+                text-align: justify;">
+        {{ newObjective.description }}
+    </div>
+
+
+
+    <div class="row" id="ppane_w" align="PREV">
+        <div sclass="col-sm-12">
+            <table cellpadding=0 cellspacing=0 class="util" width="100%">
+                <tr>
+                    <td class="ppn_title" width=50%>PREVIEW PANE</td>
+                    <td class="ppn_title" width=50%>PREVIEW PANE</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 0px; min-height: 250px;">
+        <div class="col-sm-12 text-center">
+            <center style="margin-top: 25px;">
+                <textarea class="form-control textarea-large" rows="5" placeholder="Career Objective" ng-model="newObjective.description" sng-change="SaveObjective()" style="height: 130px; width: 95%"></textarea>
+            </center>
+        </div>
+
+        <div class="row " style="margin-top: 20px; background-color: #555555; padding-top: 25px; padding-bottom:25px;">
+            <div class="col-sm-4 text-right">
+                <a class="btn btn-primary" ng-click="SaveObjective(newObjective)" ng-attr-slide-up="{{ '#addObjective' }}">
+                    Submit
+                    <i class="glyphicon glyphicon-thumbs-up"></i>
+                </a>
+            </div>
+            <div class="col-sm-2 col-sm-offset-2 text-left">
+                <a class="btn btn-danger" ng-click="CancelObjective()" ng-attr-slide-up="{{ '#addObjective' }}">
+                    <i class="glyphicon glyphicon-thumbs-down"></i>
+                    Cancel
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

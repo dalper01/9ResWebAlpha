@@ -98,6 +98,38 @@ textarea {
 	opacity: 1;
 
 }
+
+
+.animate-repeat.ng-enter, 
+.animate-repeat.ng-leave
+{ 
+	-webkit-transition: 1s linear all;
+	-moz-transition: 1s linear all;
+	-ms-transition: 1s linear all;
+	-o-transition: 1s linear all;
+	transition: 1s linear all;
+	position: relative;
+	display: block;
+    overflow: hidden;
+} 
+
+.animate-repeat.ng-leave.ng-leave-active{
+
+} 
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-enter {
+	max-height: 0px;
+
+}
+ 
+.add-skill-set.ng-leave, 
+.add-skill-set.ng-enter.ng-enter-active {
+	max-height: 400px;
+	opacity: 1;
+
+}
+
+
 .animate-show.ng-hide-add,
 .animate-show.ng-hide-remove {
   display:block!important;
@@ -217,17 +249,17 @@ span.blue-icon{
 /* Nav Tab manipulation */
 .nav-tabs > li > a{
 
-    background-image: linear-gradient(to top, #BBBBBB 0%, #222 100%);
-            background-color: #222;
+    background-color: white;
     border: solid 1px;
-    border-color: #eeeeee #cccccc #dddddd #ffffff;
+    /*border-color: #dddddd #bbbbbb #cccccc #eeeeee;*/
+    border-color: #dddddd #bbbbbb white #eeeeee;
 /*
     background-image: linear-gradient(to bottom, #00aaff 0%, #0088cc 100%);
     background-image: url( 'images/input_gradient1.bmp' );
     background-repeat: repeat-x;
     background-position: top;
 */
-    color: white;
+    color: black;
     /*font-weight: bold;*/
 
 }
@@ -255,10 +287,19 @@ span.blue-icon{
     background-repeat: repeat-x;
     background-position: top;
 */
-    background-color: #006dcc;
-    color: orange;
+    background-color: white;
+    color: black;
+    border-color: #666;
+    border-bottom: 0px;
 }
 
+
+.nav-tabs .selected {
+    background-color: white;
+    color: #444488;
+    font-weight: bold;
+
+}
 
 /* Nav Tabs finished */
 
@@ -389,7 +430,7 @@ img.filling {
     font-family: Arial, sans-serif;
 }
 
-.JobsDisplay:hover{  background:#F6EEF7; }
+.JobsDisplay:hover{  background: #F6EEF7; }
 
 .inputTitles {
     /*text-align: center;*/
@@ -448,8 +489,40 @@ img.filling {
     background-color: #666666;
 }
 
+/* ------------- Objectives ------------------- */
+
+.pane-objective{
+
+    background:white;
+    height:auto;
+    min-height:88px;
+    border-radius: 0px 0px 0px 0px;
+    padding: 40px 30px 40px 30px;
+    border: 1px solid; 
+    border-color: black; 
+    border-left-width: 0px;
+}
+
+.object-edit {
+    padding: 10px 10px 10px 10px; 
+    border: solid 1px lightgray; 
+    border-radius: 9px 6px; 
+    margin-bottom: 10px;
+}
+
+.edit-active:hover {
+    background-color: #F6EEF7;
+}
 
 /* ------------- Resume Preview ------------------- */
+.objective-styling {
+    font-weight: normal; 
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+.objective-styling:hover {
+    background-color: #F6EEF7;
+}
 
 .res-heading {
     /*color: #004400;*/
@@ -459,5 +532,6 @@ img.filling {
     font-family: Arial, sans-serif;
     font-size: 17px;
     text-decoration: none;
+    border-bottom: solid 0px #aaaaaa;
 }
 

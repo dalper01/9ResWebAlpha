@@ -219,11 +219,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\3dnavs.css" />
     <Content Include="Content\9res-nie.css" />
     <Content Include="Content\9resModal.css" />
     <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap3dbuttons.css" />
     <Content Include="Content\docs.css" />
     <Content Include="Content\education.css" />
     <Content Include="Content\font-awesome.css" />
@@ -241,6 +243,7 @@
     <Content Include="Content\icons\report.bmp" />
     <Content Include="Content\icons\server.bmp" />
     <Content Include="Content\icons\types-of-college-degrees.jpg" />
+    <Content Include="Content\images\email.jpeg" />
     <Content Include="Content\images\icons\certification.bmp" />
     <Content Include="Content\images\icons\degree.bmp" />
     <Content Include="Content\images\icons\DiplomaBG.jpg" />
@@ -405,6 +408,7 @@
     <Content Include="Content\images\word_slide_tab_green.bmp" />
     <Content Include="Content\images\word_slide_tab_red.bmp" />
     <Content Include="Content\images\word_slide_tab_yellow.bmp" />
+    <Content Include="HTMLControls\Expertise\addSkillSet.html" />
     <Content Include="HTMLControls\Authentication\headerLogin.html" />
     <Content Include="HTMLControls\Careers\addJob.html" />
     <Content Include="HTMLControls\Careers\showJob.html" />
@@ -412,6 +416,7 @@
     <Content Include="HTMLControls\Education\collegeForm.html" />
     <Content Include="HTMLControls\Education\degreeDropDown.html" />
     <Content Include="HTMLControls\Education\highSchoolForm.html" />
+    <Content Include="HTMLControls\Expertise\editSkillSet.html" />
     <Content Include="HTMLControls\header_9res_alt.html" />
     <Content Include="HTMLControls\jobModal.html" />
     <Content Include="HTMLControls\jobModal_noTables.html" />
@@ -420,6 +425,8 @@
     <Content Include="HTMLControls\navResBuilder.html" />
     <Content Include="HTMLControls\navResumeBuilder.html" />
     <Content Include="HTMLControls\Authentication\nrLogin.html" />
+    <Content Include="HTMLControls\Objectives\addObjective.html" />
+    <Content Include="HTMLControls\Objectives\editObjective.html" />
     <Content Include="HTMLControls\placeholder.html" />
     <Content Include="HTMLControls\stateDropDown.html" />
     <Content Include="HTMLControls\yearDropDown.html" />
@@ -585,6 +592,8 @@
     <Content Include="Javascript\NGControllers\ResViewController.js" />
     <Content Include="Javascript\NGDirectives\Authentication\loginDirective.js" />
     <Content Include="Javascript\NGDirectives\CareerDirectives\showJobs.js" />
+    <Content Include="Javascript\NGDirectives\Objective\Objective.js" />
+    <Content Include="Javascript\NGDirectives\ExpertiseDirectives\skillSetDirectives.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.js" />

@@ -1,8 +1,8 @@
-﻿<div class="row container" style="margin-bottom: 15px;">
+﻿<div class="row container" style="margin-bottom: 15px; border: 1px hidden #bbbbbb ">
 
-    <div ng-class="{ 'row JobsDisplay': true, 'jobediting': false }" sbuffer="400" ng-attr-slide-down="{{ '#editjob' + jobNumber }}" ng-click="EditJob(job)">
-        <div class="row ">
-            <div class="col-xs-5">
+    <div ng-class="{ 'row JobsDisplay': true, 'jobediting': false }" sbuffer="400" ng-attr-slide-down="{{ '#editjob' + jobNumber }}" ng-click="EditJob(job)" style="border: 1px solid; border-color: black; border-left-width: 0px; border-bottom-width: 0px; padding: 30px 0px 30px;">
+        <div class=" row ">
+            <div class=" col-xs-5">
                 <div class="col-sm-6">
                     <place-holder filler="Company Name" bind="job.firmLong"></place-holder>
                 </div>
@@ -34,20 +34,21 @@
         </div>
 
     </div>
+    <div class="row container">
+        <div class="row" id="ppane_w" align="PREV">
+            <div sclass="col-sm-12">
+                <table cellpadding=0 cellspacing=0 class="util" width="100%">
+                    <tr>
+                        <td class="ppn_title" width=50%>PREVIEW PANEL</td>
+                        <td class="ppn_title" width=50%>PREVIEW PANEL</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
+    </div>
     <!-- Edit Job Form (Hidden unless job is in Edit Mode) -->
-    <div class="row container slideable" style="border: 1px solid #ddddff; margin-bottom: 35px; margin-top: 20px;" ng-attr-id="{{ 'editjob' + jobNumber}}" sng-show="job.edit">
-        <!--<div class="row" style="border: 1px solid #eeeeee; background-color: #ddddff; text-align: center; font-weight: bold; margin-bottom: 25px;" ng-if="job.edit">
-            <div class="col-sm-1 col-sm-offset-0" style="text-align: left;">
-                <span style="font-family: 'Bauhaus 93'; color: black; font-size: 30px; margin-right: -7px;">9</span>
-            </div>
-            <div class="col-sm-10" sstyle="padding: 0px 0px 0px 0px;">
-                <h4 style="font-weight: bold"> {{ Title }}</h4>
-            </div>
-            <div class="col-sm-1 col-sm-offset-0" style=" text-align: right;">
-                <a ng-click="cancel(job)"><i class="fa fa-times" ng-attr-slide-up="{{ '#editjob' + jobNumber }}" style="color: black; text-align: right;"></i></a>
-            </div>
-        </div>-->
+    <div class="row container slideable" style="margin-bottom: 35px; margin-top: 20px;" ng-attr-id="{{ 'editjob' + jobNumber}}" sng-show="job.edit">
         <div class="row" style="height: 70px;">
             <div class="col-sm-offset-0 col-xs-7 inputTitles">
                 <div class="col-xs-6">
@@ -134,15 +135,15 @@
 
         </div>
 
-        <div class="row" style="margin-top: 20px; background-color: #555555; padding-top: 25px; padding-bottom:25px;">
+        <div class="row" style="margin-top: 20px; background-color: #444444; padding-top: 25px; padding-bottom:25px;">
             <div class="col-sm-offset-2 col-sm-2">
-                <a style="" class="btn btn-primary" ng-click="saveJob(job)">
-                    <span> <i class="glyphicon glyphicon-thumbs-up" ng-attr-slide-up="{{ '#editjob' + jobNumber }}"> Confirm Changes </i> </span>
+                <a style="" class="btn btn-primary" ng-click="saveJob(job)" ng-attr-slide-up="{{ '#editjob' + jobNumber }}">
+                    <span> Confirm <i class="glyphicon glyphicon-thumbs-up"></i> </span>
                 </a>
             </div>
             <div class="col-sm-offset-3 col-sm-2">
-                <a style="" class="btn btn-danger" ng-click="cancel(job)">
-                    <span> <i class="glyphicon glyphicon-thumbs-down" ng-attr-slide-up="{{ '#editjob' + jobNumber }}"> Cancel Changes </i> </span>
+                <a style="" class="btn btn-danger" ng-click="cancel(job)" ng-attr-slide-up="{{ '#editjob' + jobNumber }}">
+                    <span> <i class="glyphicon glyphicon-thumbs-down"></i> Cancel</span>
                 </a>
             </div>
         </div>

@@ -1,7 +1,14 @@
 <div style="margin-left: 15px; margin-top: 8px; margin-bottom: 1px;">
-    <ul class="nav nav-tabs">
-        <li ng-repeat="navTab in navTabs" class="{{navTab.tabClass}}" ng-click="updateFn()">
-            <a href="{{ navTab.tabLink }}"  ng-click="updateFn()"> {{ navTab.tabTitle }} </a>
-        </li>
-    </ul>
+    <nav>
+        <ul class="nav nav-tabs" style=" border-bottom: hidden;">
+            <li ng-repeat="navTab in navTabs" sclass="{{navTab.tabClass}}" ng-click="updateFn()">
+                <a href="{{ navTab.tabLink }}" ng-class="{'selected': settab == navTab.tabId}"> {{ navTab.tabTitle }} </a>
+            </li>
+        </ul>
+    </nav>
+    <!--<nav>
+        <a ng-class="{'selected': settab == navTab.tabId}" style="vertical-align: middle;" href="{{ navTab.tabLink }}" ng-repeat="navTab in navTabs">{{ navTab.tabTitle }}</a>
+    </nav>-->
 </div>
+
+

@@ -23,6 +23,8 @@
     <script src="~/Javascript/NGDirectives/navBarApp.js"></script>
     <script src="~/Javascript/NGControllers/ResViewController.js"></script>
     
+    <script src="~/Javascript/NGDirectives/ExpertiseDirectives/skillSetDirectives.js"></script>
+    <script src="~/Javascript/NGDirectives/Objective/Objective.js"></script>
     <script src="~/Javascript/NGServices/localStorageService.js"></script>
 
     @* ----------   Modal Libs   ------------ *@
@@ -47,7 +49,9 @@
 
 
 @section styles {
+    <link href="~/Content/bootstrap3dbuttons.css" rel="stylesheet" />
     <link href="~/Content/9res-nie.css" rel="stylesheet" />
+    @*<link href="~/Content/3dnavs.css" rel="stylesheet" />*@
     <link href="~/Content/9resModal.css" rel="stylesheet" />
     <link href="~/Content/education.css" rel="stylesheet" />
 }
@@ -57,6 +61,12 @@
 
 <div class="row" style="height: 43px"></div>
 
-<resume-builder-nav></resume-builder-nav>
+<div class="row col-sm-12 text-right" style="margin-top:0px; ">
+    <a href="#/resview" class="btn btn-default" style="margin:-2px; border-color: #4466AA; border-width: 1px; font-weight: 600; color: #444444">
+        <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 19px; margin-right: -7px; margin-left: 5px;">9</span>
+        <span style="font-family: 'Bauhaus 93'; font-size: 10px; margin-right: 5px; margin-left: -0px;">res</span>
+        Preview Resume
+    </a>
+</div>
 
 <div ng-view></div>
