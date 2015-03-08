@@ -1,134 +1,152 @@
-﻿<div class="row">
+﻿<resume-builder-nav settab="3"></resume-builder-nav>
+<main>
+    <div class="row">
 
 
-    <div class="col-xs-12">
-        <!--<div class="col-xs-1" style="border-left: 0px solid #4466AA; padding: 0px;">
-            <hr style="color: blue; background-color: blue; border-color: blue; width: 100%;">
-        </div>-->
-        <div class="col-xs-7">
-            <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 38px; margin-right: -7px; margin-left: 5px;">9</span>
-            <span style="font-family: 'Bauhaus 93'; font-size: 20px; margin-right: 5px; margin-left: -0px;">res</span>
+        <div class="col-xs-12">
+            <!--<div class="col-xs-1" style="border-left: 0px solid #4466AA; padding: 0px;">
+                <hr style="color: blue; background-color: blue; border-color: blue; width: 100%;">
+            </div>-->
+            <div class="col-xs-7">
+                <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 38px; margin-right: -7px; margin-left: 5px;">9</span>
+                <span style="font-family: 'Bauhaus 93'; font-size: 20px; margin-right: 5px; margin-left: -0px;">res</span>
 
-            <span style="text-align: center; font-weight: 800; color: #888888; font-size: 26px; text-shadow: 1px 1px #000000;">
-                Education History 
-            </span>
-            <span class="glyphicon glyphicon-chevron-down small hov-red" title="Explain More" ng-hide="ShowInstructions==true" ng-click="ShowInstructions=true"></span>
-            <span class="glyphicon glyphicon-chevron-up small hov-red" title="Hide Explanation" ng-show="ShowInstructions==true" ng-click="ShowInstructions=false"></span>
+                <span style="text-align: center; font-weight: 800; color: #888888; font-size: 26px; text-shadow: 1px 1px #000000;">
+                    Education History
+                </span>
+                <span class="glyphicon glyphicon-chevron-down" title="Explain More" slide-down="#Instructions" ng-hide="ShowInstructions==true" ng-click="ShowInstructions=true"></span>
+                <span class="glyphicon glyphicon-chevron-up" title="Hide Explanation" slide-up="#Instructions" ng-show="ShowInstructions==true" ng-click="ShowInstructions=false"></span>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div id="Instructions" class="sample-show-hide slideable" style="clear:both;" dng-show="ShowInstructions==true">
+            <div class="col-sm-offset-0 col-sm-12 hdr_txt">
+                <p>
+                    What part of your education history do you want to share?
+                    High School Diploma? College Diploma? Graduate School? Add any information you want.
+                    Feel free to skip anything you don't want.
+                </p>
+
+                <p>
+                    ...In case you hadn't noticed, this site is cool as $@&!. <span class="glyphicon glyphicon-chevron-up" title="Hide Explanation" ng-click="ShowInstructions=false"></span>
+
+                </p>
+            </div>
+
+
 
         </div>
 
     </div>
+
+</main>
+
+<!-- Add Data Buttons -->
+<div class="row col-xs-12 text-right" style="margin-bottom: 20px;">
+    <a class="btn btn-fresh text-capitalize btn-md" ng-click="addHighSchool()" ng-disabled="(highschoolEditList.length > 0)"> <i class=""></i> Add High School </a>
+    <a class="btn btn-fresh text-capitalize btn-md" ng-click="addCollege()" ng-disabled="(highschoolEditList.length > 0)"> <i class=" "></i> Add College </a>
+    <a class="btn btn-fresh text-capitalize btn-md" ng-click="addCertificate()" ng-disabled="(highschoolEditList.length > 0)"> <i class=" "></i> Add Certification </a>
+
+    <!--<div style="; height:300px; background-image:url('http://www.daymarksi.com/Portals/30865/images/Tech_certifcaitons_2a.jpg');">-->
 </div>
+
+
+
+<!-- Preview Panel -->
+<div class="row pane-objective" sstyle="border: 1px solid; border-color: black; border-left-width: 0px; text-align: justify;">
+    <div class="">
+
+        <div class="row educationPresentation">
+            <div class="row edit-active" ng-click="editHighSchool(highSchool)" ng-repeat="highSchool in education.highSchools track by $index">
+                <span style="text-align: right;" ng-if="(addNavShow == true)">
+                    <i class="glyphicon glyphicon-edit microIcons" title="Edit HighSchool"
+                       ng-click="editHighSchool(highSchool)"></i>
+                    <i class="glyphicon glyphicon-trash microIcons" title="Delete HighSchool"
+                       ng-click="deleteHighSchool(highSchool)"></i>
+                </span>
+
+                <i class="fa fa-graduation-cap" ng-show="highSchool.graduated"></i>
+                <span> <b> {{ highSchool.name }} </b> </span>
+                <span> {{ highSchool.city }} {{ highSchool.state }}  </span>
+                <span ng-show="highSchool.graduated">
+                    <!--<img src="/Content/images/degree.bmp" height="20px">-->
+                    {{ highSchool.gradMonth }} {{ highSchool.gradYear }}
+                </span>
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- College Data -->
+        <!--<div style="display: inline-block; max-width: 50%; vertical-align: top; ">-->
+        <div class="row educationPresentation">
+
+            <div class="row edit-active" ng-click="editCollege(college)" ng-repeat="college in education.colleges track by $index">
+                <span style="text-align: right;" ng-if="(addNavShow == true)">
+                    <i class="glyphicon glyphicon-edit microIcons" title="Edit College"
+                       ng-click="editCollege(college)"></i>
+                    <i class="glyphicon glyphicon-trash microIcons" title="Delete College"
+                       ng-click="deleteCollege(college)"></i>
+                </span>
+
+                <i class="fa fa-graduation-cap" ng-show="college.graduated"></i>
+                <span> <b> {{ college.name }} </b> </span>
+                <span> ({{ college.city }} {{ college.state }})  </span>
+                <span style="font-weight: bold"> {{ college.degreeType }} {{ college.degreeProgram }}  </span>
+                <span ng-show="college.graduated">
+                    ({{ college.gradMonth }}-{{ college.gradYear }})
+                </span>
+            </div>
+
+
+        </div>
+
+
+
+        <!-- Certificate Data -->
+
+        <div class="row educationPresentation">
+
+            <div class="row edit-active" ng-click="editCertificate(certificate)" ng-repeat="certificate in education.certificates track by $index">
+
+                <i class="fa fa-certificate"></i>
+                <span style="text-align: right;" ng-if="(addNavShow == true)">
+                    <i class="glyphicon glyphicon-edit microIcons" title="Edit Certificate"
+                       ng-click="editCertificate(certificate)"></i>
+                    <i class="glyphicon glyphicon-trash microIcons" title="Delete Certificate"
+                       ng-click="deleteCertificate(certificate)"></i>
+                </span>
+
+                <span>
+                    <!--<img src="/Content/images/icons/certification.bmp" height="20px">-->
+                    <b> {{ certificate.type }} </b> ( {{ certificate.Provider }}
+                    {{ certificate.compMonth }} {{ certificate.compYear }})
+                </span>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
 
 <div class="row">
-
-    <div class="sample-show-hide" style="clear:both;" ng-show="ShowInstructions==true">
-        <div class="col-sm-offset-0 col-sm-12 hdr_txt">
-            What part of your education history do you want to share?
-            High School Diploma? College Diploma? Graduate School? Add any information you want.
-            Feel free to skip anything you don't want.
-
-            <br />
-            ...In case you hadn't noticed, this site is cool as $@&!.
-            <span class="glyphicon glyphicon-chevron-up small hov-red" title="Hide Explanation" ng-click="ShowInstructions=false"></span>
-        </div>
-
-
-
-    </div>
-
-</div>
-
-<div id="ppane_ds" style="background-image: url('../icons/DiplmaBG.bmp');border: 1px solid; border-color: black; border-left-width: 0px;
-                text-align: justify;" class="row">
-
-    <div class="col-md-4">
-        <div style="" class="educationPresentation" ng-repeat="highSchool in education.highSchools track by $index">
-            <div style="text-align: right;" ng-if="(addNavShow == true)">
-                <i class="glyphicon glyphicon-edit microIcons" title="Edit HighSchool"
-                   ng-click="editHighSchool(highSchool)"></i>
-                <i class="glyphicon glyphicon-trash microIcons" title="Delete HighSchool"
-                   ng-click="deleteHighSchool(highSchool)"></i>
-            </div>
-
-
-            <div> <b> {{ highSchool.name }} </b> </div>
-            <div> {{ highSchool.city }} {{ highSchool.state }}  </div>
-            <div ng-show="highSchool.graduated">
-                <img src="/Content/images/degree.bmp" height="20px">
-                {{ highSchool.gradMonth }} {{ highSchool.gradYear }}
-            </div>
-        </div>
-
-    </div>
-
-
-
-
-
-    <!-- College Data -->
-    <!--<div style="display: inline-block; max-width: 50%; vertical-align: top; ">-->
-    <div class="col-md-4" >
-
-
-        <div style="" class="educationPresentation"
-             ng-repeat="college in education.colleges track by $index">
-
-            <div style="text-align: right;" ng-if="(addNavShow == true)">
-                <i class="glyphicon glyphicon-edit microIcons" title="Edit College"
-                   ng-click="editCollege(college)"></i>
-                <i class="glyphicon glyphicon-trash microIcons" title="Delete College"
-                   ng-click="deleteCollege(college)"></i>
-            </div>
-
-            <div> <b> {{ college.name }} </b> </div>
-            <div> {{ college.city }} {{ college.state }}  </div>
-            <div> {{ college.degreeType }} {{ college.degreeProgram }}  </div>
-            <div ng-show="college.graduated">
-                <img src="/Content/images/degree.bmp" height="20px">
-                {{ college.gradMonth }} {{ college.gradYear }}
-            </div>
-        </div>
-
-
-    </div>
-
-
-
-    <!-- Certificate Data -->
-
-    <div class="col-md-4">
-
-        <div style="display: block; " class="educationPresentation"
-             ng-repeat="certificate in education.certificates track by $index">
-
-            <div style="text-align: right;" ng-if="(addNavShow == true)">
-                <i class="glyphicon glyphicon-edit microIcons" title="Edit Certificate"
-                   ng-click="editCertificate(certificate)"></i>
-                <i class="glyphicon glyphicon-trash microIcons" title="Delete Certificate"
-                   ng-click="deleteCertificate(certificate)"></i>
-            </div>
-
-            <div>
-                <img src="/Content/images/icons/certification.bmp" height="20px">
-                <b> {{ certificate.type }} </b> ( {{ certificate.Provider }}
-                {{ certificate.compMonth }} {{ certificate.compYear }})
-            </div>
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-
-
-
-<div class="row" id="ppane_w" align="PREV">
-    <div class="col-sm-12">
-        <table cellpadding=0 cellspacing=0 class="util" width=866>
+    <div class="">
+        <table cellpadding=0 cellspacing=0 class="util" width="100%">
             <tr>
                 <td class="ppn_title" width=50%>PREVIEW PANE</td>
                 <td class="ppn_title" width=50%>PREVIEW PANE</td>
@@ -146,96 +164,83 @@
 
 <div class="row" style="margin-top: 10px; min-height: 250px;">
 
-    <div ng-if="(addNavShow == true)" style="vertical-align: top">
-        <div satyle="float: left;">
-            <a class="btn btn-success" ng-click="addHighSchool()"> <i class=""></i> Add High School </a>
-            <a class="btn btn-success" ng-click="addCollege()"> <i class=""></i> Add College </a>
-            <a class="btn btn-success" ng-click="addCertificate()"> <i class=""></i> Add Certification </a>
-
-            <!--<div style="; height:300px; background-image:url('http://www.daymarksi.com/Portals/30865/images/Tech_certifcaitons_2a.jpg');">-->
-        </div>
-
-
+    <!--<div sng-if="(addNavShow == true)" style="vertical-align: top">
         <div style="vertical-align: middle; margin-top: 0px; margin-left: 460px;">
             <img src="/Content/images/schools.jpg" style="align-self: center center"
                  swidth="355" height="66">
-            <!--width="100" height="100px">-->
         </div>
 
 
         <div style="vertical-align: middle; margin-top: 25px; margin-left: 40px;">
             <img src="https://www.bellevuecollege.edu/careerpath/images/certifications.png" style="align-self: center center"
                  swidth="355" height="45">
-            <!--width="100" height="100px">-->
         </div>
+    </div>-->
 
+    <div sng-if="!(addNavShow == true)" style="">
 
-    </div>
+        <!-- Highschool Forms -->
+        <div id="highSchoolEntry"> 
 
-
-
-
-    <div ng-if="!(addNavShow == true)" style="">
-        <div id="highSchoolEntry" sstyle="min-height: 250px; display: inline-block; vertical-align: top"
-             sng-if="highSchoolEdit">
-
-            <div ng-repeat="highSchool in education.highSchools">
-                <div ng-if="highSchool.add">
-                    <high-school-form passed-model="highSchool" reset-fn="resetEducation()"
-                                      save-fn="SaveEducationLocalStorage()" closeform="showNavHideForms()">
+            <div class="animate-repeat add-skill-set" ng-repeat="highSchool in EditList | filter: { add: true } | filter: { edType: 1} track by $index">
+                <div>
+                    <high-school-form passed-model="highSchool" reset-fn="cancelAddHighSchool(highSchool)" sng-if="educationType.add"
+                                      save-fn="saveEducation()" closeform="closeEdit()">
                     </high-school-form>
                 </div>
+            </div>
 
-                <div ng-if="highSchool.edit">
+            <div class="animate-repeat add-skill-set" ng-repeat="highSchool in EditList | filter: { edit: true } | filter: { edType: 1} track by $index">
+                <div class="animate-repeat add-skill-set">
                     <high-school-form passed-model="highSchool" reset-fn="resetEducation()"
-                                      save-fn="SaveEducationLocalStorage()" closeform="showNavHideForms()">
+                                      save-fn="saveEducation()" closeform="closeEdit()">
                     </high-school-form>
                 </div>
-
             </div>
-
-
 
         </div>
 
-        <!-- College Form -->
-        <div id="collegeEntry" sstyle="min-height: 250px; display: inline-block; vertical-align: top; margin-left: 15px;">
+        <!-- College Forms -->
+        <div id="collegeEntry">
 
 
-            <div ng-repeat="college in education.colleges">
-                <div ng-if="college.add">
-                    <college-form-add passed-model="college" save-fn="SaveEducationLocalStorage()"
-                                      reset-fn="resetEducation()" closeform="showNavHideForms()"></college-form-add>
-                </div>
-
-                <div ng-if="college.edit">
-                    <college-form-edit passed-model="college" save-fn="SaveEducationLocalStorage()"
-                                       reset-fn="resetEducation()" closeform="showNavHideForms()"></college-form-edit>
+            <div class="animate-repeat add-skill-set" ng-repeat="college in EditList | filter: { add: true } | filter: { edType: 2 } track by $index">
+                <div>
+                    <college-form passed-model="college" save-fn="saveEducation()"
+                                  reset-fn="cancelAddCollege(college)" closeform="closeEdit()">
+                    </college-form>
                 </div>
 
             </div>
 
-
-
-
-            <div id="certificateEntry" sstyle="min-height: 250px; display: inline-block; vertical-align: top; margin-left: 15px;">
-
-
-                <div ng-repeat="certificate in education.certificates">
-                    <div ng-if="certificate.add">
-                        <certificate-form-add passed-model="certificate" save-fn="SaveEducationLocalStorage()"
-                                              reset-fn="resetEducation()" closeform="showNavHideForms()"></certificate-form-add>
-                    </div>
-
-                    <div ng-if="certificate.edit">
-                        <certificate-form-edit passed-model="certificate" save-fn="SaveEducationLocalStorage()"
-                                               reset-fn="resetEducation()" closeform="showNavHideForms()"></certificate-form-edit>
-                    </div>
-
+            <div class="animate-repeat add-skill-set" ng-repeat="college in EditList | filter: { edit: true } | filter: { edType: 2 } track by $index">
+                <div>
+                    <college-form passed-model="college" save-fn="saveEducation()"
+                                  reset-fn="resetEducation()" closeform="closeEdit()">
+                    </college-form>
                 </div>
-
             </div>
         </div>
+
+        <div id="certificateEntry">
+
+
+            <div class="animate-repeat add-skill-set" ng-repeat="certificate in EditList | filter: { add: true } | filter: { edType: 3 } track by $index">
+                <div>
+                    <certificate-form-add passed-model="certificate" save-fn="saveEducation()"
+                                          reset-fn="cancelAddCertificate(certificate)" closeform="closeEdit()"></certificate-form-add>
+                </div>
+            </div>
+
+            <div class="animate-repeat add-skill-set" ng-repeat="certificate in EditList | filter: { edit: true } | filter: { edType: 3 } track by $index">
+                <div>
+                    <certificate-form-add passed-model="certificate" save-fn="saveEducation()"
+                                          reset-fn="resetEducation()" closeform="closeEdit()"></certificate-form-add>
+                </div>
+            </div>
+
+        </div>
+
 
     </div>
 </div>
@@ -247,21 +252,24 @@
     <div class="col-xs-1"></div>
 
     <div class="col-xs-3">
-        <a style="sbackground-color: #0066aa" class="btn btn-primary" href="#careers">
+        <a class="btn btn-bitbucket" ng-click="" href="#careers">
             <span> <i class="glyphicon glyphicon-arrow-left"></i> Career Experience </span>
         </a>
 
     </div>
 
-    <div class="col-xs-3">
-        <a ng-if="showLogin" style="" class="btn btn-success" ng-click="SaveNewResume()">
-            <span> Save Resume <i class="glyphicon glyphicon-"></i> </span>
+    <div class="col-xs-4">
+        <a ng-if="IsLoggedIn()" class="btn btn-success" ng-click="SaveNewResume()">
+            <span aclass="white-icon"> Save Resume<i class="glyphicon glyphicon-"></i> </span>
+        </a>
+        <a class="btn btn-default" href="#/resview">
+            <span aclass="white-icon"> Preview Resume </span>
         </a>
 
     </div>
 
     <div class="col-xs-3">
-        <a style="sbackground-color: #0066aa" class="btn btn-primary" href="#expertise">
+        <a class="btn btn-bitbucket" ng-click="" href="#expertise">
             <span> Expertise <i class="glyphicon glyphicon-arrow-right"></i> </span>
         </a>
 

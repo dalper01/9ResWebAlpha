@@ -219,11 +219,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\3dnavs.css" />
     <Content Include="Content\9res-nie.css" />
     <Content Include="Content\9resModal.css" />
     <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap3dbuttons.css" />
     <Content Include="Content\docs.css" />
     <Content Include="Content\education.css" />
     <Content Include="Content\font-awesome.css" />
@@ -241,6 +243,7 @@
     <Content Include="Content\icons\report.bmp" />
     <Content Include="Content\icons\server.bmp" />
     <Content Include="Content\icons\types-of-college-degrees.jpg" />
+    <Content Include="Content\images\email.jpeg" />
     <Content Include="Content\images\icons\certification.bmp" />
     <Content Include="Content\images\icons\degree.bmp" />
     <Content Include="Content\images\icons\DiplomaBG.jpg" />
@@ -405,12 +408,15 @@
     <Content Include="Content\images\word_slide_tab_green.bmp" />
     <Content Include="Content\images\word_slide_tab_red.bmp" />
     <Content Include="Content\images\word_slide_tab_yellow.bmp" />
+    <Content Include="HTMLControls\Expertise\addSkillSet.html" />
     <Content Include="HTMLControls\Authentication\headerLogin.html" />
+    <Content Include="HTMLControls\Careers\addJob.html" />
     <Content Include="HTMLControls\Careers\showJob.html" />
     <Content Include="HTMLControls\Education\certificationForm.html" />
     <Content Include="HTMLControls\Education\collegeForm.html" />
     <Content Include="HTMLControls\Education\degreeDropDown.html" />
     <Content Include="HTMLControls\Education\highSchoolForm.html" />
+    <Content Include="HTMLControls\Expertise\editSkillSet.html" />
     <Content Include="HTMLControls\header_9res_alt.html" />
     <Content Include="HTMLControls\jobModal.html" />
     <Content Include="HTMLControls\jobModal_noTables.html" />
@@ -419,6 +425,8 @@
     <Content Include="HTMLControls\navResBuilder.html" />
     <Content Include="HTMLControls\navResumeBuilder.html" />
     <Content Include="HTMLControls\Authentication\nrLogin.html" />
+    <Content Include="HTMLControls\Objectives\addObjective.html" />
+    <Content Include="HTMLControls\Objectives\editObjective.html" />
     <Content Include="HTMLControls\placeholder.html" />
     <Content Include="HTMLControls\stateDropDown.html" />
     <Content Include="HTMLControls\yearDropDown.html" />
@@ -427,6 +435,7 @@
     <Content Include="HTMLTemplates\ResumeBuilder\Education.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\Expertise.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\Objective.html" />
+    <Content Include="HTMLTemplates\ResumeBuilder\ResView.html" />
     <Content Include="images\9res.bmp" />
     <Content Include="images\9resAdvantages.png" />
     <Content Include="images\9resGetStarted.png" />
@@ -580,8 +589,11 @@
     <Content Include="Javascript\NGControllers\AuthenticationController.js" />
     <Content Include="Javascript\NGControllers\expertiseController.js" />
     <Content Include="Javascript\NGControllers\objectiveController.js" />
+    <Content Include="Javascript\NGControllers\ResViewController.js" />
     <Content Include="Javascript\NGDirectives\Authentication\loginDirective.js" />
     <Content Include="Javascript\NGDirectives\CareerDirectives\showJobs.js" />
+    <Content Include="Javascript\NGDirectives\Objective\Objective.js" />
+    <Content Include="Javascript\NGDirectives\ExpertiseDirectives\skillSetDirectives.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
@@ -606,20 +618,12 @@
     <Content Include="Scripts\animatedcollapse.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\images\back\desktop.ini" />
-    <Content Include="Content\images\hdr\desktop.ini" />
     <Content Include="Content\images\logo.vsd" />
     <Content Include="Content\images\logo_footer.vsd" />
     <Content Include="Content\images\nav_bullets.vsd" />
-    <Content Include="Content\images\set1\desktop.ini" />
-    <Content Include="Content\images\icons\desktop.ini" />
-    <Content Include="images\back\Thumbs.db" />
-    <Content Include="images\hdr\Thumbs.db" />
     <Content Include="images\logo.vsd" />
     <Content Include="images\logo_footer.vsd" />
     <Content Include="images\nav_bullets.vsd" />
-    <Content Include="images\set1\Thumbs.db" />
-    <Content Include="images\Thumbs.db" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />

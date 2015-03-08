@@ -200,16 +200,15 @@ commonModule.directive('slideable', function () {
         compile: function (element, attr) {
             // wrap tag
             var contents = element.html();
-            element.html('<div class="slideable_content" style="margin:0 !important; padding:0 !important" >' + contents + '</div>');
+            element.html('<div id="' + attr.id + '_wrap" style="border-top: solid 1px white; margin:0 !important; padding:0 !important" >' + contents + '</div>');
 
             return function postLink(scope, element, attrs) {
-                // default properties
                 attrs.duration = (!attrs.duration) ? '.5s' : attrs.duration;
                 attrs.easing = (!attrs.easing) ? 'ease-in-out' : attrs.easing;
                 element.css({
                     'overflow': 'hidden',
-                    'height': '0px',
-                    'transitionProperty': 'height',
+                    'maxHeight': '0px',
+                    'transitionProperty': 'max-height',
                     'transitionDuration': attrs.duration,
                     'transitionTimingFunction': attrs.easing
                 });
@@ -217,35 +216,14 @@ commonModule.directive('slideable', function () {
         }
     };
 })
-commonModule.directive('slideToggle', function () {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            var target = document.querySelector(attrs.slideToggle);
-            attrs.expanded = false;
-            element.bind('click', function () {
-                var content = target.querySelector('.slideable_content');
-                if (!attrs.expanded) {
-                    content.style.border = '1px solid rgba(0,0,0,0)';
-                    var y = content.clientHeight;
-                    content.style.border = 0;
-                    target.style.height = y + 'px';
-                } else {
-                    target.style.height = '0px';
-                }
-                attrs.expanded = !attrs.expanded;
-            });
-        }
-    }
-});
 
 commonModule.directive('slideUp', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
-            var target = document.querySelector(attrs.slideUp);
             element.bind('click', function () {
-            target.style.height = '0px';
+                var target = document.querySelector(attrs.slideUp);
+                target.style.maxHeight = '0px';
             });
         }
     }
@@ -255,12 +233,16 @@ commonModule.directive('slideDown', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
-            var target = document.querySelector(attrs.slideDown);
             element.bind('click', function () {
-                var content = target.querySelector('.slideable_content');
+                var target = document.querySelector(attrs.slideDown);
+
+                var content = target.querySelector(attrs.slideDown + '_wrap');
+                var sbuffer = (!attrs.sbuffer) ? 20 : parseInt(attrs.sbuffer);
+                attrs.duration = (!attrs.duration) ? '.5s' : attrs.duration;
+
                 content.style.border = '1px solid rgba(0,0,0,0)';
                 var y = content.clientHeight;
-                target.style.height = y + 'px';
+                target.style.maxHeight = (y + sbuffer) + 'px';
             });
         }
     }

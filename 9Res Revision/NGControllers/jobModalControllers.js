@@ -1,37 +1,25 @@
 
-// editJobCtrl
-// manage Edit Job mode
 
-var editJobCtrl = function ($scope, localStorageService) {
-    $scope.highlight = ' jobediting';
 
-    //$scope.$watch('job.edit', function () {
-    //    //console.log('job.edit' + $scope.job.edit);
-    //    if ($scope.job.edit == true) {
-    //        $scope.highlight = ' jobediting';
-    //        console.log('job.edit"' + $scope.highlight);
-    //    }
-    //    else $scope.highlight = ' jobediting';
-    //});
 
-    $scope.EditJob = function (job) {
-        job.edit = true;
+// modalAddJobCtrl
+// manage Add Job Popup Callbacks
+
+var modalAddJobCtrl = function ($scope, $modalInstance, jobs) {
+
+    $scope.modalTitle='Add New Job';
+    $scope.job = {
+        details: []
     };
 
 
-    $scope.Title = 'Edit Job';
-    $scope.originalJob = angular.copy($scope.job);
-
-
-
-    // move clicked job detail up in order
-    $scope.switchDetailOrderUp = function (detail) {
+    $scope.switchDetailOrderUp = function(detail){
         moveDetailOrderUp(detail, $scope.job)
     }
 
 
     // move clicked job detail up in order
-    $scope.switchDetailOrderDown = function (detail) {
+    $scope.switchDetailOrderDown = function(detail){
         moveDetailOrderDown(detail, $scope.job)
     }
 
@@ -42,52 +30,45 @@ var editJobCtrl = function ($scope, localStorageService) {
         pushJobDetail(job);
     };
 
+
     // Save job changes within Add Job Pop-up
-    $scope.saveJob = function (job) {
-        // store changes in originalJob for Cancel
-        $scope.originalJob = angular.copy($scope.job);
-
-        job.edit = false;
-        localStorageService.SaveStorageJobs();
-
+    $scope.saveJob = function () {
+        jobs.push($scope.job);
+        $modalInstance.dismiss('cancel');
     };
 
-    $scope.cancel = function (job) {
-        angular.copy($scope.originalJob, job);
-        job.edit = false;
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
     };
 
-    $scope.deleteJobDetail = function (job, detail) {
-
-        deleteArrayElement(job.details, detail);
+    $scope.deleteJobDetail = function(job, detail) {
 
     };
-
 };
 
 
 
 
 
-var addJobCtrl = function ($scope, localStorageService) {
-    $scope.EditJob = function (job) {
-        job.edit = true;
-    };
 
+// modalEditJobCtrl
+// manage Edit Job Popup Callbacks
 
-    $scope.Title = 'New Job';
-    //$scope.job = angular.copy(job);
+var modalEditJobCtrl = function ($scope, $modalInstance, job) {
+
+    $scope.modalTitle='Edit Job';
+    $scope.job = angular.copy(job);
 
 
 
     // move clicked job detail up in order
-    $scope.switchDetailOrderUp = function (detail) {
+    $scope.switchDetailOrderUp = function(detail){
         moveDetailOrderUp(detail, $scope.job)
     }
 
 
     // move clicked job detail up in order
-    $scope.switchDetailOrderDown = function (detail) {
+    $scope.switchDetailOrderDown = function(detail){
         moveDetailOrderDown(detail, $scope.job)
     }
 
@@ -99,26 +80,27 @@ var addJobCtrl = function ($scope, localStorageService) {
     };
 
     // Save job changes within Add Job Pop-up
-    $scope.saveJob = function (job) {
-        job.edit = false;
-        $scope.jobs.push(job);
-        deleteArrayElement($scope.newjobs, job);
-        localStorageService.SaveStorageJobs();
+    $scope.saveJob = function () {
+        angular.copy($scope.job, job);
+        $modalInstance.dismiss('cancel');
     };
 
-    $scope.cancel = function (job) {
-        job.edit = false;
-        deleteArrayElement($scope.newjobs, job);
-
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
     };
 
-    $scope.deleteJobDetail = function (job, detail) {
+    $scope.deleteJobDetail = function(job, detail) {
 
-        deleteArrayElement(job.details, detail);
+        deleteArrayElement (job.details, detail);
+/*
+        var index = job.details.indexOf(detail);
+        if (index > -1) {
+            job.details.splice(index, 1);
+        }
+*/
+
 
     };
-
-    $scope.EditJob($scope.job);
 
 };
 

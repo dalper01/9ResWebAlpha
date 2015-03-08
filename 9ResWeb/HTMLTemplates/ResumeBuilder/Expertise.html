@@ -1,46 +1,43 @@
-﻿<div class="row">
+﻿<resume-builder-nav settab="4"></resume-builder-nav>
+<main>
+    <div class="row">
 
 
-    <div class="col-xs-12">
-        <div class="col-xs-7">
+        <div class="col-xs-12">
             <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 38px; margin-right: -7px; margin-left: 5px;">9</span>
             <span style="font-family: 'Bauhaus 93'; font-size: 20px; margin-right: 5px; margin-left: -0px;">res</span>
 
             <span style="text-align: center; font-weight: 800; color: #888888; font-size: 24px; text-shadow: 1px 1px #000000;">
                 Expertise &amp; Skills
             </span>
-            <span class="glyphicon glyphicon-chevron-down small hov-red" title="Explain More" ng-hide="ShowInstructions==true" ng-click="ShowInstructions=true"></span>
-            <span class="glyphicon glyphicon-chevron-up small hov-red" title="Hide Explanation" ng-show="ShowInstructions==true" ng-click="ShowInstructions=false"></span>
-
+            <span class="glyphicon glyphicon-chevron-down" title="Explain More" slide-down="#Instructions" ng-hide="ShowInstructions==true" ng-click="ShowInstructions=true"></span>
+            <span class="glyphicon glyphicon-chevron-up" title="Hide Explanation" slide-up="#Instructions" ng-show="ShowInstructions==true" ng-click="ShowInstructions=false"></span>
         </div>
-        <div class="col-xs-6" style="border-left: 0px solid blue; padding: 0px;">
-            <!--<hr style="color: blue; background-color: blue; border-color: blue;">-->
-        </div>
-
     </div>
-</div>
 
-<div class="row">
+    <div class="row">
 
-    <div class="sample-show-hide" style="clear:both;" ng-show="ShowInstructions==true">
-        <div class="col-sm-offset-0 col-sm-12 hdr_txt">
-            <p>What skills have you developed?</p>
-            <p>Software Engineering (System Administration, Security, C++, JavaScript, etc)</p>
-            <p>
-                Office (Words, Excel, PowerPoint),
-                Graphic (PhotoShop, HTML, FLASH), Public Speaking, Negotiation, etc
-                High School Diploma? College Diploma? Graduate School? Add any information you want.
-                Feel free to skip anything you don't want.
-            </p>
-            <br />
-            ...In case you hadn't noticed, this site is cool as $@&!.
-            <span class="glyphicon glyphicon-chevron-up small hov-red" title="Hide Explanation" ng-click="ShowInstructions=false"></span>
+        <div id="Instructions" class="slideable" style="clear:both;" sng-show="ShowInstructions==true" duration=".9s">
+            <div class="col-sm-offset-0 col-sm-12 hdr_txt">
+                <p>What skills have you developed?</p>
+                <p>Software Engineering (System Administration, Security, C++, JavaScript, etc)</p>
+                <p>
+                    Office (Words, Excel, PowerPoint),
+                    Graphic (PhotoShop, HTML, FLASH), Public Speaking, Negotiation, etcmegh
+                    High School Diploma? College Diploma? Graduate School? Add any information you want.
+                    Feel free to skip anything you don't want.
+                </p>
+                <br />
+                ...In case you hadn't noticed, this site is cool as $@&!.
+                <span class="glyphicon glyphicon-chevron-up small hov-red" title="Hide Explanation" slide-up="#Instructions" ng-click="ShowInstructions=false"></span>
+            </div>
+
         </div>
 
     </div>
 
-</div>
 
+</main>
 <div class="row">
     <div class="col-sm-offset-0 col-sm-12 hdr_txt" sstyle="padding-left: 25px;">
 
@@ -48,95 +45,82 @@
 
 </div>
 
-<div id="ppane_ds" style="border: 1px solid; border-color: black; border-left-width: 0px;
-                text-align: justify;" class="row">
 
-    <div class="row col-md-8 col-sm-offset-1">
-        <label style="" class="badge badge-rounded sgold-black" title="{{ Skill.Description }}" ng-repeat="Skill in SkillList track by $index">
-            {{ Skill.Title }} <!--<i class="fa fa-times" ng-click="DeleteSkill(Skill)"></i>-->
-        </label>
-
-    </div>
-    
+<div class="row col-xs-12 text-right">
+    <a class="btn btn-success" ng-click="AddSkillSet()" sbuffer="200px">New Skill Set <i class="fa fa-plus"></i></a>
 </div>
 
 
 
-<div class="row" id="ppane_w" align="PREV">
-    <div class="col-sm-12">
-        <table cellpadding=0 cellspacing=0 class="util" width=866>
+<div>
+    <div class="row">
+        <div class="col-sm-12 pane-objective" style="margin-top: 20px;">
+            <div class="row edit-active" ng-repeat="skillSet in skillSetList track by $index" ng-click="EditSkillSet(skillSet)">
+                <span style="font-weight: bold;">{{ skillSet.Title }}</span>
+                <label style="" class="badge badge-rounded" title="{{ Skill.Description }}" ng-repeat="Skill in skillSet.Skills track by $index">
+                    {{ Skill.Title }} <!--<i class="fa fa-times" ng-click="DeleteSkill(Skill)"></i>-->
+                </label>
+            </div>
+            <div class="row edit-active" ng-repeat="skillSet in addSkillSetList track by $index" ng-click="EditSkillSet(skillSet)">
+                <span style="font-weight: bold;">{{ skillSet.Title }}</span>
+                <label style="" class="badge badge-rounded" title="{{ Skill.Description }}" ng-repeat="Skill in skillSet.Skills track by $index">
+                    {{ Skill.Title }} <!--<i class="fa fa-times" ng-click="DeleteSkill(Skill)"></i>-->
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row" id="ppane_w" align="PREV">
+        <table cellpadding=0 cellspacing=0 class="util" style="width: 100%;">
             <tr>
-                <td class="ppn_title" width=50%>PREVIEW PANE</td>
-                <td class="ppn_title" width=50%>PREVIEW PANE</td>
+                <td class="ppn_title" width=50%>PREVIEW PANEL</td>
+                <td class="ppn_title" width=50%>PREVIEW PANEL</td>
             </tr>
         </table>
     </div>
-</div>
-
-
-
-<div class="row space5 inputTitles" style="margin-top: 10px; min-height: 250px;">
-    <div class="row space5">
-        <div class="col-sm-2 schoolform">
-            Skill
-        </div>
-        <div class="col-sm-6">
-            <input class="form-control" type="text" placeholder="Skill" ng-model="Skill.Title">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-2 schoolform">
-            Description
-        </div>
-        <div class="col-sm-6">
-            <input class="form-control" type="text" placeholder="(Optional)" ng-model="Skill.Description" sstyle="width: 14ch">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <a class="btn btn-primary" ng-click="AddSkill(Skill)"> Add Skill <i class="glyphicon glyphicon-plus"></i>  </a>
-        </div>
-
-
-        <!--<div style="vertical-align: middle; margin-top: 25px; margin-left: 40px;">
-            <img src="https://www.bellevuecollege.edu/careerpath/images/certifications.png" style="align-self: center center"
-                 swidth="355" height="45">
-        </div>-->
-
-
-    </div>
-
 
 </div>
 
+<!-- 
+    <div class="row sslideable" style="overflow-y: scroll; overflow-x: hidden" ng-attr-id="{{ 'addSkills' }}">
+ -->
+<div class="row animate-repeat add-skill-set" ng-repeat="skillSet in editSkillSetList track by $index">
+    <div edit-skill-set skill-set="skillSet" close-func="CloseEditSkillSet()" cancel-func="CancelEditSkillSet()" skill-set-list="skillSetList"></div>
+</div>
+<div class="row animate-repeat add-skill-set" ng-repeat="skillSet in addSkillSetList track by $index">
+    <div add-skill-set skill-set="newSkillSet" close-func="CloseAddSkillSet()" skill-set-list="skillSetList"></div>
+</div>
 
 <!-- Wizard Nav Buttons -->
+
 
 <div class="row" style="margin-top: 25px;">
     <div class="col-xs-1"></div>
 
     <div class="col-xs-3">
-        <a class="btn btn-primary" href="#education">
-            <span> <i class="glyphicon glyphicon-arrow-left"></i> Education </span>
+        <a class="btn btn-bitbucket" ng-click="" href="#education">
+            <span> <i class="glyphicon glyphicon-arrow-left"></i> Education</span>
+        </a>
+
+    </div>
+
+    <div class="col-xs-4">
+        <a ng-if="IsLoggedIn()" class="btn btn-success" ng-click="SaveNewResume()">
+            <span aclass="white-icon"> Save Resume<i class="glyphicon glyphicon-"></i> </span>
+        </a>
+        <a class="btn btn-default" href="#/resview">
+            <span aclass="white-icon"> Preview Resume </span>
         </a>
 
     </div>
 
     <div class="col-xs-3">
-        <a style="" class="btn btn-success" ng-if="showLogin" ng-click="SaveNewResume()">
-            <span> Save Resume <i class="glyphicon glyphicon-"></i> </span>
-        </a>
-
-    </div>
-
-    <div class="col-xs-3">
-        <a class="btn btn-primary" href="#objective">
+        <a class="btn btn-bitbucket" ng-click="" href="#objective">
             <span> Objective <i class="glyphicon glyphicon-arrow-right"></i> </span>
         </a>
 
     </div>
 
 </div>
-

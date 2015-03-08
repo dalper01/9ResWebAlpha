@@ -1,0 +1,51 @@
+﻿
+<div class="container">
+
+    <div class="row" style="min-height: 15px; text-align: center;">
+        <h4>{{ FormTitle }}</h4>
+    </div>
+    <div class="row space5 inputTitles" style="margin-top: 10px; min-height: 250px;">
+        <div class="row space5">
+            <!--<div class="col-sm-2 schoolform" style="width: 200px;">
+                Skill Category
+            </div>
+            <div class="col-sm-6">
+                <input class="form-control" type="text" placeholder="Skill" ng-model="skillSet.Title">
+            </div>-->
+            <div class="col-sm-6 schoolform" sstyle="width: 200px;">
+                Skill Category
+                <input class="form-control" type="text" placeholder="Skill" ng-model="skillSet.Title">
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <a class="btn btn-success" ng-click="AddSkill(skillSet)"> Add Skill </a>
+            </div>
+        </div>
+
+        <div>
+
+            <input class="form-control" style="width: 200px; display: inline; margin-right: 30px; margin-bottom: 4px;" type="text" placeholder="Skill" ng-model="Skill.Title"
+                   ng-repeat="Skill in skillSet.Skills">
+        </div>
+
+        <div class="row " style="margin-top: 20px; background-color: #333333; padding-top: 25px; padding-bottom:25px;">
+            <div class="col-sm-4 text-right">
+                <a class="btn btn-primary" ng-click="SaveSkillSet(skillSet)" sng-attr-slide-up="{{ '#addSkills' }}">
+                    Submit
+                    <i class="glyphicon glyphicon-thumbs-up"></i>
+                </a>
+            </div>
+            <div class="col-sm-2 col-sm-offset-2 text-left">
+                <a class="btn btn-danger" ng-click="CancelSkillSet(skillSet)" sng-attr-slide-up="{{ '#addSkills' }}">
+                    <i class="glyphicon glyphicon-thumbs-down"></i>
+                    Cancel
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

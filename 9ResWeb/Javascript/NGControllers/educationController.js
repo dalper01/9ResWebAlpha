@@ -3,55 +3,74 @@ var educationApp = angular.module('educationApp', ['commonDirectives', 'navBarAp
 
 educationApp.controller('educationController', function ($scope, localStorageService) {
 
-
     // Universal LocalStorage Getter
     function getEducationLocalStorage() {
         $scope.education = localStorageService.GetEducation();
     };
 
-
-
     // Education LocalStorage Saver
     $scope.SaveEducationLocalStorage = function () {
         localStorageService.SaveStorageEducation();
+        $scope.serializedEducation = JSON.stringify($scope.education);
     };
 
-    //Reset Education; load from storage to service and pass to local
+    // Education LocalStorage Saver
+    $scope.SerializeEducationLocalStorage = function () {
+        $scope.serializedEducation = JSON.stringify($scope.education);
+    };
+
+    // Reset Education; load from storage to service and pass to local
     $scope.resetEducation = function () {
-        localStorageService.LoadStorageEducation();
-        getEducationLocalStorage();
-        
+        $scope.education = JSON.parse($scope.serializedEducation);
     }
 
-
-
-    // Form and Nav methods
-    $scope.showNavHideForms = function() {
-
-        //$scope.highSchoolEdit = false;
-        $scope.addNavShow = true;
-    }
-
-
+    // Confirm Changes to Education
+    $scope.saveEducation = function (highschool) {
+        $scope.SaveEducationLocalStorage();
+        $scope.closeEdit();
+    };
 
     // activate Add/Edit Forms
-    $scope.addHighSchool = function() {
+    $scope.addHighSchool = function () {
+        var highschool = {
+            add: true,
+            edType: 1
+        };
 
-        $scope.education.highSchools.push({ add: true});
-        $scope.addNavShow = false;
+        $scope.education.highSchools.push(highschool);
+        $scope.EditList.push(highschool);
     };
 
-    $scope.editHighSchool = function(highSchool) {
 
+    $scope.closeEdit = function () {
+        $scope.EditList.length = 0;
+    };
+
+
+    $scope.cancelAddHighSchool = function (highSchool) {
+        $scope.deleteHighSchool(highSchool);
+        $scope.closeEdit();
+    };
+
+
+    $scope.editHighSchool = function (highSchool) {
+
+        $scope.SerializeEducationLocalStorage();
+        highSchool.add = false;
         highSchool.edit = true;
-        $scope.addNavShow = false;
+        highSchool.edType = 1;
+        $scope.EditList.push(highSchool);
 
+        //$scope.EditList.push(highSchool);
     };
+
 
     $scope.deleteHighSchool = function(highSchool) {
 
         var i = $scope.education.highSchools.indexOf(highSchool);
-        if(i != -1) {
+        console.log('index:' + i);
+        console.log(highSchool);
+        if (i != -1) {
             $scope.education.highSchools.splice(i, 1);
         }
 
@@ -60,22 +79,34 @@ educationApp.controller('educationController', function ($scope, localStorageSer
 
 
 
-
-
     $scope.addCollege = function() {
 
-        //$scope.collegeAdd = true;
-        $scope.education.colleges.push({ add: true})
-        $scope.addNavShow = false;
+        var college = {
+            add: true,
+            edType: 2
+        };
+
+        $scope.education.colleges.push(college);
+        $scope.EditList.push(college);
 
     };
 
     $scope.editCollege = function(college) {
 
+        $scope.SerializeEducationLocalStorage();
+        college.add = false;
+        college.edType = 2;
         college.edit = true;
-        $scope.addNavShow = false;
+        $scope.EditList.push(college);
+
 
     };
+
+    $scope.cancelAddCollege = function (College) {
+        $scope.deleteCollege(College);
+        $scope.closeEdit();
+    };
+
 
     $scope.deleteCollege = function(college) {
 
@@ -87,25 +118,34 @@ educationApp.controller('educationController', function ($scope, localStorageSer
     };
 
 
-
     $scope.addCertificate = function() {
 
-        //$scope.certificateAdd = true;
-        $scope.education.certificates.push({ add: true})
-        $scope.addNavShow = false;
-        console.log($scope.education);
+        var certificate = {
+            add: true,
+            edType: 3
+        };
 
+        $scope.education.certificates.push(certificate);
+        $scope.EditList.push(certificate);
     };
 
 
     $scope.editCertificate = function(certificate) {
 
+        $scope.SerializeEducationLocalStorage();
+        certificate.add = false;
+        certificate.edType = 3;
         certificate.edit = true;
-        $scope.addNavShow = false;
-
+        $scope.EditList.push(certificate);
     };
 
-    $scope.deleteCertificate = function(certificate) {
+    $scope.cancelAddCertificate = function (certificate) {
+        $scope.deleteCertificate(certificate);
+        $scope.closeEdit();
+    };
+
+
+    $scope.deleteCertificate = function (certificate) {
 
         var i = $scope.education.certificates.indexOf(certificate);
         if(i != -1) {
@@ -118,12 +158,17 @@ educationApp.controller('educationController', function ($scope, localStorageSer
 
     // -------------- initialize $scope Model --------------------- //
 
-    $scope.addNavShow = true;
     getEducationLocalStorage();
 
+    $scope.serializedEducation = '';
+    $scope.EditList = [];
 
-    //$scope.addCollege();
-    //$scope.addHighSchool();
+
+    $scope.highschoolEditList = [];
+    $scope.collegeEditList = [];
+    $scope.certEditList = [];
+
+
 });
 
 
@@ -147,17 +192,15 @@ educationApp.controller('highSchoolController', function($scope) {
     }
 
     // Save into localStorage and close form
-    $scope.saveHighSchool = function(){
-
-        $scope.highSchool.add = false;
-        $scope.highSchool.edit = false;
-        $scope.saveFn();
+    $scope.saveHighSchool = function (highschool) {
+        console.log('saveHighSchool');
+        $scope.saveFn(highschool);
         $scope.closeform();
 
     }
 
 
-    $scope.cancelHighSchool = function(){
+    $scope.cancelHighSchool = function () {
         $scope.resetFn();
         $scope.closeform();
     }
@@ -169,9 +212,8 @@ educationApp.controller('highSchoolController', function($scope) {
 
 
 
-// ------------------------------ addCollegeController ----------------------------------
-
-educationApp.controller('addCollegeController', function($scope) {
+// ------------------------------ CollegeController ----------------------------------
+educationApp.controller('CollegeController', function($scope) {
 
     $scope.Title = "Add College"
 
@@ -186,11 +228,6 @@ educationApp.controller('addCollegeController', function($scope) {
 
     $scope.saveCollege = function () {
 
-        //restoreOldHighSchool();
-
-        $scope.college.add = false;
-        $scope.college.edit = false;
-        //localStorage.setItem('resume.education.colleges', JSON.stringify($scope.education.colleges));
         $scope.saveFn();
         $scope.closeform();
     }
@@ -234,9 +271,6 @@ educationApp.controller('editCollegeController', function($scope) {
 
 
     $scope.cancelCollege = function(){
-
-        //$scope.college.add = false;
-        //$scope.college.edit = false;
         $scope.resetFn();
         $scope.closeform();
     }
@@ -256,11 +290,6 @@ educationApp.controller('addCertificateController', function ($scope) {
 
     $scope.saveCertificate = function(){
 
-        //restoreOldHighSchool();
-
-        $scope.certificate.add = false;
-        $scope.certificate.edit = false;
-        //localStorage.setItem('resume.education.certificates', JSON.stringify($scope.education.certificates));
         $scope.saveFn();
         $scope.closeform();
     }
@@ -269,7 +298,6 @@ educationApp.controller('addCertificateController', function ($scope) {
     $scope.cancelCertificate = function(){
 
         $scope.resetFn();
-        // hide forms and show Nav
         $scope.closeform();
     }
 
@@ -353,7 +381,7 @@ educationApp.directive('collegeFormEdit', [function() {
 
 
 
-educationApp.directive('collegeFormAdd', [function() {
+educationApp.directive('collegeForm', [function() {
     return {
         restrict: 'E',
         scope: {
@@ -363,7 +391,7 @@ educationApp.directive('collegeFormAdd', [function() {
             closeform: "&"
 
         },
-        controller: 'addCollegeController',
+        controller: 'CollegeController',
         templateUrl: "HTMLControls/Education/collegeForm.html"
     }
 

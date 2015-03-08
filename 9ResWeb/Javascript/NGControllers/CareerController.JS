@@ -1,5 +1,5 @@
 
-var CareerModule = angular.module('CareerModule', ['ui.bootstrap', 'commonDirectives', 'navBarApp', 'storageServiceApp']);
+var CareerModule = angular.module('CareerModule', ['ui.bootstrap', 'commonDirectives', 'navBarApp', 'storageServiceApp', 'ngAnimate']);
 
 
 CareerModule.controller('CareerController',
@@ -25,6 +25,7 @@ function ($scope, $rootScope, $modal, localStorageService) {
                 {
                     details: [{
                         description: "",
+                        edit: true,
                         order: 1
                     }]
                 });

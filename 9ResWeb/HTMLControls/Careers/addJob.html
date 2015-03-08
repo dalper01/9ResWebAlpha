@@ -1,8 +1,8 @@
-﻿<div class="row container" style="margin-bottom: 15px; border: 1px hidden #bbbbbb ">
+﻿<div class="row container" style="margin-bottom: 15px;">
 
-    <div ng-class="{ 'row JobsDisplay': true, 'jobediting': false }" sbuffer="400" ng-attr-slide-down="{{ '#editjob' + jobNumber }}" ng-click="EditJob(job)" style="border: 1px solid; border-color: black; border-left-width: 0px; border-bottom-width: 0px; padding: 30px 0px 30px;">
-        <div class=" row ">
-            <div class=" col-xs-5">
+    <div ng-class="{ 'row JobsDisplay': true, 'jobediting': false }" sbuffer="400" style="border: 1px solid; border-color: black; border-left-width: 0px; border-bottom-width: 0px; padding: 30px 0px 30px;">
+        <div class="row ">
+            <div class="col-xs-5">
                 <div class="col-sm-6">
                     <place-holder filler="Company Name" bind="job.firmLong"></place-holder>
                 </div>
@@ -34,6 +34,7 @@
         </div>
 
     </div>
+
     <div class="row container">
         <div class="row" id="ppane_w" align="PREV">
             <div sclass="col-sm-12">
@@ -47,8 +48,9 @@
         </div>
 
     </div>
+
     <!-- Edit Job Form (Hidden unless job is in Edit Mode) -->
-    <div class="row container slideable" style="margin-bottom: 35px; margin-top: 20px;" ng-attr-id="{{ 'editjob' + jobNumber}}" sng-show="job.edit">
+    <div class="row container" style="margin-bottom: 35px; margin-top: 20px;">
         <div class="row" style="height: 70px;">
             <div class="col-sm-offset-0 col-xs-7 inputTitles">
                 <div class="col-xs-6">
@@ -137,13 +139,13 @@
 
         <div class="row" style="margin-top: 20px; background-color: #444444; padding-top: 25px; padding-bottom:25px;">
             <div class="col-sm-offset-2 col-sm-2">
-                <a style="" class="btn btn-primary" ng-click="saveJob(job)" ng-attr-slide-up="{{ '#editjob' + jobNumber }}">
+                <a style="" class="btn btn-primary" ng-click="saveJob(job)">
                     <span> Confirm <i class="glyphicon glyphicon-thumbs-up"></i> </span>
                 </a>
             </div>
-            <div class="col-sm-offset-3 col-sm-2">
-                <a style="" class="btn btn-danger" ng-click="cancel(job)" ng-attr-slide-up="{{ '#editjob' + jobNumber }}">
-                    <span> <i class="glyphicon glyphicon-thumbs-down"></i> Cancel</span>
+            <div class="col-sm-offset-4 col-sm-2">
+                <a style="" class="btn btn-danger" ng-click="cancel(job)">
+                    <span> <i class="glyphicon glyphicon-thumbs-down"></i> Cancel </span>
                 </a>
             </div>
         </div>

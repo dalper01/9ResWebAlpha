@@ -1,0 +1,86 @@
+﻿/**
+ * Slanted tabs with CSS 3D transforms
+ * See http://lea.verou.me/2013/10/slanted-tabs-with-css-3d-transforms/
+ */
+
+nav {
+	position: relative;
+	z-index: 1;
+	white-space: nowrap;
+}
+
+nav a, nav a:hover, nav a:link,  nav a:visited, nav a:active {
+	position: relative;
+	display: inline-block;
+	padding: 2em 2em 1em 2em;
+    /*padding-top: 3em;*/
+	color: black;
+    vertical-align: middle;
+	text-decoration: none;
+	margin: 0 -7px;
+    outline: 0;
+} 
+
+
+nav a::before,
+main {
+	border: .1em solid #eee;
+}
+
+nav a::before {
+	content: ''; /* To generate the box */
+	position: absolute;
+	top: 0; right: 0; bottom: .5em; left: 0;
+	z-index: -1;
+	border-bottom: none;
+	border-radius: 10px 10px 0 0;
+	/*background: #ffeedd;*/
+	background: #ccc;
+	/*box-shadow: 0 2px hsla(0,0%,100%,.5) inset;*/
+	transform: perspective(5px) rotateX(2deg);
+	transform-origin: bottom;
+}
+
+nav a:hover::before {
+    	background: white;
+}
+
+nav.left a {
+	padding: 1.5em 2em 1em 1em;
+}
+
+nav.left a::before {
+	transform-origin: bottom left;
+}
+
+nav.right a {
+	padding: 1.5em 1em 1em 2em;
+}
+
+nav.right a::before {
+	transform-origin: bottom right;
+}
+
+nav a.selected {
+	z-index: 2;
+	/*border-top: .1em solid #aaa;*/
+}
+
+nav a.selected::before {
+	margin-bottom: -1px;
+	border-top-width: 1px;
+    border-top: .1em solid #aaa;
+}
+
+nav a.selected::before,
+main {
+	background: white;
+}
+
+main {
+	display: block;
+	margin: -8px 0 30px -15px;
+	/*padding: 1em;*/
+	border-radius: 6px;
+    border: 0px;
+}

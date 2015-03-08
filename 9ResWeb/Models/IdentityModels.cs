@@ -13,6 +13,8 @@ namespace _9ResWeb.Models
         public int UserInfo_Id { get; set; }
 
         public virtual UserInfo UserInfo { get; set; }
+
+        public virtual IEnumerable<UserEmail> UserEmails { get; set; }
     }
 
     [Table("UserInfo")]
@@ -26,6 +28,11 @@ namespace _9ResWeb.Models
 
         public string ProfilePicture { get; set; }
 
+        //public virtual ApplicationUser user { get; set; }
+        //[ForeignKey("AspNetUsers")]
+        //public int userId { get; set; }
+
+
         //public virtual IEnumerable<UserEmail> UserEmails { get; set; }
 
     }
@@ -37,6 +44,9 @@ namespace _9ResWeb.Models
         public string EmailAddress { get; set; }
         public bool Confirmed { get; set; }
 
+        public virtual ApplicationUser user { get; set; }
+        //[ForeignKey("AspNetUsers")]
+        //public int UserId { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
