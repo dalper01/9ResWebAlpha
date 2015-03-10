@@ -11,6 +11,7 @@ namespace _9ResWeb.Models
         public ContactInfoViewModel contactInfo { get; set; }
         public EducationViewModel education { get; set; }
         public IEnumerable<JobViewModel> jobs { get; set; }
-
+        public IEnumerable<SkillSetViewModel> skills { get; set; }
+        public IEnumerable<ObjectiveViewModel> objectives { get; set; }
     }
 }

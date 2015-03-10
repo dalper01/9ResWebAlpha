@@ -208,7 +208,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JobViewModel.cs" />
     <Compile Include="Models\JobDetailViewModel.cs" />
+    <Compile Include="Models\ObjectiveViewModel.cs" />
     <Compile Include="Models\ResumeViewModel.cs" />
+    <Compile Include="Models\SkillSetViewModel.cs" />
     <Compile Include="Models\UserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -229,6 +231,7 @@
     <Content Include="Content\docs.css" />
     <Content Include="Content\education.css" />
     <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\fonts\bootstrap.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\icons\certification.bmp" />
     <Content Include="Content\icons\certs.jpg" />
@@ -627,6 +630,8 @@
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\BAUHS93.TTF" />
+    <Content Include="Content\fonts\FREESCPT.TTF" />
     <None Include="Properties\PublishProfiles\winhost 9res.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -898,8 +903,25 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\JSPlugins\angular-strap.js" />
     <Content Include="Scripts\JSPlugins\bootstrap.js" />
+    <Content Include="Scripts\JSPlugins\FileSaver.js" />
     <Content Include="Scripts\JSPlugins\jquery.mask.js" />
     <Content Include="Scripts\JSPlugins\jquery.maskedinput.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.addhtml.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.addimage.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.annotations.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.autoprint.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.cell.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.context2d.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.from_html.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.javascript.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.outline.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.png_support.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.sillysvgrenderer.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.split_text_to_size.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.standard_fonts_metrics.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.plugin.total_pages.js" />
+    <Content Include="Scripts\JSPlugins\jspdf.PLUGINTEMPLATE.js" />
     <Content Include="Scripts\JSPlugins\mask.js" />
     <Content Include="Scripts\JSPlugins\ui-bootstrap-tpls-0.7.0.js" />
     <Content Include="Javascript\BrettJS\ContactInfo.js" />

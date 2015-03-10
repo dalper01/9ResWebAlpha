@@ -15,8 +15,11 @@ namespace _9ResWeb.Models
 
         public string city { get; set; }
         public string state { get; set; }
+
         public string startMonth { get; set; }
         public string startYear { get; set; }
+        public string endMonth { get; set; }
+        public string endYear { get; set; }
 
         public IEnumerable<JobDetailViewModel> details { get; set; }
 

@@ -79,12 +79,20 @@ ContactInfoModule.controller('ContactInfoController',
 
     $scope.SaveNewResume = function () {
 
+        localStorageService.SaveStorageContactInfo();
         console.log('Saving');
+
+        console.log(localStorageService.GetSkills());
+        console.log(localStorageService.GetObjectives());
+
+        //return;
 
         $http.post("/api/ResumeApi", {
             contactInfo: localStorageService.GetContactInfo(),
             education: localStorageService.GetEducation(),
-            jobs: localStorageService.GetJobs()
+            jobs: localStorageService.GetJobs(),
+            skills: localStorageService.GetSkills(),
+            objectives: localStorageService.GetObjectives()
         }).
             success(function (data, status, headers, config) {
 

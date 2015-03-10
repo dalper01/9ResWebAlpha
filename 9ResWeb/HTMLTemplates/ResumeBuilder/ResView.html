@@ -1,8 +1,9 @@
 ﻿<resume-builder-nav></resume-builder-nav>
 
 
-<div class="container" style="padding-bottom: 30px; border: solid 1px gray; border-radius: 9px 9px;">
+<div id="prevRes" class="container" style="padding-bottom: 30px; border: solid 1px gray; border-radius: 9px 9px;">
 
+    <a class="btn btn-default" ng-click="SavePDF()">Save as PDF</a>
     <br />
 
     <div style="padding-left: 20px;">
@@ -43,8 +44,8 @@
             </div>
         </div>
 
-        <div class="well well-sm objective-styling">
-            <div class="row col-md-12 col-sm-offset-0" ng-repeat="Objective in objectiveList track by $index">
+        <div class="row col-md-12 col-sm-offset-0" sclass="well well-sm objective-styling" style="border: 1px solid #bbb; border-radius: 5px; background-color: #eeeeee;">
+            <div style=" padding: 7px;" ng-repeat="Objective in objectiveList track by $index">
                 <p>
                     {{ Objective.description }}
                 </p>
@@ -54,15 +55,29 @@
 
 
         <!-- Skills -->
-        <div style="margin-top: 35px; margin-bottom: 35px;">
-            <div class="row edit-active" ng-repeat="skillSet in skillSetList track by $index" ng-if="skillSetList.length > 0">
-                <span style="font-weight: bold;">{{ skillSet.Title }}</span>
-                <label style="" class="badge badge-rounded" title="{{ Skill.Description }}" ng-repeat="Skill in skillSet.Skills track by $index">
-                    {{ Skill.Title }} <!--<i class="fa fa-times" ng-click="DeleteSkill(Skill)"></i>-->
-                </label>
+        <!--<div class="row col-sm-12" style="margin-top: 35px; margin-bottom: 35px;  border: 1px solid #ccc; border-radius: 6px;">
+            <div style="padding: 5px">
+                <div class="row edit-active" ng-repeat="skillSet in skillSetList track by $index" ng-if="skillSetList.length > 0">
+                    <span style="font-weight: bold;">{{ skillSet.Title }}</span>
+                    <label style="" class="badge badge-rounded" title="{{ Skill.Description }}" ng-repeat="Skill in skillSet.Skills track by $index">
+                        {{ Skill.Title }}
+                    </label>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="row col-sm-12" style="margin-top: 35px; margin-bottom: 35px;  border: 1px solid #ccc; border-radius: 6px;">
+            <div style="vertical-align: top; padding-top: 15px; padding-bottom: 15px;" >
+                <div style="display: inline-block; vertical-align: top; text-align: center; top: 0; width: {{ 100/skillSetList.length }}%; height: 100%" class="edit-active" ng-repeat="skillSet in skillSetList track by $index" ng-if="skillSetList.length > 0">
+                    <span style="font-weight: bold;">{{ skillSet.Title }}</span>
+                    <div ng-repeat="Skill in skillSet.Skills track by $index">
+                        <label style="" class="badge badge-rounded" title="{{ Skill.Description }}">
+                            {{ Skill.Title }}
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
-
 
 
         <!-- Experience -->
