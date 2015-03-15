@@ -1,9 +1,19 @@
-﻿<resume-builder-nav></resume-builder-nav>
+﻿<div class="row">
+
+    <div class="col-sm-7">
+        <resume-builder-nav></resume-builder-nav>
+
+    </div>
+    <div class="col-sm-2  bottom-left" style="padding-bottom: 0px;">
+        <a class="btn btn-google-plus" style="padding:2px; padding-left: 5px; padding-right: 5px;" sstyle="background-color: #333333; color: white;" ng-click="SavePDF()"> <i class="fa fa-file-pdf-o"> </i> PDF</a>
+        <a class="btn btn-facebook" style="padding:2px; padding-left: 5px; padding-right: 5px;" ng-click="SaveDOC()"> <i class="fa fa-file-word-o"> </i> DOC</a>
+    </div>
+</div>
 
 
 <div id="prevRes" class="container" style="padding-bottom: 30px; border: solid 1px gray; border-radius: 9px 9px;">
 
-    <a class="btn btn-default" ng-click="SavePDF()">Save as PDF</a>
+<!--    <a class="btn btn-default" ng-click="SavePDF()">Save as PDF</a>-->
     <br />
 
     <div style="padding-left: 20px;">

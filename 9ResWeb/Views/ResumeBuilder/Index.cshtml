@@ -41,11 +41,20 @@
     
     @* JSPDF *@
     <script src="~/Scripts/JSPlugins/jspdf.js"></script>
-    <script src="~/Scripts/JSPlugins/jspdf.plugin.from_html.js"></script>
+    @*<script src="~/Scripts/JSPlugins/jspdf.plugin.from_html.js"></script>
     <script src="~/Scripts/JSPlugins/jspdf.plugin.split_text_to_size.js"></script>
-    <script src="~/Scripts/JSPlugins/jspdf.plugin.standard_fonts_metrics.js"></script>
+    <script src="~/Scripts/JSPlugins/jspdf.plugin.standard_fonts_metrics.js"></script>*@
     <script src="~/Scripts/JSPlugins/FileSaver.js"></script>
+    <script src="~/Scripts/JSPlugins/pdfmake.min.js"></script>
+    <script src="~/Scripts/JSPlugins/vfs_fonts.js"></script>
 
+<script type="text/javascript">
+
+    function savePageAsPDF() {
+        var pURL = "http://savepageaspdf.pdfonline.com/pdfonline/pdfonline.asp?cURL=" + escape(document.location.href);
+        window.open(pURL, "PDFOnline", "scrollbars=yes, resizable=yes,width=640, height=480,menubar,toolbar,location");
+    }
+</script>
 
     @* ---------- Brett JS ----------------- *@
     <script src="~/Javascript/BrettJS/ContactInfo.js"></script>
