@@ -35,7 +35,7 @@ function ($http, $scope, $rootScope, localStorageService) {
             responseType: 'arraybuffer'
         }).success(function (data, status, headers, config) {
             var blob = new Blob([data], { type: "application/pdf" });
-            saveAs(blob, 'sample.pdf');
+            saveAs(blob, 'Resume.pdf');
             //navigator.msSaveBlob(blob, 'test.css');
             //var saveBlob = navigator.webkitSaveBlob || navigator.mozSaveBlob || navigator.saveBlob;
             //saveBlob(blob, 'test.css');

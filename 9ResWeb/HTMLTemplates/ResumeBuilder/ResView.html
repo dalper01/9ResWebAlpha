@@ -47,7 +47,7 @@
                         <i class="fa fa-envelope-o"></i> {{ contactInfo.eMail }}
                     </span>
                     <span ng-show="contactInfo.socialMedia.length" style="margin-right:7px;">
-                        <img height=19 width=19 ng-src="{{ contactInfo.socialMediaLogo }}">
+                        <i class="{{ 'fa ' + contactInfo.socialMediaLogo }}"></i>
                         {{ contactInfo.socialMedia }}
                     </span>
                 </div>

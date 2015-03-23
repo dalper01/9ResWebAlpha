@@ -251,6 +251,9 @@
     <Content Include="Content\icons\graduation_cap_and_diploma.png" />
     <Content Include="Content\icons\graduation_cap_old.png" />
     <Content Include="Content\icons\hierarchy.bmp" />
+    <Content Include="Content\icons\iconcert.png" />
+    <Content Include="Content\icons\icongradcap.jpg" />
+    <Content Include="Content\icons\icongradcap.png" />
     <Content Include="Content\icons\images.jpg" />
     <Content Include="Content\icons\money.bmp" />
     <Content Include="Content\icons\process.bmp" />
@@ -533,6 +536,8 @@
     <Content Include="images\hdr_keywords.bmp" />
     <Content Include="images\hdr_line.bmp" />
     <Content Include="images\h_scroll.bmp" />
+    <Content Include="images\icons\iconcert.png" />
+    <Content Include="images\icons\icongradcap.png" />
     <Content Include="images\icon_facebook.bmp" />
     <Content Include="images\icon_linkedin.bmp" />
     <Content Include="images\icon_skype.bmp" />

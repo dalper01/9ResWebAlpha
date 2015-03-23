@@ -18,9 +18,9 @@ ContactInfoModule.controller('ContactInfoController',
 
         $scope.phoneTypes = [{ name: "Home", id: "(h)" }, { name: "Work", id: "(w)" }, { name: "Mobile", id: "(c)" }];
 
-        $scope.socialMediaTypes = [{ name: "Facebook", img: "./images/icon_facebook.bmp" },
-            { name: "LinkedIn", img: "./images/icon_linkedin.bmp" },
-            { name: "Skype", img: "./images/icon_skype.bmp" }];
+        $scope.socialMediaTypes = [{ name: "Facebook", img: "fa-facebook-square" },
+            { name: "LinkedIn", img: "fa-linkedin-square" },
+            { name: "Skype", img: "fa-skype" }];
 
 
 
