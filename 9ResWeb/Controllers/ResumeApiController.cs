@@ -49,7 +49,7 @@ namespace _9ResWeb.Controllers
 
             resumeDTO.jobList = Mapper.Map<List<JobDTO>>(newResume.jobs);
 
-            var updatedResume = _resumeManager.AddResume(resumeDTO);
+            var updatedResume = _resumeManager.SaveResume(resumeDTO);
 
 
 
@@ -140,7 +140,7 @@ namespace _9ResWeb.Controllers
             page.Canvas.DrawString(text, addrTrueTypeFont, blueBrush,
                 20, y);
 
-            text = String.Format("{0} {1}", newResume.contactInfo.number1, newResume.contactInfo.number2);
+            text = String.Format("{0} {1}", newResume.contactInfo.eMail, newResume.contactInfo.socialMedia);
             page.Canvas.DrawString(text, addrTrueTypeFont, blueBrush, pageWidth - 40, y, formatRight);
 
             size = addrTrueTypeFont.MeasureString(text, formatCenter);

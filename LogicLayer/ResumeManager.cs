@@ -20,7 +20,7 @@ namespace LogicLayer
             resumeRepo = new ResumeRepo();
         }
 
-        public ResumeDTO AddResume( ResumeDTO newResume)
+        public ResumeDTO SaveResume( ResumeDTO newResume)
         {
             ResumeEntitiesWrapper resWrapper = new ResumeEntitiesWrapper();
 

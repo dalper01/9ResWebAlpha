@@ -22,5 +22,9 @@ namespace _9ResWeb.Models
         public string phone2 { get; set; }
         public string number2 { get; set; }
 
+        public string eMail { get; set; }
+        public string socialMediaLogo { get; set; }
+        public string socialMedia { get; set; }
+
     }
 }

@@ -24,6 +24,11 @@ namespace LogicLayer.DTOs.Resume
         public string phone2 { get; set; }
         public string number2 { get; set; }
 
+        public string eMail { get; set; }
+        public string socialMediaLogo { get; set; }
+        public string socialMedia { get; set; }
+
+
         public List<JobDTO> jobList { get; set; }
         public List<CollegeDTO> collegeList { get; set; }
         public List<HighschoolDTO> highschoolList { get; set; }
