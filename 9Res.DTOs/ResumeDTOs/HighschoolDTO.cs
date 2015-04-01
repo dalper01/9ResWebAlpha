@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace DataLayer.Entities.ResumeEntities
+namespace _9Res.DTOs.ResumeDTOs
 {
-    public class Highschools
+    public class HighschoolDTO
     {
         public int Id { get; set; }
         public string name { get; set; }
@@ -15,6 +16,5 @@ namespace DataLayer.Entities.ResumeEntities
         public bool graduated { get; set; }
         public string gradMonth { get; set; }
         public string gradYear { get; set; }
-
     }
 }

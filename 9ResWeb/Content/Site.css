@@ -40,15 +40,65 @@ body {
     padding-bottom: 70px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-/*input,
-select,
-textarea {
-    max-width: 280px;
+div[ng-view].ng-enter {
+    transition: all 1.3s linear;
+    opacity: 0;
+}
+
+div[ng-view].ng-enter-active {
+        transition: all 1.3s linear;
+    opacity: 1;
+}
+
+
+/*@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.ng-enter {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.ng-leave {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
 }*/
-
-
-
 /*to make mouse pointer when hovering over angular ong-click*/
 [ng-click],
 [data-ng-click],

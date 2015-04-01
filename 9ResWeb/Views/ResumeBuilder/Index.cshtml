@@ -35,7 +35,7 @@
     <script src="~/Scripts/mask.js"></script>
     <script src="~/Scripts/jquery.maskedinput.js"></script>
 
-    <script src="~/Scripts/animatedcollapse.js"></script>
+    @*<script src="~/Scripts/animatedcollapse.js"></script*@>
     <script src="~/Scripts/angular-animate.js"></script>
     @*<script src="http://api.qrtag.net/js"></script>*@
     
@@ -45,8 +45,8 @@
     <script src="~/Scripts/JSPlugins/jspdf.plugin.split_text_to_size.js"></script>
     <script src="~/Scripts/JSPlugins/jspdf.plugin.standard_fonts_metrics.js"></script>*@
     <script src="~/Scripts/JSPlugins/FileSaver.js"></script>
-    <script src="~/Scripts/JSPlugins/pdfmake.min.js"></script>
-    <script src="~/Scripts/JSPlugins/vfs_fonts.js"></script>
+    @*<script src="~/Scripts/JSPlugins/pdfmake.min.js"></script>
+    <script src="~/Scripts/JSPlugins/vfs_fonts.js"></script>*@
 
 <script type="text/javascript">
 
@@ -85,4 +85,4 @@
     </a>
 </div>
 
-<div ng-view></div>
+<div ng-class="{enter: 'view-enter', leave: 'view-leave'}" ng-view></div>

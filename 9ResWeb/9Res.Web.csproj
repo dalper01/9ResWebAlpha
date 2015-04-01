@@ -1005,13 +1005,21 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
-      <Project>{150892d6-ba1c-49a2-9aaa-5f14f2061e9f}</Project>
-      <Name>DataLayer</Name>
+    <ProjectReference Include="..\9Res.DocGenerator\9Res.DocGenerator.csproj">
+      <Project>{82765669-4402-4e71-a64d-fc5e852c1e4e}</Project>
+      <Name>9Res.DocGenerator</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LogicLayer\LogicLayer.csproj">
+    <ProjectReference Include="..\9Res.DTOs\9Res.DTOs.csproj">
+      <Project>{c186d23a-4873-479a-a87d-f12ce69ba420}</Project>
+      <Name>9Res.DTOs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayer\9Res.Resume.DataLayer.csproj">
+      <Project>{150892d6-ba1c-49a2-9aaa-5f14f2061e9f}</Project>
+      <Name>9Res.Resume.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicLayer\9res.LogicLayer.csproj">
       <Project>{2ad8b2c1-23d9-4c89-abb4-9a2108a158f7}</Project>
-      <Name>LogicLayer</Name>
+      <Name>9res.LogicLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

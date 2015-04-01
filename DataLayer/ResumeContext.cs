@@ -1,4 +1,5 @@
 ﻿using DataLayer.Entities.ResumeEntities;
+using DataLayer.Entities.UserEntities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -30,6 +31,12 @@ namespace DataLayer
 
         public DbSet<Jobs> Jobs { get; set; }
         public DbSet<JobDetails> JobDetails { get; set; }
+
+        public DbSet<SkillSet> SkillSets { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+
+        public DbSet<Objective> Objectives { get; set; }
+
     }
 
     class ResumeMigrationsConfiguration : DbMigrationsConfiguration<ResumeContext>

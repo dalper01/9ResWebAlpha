@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace DataLayer.Entities.ResumeEntities
+namespace _9Res.DTOs.ResumeDTOs
 {
-    public class Certifications
+    public class CertificationDTO
     {
         public int Id { get; set; }
         public string type { get; set; }
@@ -14,6 +15,5 @@ namespace DataLayer.Entities.ResumeEntities
         public bool completed { get; set; }
         public string compMonth { get; set; }
         public string compYear { get; set; }
-
     }
 }

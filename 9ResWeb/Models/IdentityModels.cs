@@ -28,13 +28,6 @@ namespace _9ResWeb.Models
 
         public string ProfilePicture { get; set; }
 
-        //public virtual ApplicationUser user { get; set; }
-        //[ForeignKey("AspNetUsers")]
-        //public int userId { get; set; }
-
-
-        //public virtual IEnumerable<UserEmail> UserEmails { get; set; }
-
     }
 
     [Table("UserEmails")]
