@@ -1,0 +1,22 @@
+﻿@model List<_9ResWeb.Models.ResumeViewModel>
+@{
+
+    ViewBag.Title = "Resumes";
+}
+
+@section scripts {
+
+    <script type="text/javascript" src="~/Javascript/NGControllers/indexController.js"></script>
+    <script type="application/javascript" src="~/Javascript/NGDirectives/commonDirectives.js"></script>
+    <script type="application/javascript" src="~/Javascript/NGDirectives/navBarApp.js"></script>
+
+}
+
+
+
+
+@foreach (var res in Model)
+{
+    <a href="">@res.Title @res.Id</a>
+    
+}

@@ -5,11 +5,27 @@ var ContactInfoModule = angular.module('ContactInfoModule', ['commonDirectives',
 
 ContactInfoModule.controller('ContactInfoController',
     function ($rootScope, $scope, $http, $filter, localStorageService) {
+        $scope.showSaveResume = false;
 
+        $scope.ShowSaveResume = function () {
+            //$scope.$parent.showSaveResume = true;
+            alert(1);
+            $scope.$emit('openSaveResume', [1, 2, 3]);
+            $rootScope.$broadcast('openSaveResume');
+        }
 
+        $scope.HideSaveResume = function () {
+            alert(1);
+            $scope.$parent.showSaveResume = false;
+        }
 
-        // Initialize Contact Info
-        $scope.contactInfo = localStorageService.GetContactInfo();
+        // Declare Contact Info Loader
+        $scope.LoadContactInfoLocalStorage = function ()
+        {
+            $scope.contactInfo = localStorageService.GetContactInfo();
+        }
+        // Load Contact Info
+        $scope.LoadContactInfoLocalStorage();
 
         $scope.ShowInstructions = false;
         $scope.noNameMessage = "Your Name Here";
@@ -80,26 +96,19 @@ ContactInfoModule.controller('ContactInfoController',
     $scope.SaveNewResume = function () {
 
         localStorageService.SaveStorageContactInfo();
-        console.log('Saving');
+        //localStorageService.SaveStorageEducation();
+        //localStorageService.SaveStorageJobs();
+        //localStorageService.SaveStorageSkills();
+        //localStorageService.SaveLocalStorageObjectives();
 
-        console.log(localStorageService.GetSkills());
-        console.log(localStorageService.GetObjectives());
+        //console.log('Saving');
+        //$scope.$emit('openSaveResume', [1, 2, 3]);
+        $rootScope.$broadcast('openSaveResume');
 
-        //return;
-
-        $http.post("/api/ResumeApi", {
-            contactInfo: localStorageService.GetContactInfo(),
-            education: localStorageService.GetEducation(),
-            jobs: localStorageService.GetJobs(),
-            skills: localStorageService.GetSkills(),
-            objectives: localStorageService.GetObjectives()
-        }).
-            success(function (data, status, headers, config) {
-
-                console.log(data);
+        //alert(1);
+        return;
 
 
-            });
 
     }
 

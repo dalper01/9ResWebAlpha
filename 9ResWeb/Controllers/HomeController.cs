@@ -3,53 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-//using DataLayer;
+using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using LogicLayer;
+using AutoMapper;
+using _9ResWeb.Models;
+using System.Security.Claims;
+using Microsoft.Owin.Security;
 
+using System.Threading.Tasks;
 
 namespace _9ResWeb.Controllers
 {
     public class HomeController : Controller
     {
+        string userId;
+        private ResumeManager _resumeManager;
+
+
+        public HomeController()
+        {
+
+            _resumeManager = new ResumeManager();
+
+        }
+
         public ActionResult Index()
         {
-            //using ( var context = new ExamContext() )
-            //{
-
-            //    //var Exams = context.Exam
-            //    //    .Where(e => e.Tests.Any(t => t.UserTests.Any(u => u.UserId == "0"))).ToList();
-
-            //    //var Exams2 = context.Exam
-            //    //    .Where(e => e.Tests.Any(t => t.UserTests.Any(u => u.UserId == "0"))).ToList();
-
-            //    //var Exams2 = context.Exam
-            //    //    .Include(e => e.Tests.Select(t => t.UserTests.Any(u => u.UserId == "0")).Include(e => e.Tests.Select(t => t.UserTests.Any(u => u.UserId == "0"))).ToList();
-            
-            //    //var Exams2 = context.Exam
-            //    //    .Include(e => e.Tests.Select(t => t.UserTests)).Where(e => e.Tests.Distinct(t => t.UserTests.Any(u => u.UserId == "0")) && 1==1).ToList();
-            
-            //}
-            //var something = new ResumeRepo();
-
-            //var ctx = new ResumeContext();
-
-            //var res = ctx.Resume.ToList();
-            //var context = new ResumeRepo();
 
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "All bout 9res.";
 
             return View();
         }
 
+        public ActionResult Resumes()
+        {
+
+            userId = HttpContext.User.Identity.GetUserId();
+
+            var resumeList = _resumeManager.GetUserResumes(userId);
+            var VMresumes = Mapper.Map<List<ResumeViewModel>>(resumeList);
+
+
+            return View(VMresumes);
+        }
+
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "contact 9res";
 
 
             return View();

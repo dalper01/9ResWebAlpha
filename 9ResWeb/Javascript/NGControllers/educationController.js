@@ -1,7 +1,7 @@
 
 var educationApp = angular.module('educationApp', ['commonDirectives', 'navBarApp', 'storageServiceApp']);
 
-educationApp.controller('educationController', function ($scope, localStorageService) {
+educationApp.controller('educationController', function ($scope, $rootScope, localStorageService) {
 
     // Universal LocalStorage Getter
     function getEducationLocalStorage() {
@@ -155,6 +155,10 @@ educationApp.controller('educationController', function ($scope, localStorageSer
         $scope.SaveEducationLocalStorage();
     };
 
+    $scope.SaveNewResume = function () {
+        localStorageService.SaveStorageContactInfo();
+        $rootScope.$broadcast('openSaveResume');
+    }
 
     // -------------- initialize $scope Model --------------------- //
 
@@ -356,7 +360,7 @@ educationApp.directive('highSchoolForm', [function($compile) {
             closeform: "&"
         },
         controller: 'highSchoolController',
-        templateUrl: "HTMLControls/Education/highSchoolForm.html"
+        templateUrl: "/HTMLControls/Education/highSchoolForm.html"
     }
 }]);
 
@@ -373,7 +377,7 @@ educationApp.directive('collegeFormEdit', [function() {
 
         },
         controller: 'editCollegeController',
-        templateUrl: "HTMLControls/Education/collegeForm.html"
+        templateUrl: "/HTMLControls/Education/collegeForm.html"
     }
 
 
@@ -392,7 +396,7 @@ educationApp.directive('collegeForm', [function() {
 
         },
         controller: 'CollegeController',
-        templateUrl: "HTMLControls/Education/collegeForm.html"
+        templateUrl: "/HTMLControls/Education/collegeForm.html"
     }
 
 
@@ -411,7 +415,7 @@ educationApp.directive('certificateFormAdd', [function() {
 
         },
         controller: 'addCertificateController',
-        templateUrl: "HTMLControls/Education/certificationForm.html"
+        templateUrl: "/HTMLControls/Education/certificationForm.html"
     }
 
 
@@ -429,7 +433,7 @@ educationApp.directive('certificateFormEdit', [function() {
 
         },
         controller: 'editCertificateController',
-        templateUrl: "HTMLControls/Education/certificationForm.html"
+        templateUrl: "/HTMLControls/Education/certificationForm.html"
     }
 
 
@@ -443,7 +447,7 @@ educationApp.directive('degreeDropDown', [function() {
         scope: {
           passedModel: "="
         },
-        templateUrl: "HTMLControls/Education/degreeDropDown.html"
+        templateUrl: "/HTMLControls/Education/degreeDropDown.html"
 
 
     }

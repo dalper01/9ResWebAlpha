@@ -1,0 +1,40 @@
+﻿<div class="saveResumePopup container" id="SaveResumePopup" ng-if="showSaveResume">
+    <div class="row popheader">Save Resume</div>
+
+    <div>
+        <alert ng-repeat="alert in saveAlerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
+
+
+    <div style="text-align:center; margin-top: 20px; padding-top: 25px; padding-bottom:25px;">
+        <b>Resume Title</b>
+        <div class="col-sm-offset-3">
+            <input class="form-control input_inactive_ob" placeholder="Resume Title" title="What do you want to call this resume?&lt;br&gt;Ex: Acme Corporation" style="width: 180px" ng-model="Title">
+        </div>
+    </div>
+
+
+    <div class="row" style="margin-top: 20px; padding-top: 25px; padding-bottom:25px;" ng-hide="showDismiss">
+        <div class="col-sm-offset-1 col-sm-2">
+            <a style="" class="btn btn-primary" ng-click="saveResume()">
+                <span> Confirm <i class="glyphicon glyphicon-thumbs-up"></i> </span>
+            </a>
+        </div>
+        <div class="col-sm-offset-4 col-sm-2">
+            <a style="" class="btn btn-danger" ng-click="HideSaveResume()">
+                <span> <i class="glyphicon glyphicon-thumbs-down"></i> Cancel </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px; padding-top: 25px; padding-bottom:25px;" ng-show="showDismiss">
+        <div class="col-sm-offset-4 col-sm-2">
+            <a style="" class="btn btn-success" ng-click="HideSaveResume()">
+                <span> <i class="glyphicon glyphicon-remove"></i> Dismiss </span>
+            </a>
+        </div>
+    </div>
+
+
+
+</div>

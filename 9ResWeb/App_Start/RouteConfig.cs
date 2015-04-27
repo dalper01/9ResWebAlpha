@@ -13,17 +13,14 @@ namespace _9ResWeb
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //routes.MapRoute(
-            //    name: "signin-facebook",
-            //    url: "signin-facebook",
-            //    defaults: new { controller = "Account", action = "ExternalLoginCallback", returnUrl = UrlParameter.Optional }
-            //);
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            RouteTable.Routes.AppendTrailingSlash = true;
         }
     }
 }

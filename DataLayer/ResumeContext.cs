@@ -37,6 +37,23 @@ namespace DataLayer
 
         public DbSet<Objective> Objectives { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Jobs>()
+                .HasRequired(j => j.Resume)
+                .WithMany(r => r.jobs)
+                .HasForeignKey(r => r.ResumeId);
+
+            modelBuilder.Entity<JobDetails>()
+                .HasRequired(j => j.Job)
+                .WithMany(j => j.details)
+                .HasForeignKey(j => j.JobId);
+
+            modelBuilder.Entity<Skill>()
+                .HasRequired(s => s.SkillSet)
+                .WithMany(s => s.Skills)
+                .HasForeignKey(s => s.SkillSetId);
+        }
     }
 
     class ResumeMigrationsConfiguration : DbMigrationsConfiguration<ResumeContext>

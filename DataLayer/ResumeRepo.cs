@@ -1,8 +1,8 @@
-﻿using _9Res.DTOs.ResumeDTOs;
-using AutoMapper;
+﻿using AutoMapper;
 using DataLayer.Entities;
 using DataLayer.Entities.ResumeEntities;
 using DataLayer.Entities.UserEntities;
+using Res.DTOs.ResumeDTOs;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -21,6 +21,54 @@ namespace DataLayer
             rCtxt = new ResumeContext();
         }
 
+        /// <summary>
+        /// GetUserResumeData
+        /// </summary>
+        /// <param name="resumeId"></param>
+        /// <param name="userId"></param>
+        /// <returns>User's Resume Info for Viewing or Editing</returns>
+        public ResumeDTO GetUserResumeData(int resumeId, string userId)
+        {
+            var userResume = rCtxt.Resume.FirstOrDefault(r => r.UserId == userId && r.Id == resumeId);
+            if (userResume == null)
+                return null;
+
+            var resDTO = Mapper.Map<ResumeDTO>(userResume);
+
+            var userHighschools = rCtxt.Highschools.Where(o => o.UserId == userId).ToList();
+            var userColleges = rCtxt.Colleges.Where(o => o.UserId == userId).ToList();
+            var userCertifications = rCtxt.Certifications.Where(o => o.UserId == userId).ToList();
+            var userJobs = rCtxt.Jobs.Where(o => o.UserId == userId).Include(j => j.details).ToList();
+            var userSkillSets = rCtxt.SkillSets.Where(o => o.UserId == userId).Include(s=>s.Skills).ToList();
+            var userObjectives = rCtxt.Objectives.Where(o => o.UserId == userId).ToList();
+
+            resDTO.highschoolList = Mapper.Map<List<HighschoolDTO>>(userHighschools);
+            resDTO.collegeList = Mapper.Map<List<CollegeDTO>>(userColleges);
+            resDTO.certificationList = Mapper.Map<List<CertificationDTO>>(userCertifications);
+            resDTO.jobList = Mapper.Map<List<JobDTO>>(userJobs);
+            resDTO.skillSetList = Mapper.Map<List<SkillSetDTO>>(userSkillSets);
+            resDTO.objectivesList = Mapper.Map<List<ObjectiveDTO>>(userObjectives);
+
+
+            return resDTO;
+        }
+
+        /// <summary>
+        /// GetUserResumes
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>List of User's Resume's for Resume Dashboard</returns>
+        public List<ResumeDTO> GetUserResumes(string userId)
+        {
+            var resumeList = rCtxt.Resume.Where(r => r.UserId == userId);
+            var resDTOs = Mapper.Map<List<ResumeDTO>>(resumeList);
+
+            return resDTOs;
+        }
+
+
+
+
         //public ResumeEntitiesWrapper UpdateResume(string userId, ResumeEntitiesWrapper resWrapper)
         public ResumeDTO UpdateResume(string userId, ResumeDTO saveResume)
         {
@@ -30,7 +78,10 @@ namespace DataLayer
             Resume resume = Mapper.Map<Resume>(saveResume);
             resume.UserId = userId;
             if (resume.Id > 0)
+            {
                 rCtxt.Resume.Attach(resume);
+                rCtxt.Entry(resume).State = EntityState.Modified;
+            }
             else rCtxt.Resume.Add(resume);
 
 
@@ -40,7 +91,10 @@ namespace DataLayer
                 Highschools highschool = Mapper.Map<Highschools>(highschoolDTO);
                 highschool.UserId = userId;
                 if (highschoolDTO.Id > 0)
+                {
                     rCtxt.Highschools.Attach(highschool);
+                    rCtxt.Entry(highschool).State = EntityState.Modified;
+                }
                 else rCtxt.Highschools.Add(highschool);
 
                 highschoolEntityList.Add(highschool);
@@ -52,7 +106,10 @@ namespace DataLayer
                 Colleges college = Mapper.Map<Colleges>(collegeDTO);
                 college.UserId = userId;
                 if (college.Id > 0)
+                {
                     rCtxt.Colleges.Attach(college);
+                    rCtxt.Entry(college).State = EntityState.Modified;
+                }
                 else rCtxt.Colleges.Add(college);
 
                 collegeEntityList.Add(college);
@@ -64,7 +121,10 @@ namespace DataLayer
                 Certifications cert = Mapper.Map<Certifications>(certDTO);
                 cert.UserId = userId;
                 if (cert.Id > 0)
+                {
                     rCtxt.Certifications.Attach(cert);
+                    rCtxt.Entry(cert).State = EntityState.Modified;
+                }
                 else rCtxt.Certifications.Add(cert);
 
                 certEntityList.Add(cert);
@@ -78,16 +138,42 @@ namespace DataLayer
             //        resume.jobs.Add(job);
             //    else resume.jobs.Add(job);
             //}
-            resume.jobs = Mapper.Map<List<Jobs>>(saveResume.jobList);
-            resume.jobs.Each(j => j.UserId = userId);
+            resume.jobs = Mapper.Map<ICollection<Jobs>>(saveResume.jobList.ToList());
+            foreach (var job in resume.jobs)
+            {
+                job.UserId = userId;
+                job.ResumeId = resume.Id;
+                if (job.Id > 0)
+                    rCtxt.Entry(job).State = EntityState.Modified;
+                else
+                    rCtxt.Entry(job).State = EntityState.Added;
+
+                foreach (var jobDetail in job.details)
+                {
+                    jobDetail.JobId = job.Id;
+                    if (jobDetail.Id > 0)
+                        rCtxt.Entry(jobDetail).State = EntityState.Modified;
+                    else
+                        rCtxt.Entry(jobDetail).State = EntityState.Added;
+                }
+
+
+
+            }
+            //resume.jobs.Each(j => j.UserId = userId);
 
             List<SkillSet> skillSetEntityList = new List<SkillSet>();
             foreach (var skillSetDTO in saveResume.skillSetList)
             {
                 SkillSet skillSet = Mapper.Map<SkillSet>(skillSetDTO);
+                foreach (var skill in skillSet.Skills)
+                    skill.SkillSetId = skillSet.Id;
                 skillSet.UserId = userId;
                 if (skillSet.Id > 0)
+                {
                     rCtxt.SkillSets.Attach(skillSet);
+                    rCtxt.Entry(skillSet).State = EntityState.Modified;
+                }
                 else rCtxt.SkillSets.Add(skillSet);
 
                 skillSetEntityList.Add(skillSet);
@@ -106,13 +192,14 @@ namespace DataLayer
                 Objective objective = Mapper.Map<Objective>(objectiveDTO);
                 objective.UserId = userId;
                 if (objective.Id > 0)
+                {
                     rCtxt.Objectives.Attach(objective);
+                    rCtxt.Entry(objective).State = EntityState.Modified;
+                }
                 else rCtxt.Objectives.Add(objective);
 
                 objectiveEntityList.Add(objective);
             }
-
-            //var res = rCtxt.Resume.Add(resWrapper.resume);
 
             rCtxt.SaveChanges();
 

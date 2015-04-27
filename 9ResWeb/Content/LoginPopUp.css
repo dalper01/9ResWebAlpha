@@ -5,8 +5,8 @@
     z-index:1050;
     /*padding-bottom: 20px;*/
     /*max-width: 500px;*/
-    min-height: 400px;
-    height:auto;
+    /*min-height: 400px;*/
+    /*height:auto;*/
     width: 400px;
     background-color: white;
     border:1px solid #dddddd;
@@ -15,15 +15,17 @@
 
 .Login-Header{
    
+    /*padding: 0px;*/
     padding-top: 0px;
-    height: 42px;
-    background-color: #DDDDDD;
-    color: #555555;
+    /*height: 42px;*/
+    background-color: #333333;
+    vertical-align: top;
+    color: white;
     vertical-align: middle;
     font-weight: bold;
-    font-size: 16px;
-    border-bottom: 2px solid #AAAAAA;
-    margin-bottom: 20px;
+    font-size: 13px;
+    /*border-bottom: 2px solid #AAAAAA;*/
+    margin-bottom: 10px;
 }
 
 .Login-Header  a {
@@ -49,3 +51,37 @@
   background-color: #454545; 
   border-color: #666666; 
 } 
+
+
+.loginForm {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  /*max-height:500px;*/
+  display:block!important;
+  overflow: hidden;
+  /*opacity:1;*/
+}
+
+
+.loginForm.ng-enter,
+.loginForm.ng-leave.ng-leave-active {
+  /*opacity:0;*/
+      max-height:00px;
+}
+.loginForm.ng-leave,
+.loginForm.ng-enter.ng-enter-active {
+  max-height:500px;
+}
+
+
+.saveResumePopup.ng-enter,
+.saveResumePopup.ng-leave.ng-leave-active {
+  /*opacity:0;*/
+      max-height:00px;
+}
+.saveResumePopup.ng-enter,
+.saveResumePopup.ng-enter.ng-enter-active {
+  max-height:500px;
+}

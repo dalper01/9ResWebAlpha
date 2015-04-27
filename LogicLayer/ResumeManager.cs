@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DataLayer;
 using AutoMapper;
 using DataLayer.Entities.ResumeEntities;
-using _9Res.DTOs.ResumeDTOs;
+using Res.DTOs.ResumeDTOs;
 using DataLayer.Entities;
 using DataLayer.Entities.UserEntities;
 
@@ -20,6 +20,22 @@ namespace LogicLayer
         public ResumeManager()
         {
             resumeRepo = new ResumeRepo();
+        }
+
+        public ResumeDTO GetUserResumeData(int resumeId, string userId)
+        {
+            var userResumeData = resumeRepo.GetUserResumeData(resumeId, userId);
+
+            return userResumeData;
+        }
+
+
+
+        public List<ResumeDTO> GetUserResumes(string userId)
+        {
+            List<ResumeDTO> resumeList = resumeRepo.GetUserResumes( userId);
+
+            return resumeList;
         }
 
         public ResumeDTO SaveResume( string userId, ResumeDTO saveResume)

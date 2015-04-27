@@ -14,6 +14,16 @@ function ($http, $scope, $rootScope, localStorageService) {
         }
     };
 
+
+    $scope.SaveNewResume = function () {
+
+        localStorageService.SaveStorageContactInfo();
+        $rootScope.$broadcast('openSaveResume');
+
+        //alert(1);
+        return;
+    }
+
     $scope.SavePDF = function () {
 
         var json = JSON.stringify({

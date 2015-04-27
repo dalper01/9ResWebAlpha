@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9Res.Resume.DataLayer", "DataLayer\9Res.Resume.DataLayer.csproj", "{150892D6-BA1C-49A2-9AAA-5F14F2061E9F}"
 EndProject
@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9res.LogicLayer", "LogicLay
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9Res.DocGenerator", "9Res.DocGenerator\9Res.DocGenerator.csproj", "{82765669-4402-4E71-A64D-FC5E852C1E4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9Res.DTOs", "9Res.DTOs\9Res.DTOs.csproj", "{C186D23A-4873-479A-A87D-F12CE69BA420}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NineRes.DTOs", "9Res.DTOs\NineRes.DTOs.csproj", "{C186D23A-4873-479A-A87D-F12CE69BA420}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

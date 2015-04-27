@@ -71,6 +71,14 @@ ResumeBuilderModule.controller('expertiseController', function ($http, $scope, $
     }
 
 
+    $scope.SaveNewResume = function () {
+
+        localStorageService.SaveStorageContactInfo();
+        $rootScope.$broadcast('openSaveResume');
+
+        //alert(1);
+        return;
+    }
 
     // If Skillset is empty, add opening Skill set to list
     if ($scope.skillSetList.length < 1)

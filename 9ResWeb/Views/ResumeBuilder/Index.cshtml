@@ -1,4 +1,6 @@
-﻿@{
+﻿@model _9ResWeb.Models.ResumeViewModel
+
+@{
     ViewBag.Title = "Resume Builder";
     ViewBag.ngApp = "ResumeBuilderModule";
 }
@@ -9,6 +11,8 @@
     @* ---------- Angular Files ----------------- *@
 
     @* App File *@
+    @*<script src="~/Scripts/JSPlugins/ui-bootstrap-tpls-0.7.0.js"></script>*@
+    <script src="~/Scripts/JSPlugins/ui-bootstrap-tpls-0.12.1.min.js"></script>
     <script src="~/Javascript/NGApps/ResumeBuilderApp.js"></script>
 
     <script src="~/Javascript/NGControllers/ContactInfoController.js"></script>
@@ -22,14 +26,14 @@
     <script src="~/Javascript/NGDirectives/commonDirectives.js"></script>
     <script src="~/Javascript/NGDirectives/navBarApp.js"></script>
     <script src="~/Javascript/NGControllers/ResViewController.js"></script>
-    
+
     <script src="~/Javascript/NGDirectives/ExpertiseDirectives/skillSetDirectives.js"></script>
     <script src="~/Javascript/NGDirectives/Objective/Objective.js"></script>
     <script src="~/Javascript/NGServices/localStorageService.js"></script>
+    <script src="~/Javascript/NGDirectives/SaveLoadDirectives/SaveResume.js"></script>
 
     @* ----------   Modal Libs   ------------ *@
     <script src="~/Scripts/JSPlugins/angular-strap.js"></script>
-    <script src="~/Scripts/JSPlugins/ui-bootstrap-tpls-0.7.0.js"></script>
     <script src="~/Scripts/JSPlugins/bootstrap.js"></script>
 
     <script src="~/Scripts/mask.js"></script>
@@ -40,7 +44,7 @@
     @*<script src="http://api.qrtag.net/js"></script>*@
     
     @* JSPDF *@
-    <script src="~/Scripts/JSPlugins/jspdf.js"></script>
+    @*<script src="~/Scripts/JSPlugins/jspdf.js"></script>*@
     @*<script src="~/Scripts/JSPlugins/jspdf.plugin.from_html.js"></script>
     <script src="~/Scripts/JSPlugins/jspdf.plugin.split_text_to_size.js"></script>
     <script src="~/Scripts/JSPlugins/jspdf.plugin.standard_fonts_metrics.js"></script>*@
@@ -50,15 +54,32 @@
 
 <script type="text/javascript">
 
-    function savePageAsPDF() {
-        var pURL = "http://savepageaspdf.pdfonline.com/pdfonline/pdfonline.asp?cURL=" + escape(document.location.href);
-        window.open(pURL, "PDFOnline", "scrollbars=yes, resizable=yes,width=640, height=480,menubar,toolbar,location");
-    }
+    storageServiceApp.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+        var data;
+        var contactInfo;
+        var education;
+        var jobs;
+        var skills;
+        var objectives;
+
+
+        @if (Model != null)
+        {
+            @: data = @Html.Raw(Json.Encode(Model))
+            @*@: contactInfo = @Html.Raw(Json.Encode(Model.contactInfo));
+            @: contactInfo = @Html.Raw(Json.Encode(Model.contactInfo));
+            @: contactInfo = @Html.Raw(Json.Encode(Model.contactInfo));*@
+
+@:            localStorageServiceProvider.init( data );
+        }
+
+    }]);
+
 </script>
 
     @* ---------- Brett JS ----------------- *@
-    <script src="~/Javascript/BrettJS/ContactInfo.js"></script>
-    <script src="~/Javascript/BrettJS/career.JS"></script>
+    @*<script src="~/Javascript/BrettJS/ContactInfo.js"></script>
+    <script src="~/Javascript/BrettJS/career.JS"></script>*@
 }
 
 

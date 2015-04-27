@@ -6,17 +6,27 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
     // Initialize User Status and Data
     $scope.showLogin = false;
     $scope.showRegister = false;
+    $scope.save = { showSaveResume: false };
 
     $scope.LoggedIn = Authentication.GetLoggedInStatus();
     $scope.UserData = Authentication.GetUserData();
     $scope.Register = { };
-    $scope.Login = { };
+    $scope.Login = {};
+
+    $scope.ShowSaveResume = function () {
+        $scope.$parent.showSaveResume = true;
+    }
+
+
+    $scope.HideSaveResume = function () {
+        //alert(1);
+        $scope.showSaveResume = false;
+    }
 
     if ($scope.LoggedIn) {
         Authentication.HTTPGetUserData();
         //console.log('logged in');
     }
-
 
 
     // Define Controller Globals

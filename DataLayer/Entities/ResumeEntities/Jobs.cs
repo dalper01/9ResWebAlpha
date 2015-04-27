@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -20,6 +21,11 @@ namespace DataLayer.Entities.ResumeEntities
         public string startYear { get; set; }
 
         public virtual ICollection<JobDetails> details { get; set; }
+
+        public int ResumeId { get; set; }
+
+        [ForeignKey("ResumeId")]
+        public virtual Resume Resume { get; set; }
 
     }
 }

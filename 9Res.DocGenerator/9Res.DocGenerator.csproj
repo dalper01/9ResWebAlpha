@@ -54,9 +54,9 @@
     <Compile Include="WordDocBuilder\WordDocBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\9Res.DTOs\9Res.DTOs.csproj">
+    <ProjectReference Include="..\9Res.DTOs\NineRes.DTOs.csproj">
       <Project>{c186d23a-4873-479a-a87d-f12ce69ba420}</Project>
-      <Name>9Res.DTOs</Name>
+      <Name>NineRes.DTOs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

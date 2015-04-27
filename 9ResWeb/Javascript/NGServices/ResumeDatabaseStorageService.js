@@ -1,14 +1,12 @@
+﻿
 
+//var storageServiceApp = angular.module('storageServiceApp', []);
 
-var storageServiceApp=angular.module('storageServiceApp', []);
+storageServiceApp.factory('ResumeDataStorageService', function ($rootScope) {
 
-storageServiceApp.provider('localStorageService', [function localStorageServiceProvider($rootScope) {
-
-    var initInjector = angular.injector(['ng']);
-    //var $q = initInjector.get('$q');
 
     /// Declare Service Variables
-    var _preloaded = false;
+
     var _contactInfo;
     var _education;
     var _jobs;
@@ -24,14 +22,17 @@ storageServiceApp.provider('localStorageService', [function localStorageServiceP
     var _getObjectives = function () { return _objectives; }
 
     // Declare Setters
-    var _setContactInfo = function (new_contactInfo) { _contactInfo = new_contactInfo;}
+    var _setContactInfo = function (new_contactInfo) { _contactInfo = new_contactInfo; alert('_setContactInfo'); }
     var _setEducation = function (new_education) { _education = new_education; }
     var _setJobs = function (new_jobs) { _jobs = new_jobs; }
     var _setSkills = function (new_skills) { _skills = new_skills; }
     var _setObjectives = function (new_objectives) { _objectives = new_objectives; }
 
 
-    /// LocalStorage Load / Save
+
+
+    /// Declare LocalStorage Load / Save
+
     var _getLocalStorage = function (storageKey) {
 
         //if (typeof (Storage) !== "undefined") {
@@ -54,9 +55,13 @@ storageServiceApp.provider('localStorageService', [function localStorageServiceP
         return storageVariable;
     }
 
+
     var _saveLocalStorage = function (storageKey, storageVal) {
         localStorage.setItem(storageKey, JSON.stringify(storageVal));
     }
+
+
+
 
 
     /// Declare service variable Loaders from Local Cache
@@ -136,76 +141,49 @@ storageServiceApp.provider('localStorageService', [function localStorageServiceP
     }
 
 
-    /// Initialize Data for Resume sent from Server
-    this.init = function (data) {
-        _preloaded = true;
-        _contactInfo = data.contactInfo;
-        _education = data.education;
-        _jobs = data.jobs;
-        _skills = data.skills;
-        _objectives = data.objectives;
 
-        _saveLocalStorageContactInfo();
-        _saveLocalStorageEducation();
-        _saveLocalStorageJobs();
-        _saveLocalStorageSkills();
-        _saveLocalStorageObjectives();
+    // Pulling Resume Values from Repo
+    _loadLocalStorageContactInfo();
+    _loadLocalStorageEducation();
+    _loadLocalStorageJobs();
+    _loadLocalStorageSkills();
+    _loadLocalStorageObjectives();
 
-        console.log('Razor data: ' + data);
+    // Exposed Methods
+    return {
+
+        // exposed ContactInfo Methods
+        GetContactInfo: _getContactInfo,
+        SetContactInfo: _setContactInfo,
+        LoadStorageContactInfo: _loadLocalStorageContactInfo,
+        SaveStorageContactInfo: _saveLocalStorageContactInfo,
+
+        // exposed Education Methods
+        GetEducation: _getEducation,
+        SetEducation: _setEducation,
+        LoadStorageEducation: _loadLocalStorageEducation,
+        SaveStorageEducation: _saveLocalStorageEducation,
+
+        // exposed Career Methods
+        GetJobs: _getJobs,
+        SetJobs: _setJobs,
+        LoadStorageJobs: _loadLocalStorageJobs,
+        SaveStorageJobs: _saveLocalStorageJobs,
+
+        // exposed Skills Methods
+        GetSkills: _getSkills,
+        SetSkills: _setSkills,
+        LoadStorageSkills: _loadLocalStorageSkills,
+        SaveStorageSkills: _saveLocalStorageSkills,
+
+        // exposed Skills Methods
+        GetObjectives: _getObjectives,
+        SetObjectives: _SetObjectives,
+        LoadLocalStorageObjectives: _loadLocalStorageObjectives,
+        SaveLocalStorageObjectives: _saveLocalStorageObjectives
+
     };
 
 
 
-    /// Create Service Object
-
-    this.$get = ['$http', function ($http) {
-
-        // Pulling Resume Values from Repo
-        if (_preloaded == false) {
-            _loadLocalStorageContactInfo();
-            _loadLocalStorageEducation();
-            _loadLocalStorageJobs();
-            _loadLocalStorageSkills();
-            _loadLocalStorageObjectives();
-        }
-
-        // Exposed Methods
-        return {
-
-            // exposed ContactInfo Methods
-            GetContactInfo: _getContactInfo,
-            SetContactInfo: _setContactInfo,
-            LoadStorageContactInfo: _loadLocalStorageContactInfo,
-            SaveStorageContactInfo: _saveLocalStorageContactInfo,
-
-            // exposed Education Methods
-            GetEducation: _getEducation,
-            SetEducation: _setEducation,
-            LoadStorageEducation: _loadLocalStorageEducation,
-            SaveStorageEducation: _saveLocalStorageEducation,
-
-            // exposed Career Methods
-            GetJobs: _getJobs,
-            SetJobs: _setJobs,
-            LoadStorageJobs: _loadLocalStorageJobs,
-            SaveStorageJobs: _saveLocalStorageJobs,
-
-            // exposed Skills Methods
-            GetSkills: _getSkills,
-            SetSkills: _setSkills,
-            LoadStorageSkills: _loadLocalStorageSkills,
-            SaveStorageSkills: _saveLocalStorageSkills,
-
-            // exposed Skills Methods
-            GetObjectives: _getObjectives,
-            SetObjectives: _setObjectives,
-            LoadLocalStorageObjectives: _loadLocalStorageObjectives,
-            SaveLocalStorageObjectives: _saveLocalStorageObjectives
-
-        };
-    }];
-
-
-
-
-}]);
+})

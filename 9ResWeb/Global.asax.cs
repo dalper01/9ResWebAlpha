@@ -12,6 +12,17 @@ namespace _9ResWeb
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        protected void Application_BeginRequest()
+        {
+
+            if (Request.ApplicationPath != "/"
+                && Request.ApplicationPath.Equals(Request.Path, StringComparison.CurrentCultureIgnoreCase))
+            {
+
+                var redirectUrl = VirtualPathUtility.AppendTrailingSlash(Request.ApplicationPath);
+                Response.RedirectPermanent(redirectUrl);
+            }
+        }
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

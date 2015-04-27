@@ -1,4 +1,4 @@
-﻿using _9Res.DTOs.ResumeDTOs;
+﻿using Res.DTOs.ResumeDTOs;
 using _9ResWeb.Models;
 using _9Res.DocGenerator.WordDocBuilder;
 using AutoMapper;
@@ -45,25 +45,33 @@ namespace _9ResWeb.Controllers
             //var CurrentUserId = User.Identity.;
             ////get UserName
             //var CurrentUserName = User.Identity.GetUserName();
-            var id = (System.Security.Claims.ClaimsIdentity)User.Identity;
-            var userId = id.Claims.FirstOrDefault(i => i.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value;
+            var identity = (System.Security.Claims.ClaimsIdentity)User.Identity;
+            var userId = identity.Claims.FirstOrDefault(i => i.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value;
 
 
             ResumeDTO resumeDTO = Mapper.Map<ResumeDTO>(newResume.contactInfo);
 
             resumeDTO.collegeList = Mapper.Map<List<CollegeDTO>>(newResume.education.colleges);
-            resumeDTO.highschoolList = Mapper.Map<List<HighschoolDTO>>(newResume.education.highschools);
+            resumeDTO.highschoolList = Mapper.Map<List<HighschoolDTO>>(newResume.education.highSchools);
             resumeDTO.certificationList = Mapper.Map<List<CertificationDTO>>(newResume.education.certificates);
 
             resumeDTO.jobList = Mapper.Map<List<JobDTO>>(newResume.jobs);
             resumeDTO.skillSetList = Mapper.Map<List<SkillSetDTO>>(newResume.skills);
             resumeDTO.objectivesList = Mapper.Map<List<ObjectiveDTO>>(newResume.objectives);
-
+ 
             var updatedResume = _resumeManager.SaveResume(userId, resumeDTO);
             //var updatedResume = newResume;
 
+            ResumeViewModel returnval = new ResumeViewModel() { education = new EducationViewModel() };
+            returnval.contactInfo = Mapper.Map<ContactInfoViewModel>(updatedResume);
+            returnval.education.highSchools = Mapper.Map<List<HighschoolViewModel>>(updatedResume.highschoolList);
+            returnval.education.colleges = Mapper.Map<List<CollegeViewModel>>(updatedResume.collegeList);
+            returnval.education.certificates = Mapper.Map<List<CertificationViewModel>>(updatedResume.certificationList);
+            returnval.jobs = Mapper.Map<List<JobViewModel>>(updatedResume.jobList);
+            returnval.skills = Mapper.Map<List<SkillSetViewModel>>(updatedResume.skillSetList);
+            returnval.objectives = Mapper.Map<List<ObjectiveViewModel>>(updatedResume.objectivesList);
 
-            return Request.CreateResponse(HttpStatusCode.Created, updatedResume);
+            return Request.CreateResponse(HttpStatusCode.Created, returnval);
         }
 
 
@@ -400,7 +408,7 @@ namespace _9ResWeb.Controllers
             PdfTrueTypeFont educationDetailTrueTypeFont = new PdfTrueTypeFont(educationDetailFont);
 
 
-            foreach (var highschool in newResume.education.highschools.Where(h => h.name !=""))
+            foreach (var highschool in newResume.education.highSchools.Where(h => h.name !=""))
             {
                 checkPageBreak();
 
@@ -525,7 +533,7 @@ namespace _9ResWeb.Controllers
             ResumeDTO resumeDTO = Mapper.Map<ResumeDTO>(newResume.contactInfo);
 
             resumeDTO.collegeList = Mapper.Map<List<CollegeDTO>>(newResume.education.colleges);
-            resumeDTO.highschoolList = Mapper.Map<List<HighschoolDTO>>(newResume.education.highschools);
+            resumeDTO.highschoolList = Mapper.Map<List<HighschoolDTO>>(newResume.education.highSchools);
             resumeDTO.certificationList = Mapper.Map<List<CertificationDTO>>(newResume.education.certificates);
 
             resumeDTO.jobList = Mapper.Map<List<JobDTO>>(newResume.jobs);

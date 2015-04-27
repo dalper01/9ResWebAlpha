@@ -7,7 +7,7 @@ using _9ResWeb.Models;
 
 using DataLayer;
 using DataLayer.Entities.ResumeEntities;
-using _9Res.DTOs.ResumeDTOs;
+using Res.DTOs.ResumeDTOs;
 using DataLayer.Entities.UserEntities;
 
 namespace _9ResWeb.App_Start
@@ -16,6 +16,9 @@ namespace _9ResWeb.App_Start
     {
         public static void RegisterMappings()
         {
+            //Mapper.CreateMap<ContactInfoViewModel, ResumeDTO>();
+            Mapper.CreateMap<ResumeDTO, ResumeViewModel>();
+
             Mapper.CreateMap<ContactInfoViewModel, ResumeDTO>();
             Mapper.CreateMap<ResumeDTO, ContactInfoViewModel>();
 

@@ -1,6 +1,6 @@
 ﻿
 ResumeBuilderModule.controller('objectiveController',
-function ($scope, localStorageService) {
+function ($scope, $rootScope, localStorageService) {
     $scope.objectiveList = localStorageService.GetObjectives();
     //console.log($scope.objectiveList);
 
@@ -32,6 +32,20 @@ function ($scope, localStorageService) {
         console.log('ShowEditObjective');
         Objective.edit = true;
     }
+
+
+    $scope.SaveNewResume = function () {
+
+        localStorageService.SaveStorageContactInfo();
+        $rootScope.$broadcast('openSaveResume');
+
+        //alert(1);
+        return;
+    }
+
+    // If Objective is empty, add opening Skill set to list
+    //if ($scope.objectiveList.length < 1)
+    //    $scope.AddSkillSet();
 
     //$scope.NewObjective();
 });

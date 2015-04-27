@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _9Res.DTOs.ResumeDTOs
+namespace Res.DTOs.ResumeDTOs
 {
     public class ResumeDTO
     {
         public int Id { get; set; }
+
+        public string Title { get; set; }
+
         public string firstName { get; set; }
         public string middleName { get; set; }
         public string lastName { get; set; }

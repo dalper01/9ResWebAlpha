@@ -1,4 +1,4 @@
-﻿using _9Res.DTOs.ResumeDTOs;
+﻿using Res.DTOs.ResumeDTOs;
 using Spire.Doc;
 using Spire.Doc.Documents;
 using Spire.Doc.Fields;

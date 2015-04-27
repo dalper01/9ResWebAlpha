@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _9Res.DTOs.ResumeDTOs
+namespace Res.DTOs.ResumeDTOs
 {
     public class SkillSetDTO
     {

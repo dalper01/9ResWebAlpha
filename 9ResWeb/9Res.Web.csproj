@@ -445,6 +445,7 @@
     <Content Include="HTMLControls\Objectives\addObjective.html" />
     <Content Include="HTMLControls\Objectives\editObjective.html" />
     <Content Include="HTMLControls\placeholder.html" />
+    <Content Include="HTMLControls\SaveLoad\SaveResumePopup.html" />
     <Content Include="HTMLControls\stateDropDown.html" />
     <Content Include="HTMLControls\yearDropDown.html" />
     <Content Include="HTMLTemplates\ResumeBuilder\Careers.html" />
@@ -613,6 +614,8 @@
     <Content Include="Javascript\NGDirectives\CareerDirectives\showJobs.js" />
     <Content Include="Javascript\NGDirectives\Objective\Objective.js" />
     <Content Include="Javascript\NGDirectives\ExpertiseDirectives\skillSetDirectives.js" />
+    <Content Include="Javascript\NGDirectives\SaveLoadDirectives\SaveResume.js" />
+    <Content Include="Javascript\NGServices\ResumeDatabaseStorageService.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
@@ -940,6 +943,7 @@
     <Content Include="Scripts\JSPlugins\jspdf.PLUGINTEMPLATE.js" />
     <Content Include="Scripts\JSPlugins\mask.js" />
     <Content Include="Scripts\JSPlugins\pdfmake.min.js" />
+    <Content Include="Scripts\JSPlugins\ui-bootstrap-tpls-0.12.1.min.js" />
     <Content Include="Scripts\JSPlugins\ui-bootstrap-tpls-0.7.0.js" />
     <Content Include="Javascript\BrettJS\ContactInfo.js" />
     <Content Include="Scripts\JSPlugins\vfs_fonts.js" />
@@ -993,6 +997,8 @@
     <Content Include="Views\Account\Login2.cshtml" />
     <Content Include="Views\Account\HangoutsTest.cshtml" />
     <Content Include="Scripts\JSPlugins\pdfmake.min.js.map" />
+    <Content Include="Views\Home\Resumes.cshtml" />
+    <Content Include="Views\Home\R2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1009,9 +1015,9 @@
       <Project>{82765669-4402-4e71-a64d-fc5e852c1e4e}</Project>
       <Name>9Res.DocGenerator</Name>
     </ProjectReference>
-    <ProjectReference Include="..\9Res.DTOs\9Res.DTOs.csproj">
+    <ProjectReference Include="..\9Res.DTOs\NineRes.DTOs.csproj">
       <Project>{c186d23a-4873-479a-a87d-f12ce69ba420}</Project>
-      <Name>9Res.DTOs</Name>
+      <Name>NineRes.DTOs</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataLayer\9Res.Resume.DataLayer.csproj">
       <Project>{150892d6-ba1c-49a2-9aaa-5f14f2061e9f}</Project>
