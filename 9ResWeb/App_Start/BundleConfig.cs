@@ -16,7 +16,8 @@ namespace _9ResWeb
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
                         "~/Scripts/angular.js",
-                        "~/Scripts/angular-route.js"));
+                        "~/Scripts/angular-route.js",
+                        "~/Scripts/angular-animate.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/authentication").Include(
                         "~/Scripts/angular-google-plus.js",
@@ -33,7 +34,8 @@ namespace _9ResWeb
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      //"~/Scripts/bootstrap.js",
+                      "~/Scripts/JSPlugins/ui-bootstrap-tpls-0.12.1.min.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

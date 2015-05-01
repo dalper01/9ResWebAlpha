@@ -45,6 +45,8 @@ namespace _9ResWeb.Controllers
             //var CurrentUserId = User.Identity.;
             ////get UserName
             //var CurrentUserName = User.Identity.GetUserName();
+
+            //return Request.CreateResponse(HttpStatusCode.Created, newResume);
             var identity = (System.Security.Claims.ClaimsIdentity)User.Identity;
             var userId = identity.Claims.FirstOrDefault(i => i.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value;
 

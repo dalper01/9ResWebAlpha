@@ -9,8 +9,6 @@ namespace _9ResWeb.Models
     {
         public int Id { get; set; }
 
-        public string Title { get; set; }
-
         public ContactInfoViewModel contactInfo { get; set; }
         public EducationViewModel education { get; set; }
         public IEnumerable<JobViewModel> jobs { get; set; }

@@ -1,4 +1,4 @@
-﻿var AuthenticationModule = angular.module('AuthenticationModule', ['googleplus', 'facebook']);
+﻿var AuthenticationModule = angular.module('AuthenticationModule', ['googleplus', 'facebook', 'ngAnimate', 'ui.bootstrap']);
 
 //var LoggedInStatus = false;
 

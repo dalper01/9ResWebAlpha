@@ -8,6 +8,8 @@ namespace _9ResWeb.Models
     public class ContactInfoViewModel
     {
         public int Id { get; set; }
+        public string Title { get; set; }
+
 
         public string firstName { get; set; }
         public string middleName { get; set; }

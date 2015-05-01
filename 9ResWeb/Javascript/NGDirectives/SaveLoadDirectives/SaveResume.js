@@ -12,6 +12,13 @@
             $scope.showSaveResume = true;
             $scope.showDismiss = false;
             $scope.saveAlerts = [];
+
+            $scope.contactInfo = localStorageService.GetContactInfo();
+            $scope.education = localStorageService.GetEducation();
+            $scope.jobs = localStorageService.GetJobs();
+            $scope.skills = localStorageService.GetSkills();
+            $scope.objectives = localStorageService.GetObjectives();
+
         });
 
         $scope.HideSaveResume = function() {
@@ -40,12 +47,15 @@
             //$scope.showSaveResume = false;
 
             //alert(1);
+
+            //console.log('--' + $scope.contactInfo.Title);
+            //return;
             $http.post("/api/ResumeApi", {
-                contactInfo: localStorageService.GetContactInfo(),
-                education: localStorageService.GetEducation(),
-                jobs: localStorageService.GetJobs(),
-                skills: localStorageService.GetSkills(),
-                objectives: localStorageService.GetObjectives()
+                contactInfo: $scope.contactInfo,
+                education: $scope.education,
+                jobs: $scope.jobs,
+                skills: $scope.skills,
+                objectives: $scope.objectives
             }).
                 success(function (data, status, headers, config) {
 
