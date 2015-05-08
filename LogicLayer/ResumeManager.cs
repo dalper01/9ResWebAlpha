@@ -22,7 +22,7 @@ namespace LogicLayer
             resumeRepo = new ResumeRepo();
         }
 
-        public ResumeDTO GetUserResumeData(int resumeId, string userId)
+        public ResumeDTO GetUserResumeData(Guid resumeId, string userId)
         {
             var userResumeData = resumeRepo.GetUserResumeData(resumeId, userId);
 

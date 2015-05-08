@@ -22,7 +22,7 @@ namespace DataLayer.Entities.ResumeEntities
 
         public virtual ICollection<JobDetails> details { get; set; }
 
-        public int ResumeId { get; set; }
+        public Guid ResumeId { get; set; }
 
         [ForeignKey("ResumeId")]
         public virtual Resume Resume { get; set; }

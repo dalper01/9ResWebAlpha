@@ -21,6 +21,7 @@ namespace _9ResWeb.App_Start
 
             Mapper.CreateMap<ContactInfoViewModel, ResumeDTO>();
             Mapper.CreateMap<ResumeDTO, ContactInfoViewModel>();
+            Mapper.CreateMap<ResumeDTO, ResumeListViewModel>();
 
             Mapper.CreateMap<ResumeDTO, Resume>();
             Mapper.CreateMap<Resume, ResumeDTO>();

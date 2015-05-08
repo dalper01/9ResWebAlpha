@@ -1,0 +1,55 @@
+﻿@model _9ResWeb.Models.ResumeViewModel
+
+@{
+    ViewBag.Title = string.Format("{0} {1} {2} Resume ", Model.contactInfo.firstName, Model.contactInfo.middleName, Model.contactInfo.lastName);
+    ViewBag.ngApp = "ResumeViewApp";
+}
+
+@section scripts {
+
+    <script src="~/Javascript/NGServices/localStorageService.js"></script>
+    <script src="~/Scripts/JSPlugins/FileSaver.js"></script>
+    <script src="~/Javascript/NGDirectives/commonDirectives.js"></script>
+    @*<script src="~/Javascript/NGControllers/ResViewController.js"></script>*@
+    <script src="~/Javascript/NGApps/ResumeViewApp.js"></script>
+
+
+
+    <script type="text/javascript">
+
+            storageServiceApp.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+                var data;
+                var contactInfo;
+                var education;
+                var jobs;
+                var skills;
+                var objectives;
+
+
+                @if (Model != null)
+                {
+                    @: data = @Html.Raw(Json.Encode(Model))
+                    @*@: contactInfo = @Html.Raw(Json.Encode(Model.contactInfo));
+                    @: contactInfo = @Html.Raw(Json.Encode(Model.contactInfo));
+                    @: contactInfo = @Html.Raw(Json.Encode(Model.contactInfo));*@
+
+        @:            localStorageServiceProvider.init( data );
+                }
+
+        }]);
+    </script>
+}
+
+@section styles {
+    <link href="~/Content/bootstrap3dbuttons.css" rel="stylesheet" />
+    <link href="~/Content/9res-nie.css" rel="stylesheet" />
+    @*<link href="~/Content/3dnavs.css" rel="stylesheet" />*@
+    <link href="~/Content/9resModal.css" rel="stylesheet" />
+    <link href="~/Content/education.css" rel="stylesheet" />
+}
+
+
+<div style="height: 50px;">
+
+</div>
+<div data-resume-viewer></div>

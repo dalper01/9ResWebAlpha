@@ -47,7 +47,7 @@ namespace _9ResWeb.Controllers
             userId = HttpContext.User.Identity.GetUserId();
 
             var resumeList = _resumeManager.GetUserResumes(userId);
-            var VMresumes = Mapper.Map<List<ResumeViewModel>>(resumeList);
+            var VMresumes = Mapper.Map<List<ResumeListViewModel>>(resumeList);
 
 
             return View(VMresumes);

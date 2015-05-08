@@ -1,4 +1,4 @@
-﻿@model List<_9ResWeb.Models.ResumeViewModel>
+﻿@model List<_9ResWeb.Models.ResumeListViewModel>
 @{
 
     ViewBag.Title = "Resumes";
@@ -13,10 +13,40 @@
 }
 
 
+<div class="container">
 
+    <div class="row" style="margin-top:20px; margin-bottom:10px; border-bottom: 1px solid lightgrey">
 
-@foreach (var res in Model)
-{
-    <a href="">@res.Title @res.Id</a>
-    
-}
+        <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 38px; margin-right: -7px;">9</span>
+        <span style="font-family: 'Bauhaus 93'; font-size: 20px; margin-right: 5px; margin-left: -0px;">res</span>
+        <span style="text-align: center; font-weight: 800; color: #888888; font-size: 26px; text-shadow: 1px 1px #000000;">
+            My Resumes
+        </span>
+
+    </div>
+
+    <div class="row">
+
+        @foreach (var res in Model)
+        {
+            <div class="col-sm-4 top" style="border: 1px gray; margin-top: 10px; padding: 5px;">
+                <div sclass="col-sm-8" style="display: inline-block; vertical-align: top;">
+                    <span class="top" style="font-weight:bold; color: #117722; margin-right:5px; font-size: 17px">@res.Title </span>
+                </div>
+                <div aclass="col-sm-3" style="display: inline-block">
+                    <a href='@Url.Action("Index", "ResumeBuilder", new { Id = res.Id })' style='font-weight: normal; margin-right:3px;'>Edit</a> <br />
+                    <a href='@Url.Action("Index", "Resumes", new { Id = res.Id })' style='font-weight: normal; margin-right:3px;'>View</a>
+                </div>
+
+                @*<div style="display: inline-block">
+
+                    @Html.ActionLink("Edit", "Index", new { controller = "ResumeBuilder", Id = res.Id, @style = "font-weight: bold; margin-right:3px;" }) |
+                    @Html.ActionLink("View", "Index", new { controller = "ResumeBuilder", Id = res.Id, @style = "font-weight: bold;" })
+                </div>*@
+            </div>
+
+        }
+    </div>
+
+</div>
+

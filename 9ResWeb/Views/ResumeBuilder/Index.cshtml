@@ -52,30 +52,30 @@
     @*<script src="~/Scripts/JSPlugins/pdfmake.min.js"></script>
     <script src="~/Scripts/JSPlugins/vfs_fonts.js"></script>*@
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    storageServiceApp.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
-        var data;
-        var contactInfo;
-        var education;
-        var jobs;
-        var skills;
-        var objectives;
+        storageServiceApp.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+            var data;
+            var contactInfo;
+            var education;
+            var jobs;
+            var skills;
+            var objectives;
 
 
-        @if (Model != null)
-        {
-            @: data = @Html.Raw(Json.Encode(Model))
-            @*@: contactInfo = @Html.Raw(Json.Encode(Model.contactInfo));
-            @: contactInfo = @Html.Raw(Json.Encode(Model.contactInfo));
-            @: contactInfo = @Html.Raw(Json.Encode(Model.contactInfo));*@
+            @if (Model != null)
+            {
+                @: data = @Html.Raw(Json.Encode(Model))
+                @*@: contactInfo = @Html.Raw(Json.Encode(Model.contactInfo));
+                @: contactInfo = @Html.Raw(Json.Encode(Model.contactInfo));
+                @: contactInfo = @Html.Raw(Json.Encode(Model.contactInfo));*@
 
-@:            localStorageServiceProvider.init( data );
-        }
+    @:            localStorageServiceProvider.init( data );
+            }
 
-    }]);
+        }]);
 
-</script>
+    </script>
 
     @* ---------- Brett JS ----------------- *@
     @*<script src="~/Javascript/BrettJS/ContactInfo.js"></script>

@@ -10,17 +10,17 @@ using System.Web.Mvc;
 
 namespace _9ResWeb.Controllers
 {
-    public class ResumeBuilderController : Controller
+    public class ResumesController : Controller
     {
-
         private ResumeManager _resumeManager;
 
-        public ResumeBuilderController()
+        public ResumesController()
         {
             _resumeManager = new ResumeManager();
         }
+
         //
-        // GET: /ResumeBuilder/
+        // GET: Resumes
         public ActionResult Index(Guid? id = null)
         {
 

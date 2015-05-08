@@ -1,6 +1,7 @@
 ﻿<div class="row container" style="margin-bottom: 15px; border: 1px hidden #bbbbbb ">
 
-    <div ng-class="{ 'row JobsDisplay': true, 'jobediting': false }" sbuffer="400" ng-attr-slide-down="{{ '#editjob' + jobNumber }}" ng-click="EditJob(job)" style="border: 1px solid; border-color: black; border-left-width: 0px; border-bottom-width: 0px; padding: 30px 0px 30px;">
+    <div ng-class="{ 'row JobsDisplay': true, 'jobediting': false }" sbuffer="300" ng-attr-slide-down="{{ '#editjob' + jobNumber }}" ng-click="EditJob(job)" 
+         style="border: 1px solid; border-color: black; border-left-width: 0px; border-bottom-width: 0px; padding: 30px 0px 30px;">
         <div class=" row ">
             <div class=" col-xs-5">
                 <div class="col-sm-6">
@@ -48,7 +49,7 @@
 
     </div>
     <!-- Edit Job Form (Hidden unless job is in Edit Mode) -->
-    <div class="row container slideable" style="margin-bottom: 35px; margin-top: 20px;" ng-attr-id="{{ 'editjob' + jobNumber}}" sng-show="job.edit">
+    <div class="row container slideable" style="margin-bottom: 35px; margin-top: 20px;" ng-attr-id="{{ 'editjob' + jobNumber}}" duration=".8s" sng-show="job.edit">
         <div class="row" style="height: 70px;">
             <div class="col-sm-offset-0 col-xs-7 inputTitles">
                 <div class="col-xs-6">

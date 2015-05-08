@@ -204,6 +204,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ResumeBuilderController.cs" />
     <Compile Include="Controllers\ResumeApiController.cs" />
+    <Compile Include="Controllers\ResumesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +221,7 @@
     <Compile Include="Models\JobViewModel.cs" />
     <Compile Include="Models\JobDetailViewModel.cs" />
     <Compile Include="Models\ObjectiveViewModel.cs" />
+    <Compile Include="Models\ResumeListViewModel.cs" />
     <Compile Include="Models\ResumeViewModel.cs" />
     <Compile Include="Models\SkillSetViewModel.cs" />
     <Compile Include="Models\UserInformation.cs" />
@@ -606,6 +608,7 @@
     <Content Include="images\word_slide_tab_red.bmp" />
     <Content Include="images\word_slide_tab_yellow.bmp" />
     <Content Include="Javascript\NGApps\AuthenticationApp.js" />
+    <Content Include="Javascript\NGApps\ResumeViewApp.js" />
     <Content Include="Javascript\NGControllers\AuthenticationController.js" />
     <Content Include="Javascript\NGControllers\expertiseController.js" />
     <Content Include="Javascript\NGControllers\objectiveController.js" />
@@ -999,6 +1002,7 @@
     <Content Include="Scripts\JSPlugins\pdfmake.min.js.map" />
     <Content Include="Views\Home\Resumes.cshtml" />
     <Content Include="Views\Home\R2.cshtml" />
+    <Content Include="Views\Resumes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

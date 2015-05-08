@@ -2,6 +2,7 @@
 using DataLayer.Entities.UserEntities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
@@ -39,6 +40,11 @@ namespace DataLayer
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Resume>().Property(r=>r.Id).HasColumnType("uniqueidentifier")
+                .IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+    //.HasKey(i => i.uuid);
+
+
             modelBuilder.Entity<Jobs>()
                 .HasRequired(j => j.Resume)
                 .WithMany(r => r.jobs)

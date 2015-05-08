@@ -16,8 +16,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-//using System.Web.Http.Owin;
-//using System.Web.Mvc;
 using Microsoft.Owin.Host.SystemWeb;
 using _9ResWeb.Models;
 using System.Web.Http.Description;

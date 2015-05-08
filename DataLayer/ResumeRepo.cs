@@ -27,7 +27,7 @@ namespace DataLayer
         /// <param name="resumeId"></param>
         /// <param name="userId"></param>
         /// <returns>User's Resume Info for Viewing or Editing</returns>
-        public ResumeDTO GetUserResumeData(int resumeId, string userId)
+        public ResumeDTO GetUserResumeData(Guid resumeId, string userId)
         {
             var userResume = rCtxt.Resume.FirstOrDefault(r => r.UserId == userId && r.Id == resumeId);
             if (userResume == null)
@@ -77,7 +77,7 @@ namespace DataLayer
 
             Resume resume = Mapper.Map<Resume>(saveResume);
             resume.UserId = userId;
-            if (resume.Id > 0)
+            if (resume.Id != Guid.Empty)
             {
                 rCtxt.Resume.Attach(resume);
                 rCtxt.Entry(resume).State = EntityState.Modified;

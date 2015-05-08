@@ -41,34 +41,3 @@ ResumeBuilderModule.config(function ($routeProvider) {
     })
 
 });
-
-
-ResumeBuilderModule.controller('saveResume',
-function ($http, $scope, $rootScope, localStorageService) {
-
-    $scope.newResume = function () {
-        //alert('saving!!');
-
-        $http.post("/api/ResumeApi", {
-            contactInfo: $rootScope.contactInfo,
-            education: $rootScope.education,
-            jobs: $rootScope.jobs
-        }).
-            success(function (data, status, headers, config) {
-
-                console.log(data);
-
-
-            });
-
-
-    }
-
-});
-
-
-//ResumeBuilderModule.$inject = ["$rootScope", "storageServiceApp"];
-
-//ResumeBuilderModule.run(['$rootScope', 'storageServiceApp', function ($rootScope, localStorageService) {
-//    $rootScope.resume.contactInfo = localStorageService.getLocalStorage("resume.contactInfo") || {};
-//}]);
