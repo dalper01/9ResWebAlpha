@@ -26,15 +26,17 @@ namespace _9ResWeb.Controllers
 
             ResumeDTO resumeDTO;
 
-            if (!User.Identity.IsAuthenticated)
-                return View();
+            //if (!User.Identity.IsAuthenticated)
+            //    return View();
 
-            var identity = (System.Security.Claims.ClaimsIdentity)User.Identity;
-            var userId = identity.Claims.FirstOrDefault(i => i.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value;
-            if (id == null)
-                return View();
+            //var identity = (System.Security.Claims.ClaimsIdentity)User.Identity;
+            //var userId = identity.Claims.FirstOrDefault(i => i.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value;
+            //if (id == null)
+            //    return View();
 
-            var resume = _resumeManager.GetUserResumeData((Guid)id, userId);
+            string userId = "Display";
+
+            var resume = _resumeManager.GetUserResumeData((Guid)id, userId, isAnonymous: true);
 
             ResumeViewModel returnval = new ResumeViewModel() { education = new EducationViewModel() };
             returnval.contactInfo = Mapper.Map<ContactInfoViewModel>(resume);

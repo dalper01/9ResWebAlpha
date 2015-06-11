@@ -1,51 +1,57 @@
 ﻿
-<div class="container">
-
-    <div class="row" style="min-height: 15px; text-align: center;">
-        <h4>{{ FormTitle }}</h4>
+<div class="container" style="background-color: transparent;">
+    <div class="row" style="min-height: 15px; text-align: left; padding-left: 15px; margin: 20px 0px 30px; color: #000">
+        <h3> <b>{{ FormTitle }}</b></h3>
     </div>
-    <div class="row space5 inputTitles" style="margin-top: 10px; min-height: 250px;">
-        <div class="row space5">
-            <!--<div class="col-sm-2 schoolform" style="width: 200px;">
-                Skill Category
-            </div>
-            <div class="col-sm-6">
-                <input class="form-control" type="text" placeholder="Skill" ng-model="skillSet.Title">
-            </div>-->
-            <div class="col-sm-6 schoolform" sstyle="width: 200px;">
-                Skill Category
-                <input class="form-control" type="text" placeholder="Skill" ng-model="skillSet.Title">
+
+
+    <div>
+
+        <div class="row space5 inputTitles" style="margin-top: 10px; min-height: 180px;">
+            <div class="space5">
+                <div class="col-sm-12 schoolform">
+                    <h4 style=" display: inline; margin-left: 15px; margin-right: 10px;"><b>Skill Category</b></h4>
+                    <input class="form-control" style="width: 50%; display: inline;" type="text" placeholder="Skill" ng-model="skillSet.Title" size="3">
+                </div>
             </div>
 
-        </div>
+            <div class="row" style="margin-top: 50px;">
+                <div sclass="col-sm-12" style=" vertical-align: top; display: inline; margin-left: 60px; margin-right: 25px;">
+                    <a class="btn btn-success" style="padding-top: 0px; padding-bottom: 0px;" ng-click="AddSkill(skillSet)"> Add Skill </a>
+                </div>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <a class="btn btn-success" ng-click="AddSkill(skillSet)"> Add Skill </a>
+                <div style="display: inline-block; width: 990px; border: 0px solid">
+                    <span ng-repeat="Skill in skillSet.Skills | filter: {isActive: true} track by $index">
+                        <input class="form-control" style="width: 200px; display: inline; margin-bottom: 4px;" type="text"
+                               placeholder="Skill" ng-model="Skill.Title">
+                        <i class="glyphicon glyphicon-trash microIcons" style="margin-right: 30px;" title="Delete Skill" ng-click="deleteSkill(Skill)"></i>
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <div>
 
-            <input class="form-control" style="width: 200px; display: inline; margin-right: 30px; margin-bottom: 4px;" type="text" placeholder="Skill" ng-model="Skill.Title"
-                   ng-repeat="Skill in skillSet.Skills">
-        </div>
 
-        <div class="row " style="margin-top: 20px; background-color: #333333; padding-top: 25px; padding-bottom:25px;">
-            <div class="col-sm-4 text-right">
-                <a class="btn btn-primary" ng-click="SaveSkillSet(skillSet)" sng-attr-slide-up="{{ '#addSkills' }}">
-                    Submit
-                    <i class="glyphicon glyphicon-thumbs-up"></i>
-                </a>
-            </div>
-            <div class="col-sm-2 col-sm-offset-2 text-left">
-                <a class="btn btn-danger" ng-click="CancelSkillSet(skillSet)" sng-attr-slide-up="{{ '#addSkills' }}">
-                    <i class="glyphicon glyphicon-thumbs-down"></i>
-                    Cancel
-                </a>
-            </div>
         </div>
 
     </div>
+
+    <div class="row form-submit-bar">
+
+
+
+        <div class="col-sm-4 text-right">
+            <a class="btn btn-primary" ng-click="SaveSkillSet(skillSet)" sng-attr-slide-up="{{ '#addSkills' }}">
+                Confirm
+                <i class="glyphicon glyphicon-thumbs-up"></i>
+            </a>
+        </div>
+        <div class="col-sm-2 col-sm-offset-3 text-left">
+            <a class="btn btn-danger" ng-click="CancelSkillSet(skillSet)" sng-attr-slide-up="{{ '#addSkills' }}">
+                <i class="glyphicon glyphicon-thumbs-down"></i>
+                Cancel
+            </a>
+        </div>
+    </div>
+
 
 </div>

@@ -1,24 +1,16 @@
-<div class="row container" style="background-image: url('/content/icons/DiplomaBG.jpg'); background-repeat: no-repeat; width: 900px; background-position: 500px 60px; ">
-    <div class="row" style="text-align: center; font-weight: bold; margin-bottom: 25px;">
-        <!--<div class="col-sm-1 col-sm-offset-0" style="text-align: left;">
-            <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 30px; margin-right: -7px;">9</span>
-            <span style="font-family: 'Bauhaus 93'; color: #555555; font-size: 15px; margin-right: 5px; position: relative; top: -.42em;">res</span>
-        </div>-->
-        <div class="col-sm-10">
-            <h4 style="font-weight: bold"> {{ Title }} </h4>
-        </div>
-        <!--<div class="col-sm-1 col-sm-offset-0" style=" text-align: right;">
-            <a ng-click="cancelCollege()"><i class="fa fa-times" style="color: black; text-align: right;"></i></a>
-        </div>-->
+<div class="row container" style="background-image: url('/content/images/icons/DiplomaBG.jpg'); background-repeat: no-repeat; background-position: 800px 20px; background-size: 300px ">
+
+    <div class="row" style="min-height: 15px; text-align: left; padding-left: 35px; margin: 10px 0px 30px; color: #000">
+        <h3> <b>{{ Title }}</b></h3>
     </div>
 
 
 
-    <div class="row" style="min-height: 260px;">
+    <div class="row" style="min-height: 260px; padding-left: 100px;">
         <div class="col-sm-9 space5">
             <div class="row">
                 <div class="col-sm-2 schoolform">
-                    School Name
+                    <h5 style="font-weight: bold">School Name</h5>
                 </div>
                 <div class="col-sm-6">
                     <input class="form-control" type="text" placeholder="School Name" ng-model="college.name">
@@ -27,7 +19,7 @@
 
             <div class="row">
                 <div class="col-sm-2 schoolform">
-                    Location
+                    <h5 style="font-weight: bold">Location</h5>
                 </div>
                 <div class="col-sm-6">
                     <input class="form-control" type="text" placeholder="City" ng-model="college.city" style="width: 200px; display: inline">
@@ -37,7 +29,7 @@
 
             <div class="row">
                 <div class="col-sm-2 schoolform">
-                    Degree Program
+                    <h5 style="font-weight: bold">Degree Program</h5>
                 </div>
                 <div class="col-sm-2">
                     <input class="form-control" type="text" placeholder="Degree Program" ng-model="college.degreeProgram" style="width: 40ch">
@@ -46,22 +38,18 @@
 
             <div class="row">
                 <div class="col-sm-2 schoolform">
-                    Degree Type
+                    <h5 style="font-weight: bold">Degree Type</h5>
                 </div>
                 <div class="col-sm-2">
                     <degree-drop-down passed-model="college.degreeType"></degree-drop-down>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-sm-4 schoolform">
-                    <label> <input type="checkbox" ng-model="college.graduated"> Graduated? </label>
+            <div class="row" style="margin-top: 40px;">
+                <div class="col-sm-2 schoolform">
+                    <label> <input type="checkbox" ng-model="college.graduated"> Graduated </label>
                 </div>
-            </div>
-
-            <div class="row" ng-show="college.graduated">
-                <div class="col-sm-2 schoolform"> Graduation <br> Date </div>
-                <div class="col-sm-5">
+                <div class="col-sm-5" ng-show="college.graduated">
                     <div class="col-sm-4" style="align-content: flex-start; text-align: left;">
                         <monthdropdown passedmodel="college.gradMonth"></monthdropdown>
                     </div>
@@ -72,17 +60,20 @@
             </div>
         </div>
 
+        <div class="row">
+        </div>
+
     </div>
 
 
-    <div class="row" style="margin-top: 20px; background-color: #555555; width: 900px; padding-top: 15px; padding-bottom:15px;">
+    <div class="row form-submit-bar">
         <div class="col-sm-1 col-sm-offset-2">
-            <a style="" class="btn btn-primary" ng-disabled="!isNamePopulated()" ng-click="saveCollege(job)">
+            <a style="opacity:1;" class="btn btn-primary" ng-disabled="!isNamePopulated()" ng-click="saveCollege(job)">
                 <span>Confirm <i class="glyphicon glyphicon-thumbs-up"></i> </span>
             </a>
         </div>
         <div class="col-sm-2 col-sm-offset-4">
-            <a style="" class="btn btn-danger" ng-click="cancelCollege()">
+            <a style="opacity:1" class="btn btn-danger" ng-click="cancelCollege()">
                 <span> <i class="glyphicon glyphicon-thumbs-down"></i> Cancel</span>
             </a>
         </div>

@@ -22,9 +22,18 @@ namespace LogicLayer
             resumeRepo = new ResumeRepo();
         }
 
-        public ResumeDTO GetUserResumeData(Guid resumeId, string userId)
+        public ResumeDTO GetUserResumeData(Guid resumeId, string userId, bool isAnonymous = false)
         {
-            var userResumeData = resumeRepo.GetUserResumeData(resumeId, userId);
+            var userResumeData = resumeRepo.GetUserResumeData(resumeId, userId, isAnonymous);
+
+            return userResumeData;
+        }
+
+
+
+        public ResumeDTO GetUserNewData(string userId)
+        {
+            var userResumeData = resumeRepo.GetNewResumeData(userId);
 
             return userResumeData;
         }

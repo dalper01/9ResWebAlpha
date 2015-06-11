@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Res.DTOs.Abstracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace _9ResWeb.Models
 {
-    public class JobViewModel
+    public class JobViewModel : EntityBase
     {
         public int Id { get; set; }
         public string firmLong { get; set; }

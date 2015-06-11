@@ -33,6 +33,11 @@ namespace DataLayer.Entities.ResumeEntities
         public string phone2 { get; set; }
         public string number2 { get; set; }
 
+        public string eMail { get; set; }
+        public string socialMediaLogo { get; set; }
+        public string socialMedia { get; set; }
+
+
 
         public virtual ICollection<Highschools> highschools { get; set; }
         public virtual ICollection<Colleges> colleges { get; set; }

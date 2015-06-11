@@ -17,18 +17,58 @@ storageServiceApp.provider('localStorageService', [function localStorageServiceP
 
 
     // Declare Getters
-    var _getContactInfo = function () { return _contactInfo; }
-    var _getEducation = function () { return _education; }
-    var _getJobs = function () { return _jobs; }
-    var _getSkills = function () { return _skills; }
-    var _getObjectives = function () { return _objectives; }
+    var _getContactInfo = function () {
+        if (!_contactInfo.addrState) {
+            _contactInfo.addrState = "";
+        }
+
+        if (!_contactInfo) {
+            _contactInfo = {};
+            return _contactInfo;
+        }
+
+        return _contactInfo;
+    }
+    var _getEducation = function () {
+        return _education;
+    }
+
+    var _getJobs = function () {
+        if (!Array.isArray(_jobs)) {
+            _jobs = [];
+        }
+        return _jobs;
+    }
+
+    var _getSkills = function () {
+        if (!Array.isArray(_skills)) {
+            _skills = [];
+        }
+        return _skills;
+    }
+    var _getObjectives = function () {
+        if (!Array.isArray(_objectives)) {
+            _objectives = [];
+        }
+        return _objectives;
+    }
 
     // Declare Setters
-    var _setContactInfo = function (new_contactInfo) { _contactInfo = new_contactInfo;}
-    var _setEducation = function (new_education) { _education = new_education; }
-    var _setJobs = function (new_jobs) { _jobs = new_jobs; }
-    var _setSkills = function (new_skills) { _skills = new_skills; }
-    var _setObjectives = function (new_objectives) { _objectives = new_objectives; }
+    var _setContactInfo = function (new_contactInfo) {
+        _contactInfo = new_contactInfo;
+    }
+    var _setEducation = function (new_education) {
+        _education = new_education;
+    }
+    var _setJobs = function (new_jobs) {
+        _jobs = new_jobs;
+    }
+    var _setSkills = function (new_skills) {
+        _skills = new_skills;
+    }
+    var _setObjectives = function (new_objectives) {
+        _objectives = new_objectives;
+    }
 
 
     /// LocalStorage Load / Save
@@ -139,17 +179,19 @@ storageServiceApp.provider('localStorageService', [function localStorageServiceP
     /// Initialize Data for Resume sent from Server
     this.init = function (data) {
         _preloaded = true;
-        _contactInfo = data.contactInfo;
+        //_contactInfo = data.contactInfo;
+        _setContactInfo(data.contactInfo);
         _education = data.education;
-        _jobs = data.jobs;
+        _setJobs(data.jobs);
+        //_jobs = data.jobs;
         _skills = data.skills;
         _objectives = data.objectives;
 
-        _saveLocalStorageContactInfo();
-        _saveLocalStorageEducation();
-        _saveLocalStorageJobs();
-        _saveLocalStorageSkills();
-        _saveLocalStorageObjectives();
+        //_saveLocalStorageContactInfo();
+        //_saveLocalStorageEducation();
+        //_saveLocalStorageJobs();
+        //_saveLocalStorageSkills();
+        //_saveLocalStorageObjectives();
 
         console.log('Razor data: ' + data);
     };

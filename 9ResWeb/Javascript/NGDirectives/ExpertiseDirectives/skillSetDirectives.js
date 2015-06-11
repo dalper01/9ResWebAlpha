@@ -36,7 +36,8 @@ ResumeBuilderModule.controller('addSkillSetCntrl', function ($scope, localStorag
     $scope.AddSkill = function (SkillSet) {
         SkillSet.Skills.push({
             Title: '',
-            Description: ''
+            Description: '',
+            isActive: true
         });
     }
 
@@ -59,10 +60,17 @@ ResumeBuilderModule.controller('editSkillSetCntrl', function ($scope, localStora
     $scope.AddSkill = function (SkillSet) {
         SkillSet.Skills.push({
             Title: '',
-            Description: ''
+            Description: '',
+            isActive: true
         });
         //localStorageService.SaveStorageSkills();
     }
+
+    $scope.deleteSkill = function (skill) {
+        //alert('delete');
+        skill.isActive = false;
+    }
+
 
     $scope.CancelSkillSet = function (SkillSet) {
         $scope.closeFunc();

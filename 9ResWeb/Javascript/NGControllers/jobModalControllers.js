@@ -58,9 +58,11 @@ var editJobCtrl = function ($scope, localStorageService) {
     };
 
     $scope.deleteJobDetail = function (job, detail) {
+        detail.isActive = false;
+    };
 
-        deleteArrayElement(job.details, detail);
-
+    $scope.deleteJob = function (job) {
+        job.isActive = false;
     };
 
 };
@@ -149,7 +151,8 @@ var maxDetailOrder = function(job){
 var pushJobDetail = function (job) {
     job.details.push({
         description: '',
-        order: maxDetailOrder(job)
+        order: maxDetailOrder(job),
+        isActive: true
     });
 };
 

@@ -26,8 +26,10 @@ function ($scope, $rootScope, $modal, localStorageService) {
                     details: [{
                         description: "",
                         edit: true,
-                        order: 1
-                    }]
+                        order: 1,
+                        isActive: true
+                    }],
+                    isActive: true
                 });
         }
     };

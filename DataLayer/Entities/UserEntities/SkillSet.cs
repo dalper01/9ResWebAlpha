@@ -1,4 +1,5 @@
 ﻿using DataLayer.Entities.ResumeEntities;
+using Res.DTOs.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities.UserEntities
 {
-    public class SkillSet
+    public class SkillSet : EntityBase
     {
         public int Id { get; set; }
         public string UserId { get; set; }
@@ -20,7 +21,7 @@ namespace DataLayer.Entities.UserEntities
 
     }
 
-    public class Skill
+    public class Skill : EntityBase
     {
         public int Id { get; set; }
         public string Title { get; set; }

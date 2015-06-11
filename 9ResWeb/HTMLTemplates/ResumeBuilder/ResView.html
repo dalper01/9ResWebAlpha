@@ -45,7 +45,7 @@
                     <!--<img src="../../Content/images/email.jpeg" width="20" />--> 
                    
                     <span ng-show="contactInfo.eMail.length" style="margin-right:7px;">
-                        <i class="fa fa-envelope-o"></i> {{ contactInfo.eMail }}
+                        <i class="fa fa-envelope"></i> {{ contactInfo.eMail }}
                     </span>
                     <span ng-show="contactInfo.socialMedia.length" style="margin-right:7px;">
                         <i class="{{ 'fa ' + contactInfo.socialMediaLogo }}"></i>
@@ -77,11 +77,11 @@
             </div>
         </div>-->
 
-        <div class="row col-sm-12" style="margin-top: 35px; margin-bottom: 35px;  border: 1px solid #ccc; border-radius: 6px;">
+        <div class="row col-sm-12" style="margin-top: 35px; margin-bottom: 35px;  border: 0px solid #ccc; border-radius: 6px;">
             <div style="vertical-align: top; padding-top: 15px; padding-bottom: 15px;" >
-                <div style="display: inline-block; vertical-align: top; text-align: center; top: 0; width: {{ 100/skillSetList.length }}%; height: 100%" class="edit-active" ng-repeat="skillSet in skillSetList track by $index" ng-if="skillSetList.length > 0">
+                <div style="display: inline-block; vertical-align: top; text-align: center; top: 0; width: {{ 100/skillSetList.length }}%; height: 100%" class="edit-active" ng-repeat="skillSet in skillSetList | filter: {isActive: true} track by $index" ng-if="skillSetList.length > 0">
                     <span style="font-weight: bold;">{{ skillSet.Title }}</span>
-                    <div ng-repeat="Skill in skillSet.Skills track by $index">
+                    <div ng-repeat="Skill in skillSet.Skills | filter: {isActive: true} track by $index">
                         <label style="" class="badge badge-rounded" title="{{ Skill.Description }}">
                             {{ Skill.Title }}
                         </label>
@@ -94,7 +94,7 @@
         <!-- Experience -->
         <div class="row">
             <span class="res-heading">Experience:</span>
-            <div class="JobsDisplay" ng-repeat="job in jobs track by $index">
+            <div class="JobsDisplay" ng-repeat="job in jobs | filter: {isActive: true} track by $index">
                 <div class="row">
                     <div class="col-xs-5 employment-information">
                         <place-holder filler="Company Name" bind="job.firmLong"></place-holder>
@@ -121,7 +121,7 @@
 
                 <div class="row inputTitles">
                     <ul>
-                        <li sstyle="max-width: 500px" ng-repeat="detail in job.details | orderBy:'order'">
+                        <li sstyle="max-width: 500px" ng-repeat="detail in job.details | filter: {isActive: true} | orderBy:'order' track by $index">
                             <place-holder filler="Job Detail" bind="detail.description"></place-holder>
                         </li>
                     </ul>
@@ -136,9 +136,9 @@
 
         <div class="row ">
 
-            <div class="col-sm-12" sng-show="education.highSchools.length > 0">
+            <div class="col-sm-12" style="margin-bottom:5px;" sng-show="education.highSchools.length > 0">
 
-                <div style="" class="" ng-repeat="highSchool in education.highSchools track by $index">
+                <div style="" class="" ng-repeat="highSchool in education.highSchools | filter: {isActive: true} track by $index">
                     <i class="fa fa-graduation-cap"></i>
                     <span class=""> <b> {{ highSchool.name }} </b> </span>
                     <span> {{ highSchool.city }} {{ highSchool.state }}  </span>
@@ -149,9 +149,9 @@
                 </div>
             </div>
 
-            <div class="col-sm-12" sng-show="education.colleges.length > 0">
+            <div class="col-sm-12" style="margin-bottom:5px;" sng-show="education.colleges.length > 0">
                 <div style="" class="row col-md-12"
-                     ng-repeat="college in education.colleges track by $index">
+                     ng-repeat="college in education.colleges | filter: {isActive: true} track by $index">
                     <i class="fa fa-graduation-cap"></i>
 
                     <span class=""> <b> {{ college.name }} </b> </span>
@@ -166,7 +166,7 @@
             </div>
 
 
-            <div class="col-md-12" ng-repeat="certificate in education.certificates track by $index">
+            <div class="col-md-12" ng-repeat="certificate in education.certificates | filter: {isActive: true} track by $index">
                 <i class="fa fa-certificate"></i>
 
                 <!--<img src="/Content/images/icons/certification.bmp" height="20px">-->

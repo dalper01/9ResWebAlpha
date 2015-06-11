@@ -15,7 +15,7 @@
 
 <div class="container">
 
-    <div class="row" style="margin-top:20px; margin-bottom:10px; border-bottom: 1px solid lightgrey">
+    <div class="row" style="margin-top:20px; margin-bottom:40px; border-bottom: 1px  lightgrey">
 
         <span style="font-family: 'Bauhaus 93'; color: #4466AA; font-size: 38px; margin-right: -7px;">9</span>
         <span style="font-family: 'Bauhaus 93'; font-size: 20px; margin-right: 5px; margin-left: -0px;">res</span>
@@ -25,24 +25,32 @@
 
     </div>
 
-    <div class="row">
+
+    <div style="margin-top:20px; margin-bottom:40px;">
+        <a class="btn btn-success" href='@Url.Action("New", "ResumeBuilder")' style='font-weight: normal; margin-right:3px;'> <i class="fa fa-file-text-o"></i>  New Resume</a>
+    </div>
+
+    <div class="row" style="padding-left:80px; padding-right: 80px;">
 
         @foreach (var res in Model)
         {
-            <div class="col-sm-4 top" style="border: 1px gray; margin-top: 10px; padding: 5px;">
-                <div sclass="col-sm-8" style="display: inline-block; vertical-align: top;">
-                    <span class="top" style="font-weight:bold; color: #117722; margin-right:5px; font-size: 17px">@res.Title </span>
-                </div>
-                <div aclass="col-sm-3" style="display: inline-block">
-                    <a href='@Url.Action("Index", "ResumeBuilder", new { Id = res.Id })' style='font-weight: normal; margin-right:3px;'>Edit</a> <br />
-                    <a href='@Url.Action("Index", "Resumes", new { Id = res.Id })' style='font-weight: normal; margin-right:3px;'>View</a>
+            <div class="col-sm-4 top" style="border: 1px gray ; margin-top: 10px; padding: 5px;">
+                <div aclass="col-sm-6">
+                    <div>
+                        <a class="resumes-options" sstyle="margin-right: 20px;" href='@Url.Action("Index", "Resumes", new { Id = res.Id })' title="Your Resume's Permanent Link"> <i class="glyphicon glyphicon-eye-open"></i></a>
+                        <a class="resumes-options" href='@Url.Action("Index", "ResumeBuilder", new { Id = res.Id })' title="Edit Resume"> <i class="fa fa-edit"></i></a>
+                        <a class="resumes-options" shref='@Url.Action("Index", "Resumes", new { Id = res.Id })' title="Create New Resume from copy of this Resume (TBD)"> <i class="fa fa-files-o"></i></a>
+                        <a class="resumes-options" shref='@Url.Action("Index", "Resumes", new { Id = res.Id })' title="Delete Resume (TBD)"> <i class="glyphicon glyphicon-trash"></i></a>
+                        @*<a sclass="badge" href='@Url.Action("Index", "Resumes", new { Id = res.Id })' style='font-weight: normal; margin-right:3px;'> <i class="glyphicon glyphicon-eye-open"></i>  View </a>
+                        <a sclass="badge" href='@Url.Action("Index", "ResumeBuilder", new { Id = res.Id })' style='font-weight: normal; margin-right:3px;'> <i class="fa fa-edit"></i> Edit </a>
+                        <a sclass="badge" shref='@Url.Action("Index", "Resumes", new { Id = res.Id })' style='font-weight: normal; margin-right:3px;'> <i class="fa fa-files-o"></i>  Copy </a>
+                        <a sclass="badge" shref='@Url.Action("Index", "Resumes", new { Id = res.Id })' style='font-weight: normal; margin-right:3px;'> <i class="glyphicon glyphicon-trash"></i> Del </a>*@
+                    </div>
+                    <div aclass="col-sm-6">
+                        <span class="top" style="font-weight:bold; scolor: #117722; margin-bottom: 45px; font-size: 20px">@res.Title </span>
+                    </div>
                 </div>
 
-                @*<div style="display: inline-block">
-
-                    @Html.ActionLink("Edit", "Index", new { controller = "ResumeBuilder", Id = res.Id, @style = "font-weight: bold; margin-right:3px;" }) |
-                    @Html.ActionLink("View", "Index", new { controller = "ResumeBuilder", Id = res.Id, @style = "font-weight: bold;" })
-                </div>*@
             </div>
 
         }

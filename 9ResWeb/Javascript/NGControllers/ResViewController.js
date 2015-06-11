@@ -1,11 +1,12 @@
 ﻿
 ResumeBuilderModule.controller('ResViewController',
-function ($http, $scope, $rootScope, localStorageService) {
+function ($filter, $http, $scope, $rootScope, localStorageService) {
 
     $scope.contactInfo = localStorageService.GetContactInfo();
     $scope.jobs = localStorageService.GetJobs();
     $scope.education = localStorageService.GetEducation();
-    $scope.skillSetList = localStorageService.GetSkills();
+    var skillSetList = localStorageService.GetSkills();
+    $scope.skillSetList = $filter('filter')(skillSetList, {isActive: true});
     $scope.objectiveList = localStorageService.GetObjectives();
 
     var elementHandler = {

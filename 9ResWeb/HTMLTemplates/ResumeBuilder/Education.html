@@ -33,8 +33,7 @@
                 </p>
 
                 <p>
-                    ...In case you hadn't noticed, this site is cool as $@&!. <span class="glyphicon glyphicon-chevron-up" title="Hide Explanation" ng-click="ShowInstructions=false"></span>
-
+                    ...In case you hadn't noticed, this site is cool as $@&!.
                 </p>
             </div>
 
@@ -48,6 +47,7 @@
 
 <!-- Add Data Buttons -->
 <div class="row col-xs-12 text-right" style="margin-bottom: 20px;">
+    <!--<a class="btn btn-hot text-capitalize btn-md" ng-click="startDelete()" ng-disabled="(highschoolEditList.length > 0)"> <i class=""></i> Delete </a>-->
     <a class="btn btn-fresh text-capitalize btn-md" ng-click="addHighSchool()" ng-disabled="(highschoolEditList.length > 0)"> <i class=""></i> Add High School </a>
     <a class="btn btn-fresh text-capitalize btn-md" ng-click="addCollege()" ng-disabled="(highschoolEditList.length > 0)"> <i class=" "></i> Add College </a>
     <a class="btn btn-fresh text-capitalize btn-md" ng-click="addCertificate()" ng-disabled="(highschoolEditList.length > 0)"> <i class=" "></i> Add Certification </a>
@@ -62,20 +62,19 @@
     <div class="">
 
         <div class="row educationPresentation">
-            <div class="row edit-active" ng-click="editHighSchool(highSchool)" ng-repeat="highSchool in education.highSchools track by $index">
-                <span style="text-align: right;" ng-if="(addNavShow == true)">
-                    <i class="glyphicon glyphicon-edit microIcons" title="Edit HighSchool"
-                       ng-click="editHighSchool(highSchool)"></i>
+            <div ng-repeat="highSchool in education.highSchools | filter: {isActive: true}  track by $index">
+                <span style="text-align: left; position: relative; left: -20px;" sng-if="(addNavShow == true)">
                     <i class="glyphicon glyphicon-trash microIcons" title="Delete HighSchool"
-                       ng-click="deleteHighSchool(highSchool)"></i>
+                       ng-click="deleteEducation(highSchool)"></i>
                 </span>
-
-                <i class="fa fa-graduation-cap" ng-show="highSchool.graduated"></i>
-                <span> <b> {{ highSchool.name }} </b> </span>
-                <span> {{ highSchool.city }} {{ highSchool.state }}  </span>
-                <span ng-show="highSchool.graduated">
-                    <!--<img src="/Content/images/degree.bmp" height="20px">-->
-                    {{ highSchool.gradMonth }} {{ highSchool.gradYear }}
+                <span class="edit-active" style="padding: 2px 30px 2px" ng-click="editHighSchool(highSchool)">
+                    <i class="fa fa-graduation-cap" sng-show="highSchool.graduated"></i>
+                    <b> {{ highSchool.name }} </b>
+                    {{ highSchool.city }} {{ highSchool.state }}
+                    <span ng-show="highSchool.graduated">
+                        <!--<img src="/Content/images/degree.bmp" height="20px">-->
+                        {{ highSchool.gradMonth }} {{ highSchool.gradYear }}
+                    </span>
                 </span>
             </div>
 
@@ -89,20 +88,19 @@
         <!--<div style="display: inline-block; max-width: 50%; vertical-align: top; ">-->
         <div class="row educationPresentation">
 
-            <div class="row edit-active" ng-click="editCollege(college)" ng-repeat="college in education.colleges track by $index">
-                <span style="text-align: right;" ng-if="(addNavShow == true)">
-                    <i class="glyphicon glyphicon-edit microIcons" title="Edit College"
-                       ng-click="editCollege(college)"></i>
+            <div ng-repeat="college in education.colleges | filter: {isActive: true} track by $index">
+                <span style="text-align: left; position: relative; left: -20px;" sng-if="(addNavShow == true)">
                     <i class="glyphicon glyphicon-trash microIcons" title="Delete College"
-                       ng-click="deleteCollege(college)"></i>
+                       ng-click="deleteEducation(college)"></i>
                 </span>
-
-                <i class="fa fa-graduation-cap" ng-show="college.graduated"></i>
-                <span> <b> {{ college.name }} </b> </span>
-                <span> ({{ college.city }} {{ college.state }})  </span>
-                <span style="font-weight: bold"> {{ college.degreeType }} {{ college.degreeProgram }}  </span>
-                <span ng-show="college.graduated">
-                    ({{ college.gradMonth }}-{{ college.gradYear }})
+                <span class="edit-active" ng-click="editCollege(college)" style="padding: 2px 30px 2px" sng-if="(addNavShow == true)">
+                    <i class="fa fa-graduation-cap" ng-show="college.graduated"></i>
+                    <span> <b> {{ college.name }} </b> </span>
+                    <span> ({{ college.city }} {{ college.state }})  </span>
+                    <span style="font-weight: bold"> {{ college.degreeType }} {{ college.degreeProgram }}  </span>
+                    <span ng-show="college.graduated">
+                        ({{ college.gradMonth }}-{{ college.gradYear }})
+                    </span>
                 </span>
             </div>
 
@@ -115,21 +113,21 @@
 
         <div class="row educationPresentation">
 
-            <div class="row edit-active" ng-click="editCertificate(certificate)" ng-repeat="certificate in education.certificates track by $index">
+            <div ng-repeat="certificate in education.certificates | filter: {isActive: true} track by $index">
+                <span style="text-align: left; position: relative; left: -20px;" sng-if="(addNavShow == true)">
+                    <i class="glyphicon glyphicon-trash microIcons" title="Delete College"
+                       ng-click="deleteEducation(certificate)"></i>
+                </span>
+                <span class="edit-active" style="padding: 2px 30px 2px" ng-click="editCertificate(certificate)">
+                    <i class="fa fa-certificate"></i>
 
-                <i class="fa fa-certificate"></i>
-                <span style="text-align: right;" ng-if="(addNavShow == true)">
-                    <i class="glyphicon glyphicon-edit microIcons" title="Edit Certificate"
-                       ng-click="editCertificate(certificate)"></i>
-                    <i class="glyphicon glyphicon-trash microIcons" title="Delete Certificate"
-                       ng-click="deleteCertificate(certificate)"></i>
+                    <span>
+                        <!--<img src="/Content/images/icons/certification.bmp" height="20px">-->
+                        <b> {{ certificate.type }} </b> ( {{ certificate.Provider }}
+                        {{ certificate.compMonth }} {{ certificate.compYear }})
+                    </span>
                 </span>
 
-                <span>
-                    <!--<img src="/Content/images/icons/certification.bmp" height="20px">-->
-                    <b> {{ certificate.type }} </b> ( {{ certificate.Provider }}
-                    {{ certificate.compMonth }} {{ certificate.compYear }})
-                </span>
             </div>
 
 

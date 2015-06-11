@@ -1,4 +1,5 @@
 ﻿using DataLayer.Entities.ResumeEntities;
+using Res.DTOs.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace DataLayer.Entities.UserEntities
 {
-    public class Certifications
+    public class Certifications : EntityBase
     {
         public int Id { get; set; }
         public string UserId { get; set; }

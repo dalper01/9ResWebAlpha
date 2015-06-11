@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Res.DTOs.Abstracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace _9ResWeb.Models
 {
-    public class CollegeViewModel
+    public class CollegeViewModel : EntityBase
     {
         public int Id { get; set; }
         public string name { get; set; }

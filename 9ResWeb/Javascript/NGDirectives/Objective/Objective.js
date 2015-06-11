@@ -1,5 +1,5 @@
 ﻿/// <reference path="C:\Users\dave\Documents\GitHub\9ResWebAlpha\9ResWeb\HTMLControls/Objectives/addObjective.html" />
-ResumeBuilderModule.directive('addObjective', [function ($compile) {
+ResumeBuilderModule.directive('addObjective', [function () {
     return {
         restrict: "AE",
         //require: "CareerController",
@@ -17,7 +17,7 @@ ResumeBuilderModule.directive('addObjective', [function ($compile) {
 }]);
 
 
-ResumeBuilderModule.directive('editObjective', [function ($compile) {
+ResumeBuilderModule.directive('editObjective', [function () {
     return {
         restrict: "AE",
         //require: "CareerController",

@@ -27,10 +27,17 @@ namespace DataLayer
         /// <param name="resumeId"></param>
         /// <param name="userId"></param>
         /// <returns>User's Resume Info for Viewing or Editing</returns>
-        public ResumeDTO GetUserResumeData(Guid resumeId, string userId)
+        public ResumeDTO GetUserResumeData(Guid resumeId, string userId, bool isAnonymous = false)
         {
-            var userResume = rCtxt.Resume.FirstOrDefault(r => r.UserId == userId && r.Id == resumeId);
-            if (userResume == null)
+            Resume userResume;
+            // r => r.UserId == userId && r.Id == resumeId
+            userResume = rCtxt.Resume.FirstOrDefault(r => r.Id == resumeId);
+
+            // if anonymous get, set userId = userResume.UserId
+            if (isAnonymous == true)
+                userId = userResume.UserId;
+
+            if (userResume == null || userResume.UserId != userId)
                 return null;
 
             var resDTO = Mapper.Map<ResumeDTO>(userResume);
@@ -38,14 +45,41 @@ namespace DataLayer
             var userHighschools = rCtxt.Highschools.Where(o => o.UserId == userId).ToList();
             var userColleges = rCtxt.Colleges.Where(o => o.UserId == userId).ToList();
             var userCertifications = rCtxt.Certifications.Where(o => o.UserId == userId).ToList();
-            var userJobs = rCtxt.Jobs.Where(o => o.UserId == userId).Include(j => j.details).ToList();
-            var userSkillSets = rCtxt.SkillSets.Where(o => o.UserId == userId).Include(s=>s.Skills).ToList();
+            var userJobs = rCtxt.Jobs.Where(o => o.ResumeId == resumeId).Include(j => j.details).ToList();
+            var userSkillSets = rCtxt.SkillSets.Where(o => o.UserId == userId).Include(s => s.Skills).ToList();
             var userObjectives = rCtxt.Objectives.Where(o => o.UserId == userId).ToList();
 
             resDTO.highschoolList = Mapper.Map<List<HighschoolDTO>>(userHighschools);
             resDTO.collegeList = Mapper.Map<List<CollegeDTO>>(userColleges);
             resDTO.certificationList = Mapper.Map<List<CertificationDTO>>(userCertifications);
             resDTO.jobList = Mapper.Map<List<JobDTO>>(userJobs);
+            resDTO.skillSetList = Mapper.Map<List<SkillSetDTO>>(userSkillSets);
+            resDTO.objectivesList = Mapper.Map<List<ObjectiveDTO>>(userObjectives);
+
+
+            return resDTO;
+        }
+
+        public ResumeDTO GetNewResumeData(string userId)
+        {
+            //if (userResume == null || userResume.UserId != userId)
+            //    return null;
+
+            //var resDTO = Mapper.Map<ResumeDTO>(userResume);
+
+            var resDTO = new ResumeDTO();
+
+            var userHighschools = rCtxt.Highschools.Where(o => o.UserId == userId).ToList();
+            var userColleges = rCtxt.Colleges.Where(o => o.UserId == userId).ToList();
+            var userCertifications = rCtxt.Certifications.Where(o => o.UserId == userId).ToList();
+            //var userJobs = rCtxt.Jobs.Where(o => o.ResumeId == resumeId).Include(j => j.details).ToList();
+            var userSkillSets = rCtxt.SkillSets.Where(o => o.UserId == userId).Include(s => s.Skills).ToList();
+            var userObjectives = rCtxt.Objectives.Where(o => o.UserId == userId).ToList();
+
+            resDTO.highschoolList = Mapper.Map<List<HighschoolDTO>>(userHighschools);
+            resDTO.collegeList = Mapper.Map<List<CollegeDTO>>(userColleges);
+            resDTO.certificationList = Mapper.Map<List<CertificationDTO>>(userCertifications);
+            //resDTO.jobList = Mapper.Map<List<JobDTO>>(userJobs);
             resDTO.skillSetList = Mapper.Map<List<SkillSetDTO>>(userSkillSets);
             resDTO.objectivesList = Mapper.Map<List<ObjectiveDTO>>(userObjectives);
 

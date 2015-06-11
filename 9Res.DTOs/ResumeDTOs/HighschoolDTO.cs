@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Res.DTOs.Abstracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Res.DTOs.ResumeDTOs
 {
-    public class HighschoolDTO
+    public class HighschoolDTO : EntityBase
     {
         public int Id { get; set; }
         public string name { get; set; }

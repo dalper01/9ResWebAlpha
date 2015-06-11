@@ -19,12 +19,13 @@ namespace _9ResWeb.Controllers
         {
             _resumeManager = new ResumeManager();
         }
+
         //
         // GET: /ResumeBuilder/
         public ActionResult Index(Guid? id = null)
         {
 
-            ResumeDTO resumeDTO;
+            //ResumeDTO resumeDTO;
 
             if (!User.Identity.IsAuthenticated)
                 return View();
@@ -47,5 +48,35 @@ namespace _9ResWeb.Controllers
 
             return View(returnval);
         }
-	}
+
+
+        //
+        // GET: /ResumeBuilder/
+        public ActionResult New()
+        {
+
+            ResumeDTO resumeDTO;
+
+            if (!User.Identity.IsAuthenticated)
+                return View();
+
+            var identity = (System.Security.Claims.ClaimsIdentity)User.Identity;
+            var userId = identity.Claims.FirstOrDefault(i => i.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value;
+
+            var resume = _resumeManager.GetUserNewData(userId);
+
+            ResumeViewModel returnval = new ResumeViewModel() { education = new EducationViewModel() };
+            returnval.contactInfo = new ContactInfoViewModel();
+            returnval.education.highSchools = Mapper.Map<List<HighschoolViewModel>>(resume.highschoolList);
+            returnval.education.colleges = Mapper.Map<List<CollegeViewModel>>(resume.collegeList);
+            returnval.education.certificates = Mapper.Map<List<CertificationViewModel>>(resume.certificationList);
+            //returnval.jobs = Mapper.Map<List<JobViewModel>>(resume.jobList);
+            returnval.skills = Mapper.Map<List<SkillSetViewModel>>(resume.skillSetList);
+            returnval.objectives = Mapper.Map<List<ObjectiveViewModel>>(resume.objectivesList);
+
+            return View("Index", returnval);
+        }
+    
+    
+    }
 }

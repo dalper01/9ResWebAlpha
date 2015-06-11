@@ -34,7 +34,8 @@
 <div class="container">
 
     <!-- Preview Panel -->
-    <div class="row" ng-hide="true">
+    <!--<div class="row" ng-hide="true">
+        <span class="glyphicon glyphicon-trash small hov-red"></span>
         <div id="ppane_car" align="left">
             <table cellpadding=0 cellspacing=0 border=0 style="width: 100%">
                 <tr><td id="career_row1"></td></tr>
@@ -68,7 +69,7 @@
                 </tr>
             </table>
         </div>
-    </div>
+    </div>-->
 
 
 
@@ -86,7 +87,7 @@
 
     <div class="row">
 
-        <div class="col-sm-12" ng-repeat="job in jobs track by $index">
+        <div class="col-sm-12 addjob" ng-repeat="job in jobs  | filter: {isActive: true} track by $index">
             <show-job job="job" jobs="jobs" job-number="$index" jobnumber="$index"></show-job>
         </div>
 

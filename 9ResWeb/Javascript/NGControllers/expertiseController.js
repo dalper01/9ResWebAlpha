@@ -16,10 +16,12 @@ ResumeBuilderModule.controller('expertiseController', function ($http, $scope, $
         $scope.skillSetList.push($scope.newSkillSet);
         $scope.newSkillSet = {
             Title: 'Skills:',
-            Skills: [{ Title: 'Typing Fast' }]
+            Skills: [{
+                Title: 'Typing Fast',
+                isActive: true
+            }],
+            isActive: true
         };
-
-
     };
 
     $scope.EditSkillSet = function (skillSet) {
@@ -45,7 +47,11 @@ ResumeBuilderModule.controller('expertiseController', function ($http, $scope, $
 
         $scope.newSkillSet = {
             Title: 'Skills',
-            Skills: [{ Title: 'Typing Fast' }]
+            Skills: [{
+                Title: 'Typing Fast',
+                isActive: true
+            }],
+            isActive: true
         };
         $scope.addSkillSetList.push($scope.newSkillSet);
     };
@@ -64,10 +70,11 @@ ResumeBuilderModule.controller('expertiseController', function ($http, $scope, $
 
 
 
-    $scope.DeleteSkill = function (skill) {
+    $scope.deleteSkillSet = function (skillSet) {
         console.log('DeleteSkill');
-        deleteArrayElement($scope.SkillList, skill);
-        localStorageService.SaveStorageSkills();
+        //deleteArrayElement($scope.SkillList, skill);
+        skillSet.isActive = false;
+        //localStorageService.SaveStorageSkills();
     }
 
 

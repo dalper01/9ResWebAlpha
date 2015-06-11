@@ -30,11 +30,19 @@ educationApp.controller('educationController', function ($scope, $rootScope, loc
         $scope.closeEdit();
     };
 
+
+    $scope.deleteEducation = function (education) {
+        education.isActive = false;
+    };
+
+
+
     // activate Add/Edit Forms
     $scope.addHighSchool = function () {
         var highschool = {
             add: true,
-            edType: 1
+            edType: 1,
+            isActive: true
         };
 
         $scope.education.highSchools.push(highschool);
@@ -48,7 +56,7 @@ educationApp.controller('educationController', function ($scope, $rootScope, loc
 
 
     $scope.cancelAddHighSchool = function (highSchool) {
-        $scope.deleteHighSchool(highSchool);
+        $scope.removeHighSchool(highSchool);
         $scope.closeEdit();
     };
 
@@ -65,7 +73,7 @@ educationApp.controller('educationController', function ($scope, $rootScope, loc
     };
 
 
-    $scope.deleteHighSchool = function(highSchool) {
+    $scope.removeHighSchool = function(highSchool) {
 
         var i = $scope.education.highSchools.indexOf(highSchool);
         console.log('index:' + i);
@@ -83,7 +91,8 @@ educationApp.controller('educationController', function ($scope, $rootScope, loc
 
         var college = {
             add: true,
-            edType: 2
+            edType: 2,
+            isActive: true
         };
 
         $scope.education.colleges.push(college);
@@ -122,7 +131,8 @@ educationApp.controller('educationController', function ($scope, $rootScope, loc
 
         var certificate = {
             add: true,
-            edType: 3
+            edType: 3,
+            isActive: true
         };
 
         $scope.education.certificates.push(certificate);

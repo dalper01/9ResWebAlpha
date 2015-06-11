@@ -4,22 +4,22 @@ var navBarApp = angular.module('navBarApp', []);
 
 
 
-navBarApp.directive('resumeBuilderTabsCommon', [function ($compile) {
-    return {
-        restrict: "E",
-        controller: 'navController',
-        scope: {
-            settab: '=',
-            updateFn: '&'
-        },
+//navBarApp.directive('resumeBuilderTabsCommon', [function ($compile) {
+//    return {
+//        restrict: "E",
+//        controller: 'navController',
+//        scope: {
+//            settab: '=',
+//            updateFn: '&'
+//        },
 
-        //require: "navController",
-        //scope: { active: '='},
-        templateUrl: "/HTMLControls/navTabsCommon.html"
-    }
+//        //require: "navController",
+//        //scope: { active: '='},
+//        templateUrl: "/HTMLControls/navTabsCommon.html"
+//    }
 
 
-}]);
+//}]);
 
 
 
