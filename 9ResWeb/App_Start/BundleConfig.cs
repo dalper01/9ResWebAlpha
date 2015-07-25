@@ -39,6 +39,7 @@ namespace _9ResWeb
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Scripts/JSPlugins/angular-strap.js",
                       "~/Content/bootstrap.css",
                       "~/Content/LoginPopUp.css",
                       "~/Content/bootstrap-social.css",

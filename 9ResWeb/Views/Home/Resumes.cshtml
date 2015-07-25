@@ -41,10 +41,6 @@
                         <a class="resumes-options" href='@Url.Action("Index", "ResumeBuilder", new { Id = res.Id })' title="Edit Resume"> <i class="fa fa-edit"></i></a>
                         <a class="resumes-options" shref='@Url.Action("Index", "Resumes", new { Id = res.Id })' title="Create New Resume from copy of this Resume (TBD)"> <i class="fa fa-files-o"></i></a>
                         <a class="resumes-options" shref='@Url.Action("Index", "Resumes", new { Id = res.Id })' title="Delete Resume (TBD)"> <i class="glyphicon glyphicon-trash"></i></a>
-                        @*<a sclass="badge" href='@Url.Action("Index", "Resumes", new { Id = res.Id })' style='font-weight: normal; margin-right:3px;'> <i class="glyphicon glyphicon-eye-open"></i>  View </a>
-                        <a sclass="badge" href='@Url.Action("Index", "ResumeBuilder", new { Id = res.Id })' style='font-weight: normal; margin-right:3px;'> <i class="fa fa-edit"></i> Edit </a>
-                        <a sclass="badge" shref='@Url.Action("Index", "Resumes", new { Id = res.Id })' style='font-weight: normal; margin-right:3px;'> <i class="fa fa-files-o"></i>  Copy </a>
-                        <a sclass="badge" shref='@Url.Action("Index", "Resumes", new { Id = res.Id })' style='font-weight: normal; margin-right:3px;'> <i class="glyphicon glyphicon-trash"></i> Del </a>*@
                     </div>
                     <div aclass="col-sm-6">
                         <span class="top" style="font-weight:bold; scolor: #117722; margin-bottom: 45px; font-size: 20px">@res.Title </span>

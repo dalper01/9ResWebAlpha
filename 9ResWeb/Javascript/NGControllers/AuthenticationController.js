@@ -3,10 +3,13 @@
 
 AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 'GooglePlus', 'Facebook', 'Authentication', function ($scope, $http, GooglePlus, Facebook, Authentication) {
 
+
     // Initialize User Status and Data
     $scope.showLogin = false;
     $scope.showRegister = false;
     $scope.save = { showSaveResume: false };
+
+    $scope.ProgressBar = false;
 
     $scope.LoggedIn = Authentication.GetLoggedInStatus();
     $scope.UserData = Authentication.GetUserData();
@@ -89,9 +92,24 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
         $scope.showRegister = false;
     }
 
+    $scope.ShowProgress = function () {
+        $scope.ProgressBar = true;
+    }
+
+    $scope.HideProgress = function () {
+        $scope.ProgressBar = false;
+
+        $scope.$apply(function () {
+            $scope.ProgressBar = false;
+        });
+    }
+
+
 
     // Send Login Credentials to Login API
     $scope.Login9Res = function () {
+
+        $scope.ShowProgress();
         //console.log('Login9Res');
         //console.log($scope.Login);
 
@@ -114,12 +132,17 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
                 console.log('Error Handler');
                 console.log(data);
                 console.log(status);
-            });
+            })
+        .finally(function () {
+            $scope.HideProgress();
+        });
 
     }
 
     // Send Register Credentials to Register API
     $scope.Register9Res = function () {
+        $scope.ShowProgress();
+
         console.log('Register9Res');
 
         console.log($scope.Register);
@@ -134,23 +157,37 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
             success(function (data, status, headers, config) {
                 console.log(data);
                 console.log(status);
+                Authentication.SetUserData(data);
+
+                $scope.SetUserLoggedIn();
+                $scope.CloseLogin();
+                if (!$scope.$$phase) {
+                    $scope.$digest(); // or $apply
+                }
+
             }).
             error(function (data, status, headers, config) {
                 console.log(data);
                 console.log(status);
-            });
+            })
+                .finally(function () {
+                    $scope.HideProgress();
+                });
     }
 
     // Request Validation from Google API
     $scope.loginGooglePlus = function () {
         console.log('loginGooglePlus');
 
+
+
         var promise = Authentication.GPlogin();
 
         promise.then(function (data) {
+            $scope.ProgressBar = true;
             //console.log('Success Handler');
             //console.log(data);
-
+            $scope.ProgressBar = true;
             var promise2 = Authentication.HTTPExternalLogin(data);
 
             promise2.then(function (data) {
@@ -173,19 +210,17 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
             console.log('err callback');
             console.log(err);
         }).finally(function (result) {
-            console.log('final Data Result');
+            //$scope.ProgressBar = false;
         });
 
     }
 
     // Request Validation from Facebook API
     $scope.loginFacebook = function () {
-        //$scope.FBlogin();
-        //$scope.showLogin = false;
-        //Authentication.FBlogin();
         var promise = Authentication.FBlogin();
 
         promise.then(function (data) {
+            $scope.ProgressBar = true;
             //console.log('Success Handler');
             //console.log(data);
 
@@ -212,6 +247,7 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
             console.log(err);
         }).finally(function (result) {
             console.log('final Data Result');
+            $scope.ProgressBar = false;
         });
 
     }
@@ -363,5 +399,28 @@ AuthenticationModule.controller('AuthenticationController', ['$scope', '$http', 
         //});
     };
 
+
+
+    // If Window Closes, remove Progress Bar
+    //(function (wrapped) {
+
+    //    window.open = function () {
+    //        var win = wrapped.apply(this, arguments);
+    //        var i = setInterval(function () {
+    //            if (win.closed) {
+    //                console.log('closed!');
+    //                $scope.ProgressBar = false;
+    //                setTimeout(function () {
+    //                    $scope.$apply(function () {
+    //                        $scope.ProgressBar = false;
+    //                    });
+    //                }, 1000);
+
+    //                clearInterval(i);
+    //            }
+    //        }, 100);
+    //    };
+
+    //})(window.open);
 
 }]);

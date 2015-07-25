@@ -255,6 +255,7 @@ div[ng-view].ng-enter-active {
 /* --------------       Icons       ----------------- */
 .resumes-options {
     margin-right: 5px;
+    font-size: 11px;
     /*color: orange;
     background-color: purple;*/
 }

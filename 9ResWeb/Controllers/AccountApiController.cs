@@ -48,7 +48,7 @@ namespace _9ResWeb.Controllers
                 UserName = model.UserName,
                 UserInfo = new UserInfo()
                 {
-                    DisplayName = "",
+                    DisplayName = model.UserName,
                     FirstName = "",
                     LastName = ""
                 }

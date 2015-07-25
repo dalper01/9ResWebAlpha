@@ -238,7 +238,7 @@ AuthenticationModule.provider('Authentication', [function (GooglePlus, Facebook)
 
             //if ($scope.loginStatus === 'connected')
             //    return;
-
+            FB.logout();
             FB.login(function (response) {
                 console.log(response);
 

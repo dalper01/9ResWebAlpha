@@ -55,9 +55,9 @@
             </div>
         </div>
 
-        <div class="row col-md-12 col-sm-offset-0" sclass="well well-sm objective-styling" style="border: 0px solid #bbb; border-radius: 5px; background-color: white;">
+        <div class="row col-md-12 col-sm-offset-0" sclass="well well-sm objective-styling" style="border: 0px solid #bbb; border-radius: 5px; margin-bottom: 35px;">
             <div style=" padding: 7px;" ng-repeat="Objective in objectiveList track by $index">
-                <p>
+                <p style="font-size: 18px; font-family: 'Times New Roman'; padding-left: 40px; padding-right: 40px;">
                     {{ Objective.description }}
                 </p>
             </div>
@@ -89,12 +89,24 @@
                 </div>
             </div>
         </div>
+        <!--<div class="row col-sm-12" style="margin-top: 35px; margin-bottom: 35px;  border: 0px solid #ccc; border-radius: 6px;">
+            <div style="vertical-align: top; padding-top: 15px; padding-bottom: 15px;">
+                <div style="" class="edit-active" ng-repeat="skillSet in skillSetList | filter: {isActive: true} track by $index" ng-if="skillSetList.length > 0">
+                    <span style="font-weight: bold;">{{ skillSet.Title }}</span>
+                    <span ng-repeat="Skill in skillSet.Skills | filter: {isActive: true} track by $index">
+                        <label style="" class="badge badge-rounded" title="{{ Skill.Description }}">
+                            {{ Skill.Title }}
+                        </label>
+                    </span>
+                </div>
+            </div>
+        </div>-->
 
 
         <!-- Experience -->
         <div class="row">
             <span class="res-heading">Experience:</span>
-            <div class="JobsDisplay" ng-repeat="job in jobs | filter: {isActive: true} track by $index">
+            <div class="JobsDisplay" style="padding-left: 20px;" ng-repeat="job in jobs | filter: {isActive: true} track by $index">
                 <div class="row">
                     <div class="col-xs-5 employment-information">
                         <place-holder filler="Company Name" bind="job.firmLong"></place-holder>

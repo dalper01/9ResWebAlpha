@@ -110,7 +110,8 @@
 
         <div class="row" style="margin-top:40px; margin-bottom: 20px;">
             <div class="col-sm-offset-4 col-sm-3">
-                <strong>Job Details</strong> ( <a ng-click="addJobDetail(job)"> <i class="glyphicon glyphicon-plus">Add</i> </a> )
+                <!--<strong>Job Details</strong> ( <a ng-click="addJobDetail(job)"> <i class="glyphicon glyphicon-plus">Add</i> </a> )-->
+                <a class="btn btn-success" style="padding-top: 0px; padding-bottom: 0px;" ng-click="addJobDetail(job)"> New Job Detail </a>
             </div>
         </div>
 
@@ -137,13 +138,13 @@
 
         </div>
 
-        <div class="row" style="margin-top: 20px; background-color: #444444; padding-top: 25px; padding-bottom:25px;">
-            <div class="col-sm-offset-2 col-sm-2">
+        <div class="row form-submit-bar">
+            <div class="col-sm-offset-3 col-sm-1">
                 <a style="" class="btn btn-primary" ng-click="saveJob(job)">
                     <span> Confirm <i class="glyphicon glyphicon-thumbs-up"></i> </span>
                 </a>
             </div>
-            <div class="col-sm-offset-4 col-sm-2">
+            <div class="col-sm-offset-3 col-sm-2">
                 <a style="" class="btn btn-danger" ng-click="cancel(job)">
                     <span> <i class="glyphicon glyphicon-thumbs-down"></i> Cancel </span>
                 </a>

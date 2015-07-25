@@ -1,17 +1,32 @@
 ﻿#loginForm {
 
     position:fixed;
-    top:90px;left:40%;
+    top:90px;
+    left:40%;
     z-index:1050;
     /*padding-bottom: 20px;*/
     /*max-width: 500px;*/
     /*min-height: 400px;*/
     /*height:auto;*/
-    width: 400px;
+    width: 370px;
     background-color: white;
     border:1px solid #dddddd;
 
 }
+
+
+.status-bar {
+    position: absolute;
+    top:0px;
+    left:0;
+    vertical-align: middle;
+    height: 100%;
+    width: 100%;
+    z-index:1051;
+    width: 400px;
+
+}
+
 
 .Login-Header{
    
